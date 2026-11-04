@@ -1,0 +1,1 @@
+document.addEventListener('input',e=>{if(e.target.matches('[data-search]')){const q=e.target.value.toLowerCase().trim();document.querySelectorAll('[data-card]').forEach(c=>c.classList.toggle('hidden',q&&!c.innerText.toLowerCase().includes(q)))}});
