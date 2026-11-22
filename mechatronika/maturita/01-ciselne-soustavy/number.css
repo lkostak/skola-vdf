@@ -1,0 +1,90 @@
+/* Otázka 01. Společný vizuální standard výkladu 1A a 1B v duchu otázky 05.
+   Stávající portál ani otázka 05 se nemění. */
+.number-page .hero h1 { max-width: 950px; }
+.number-page .form-field {
+  display:flex;flex-direction:column;gap:8px;min-width:190px;
+  color:#dceef3;font-weight:700;font-size:.83rem;line-height:1.4;
+}
+.number-page .form-field input,.number-page .form-field select{
+  min-height:47px;padding:11px 13px;border:1px solid rgba(169,229,244,.44);
+  background:#073b4c;color:#fff;border-radius:4px;font-family:Raleway,Arial,sans-serif;
+  font-weight:600;font-size:1rem;min-width:0;max-width:100%;
+}
+.number-page .form-field input:focus-visible,.number-page .form-field select:focus-visible,
+.number-page .bit-button:focus-visible{outline:3px solid var(--yellow);outline-offset:3px;}
+.number-page .result-grid{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;
+  margin:20px 0 22px;
+}
+.number-page .result-grid-3{grid-template-columns:repeat(3,minmax(0,1fr));}
+.number-page .result-grid>div{background:rgba(0,13,20,.6);padding:20px 16px;border:1px solid rgba(169,229,244,.2);min-width:0;}
+.number-page .result-grid small{display:block;color:#b7d6e0;font-size:.65rem;letter-spacing:.1em;font-weight:700;margin-bottom:14px;line-height:1.5;}
+.number-page .result-grid strong{display:block;color:#a5eaff;font-weight:700;font-size:clamp(1.25rem,2.2vw,1.76rem);overflow-wrap:anywhere;font-family:"Segoe UI",Arial,sans-serif;}
+.number-page .power-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:22px 0;}
+.number-page .power-strip>div{padding:17px 10px;text-align:center;background:rgba(0,18,27,.7);border:1px solid rgba(169,229,244,.2);}
+.number-page .power-strip span{display:block;font-weight:700;color:var(--yellow);font-size:2.15rem;}
+.number-page .power-strip small{display:block;color:#b9d7e0;font-size:.84rem;margin:9px 0;}
+.number-page .power-strip b{display:block;color:#a7eeff;font-size:1.35rem;}
+.number-page .bits-row{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:7px;margin:20px 0;}
+.number-page .bits-row>span{display:grid;justify-items:center;gap:8px;padding:13px 5px;background:rgba(0,18,27,.7);border:1px solid rgba(169,229,244,.22);font-weight:700;color:#e8f7fb;font-size:.92rem;}
+.number-page .bits-row>span small{font-weight:400;font-size:.75rem;color:#c2dce3;}
+.number-page .bits-row>span strong{font-family:"Segoe UI",Arial,sans-serif;color:var(--cyan);font-size:1.8rem;}
+.number-page .bits-result{padding:15px;font-size:1.1rem;font-weight:700;color:#a4e8f9;}
+.number-page .clean-table{width:100%;border-collapse:collapse;margin:16px 0 19px;max-width:760px;}
+.number-page .clean-table th,.number-page .clean-table td{padding:10px 15px;border-bottom:1px solid rgba(169,229,244,.25);font-family:"Segoe UI",Arial,sans-serif;}
+.number-page .clean-table th{background:rgba(65,215,255,.12);color:#bbedfc;}
+.number-page .clean-table td{color:#eaf7fa;}
+.number-page .lesson-microtitle{font-size:.85rem;font-weight:700;letter-spacing:.02em;color:#e7f5f9;margin:16px 0 13px;}
+.number-page .breakdown{display:flex;gap:7px;flex-wrap:wrap;}
+.number-page .breakdown-item{display:grid;gap:6px;flex:1 0 76px;text-align:center;padding:10px;background:rgba(0,17,25,.55);border:1px solid rgba(169,229,244,.2);}
+.number-page .breakdown-item strong{font-size:1.5rem;color:var(--yellow);}
+.number-page .breakdown-item small{font-size:.72rem;color:#c0e1eb;}
+.number-page .breakdown-item span{font-size:.8rem;color:#aaf2bd;font-weight:700;}
+.number-page .breakdown-sum{flex:1 0 100%;font-weight:700;color:#fff6c9;font-family:"Segoe UI",Arial,sans-serif;padding-top:8px;}
+.number-page .bits-interactive{gap:7px;}
+.number-page .bit-button{
+  padding:12px 2px;min-width:0;display:grid;justify-items:center;gap:6px;
+  background:rgba(0,16,23,.65);border:1px solid rgba(169,229,244,.28);
+  color:#cce8ed;text-transform:none;min-height:105px;
+}
+.number-page .bit-button.bit-on {background:rgba(0,81,105,.65);border-color:var(--cyan);}
+.number-page .bit-button small{font-size:.82rem;color:#dceff3;}
+.number-page .bit-button strong{font-family:"Segoe UI",Arial,sans-serif;font-size:1.6rem;color:var(--cyan);}
+.number-page .bit-button span{font-family:"Segoe UI",Arial,sans-serif;font-size:.7rem;color:#d2e7ed;}
+.number-page .bit-button:hover{background:rgba(65,215,255,.24);}
+.number-page .scope-note a,.number-page .lesson-bottom-nav a{color:var(--yellow);}
+.number-page .chapter .worked-example p {font-size:1.02rem;line-height:1.77;}
+@media(max-width:760px){
+ .number-page .result-grid,.number-page .result-grid-3{grid-template-columns:repeat(2,minmax(0,1fr));}
+ .number-page .form-field{min-width:100%;max-width:100%;}
+ .number-page .bits-row{gap:4px;}
+ .number-page .bits-row>span{padding:10px 2px;font-size:.8rem;}
+ .number-page .bits-row>span strong{font-size:1.3rem;}
+ .number-page .bits-row>span small{font-size:.65rem;}
+ .number-page .bit-button{min-height:89px;}
+}
+@media(max-width:440px){
+ .number-page .result-grid,.number-page .result-grid-3{grid-template-columns:1fr 1fr;}
+ .number-page .result-grid>div{padding:15px 10px;}
+ .number-page .result-grid strong{font-size:1.18rem;}
+ .number-page .bits-interactive{overflow-x:auto;grid-template-columns:repeat(8,minmax(38px,1fr));}
+ .number-page .bits-row>span small{display:none;}
+ .number-page .power-strip{gap:6px;}
+ .number-page .power-strip span{font-size:1.5rem;}
+ .number-page .power-strip small{font-size:.7rem;}
+}
+@media print{
+ .number-page .power-strip>div,.number-page .bits-row>span,
+ .number-page .result-grid>div,.number-page .breakdown-item,.number-page .bit-button{
+  background:#fff !important;border:1px solid #aaa;color:#111;
+ }
+ .number-page .result-grid strong,.number-page .result-grid small,
+ .number-page .bits-row>span strong,.number-page .bit-button strong,
+ .number-page .power-strip span,.number-page .power-strip b,
+ .number-page .bits-result,.number-page .breakdown-item strong,
+ .number-page .breakdown-item small,.number-page .breakdown-item span,
+ .number-page .clean-table td,.number-page .clean-table th,
+ .number-page .form-field,.number-page .lesson-microtitle{color:#111!important;}
+ .number-page .result-grid{grid-template-columns:repeat(4,minmax(0,1fr));}
+ .number-page .bits-row{grid-template-columns:repeat(8,minmax(0,1fr));}
+}
