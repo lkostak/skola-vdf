@@ -100,6 +100,10 @@
     data.forEach(bit);s0=bit(s0);s1=bit(s1);
     return data[(s1<<1)|s0];
   }
+  function demux1to4(data,s0,s1){
+    data=bit(data);s0=bit(s0);s1=bit(s1);
+    const out=[0,0,0,0];out[(s1<<1)|s0]=data;return out;
+  }
   function decoder2(a,b,enable=1){
     a=bit(a);b=bit(b);enable=bit(enable);
     const outputs=[0,0,0,0];
@@ -124,6 +128,6 @@
   function halfSubtractor(a,b){a=bit(a);b=bit(b);return {difference:a^b,borrow:(1-a)&b};}
   root.SkolaCombModel=Object.freeze({
     bits3,majority,truth3,canonicalSOP,canonicalPOS,minimizeSOP,minimizePOS,kmap,
-    evalCube,evalSOPGroups,mux2,mux4,decoder2,encoder4,comparator2,halfAdder,fullAdder,halfSubtractor
+    evalCube,evalSOPGroups,mux2,mux4,demux1to4,decoder2,encoder4,comparator2,halfAdder,fullAdder,halfSubtractor
   });
 })(window);
