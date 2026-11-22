@@ -9,7 +9,7 @@ Vytvořit jeden pracovní záznam pro každou lekci nebo ucelený tematický blo
 | ID a název | VY-3/4-NN – [název] |
 | Ročník / třída | 3. / 4.; [skupina] |
 | Tematický celek | [...] |
-| ŠVP (přesné odkazy a výstupy) | [ověřit a doplnit] |
+| Výstupy ŠVP (interní stabilní ID) | [konkrétní `MER3-Vxxx` / `MER4-Vxxx` z `.github/kurikulum/VYSTUPY_3_ROCNIK.md` a `VYSTUPY_4_ROCNIK.md`] |\n| Učivo ŠVP (tematické bloky) | [konkrétní `MER3-Uxx` / `MER4-Uxx`, kontrola všech relevantních bodů učiva] |\n| Zdrojové PDF a stránky | [odkaz na ŠVP a přesné stránky] |
 | Časová dotace | 45 / 90 / 135 min / jinak |
 | Předchozí lekce a předpoklady | [...] |
 | Co následuje | [...] |
