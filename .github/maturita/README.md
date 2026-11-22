@@ -136,6 +136,7 @@ Každá změna musí uvést, **co** se změnilo, **proč** a **které části je
 | Otázka | Autorský produkční záznam | Studentský přehled | Stav |
 |---|---|---|---|
 | 01 · Číselné soustavy | [OTAZKA_01.md](OTAZKA_01.md) | [01](../../mechatronika/maturita/01-ciselne-soustavy/index.html) | výklad 1A/1B a pracovní PDF/list připraveny; čeká na revizi |
+| 02 · Kódy a kódování dat | [OTAZKA_02.md](OTAZKA_02.md) | [02](../../mechatronika/maturita/02-kody-a-kodovani-dat/index.html) | jediný souvislý interaktivní výklad, 33stránkový studijní text, pracovní list a neveřejný klíč; čeká na revizi |
 | 05 · Základní sekvenční logické obvody | [OTAZKA_05.md](OTAZKA_05.md) | [05](../../mechatronika/maturita/05-sekvencni-logika/index.html) | výklad 5A/5B a pracovní PDF/list připraveny; čeká na revizi |
 
 **Učitelské klíče nejsou zveřejněné.** Soukromé PDF k otázce 01 zůstává pouze v rámci pracovního předání, nikoli jako soubor v tomto veřejném repozitáři.
