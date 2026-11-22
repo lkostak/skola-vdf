@@ -90,7 +90,24 @@
     });
   });
 
-  // 04: Fyzikálně smysluplný ustálený NOR-RS model.
+  // 04: Kontrola porozumění třem typům multivibrátorů.
+  document.querySelectorAll("[data-mv-answer]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      var answer = button.getAttribute("data-mv-answer");
+      document.querySelectorAll("[data-mv-answer]").forEach(function (b) {
+        b.setAttribute("aria-pressed", b === button ? "true" : "false");
+      });
+      var explanation = {
+        monostabilni: "Správně. Monostabilní obvod se po spouštěcím impulsu na určitou dobu odchýlí od svého jediného stabilního stavu a potom se sám vrátí.",
+        bistabilni: "Bistabilní obvod má dva stabilní stavy. Po SET se sám po uplynutí času nevrátí, ke změně potřebuje další povel.",
+        astabilni: "Astabilní obvod nečeká na každý spouštěcí impuls. Samovolně vytváří opakované přechody mezi úrovněmi."
+      };
+      setText("mvFeedback", explanation[answer]);
+    });
+  });
+
+  // 05: Fyzikálně smysluplný ustálený NOR-RS model.
+
   var rs = model.createNorRs(0);
   var inputs = { s: 0, r: 0 };
 
@@ -113,6 +130,14 @@
       indeterminate: "Po současném uvolnění zakázané kombinace nelze spolehlivě určit, který stav se ustálí. Nastav S nebo R, případně obvod inicializuj."
     };
     setText("rsFeedback", messages[snapshot.status]);
+    // Logické rovnice odpovídají skutečně nakresleným vazbám dvou NOR.
+    if (snapshot.status === "indeterminate") {
+      setText("norGateState", "Po současném uvolnění zakázané kombinace je výsledný ustálený stav neurčený. Nelze dosadit jedinou zaručenou hodnotu Q ani Q̄.");
+    } else {
+      setText("norGateState", "Horní NOR: R=" + snapshot.r + ", Q̄=" + snapshot.qBar +
+        " → Q=" + snapshot.q + ". Dolní NOR: S=" + snapshot.s + ", Q=" + snapshot.q +
+        " → Q̄=" + snapshot.qBar + ".");
+    }
 
     document.querySelectorAll("[data-rs-row]").forEach(function (row) {
       row.classList.toggle("selected-row", row.getAttribute("data-rs-row") === "" + snapshot.s + snapshot.r);
@@ -145,7 +170,7 @@
     renderRs();
   });
 
-  // 05: STOP-prioritní řízení. Není to stejné jako přímé S=R=1 u RS.
+  // 06: STOP-prioritní řízení. Není to stejné jako přímé S=R=1 u RS.
   var motorQ = 0;
 
   function motorEvent(start, stop, explanation) {
@@ -173,7 +198,7 @@
     setText("motorFeedback", "Model vrácen do výchozího stavu: motor stojí (Q=0).");
   });
 
-  // 06: Vysvětlující kontrola, bez uložení výsledků.
+  // 07: Vysvětlující kontrola, bez uložení výsledků.
   var answers = [
     {
       name: "quiz1", value: "1",
