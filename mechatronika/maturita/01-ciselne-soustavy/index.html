@@ -1,0 +1,100 @@
+<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Maturitní otázka 01: číselné soustavy. Přehled, rozbalovací ústní odpovědi, interaktivní převody, bity, rozsahy a technické příklady.">
+<title>Otázka 01 | Číselné soustavy a ústní maturita</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="../05-sekvencni-logika/outline.css"><link rel="stylesheet" href="number.css"></head>
+<body><nav class="topbar"><a href="../../../">Portál</a><span class="crumb">/</span><a href="../">Maturita</a><span class="crumb">/ 01</span></nav>
+<main class="content"><header class="hero"><div class="eyebrow">MATURITNÍ OTÁZKA 01</div>
+<h1>Číselné soustavy</h1><p class="lead">Jak můžeme jedinou hodnotu zapsat různými způsoby a proč na tom závisí práce s mikrořadiči, registry a PLC?</p>
+<div><span class="pill">poziční zápis</span><span class="pill">2 / 8 / 10 / 16</span><span class="pill">převody</span><span class="pill">bit a byte</span><span class="pill">2ⁿ</span><span class="pill">registry</span></div></header>
+<section class="section">
+<div class="cards">
+<a class="card" href="../01a-ciselne-soustavy/"><span class="tag">1A · INTERAKTIVNÍ</span><h2>Jak číslo dostane svůj zápis →</h2><p>Poziční princip, váhy bitů, převody mezi soustavami, hexadecimální a osmičkový zápis a interaktivní převodník s rozkladem na řády.</p></a>
+<a class="card" href="../01b-bity-rozsahy/"><span class="tag">1B · INTERAKTIVNÍ</span><h2>Co dokáže uložit osm bitů →</h2><p>Bit, byte, rozsahy 2ⁿ, přetečení, rozšíření o dvojkový doplněk a bitové masky, praktické použití v PLC a A/D převodu.</p></a></div>
+
+<section class="question-overview" aria-labelledby="question-overview-title"><h2 id="question-overview-title">O čem je maturitní otázka 1?</h2>
+<p>Na začátku digitální techniky stojí jednoduchá otázka: <strong>jak reprezentovat hodnotu pomocí elektronických stavů</strong>? Vysvětlíme si proto číselné soustavy a poziční zápis. Jedno číslo si ukážeme v desítkové, dvojkové, osmičkové i šestnáctkové soustavě a naučíme se vysvětlovat váhy jednotlivých řádů.</p>
+<p>Potom budeme čísla <strong>samostatně převádět</strong> a ověřovat výsledky. U binárních hodnot se naučíme číst význam jednotlivých bitů, odvodit počet 2ⁿ kombinací a určit rozsah celých čísel podle bitové šířky. Pro přehlednost využijeme i hexadecimální zápis, kde jedna číslice odpovídá čtyřem bitům.</p>
+<p>Nakonec všechny principy propojíme s <strong>mechatronickou praxí</strong>: registry, vstupy PLC, A/D převodníky a diagnostika. Ukážeme si také, co se stane při přetečení a jak lze bitový vzor interpretovat jako záporné číslo nebo sadu příznaků. Tyto pokročilejší příklady slouží k prohloubení pochopení.</p></section>
+
+<div class="kicker">KOSTRA OTÁZKY</div><div class="topic-list oral-topics"><details class="topic topic-accordion" id="okruh-01">
+<summary><span class="tn">01</span><span class="topic-name">Proč potřebujeme číselné soustavy?</span><span class="topic-chevron" aria-hidden="true"></span></summary>
+<div class="topic-body"><div class="topic-body-eyebrow">JAK O TOM MLUVIT U ÚSTNÍ MATURITY</div>
+<p>Číselná soustava je pravidlo, jak zapisujeme čísla pomocí určitých symbolů. Důležité je rozlišovat samotnou hodnotu a její zápis. Například číslo čtyřicet pět lze zapsat jako 45 v desítkové soustavě, 101101 ve dvojkové nebo 2D v šestnáctkové. Hodnota zůstává stejná; liší se pouze použité číslice a jejich váhy.</p>
+<p>Digitální elektronika pracuje s logickými stavy 0 a 1. Ty jsou v konkrétním zařízení reprezentovány určitými fyzickými rozsahy, například napětími. Dvojkový zápis proto přirozeně souvisí s činností mikroprocesorů, pamětí a PLC.</p>
+<p>Číselné soustavy potřebujeme nejen k převodům. Technik musí rozumět stavům jednotlivých vstupů, kapacitě registrů, adresám i diagnostickým hodnotám. Musí také vědět, zda bitový vzor znamená číslo nebo soubor příznaků.</p>
+<div class="topic-action"><strong>Co umět na tabuli:</strong> Ukázat, proč 45₁₀ = 101101₂ = 2D₁₆, a vysvětlit rozdíl mezi hodnotou a jejím zápisem.</div>
+<a class="topic-deep-link" href="../01a-ciselne-soustavy/#proc">Podrobný výklad a příklady →</a></div></details>
+<details class="topic topic-accordion" id="okruh-02">
+<summary><span class="tn">02</span><span class="topic-name">Poziční zápis a základ soustavy</span><span class="topic-chevron" aria-hidden="true"></span></summary>
+<div class="topic-body"><div class="topic-body-eyebrow">JAK O TOM MLUVIT U ÚSTNÍ MATURITY</div>
+<p>V poziční číselné soustavě závisí hodnota číslice na její pozici. Každý řád má váhu, která je mocninou základu soustavy: nejpravější má b⁰, další b¹ a pak b². Jednotlivé číslice vynásobíme příslušnými vahami a vše sečteme.</p>
+<p>Základ současně určuje množinu povolených symbolů. V dvojkové soustavě jsou to 0 a 1, v osmičkové 0 až 7, v desítkové 0 až 9 a v šestnáctkové 0 až 9 a písmena A až F. Například A má hodnotu deset a F patnáct.</p>
+<p>Pro číslo 3A7₁₆ dostaneme rozklad 3·16² + 10·16¹ + 7·16⁰, tedy 935₁₀. Nula v některé pozici není zbytečná, protože zachovává správné váhy zbývajících číslic.</p>
+<div class="topic-action"><strong>Co umět na tabuli:</strong> Zapsat obecný poziční rozklad a převést 3A7₁₆ do desítkové soustavy.</div>
+<a class="topic-deep-link" href="../01a-ciselne-soustavy/#pozicni">Podrobný výklad a příklady →</a></div></details>
+<details class="topic topic-accordion" id="okruh-03">
+<summary><span class="tn">03</span><span class="topic-name">Desítková, dvojková, osmičková a šestnáctková</span><span class="topic-chevron" aria-hidden="true"></span></summary>
+<div class="topic-body"><div class="topic-body-eyebrow">JAK O TOM MLUVIT U ÚSTNÍ MATURITY</div>
+<p>Čtyři běžné poziční soustavy se liší svým základem. Člověk většinou používá desítkovou soustavu se základem deset. Digitální technika pracuje s dvojkovým zápisem se základem dva. Osmičková soustava má základ osm a šestnáctková základ šestnáct.</p>
+<p>Jedna osmičková číslice zastupuje přesně tři bity, protože 2³ = 8. Jedna šestnáctková číslice zastupuje čtyři bity, protože 2⁴ = 16. Díky tomu lze dlouhé dvojkové zápisy zkracovat bez složitého dělení.</p>
+<p>Šestnáctkový zápis je v digitální technice velmi praktický. Dvě hexadecimální číslice tvoří přesně osmibitový vzor a mohou tedy popsat jeden bajt. Proto bývají hodnoty registrů, adresy či bitové masky často vyjádřeny hexadecimálně.</p>
+<div class="topic-action"><strong>Co umět na tabuli:</strong> Uvést povolené číslice všech čtyř soustav a vysvětlit skupiny po třech a čtyřech bitech.</div>
+<a class="topic-deep-link" href="../01a-ciselne-soustavy/#hex">Podrobný výklad a příklady →</a></div></details>
+<details class="topic topic-accordion" id="okruh-04">
+<summary><span class="tn">04</span><span class="topic-name">Dvojkový zápis a váhy bitů</span><span class="topic-chevron" aria-hidden="true"></span></summary>
+<div class="topic-body"><div class="topic-body-eyebrow">JAK O TOM MLUVIT U ÚSTNÍ MATURITY</div>
+<p>Ve dvojkové soustavě používáme pouze číslice 0 a 1. Váhy jednotlivých pozic jsou postupně 1, 2, 4, 8, 16, 32, 64 a 128 pro osmibitové číslo. Jednička říká, že se daná váha započítá, nula říká, že se nezapočítá.</p>
+<p>Nejméně významný bit nazýváme LSB a nejvíce významný bit MSB. V osmibitové hodnotě se zpravidla bity číslují zprava od b0 do b7. Pro 11010110₂ dostaneme 128 + 64 + 16 + 4 + 2, což je 214₁₀.</p>
+<p>Doplnění nul zleva hodnotu nezáporného čísla nemění, ale přidání nuly vpravo znamená násobení dvěma. Také musíme znát šířku a datový typ. U některých způsobů reprezentace může nejvyšší bit souviset se znaménkem.</p>
+<div class="topic-action"><strong>Co umět na tabuli:</strong> Rozepsat váhy bitů b7 až b0 a určit hodnotu 11010110₂.</div>
+<a class="topic-deep-link" href="../01a-ciselne-soustavy/#bin">Podrobný výklad a příklady →</a></div></details>
+<details class="topic topic-accordion" id="okruh-05">
+<summary><span class="tn">05</span><span class="topic-name">Převody mezi dvojkovou a desítkovou</span><span class="topic-chevron" aria-hidden="true"></span></summary>
+<div class="topic-body"><div class="topic-body-eyebrow">JAK O TOM MLUVIT U ÚSTNÍ MATURITY</div>
+<p>Při převodu z dvojkové do desítkové soustavy sečtu váhy všech pozic, na kterých je jednička. Například 101101₂ znamená 32 + 8 + 4 + 1, takže výsledkem je 45₁₀. Tento postup slouží také jako zpětná kontrola převodu.</p>
+<p>Pro opačný převod celého nezáporného čísla opakovaně dělím dvěma a zapisuji zbytky. Výsledný binární zápis dostanu přečtením zbytků od posledního dělení k prvnímu. Stejný výsledek získám skládáním z největších vhodných mocnin dvou.</p>
+<p>Například při převodu 173₁₀ vezmu 128, zbude 45; poté 32, 8, 4 a 1. Zápis vychází 10101101₂. Vždy je dobré provést kontrolu součtem vah.</p>
+<div class="topic-action"><strong>Co umět na tabuli:</strong> Převést 173₁₀ do dvojkové soustavy dvěma způsoby a výsledek ověřit.</div>
+<a class="topic-deep-link" href="../01a-ciselne-soustavy/#prevody">Podrobný výklad a příklady →</a></div></details>
+<details class="topic topic-accordion" id="okruh-06">
+<summary><span class="tn">06</span><span class="topic-name">Rychlé převody přes hexadecimální a osmičkovou</span><span class="topic-chevron" aria-hidden="true"></span></summary>
+<div class="topic-body"><div class="topic-body-eyebrow">JAK O TOM MLUVIT U ÚSTNÍ MATURITY</div>
+<p>Při převodu binárního čísla do šestnáctkové soustavy rozdělím jeho zápis zprava do skupin po čtyřech bitech. Pokud je levá skupina kratší, doplním ji zleva nulami. Každou čtveřici nahradím jednou číslicí od 0 do F.</p>
+<p>Například 11101100101₂ rozdělím jako 0111, 0110 a 0101. Tyto skupiny odpovídají hexadecimálním číslicím 7, 6 a 5. Výsledkem je tedy 765₁₆. Opačný převod provedu rozepsáním každé hexadecimální číslice do čtyř bitů.</p>
+<p>U osmičkové soustavy je postup podobný, jen pracujeme se skupinami po třech bitech. Například 101101₂ odpovídá skupinám 101 a 101, tedy 55₈. V praxi se častěji setkáme s hexadecimální soustavou.</p>
+<div class="topic-action"><strong>Co umět na tabuli:</strong> Převést 11101100101₂ na 765₁₆ a 101101₂ na 55₈.</div>
+<a class="topic-deep-link" href="../01a-ciselne-soustavy/#hex">Podrobný výklad a příklady →</a></div></details>
+<details class="topic topic-accordion" id="okruh-07">
+<summary><span class="tn">07</span><span class="topic-name">Bit, bajt, slovo a rozsah 2ⁿ</span><span class="topic-chevron" aria-hidden="true"></span></summary>
+<div class="topic-body"><div class="topic-body-eyebrow">JAK O TOM MLUVIT U ÚSTNÍ MATURITY</div>
+<p>Bit je jedna binární číslice s možnými hodnotami 0 a 1. Čtyři bity tvoří nibble a osm bitů jeden bajt. Slovo je větší jednotka dat, jejíž šířka závisí na architektuře zařízení, například 16 nebo 32 bitů.</p>
+<p>Pro n bitů existuje celkem 2ⁿ kombinací, protože každý nový bit zdvojnásobí počet možností. Použijeme-li tyto kombinace pro celá čísla bez znaménka, rozsah je od nuly do 2ⁿ − 1. U osmibitového registru tedy máme 256 kombinací, ale nejvyšší neznaménkové číslo je 255.</p>
+<p>Například dvanáctibitový A/D převodník může poskytovat 4096 číselných kódů, typicky 0 až 4095. Z počtu bitů můžeme odvodit možné rozlišení zápisu, ale nikoli automaticky přesnost celého měření.</p>
+<div class="topic-action"><strong>Co umět na tabuli:</strong> Odvodit 2ⁿ a rozsah 0 až 2ⁿ − 1; vysvětlit rozdíl 256 kombinací versus maximum 255.</div>
+<a class="topic-deep-link" href="../01b-bity-rozsahy/#rozsahy">Podrobný výklad a příklady →</a></div></details>
+<details class="topic topic-accordion" id="okruh-08">
+<summary><span class="tn">08</span><span class="topic-name">Binární aritmetika a přetečení</span><span class="topic-chevron" aria-hidden="true"></span></summary>
+<div class="topic-body"><div class="topic-body-eyebrow">JAK O TOM MLUVIT U ÚSTNÍ MATURITY</div>
+<p>Binární sčítání má podobný princip jako desítkové. V každém sloupci sčítáme aktuální číslice a případný přenos. Proto 1 + 1 v binárním zápisu dává 10₂, tedy nulu v aktuálním bitu a jedničku přenesenou do vyššího řádu.</p>
+<p>Výsledek nemusí být reprezentovatelný ve zvolené šířce. Při unsigned sčítání 250 + 10 dostaneme matematicky 260, ale v osmibitovém registru se při běžném zpracování modulo 256 uloží pouze hodnota 4 a vznikne přenos mimo nejvyšší bit.</p>
+<p>Posun bitů vlevo může odpovídat násobení dvěma, pokud neodpadne nejvyšší významný bit. Posun doprava u nezáporného čísla odpovídá celočíselnému dělení dvěma. Vždy je nutné určit šířku a způsob interpretace.</p>
+<div class="topic-action"><strong>Co umět na tabuli:</strong> Provést binární sčítání a vysvětlit u 250 + 10 rozdíl mezi výsledkem 260, uloženým 4 a přenosem 1.</div>
+<a class="topic-deep-link" href="../01b-bity-rozsahy/#aritmetika">Podrobný výklad a příklady →</a></div></details>
+<details class="topic topic-accordion" id="okruh-09">
+<summary><span class="tn">09</span><span class="topic-name">Záporná čísla a dvojkový doplněk (rozšíření)</span><span class="topic-chevron" aria-hidden="true"></span></summary>
+<div class="topic-body"><div class="topic-body-eyebrow">JAK O TOM MLUVIT U ÚSTNÍ MATURITY</div>
+<p>Pro záporná celá čísla se běžně používá dvojkový doplněk. V osmibitovém provedení má rozsah od −128 do +127. Tento způsob umožňuje využívat stejné základní aritmetické obvody pro kladné i záporné hodnoty.</p>
+<p>Záporné číslo vytvořím tak, že jeho kladnou velikost zapíšu ve zvolené šířce, invertuji všechny bity a přičtu jedničku. Pro +26 vychází 00011010₂, po inverzi 11100101₂ a po přičtení jedničky 11100110₂, což v osmibitovém dvojkovém doplňku znamená −26.</p>
+<p>Úplně stejný vzor 11100110₂ má ale jako unsigned číslo hodnotu 230. Z toho je vidět, že význam bitového zápisu závisí na datovém typu. Znaménkové přetečení je navíc něco jiného než přenos při unsigned sčítání.</p>
+<div class="topic-action"><strong>Co umět na tabuli:</strong> Popsat tvorbu −26 v osmi bitech a určit rozsah osmibitového dvojkového doplňku.</div>
+<a class="topic-deep-link" href="../01b-bity-rozsahy/#zaporne">Podrobný výklad a příklady →</a></div></details>
+<details class="topic topic-accordion" id="okruh-10">
+<summary><span class="tn">10</span><span class="topic-name">Bitové masky a použití v mechatronice (rozšíření)</span><span class="topic-chevron" aria-hidden="true"></span></summary>
+<div class="topic-body"><div class="topic-body-eyebrow">JAK O TOM MLUVIT U ÚSTNÍ MATURITY</div>
+<p>Digitální vstupy PLC, stavové registry a mikrořadičové porty se často zapisují pomocí bitových vzorů. Jednotlivé bity mohou vyjadřovat například aktivaci snímačů, připravenost motoru nebo vznik chyby. Číselnou hodnotu takového slova lze zobrazit desítkově, binárně i hexadecimálně.</p>
+<p>Chceme-li zkoumat jeden bit, použijeme masku. Pro bit b5 je maska 00100000₂, tedy 20₁₆. Operace AND s touto maskou ponechá jen zvolený bit. Operace OR jej může nastavit a XOR přepnout.</p>
+<p>Podobné zápisy se objevují také v registrech periferií a v diagnostice komunikačních rámců. Musíme však znát šířku dat, pořadí bajtů, datový typ a význam jednotlivých příznaků podle dokumentace. Bez těchto údajů nelze bitový vzor správně vyložit.</p>
+<div class="topic-action"><strong>Co umět na tabuli:</strong> Nakreslit osmibitové stavové slovo B5₁₆, vyznačit nastavené bity a ukázat masku pro b5.</div>
+<a class="topic-deep-link" href="../01b-bity-rozsahy/#masky">Podrobný výklad a příklady →</a></div></details></div>
+</section><footer class="footer">VOŠ, SPŠ a SOŠ Varnsdorf · Mechatronika a robotika · Maturitní otázka 01</footer></main></body></html>
