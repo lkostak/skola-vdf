@@ -21,9 +21,9 @@
       <div class="eyebrow">MATURITNÍ OTÁZKA 05 · INTERAKTIVNÍ VÝKLAD · ČÁST 5A</div>
       <h1>Jak si obvod<br>pamatuje?</h1>
       <p class="lead">Od stisku tlačítka START přes zpětnou vazbu až ke klopnému obvodu RS. Nejdřív předpovíš výsledek, potom ho ověříš.</p>
-      <div class="chapter-meta"><span>6 kapitol</span><span>Vysvětlení + experiment</span><span>ŠVP: MER3-V012</span></div>
+      <div class="chapter-meta"><span>7 kapitol</span><span>Vysvětlení + experiment</span><span>ŠVP: MER3-V012</span></div>
       <div class="scope-note" role="note">
-        <strong>Co zde zvládneš:</strong> vysvětlit rozdíl kombinační a sekvenční logiky, pracovat se stavy Qⁿ/Qⁿ⁺¹, sestavit tabulku NOR-RS a objasnit řízení START/STOP. Hodinový signál, D a JK následují v části 5B.
+        <strong>Co zde zvládneš:</strong> vysvětlit rozdíl kombinační a sekvenční logiky, pracovat se stavy Qⁿ/Qⁿ⁺¹, rozlišit tři typy multivibrátorů, nakreslit NOR-RS ze dvou hradel a sestavit jeho stavovou tabulku a objasnit řízení START/STOP. Hodinový signál, D a JK následují v části 5B.
       </div>
     </header>
 
@@ -31,9 +31,10 @@
       <a href="#problem">01 Problém</a>
       <a href="#stav">02 Stav</a>
       <a href="#zpetna-vazba">03 Paměť</a>
-      <a href="#rs">04 RS</a>
-      <a href="#motor">05 START/STOP</a>
-      <a href="#overeni">06 Ověření</a>
+      <a href="#multivibratory">04 Multivibrátory</a>
+      <a href="#rs">05 RS</a>
+      <a href="#motor">06 START/STOP</a>
+      <a href="#overeni">07 Ověření</a>
     </nav>
 
     <section class="section chapter" id="problem" aria-labelledby="problem-title">
@@ -171,8 +172,97 @@
 
     </section>
 
+    
+    <section class="section chapter" id="multivibratory" aria-labelledby="mv-title">
+      <div class="kicker">04 · JEDEN, DVA, NEBO ŽÁDNÝ STABILNÍ STAV</div>
+      <h2 id="mv-title">Monostabilní, bistabilní a astabilní multivibrátor</h2>
+      <p>Multivibrátory patří mezi elektronické obvody, které využívají přepínání mezi dvěma úrovněmi. Podle toho, <strong>kolik mají stabilních stavů</strong>, rozlišujeme tři základní typy. Jejich rozdíl poznáme nejlépe z toho, co obvod udělá <em>po spouštěcím impulsu</em> nebo <em>bez jakéhokoli povelu</em>.</p>
+
+      <div class="study-text">
+        <h3>Jak poznat tři základní typy?</h3>
+        <p><strong>Monostabilní multivibrátor má jeden stabilní stav.</strong> V něm čeká na spouštěcí impuls. Po spuštění přejde do dočasného stavu, ve kterém zůstane přibližně po nastavenou dobu, a pak se sám vrátí do výchozího stabilního stavu. Chová se tedy jako <em>jednorázový generátor impulsu</em>. Použít jej můžeme k vytvoření impulsu dané délky, časovému zpoždění nebo ke krátkému rozsvícení kontrolky.</p>
+        <p><strong>Bistabilní multivibrátor má dva stabilní stavy.</strong> Může uchovávat 0 nebo 1 a bez dalšího povelu zůstává v tom, do kterého jsme ho nastavili. Sám se po určité době nevrací. Právě proto je vhodný pro paměť, například pro RS klopný obvod a zapamatování povelu START/STOP.</p>
+        <p><strong>Astabilní multivibrátor nemá žádný stabilní klidový stav.</strong> Za běžného provozu přechází opakovaně mezi logickou nulou a jedničkou, aniž bychom museli pro každý přechod stisknout tlačítko. Jeho výstup tvoří periodické impulzy; lze jej použít jako jednoduchý oscilátor, blikač nebo zdroj hodinového signálu. Délku vysoké a nízké úrovně určuje konkrétní zapojení.</p>
+        <p><strong>Pozor na názvosloví:</strong> monostabilní / bistabilní / astabilní je rozdělení podle stabilních stavů. RS, D a JK naproti tomu pojmenovávají funkční druhy paměťových prvků. Nejsou to dvě rovnocenné skupiny, které bychom mezi sebou zaměňovali.</p>
+      </div>
+
+      <div class="mv-cards" aria-label="Srovnání tří druhů multivibrátorů">
+        <article class="glass mv-card">
+          <span class="mv-number">01</span>
+          <h3>Monostabilní</h3>
+          <p><strong>1 stabilní stav</strong></p>
+          <p>Impuls → dočasná změna → automatický návrat.</p>
+          <p class="mv-use">Příklad: časovač, impuls definované délky.</p>
+        </article>
+        <article class="glass mv-card">
+          <span class="mv-number">02</span>
+          <h3>Bistabilní</h3>
+          <p><strong>2 stabilní stavy</strong></p>
+          <p>SET → nový stav se uchová až do RESET.</p>
+          <p class="mv-use">Příklad: paměťový bit, řízení START/STOP.</p>
+        </article>
+        <article class="glass mv-card">
+          <span class="mv-number">03</span>
+          <h3>Astabilní</h3>
+          <p><strong>0 stabilních stavů</strong></p>
+          <p>Výstup se opakovaně přepíná sám.</p>
+          <p class="mv-use">Příklad: blikač, generátor impulsů.</p>
+        </article>
+      </div>
+
+      <figure class="glass mv-wave-figure">
+        <h3>Tři různé průběhy na časové ose</h3>
+        <svg viewBox="0 0 860 382" role="img" aria-labelledby="mv-wave-title mv-wave-desc">
+          <title id="mv-wave-title">Srovnání průběhů tří multivibrátorů</title>
+          <desc id="mv-wave-desc">Monostabilní obvod vytvoří po spouštěcím impulsu jeden dočasný výstupní impuls a vrátí se. Bistabilní obvod po SET změní stav a zůstává v něm až do RESET. Astabilní obvod bez dalších povelů pravidelně střídá nulu a jedničku.</desc>
+          <text x="12" y="49" fill="#fff" font-size="17" font-weight="700">MONO</text>
+          <text x="12" y="165" fill="#fff" font-size="17" font-weight="700">BI</text>
+          <text x="12" y="276" fill="#fff" font-size="17" font-weight="700">ASTA</text>
+          <g fill="none" stroke="#ffffff" stroke-opacity=".16" stroke-width="1">
+            <path d="M 150 104 H 835 M 150 219 H 835 M 150 333 H 835"/>
+          </g>
+          <g stroke="#ffffff" stroke-width="1" stroke-dasharray="4 5" opacity=".36">
+            <path d="M 245 24 V 106 M 245 137 V 220 M 625 137 V 220"/>
+          </g>
+          <path d="M 150 91 H 245 V 45 H 420 V 91 H 835" stroke="#41d7ff" stroke-width="4" fill="none" stroke-linejoin="round"/>
+          <path d="M 150 206 H 245 V 160 H 625 V 206 H 835" stroke="#a6ce39" stroke-width="4" fill="none" stroke-linejoin="round"/>
+          <path d="M 150 320 H 245 V 275 H 337 V 320 H 429 V 275 H 521 V 320 H 613 V 275 H 705 V 320 H 797 V 275 H 835" stroke="#ffd400" stroke-width="4" fill="none" stroke-linejoin="round"/>
+          <g font-size="13" fill="#b9dce5">
+            <text x="257" y="23">spuštění</text>
+            <text x="435" y="67">automatický návrat</text>
+            <text x="257" y="139">SET</text><text x="636" y="139">RESET</text>
+            <text x="506" y="364">samovolné periodické překlápění</text>
+            <text x="150" y="374">čas →</text>
+          </g>
+        </svg>
+        <figcaption>Principiální časové průběhy, nikoli přesné oscilogramy konkrétní součástky. U monostabilního obvodu je zachycen jeden spouštěcí impuls, u bistabilního SET a RESET, u astabilního samovolný periodický běh.</figcaption>
+      </figure>
+
+      <div class="lab" aria-labelledby="mv-task-title">
+        <div class="lab-label">OVĚŘ POROZUMĚNÍ</div>
+        <h3 id="mv-task-title">Který typ zvolíš pro časově omezený impuls?</h3>
+        <p>Po stisknutí tlačítka potřebujeme vytvořit jediný krátký impuls. Po uplynutí nastavené doby se má výstup sám vrátit na nulu, i když už žádný další povel nepřijde. Jaký multivibrátor se pro takové chování hodí?</p>
+        <div class="controls" role="group" aria-label="Výběr typu multivibrátoru">
+          <button type="button" class="secondary choice" data-mv-answer="bistabilni" aria-pressed="false">Bistabilní</button>
+          <button type="button" class="secondary choice" data-mv-answer="astabilni" aria-pressed="false">Astabilní</button>
+          <button type="button" class="secondary choice" data-mv-answer="monostabilni" aria-pressed="false">Monostabilní</button>
+        </div>
+        <p class="feedback" id="mvFeedback" aria-live="polite">Vyber typ a vysvětli si, proč je správný.</p>
+      </div>
+
+      <aside class="worked-example">
+        <h3>Jak bych to vysvětlil u maturity?</h3>
+        <p>„Multivibrátory můžeme rozdělit podle počtu stabilních stavů. Monostabilní má jeden stabilní stav a po impulsu se sám vrátí. Bistabilní má dva stabilní stavy a ukládá informaci, například pomocí RS. Astabilní nemá žádný stabilní stav a sám vytváří periodický průběh. Proto monostabilní používáme na časované impulzy, bistabilní na paměť a astabilní na oscilátory či blikače.“</p>
+        <p><strong>Co nakreslit na tabuli:</strong> tři jednoduché časové průběhy. Vysvětli, u kterého typu je potřeba spouštěcí impuls, který drží stav a který osciluje sám.</p>
+      </aside>
+
+      <div class="scope-note" role="note">
+        <strong>Odborné upřesnění:</strong> diagram popisuje základní principy. Monostabilní obvody mohou být podle konstrukce znovu spouštěné i neznovu spouštěné; astabilní nemusí mít obě poloviny periody stejně dlouhé. Nejde tedy o konkrétní zapojení časovače 555 ani o jeho vypočítané hodnoty.
+      </div>
+    </section>
+
     <section class="section chapter" id="rs" aria-labelledby="rs-title">
-      <div class="kicker">04 · KLOPNÝ OBVOD RS</div>
+      <div class="kicker">05 · KLOPNÝ OBVOD RS</div>
       <h2 id="rs-title">Jak přesně se ukládá jedna logická hodnota?</h2>
       <p>Nejprve použijeme <strong>RS z hradel NOR</strong> se vstupy aktivními logickou jedničkou. <strong>S</strong> nastavuje Q na 1, <strong>R</strong> jej vynuluje. Když jsou oba vstupy 0, pamatuje si poslední platný stav.</p>
 
@@ -181,6 +271,75 @@
         <p>Hradlo NOR dává na výstupu jedničku právě tehdy, když jsou <strong>všechny jeho vstupy nulové</strong>. U paměťového obvodu propojení obou hradel způsobí, že výstupy ovlivňují jeden druhý. Při platném klidovém stavu tak může zůstat Q=0 nebo Q=1, přestože jsou S=0 i R=0.</p>
         <p>Aktivujeme-li <strong>S=1, R=0</strong>, obvod přejde do stavu Q=1. Po návratu S na nulu v něm zůstane. Při <strong>S=0, R=1</strong> naopak přejde do Q=0 a po uvolnění R si tuto nulu uchová. Vstupy SET a RESET tedy neznamenají „na výstupu je právě tolik co na tlačítku“, ale <strong>příkaz ke změně uložené informace</strong>.</p>
         <p>Výchozí stav naší virtuální ukázky je záměrně nastaven na Q=0, aby experiment začínal vždy stejně. Reálné zapojení bez vhodné inicializace nemusí mít po připojení napájení předem zaručený stav.</p>
+      </div>
+
+      
+      <figure class="glass nor-circuit-figure" id="schema-rs">
+        <h3>Skutečné logické zapojení RS ze dvou hradel NOR</h3>
+        <p>Každé obdélníkové hradlo se symbolem <strong>≥1</strong> je OR. <strong>Malý kroužek na výstupu</strong> znamená negaci, proto jde o NOR. Výstup každého hradla je přiveden zpět na druhý vstup protějšího hradla. Barevné vodiče označují obě vzájemné zpětné vazby.</p>
+        <div class="circuit-scroll">
+          <svg viewBox="0 0 860 405" role="img" aria-labelledby="nor-circuit-title nor-circuit-desc" id="norCircuit">
+            <title id="nor-circuit-title">Zapojení RS ze dvou křížově propojených hradel NOR</title>
+            <desc id="nor-circuit-desc">Horní hradlo NOR má vstup R a zpětnou vazbu z výstupu Q s pruhem dolního hradla. Jeho výstup je Q. Dolní NOR má vstup S a zpětnou vazbu z výstupu Q horního hradla. Jeho výstup je Q s pruhem. Horní Q se vrací do spodního NOR, spodní Q s pruhem do horního NOR.</desc>
+            <g fill="none" stroke-width="3" stroke-linejoin="round" stroke-linecap="square">
+              <path d="M 240 88 H 310" stroke="#ffd400"/>
+              <path d="M 240 274 H 310" stroke="#ffd400"/>
+              <path d="M 445 101 H 742" stroke="#41d7ff"/>
+              <path d="M 445 287 H 742" stroke="#a6ce39"/>
+              <path d="M 555 101 V 195 H 205 V 300 H 310" stroke="#41d7ff"/>
+              <path d="M 615 287 V 363 H 156 V 114 H 310" stroke="#a6ce39"/>
+              <path d="M 428 101 H 431 M 428 287 H 431" stroke="#dfeaf0"/>
+            </g>
+            <g fill="#003544" stroke="#b9dce5" stroke-width="2">
+              <rect x="310" y="67" width="118" height="68" rx="3"/>
+              <rect x="310" y="253" width="118" height="68" rx="3"/>
+            </g>
+            <g fill="#003544" stroke="#dfeaf0" stroke-width="2">
+              <circle cx="438" cy="101" r="7"/>
+              <circle cx="438" cy="287" r="7"/>
+            </g>
+            <g fill="#fff" font-size="30" text-anchor="middle" font-family="Raleway,Arial,sans-serif">
+              <text x="367" y="112">≥1</text>
+              <text x="367" y="298">≥1</text>
+            </g>
+            <g fill="#b7d5df" font-size="14" font-weight="700" text-anchor="middle">
+              <text x="369" y="52">G₁ · NOR</text>
+              <text x="369" y="242">G₂ · NOR</text>
+            </g>
+            <g font-family="Raleway,Arial,sans-serif" font-weight="700" font-size="24">
+              <text x="209" y="95" fill="#ffe28c">R</text>
+              <text x="209" y="280" fill="#ffe28c">S</text>
+              <text x="751" y="109" fill="#74e4ff">Q</text>
+              <text x="751" y="296" fill="#c3fa8a">Q̄</text>
+            </g>
+            <g font-family="Raleway,Arial,sans-serif" font-size="15" fill="#dceaf0">
+              <text x="250" y="108">Q̄</text>
+              <text x="250" y="293">Q</text>
+              <text x="462" y="179" fill="#74e4ff">Zpětná vazba Q</text>
+              <text x="165" y="353" fill="#c3fa8a">Zpětná vazba Q̄</text>
+            </g>
+            <g fill="#41d7ff">
+              <circle cx="555" cy="101" r="5"/>
+              <circle cx="205" cy="300" r="4"/>
+            </g>
+            <g fill="#a6ce39"><circle cx="615" cy="287" r="5"/></g>
+            <g font-family="Raleway,Arial,sans-serif" font-size="13" fill="#b7d5df">
+              <text x="295" y="385">Vodiče bez spojovacích bodů se vzájemně nespojují.</text>
+            </g>
+          </svg>
+        </div>
+        <figcaption>Konkrétní logické schéma dvou křížově propojených NOR (IEC obdélníkové značky). Horní NOR vytváří Q, dolní NOR vytváří Q̄. Vstupy S a R jsou aktivní logickou jedničkou. Napájení a konkrétní piny integrovaného obvodu zde nejsou zakresleny.</figcaption>
+        <div class="circuit-equations" aria-label="Rovnice obou hradel">
+          <div><strong>Horní NOR:</strong> <span>Q = ¬(R ∨ Q̄)</span></div>
+          <div><strong>Dolní NOR:</strong> <span>Q̄ = ¬(S ∨ Q)</span></div>
+        </div>
+      </figure>
+
+      <div class="study-text">
+        <h3>Jak obvod skutečně nastaví a udrží bit?</h3>
+        <p><strong>Příklad SET:</strong> nastavíme S=1 a R=0. Dolní NOR má na jednom vstupu jedničku, proto jeho výstup Q̄ přejde na 0. Horní NOR pak dostává R=0 a Q̄=0, takže jeho výstup Q přejde na 1. Pokud nyní S vrátíme na 0, horní jednička Q se přivádí zpět do dolního hradla a udržuje jeho výstup Q̄ na nule. Obvod si jedničku pamatuje i bez přetrvávajícího SET.</p>
+        <p><strong>Příklad RESET:</strong> nastavíme R=1 a S=0. Horní NOR vynutí Q=0. Dolní NOR pak vidí na obou vstupech nulu, proto přejde Q̄ na 1. Tato jednička je zpětnou vazbou přivedena k hornímu hradlu a drží Q=0 i poté, co R uvolníme.</p>
+        <p><strong>Zakázaná kombinace:</strong> při S=R=1 jsou v ustáleném modelu oba výstupy nulové. Pokud oba vstupy současně uvolníme, ideální logická tabulka sama neřekne, který stabilní stav se ustálí. Rozhodují drobná skutečná zpoždění hradel. Proto z tohoto zapojení nesmíme odvozovat žádnou zaručenou prioritu SET či RESET.</p>
       </div>
 
       <div class="lab">
@@ -195,6 +354,7 @@
               <button type="button" class="secondary" id="rsReset">Inicializovat</button>
             </div>
             <p class="feedback" id="rsFeedback" aria-live="polite">S=0, R=0. Výchozí zvolený stav Q=0. Přepni S na 1.</p>
+            <p class="circuit-live" aria-live="polite" id="norGateState">Horní NOR: R=0, Q̄=1 → Q=0. Dolní NOR: S=0, Q=0 → Q̄=1.</p>
           </div>
           <div class="statusline rs-status">
             <div class="status">Q <b id="rsQ">0</b></div>
@@ -239,7 +399,7 @@
     </section>
 
     <section class="section chapter" id="motor" aria-labelledby="motor-title">
-      <div class="kicker">05 · PRAKTICKÉ POUŽITÍ</div>
+      <div class="kicker">06 · PRAKTICKÉ POUŽITÍ</div>
       <h2 id="motor-title">Jak zajistit, aby měl STOP přednost?</h2>
       <p>U jednoduché paměti pro spouštění motoru chceme, aby jednorázové START nastavilo běh, ale aby STOP měl vždy přednost. Nejde o neřešenou zakázanou kombinaci základního NOR-RS. Předřadíme rozhodování s <strong>prioritou STOP</strong>.</p>
 
@@ -288,7 +448,7 @@
     </section>
 
     <section class="section chapter" id="overeni" aria-labelledby="overeni-title">
-      <div class="kicker">06 · OVĚŘENÍ</div>
+      <div class="kicker">07 · OVĚŘENÍ</div>
       <h2 id="overeni-title">Opravdu rozumíš paměti?</h2>
       <p>Nejde o rychlost klikání. Vyber odpověď a po kontrole si přečti vysvětlení. Úlohy si můžeš opakovat.</p>
 
@@ -333,7 +493,8 @@
         <ol class="study-steps">
           <li><strong>Začni problémem:</strong> na příkladu motoru ukaž, proč samotná kombinační funkce nestačí.</li>
           <li><strong>Vysvětli princip:</strong> uveď stav Qⁿ, další stav Qⁿ⁺¹ a zpětnou vazbu.</li>
-          <li><strong>Nakresli RS:</strong> popiš vstupy, výstupy, platné kombinace a zakázaný stav základního NOR-RS.</li>
+          <li><strong>Rozliš typy multivibrátorů:</strong> monostabilní, bistabilní a astabilní, jejich průběhy a použití.</li>
+          <li><strong>Nakresli RS ze dvou NOR:</strong> ukaž S, R, Q a Q̄, obě křížové zpětné vazby, platné kombinace i zakázaný stav.</li>
           <li><strong>Použij znalost:</strong> vysvětli, proč při START/STOP definujeme prioritu a jak pracuje rovnice stavu.</li>
           <li><strong>Připrav pokračování:</strong> v části 5B na tento princip navážou hodinové signály a klopné obvody D a JK.</li>
         </ol>
