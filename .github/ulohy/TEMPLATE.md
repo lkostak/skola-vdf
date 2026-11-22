@@ -11,7 +11,7 @@ Vyplň v přiměřené podrobnosti podle typu. Řiď se [Standardem](README.md).
 | Oblast | logika / PLC / senzory / pohony / robotika / ... |
 | Ročník / úroveň | 3 / 4; Z / A / R |
 | Dovednost, kterou student prokáže | „Student dokáže…“ |
-| Vazba na ŠVP | [ověřené téma / výstup] |
+| Vazba na ŠVP · jednotlivé výstupy | [`MER3-Vxxx` / `MER4-Vxxx` dle `.github/kurikulum/`] |\n| Učivo ŠVP · tematické bloky | [odpovídající `MER3-Uxx` / `MER4-Uxx`] |\n| PDF strany a verze ŠVP | [zdrojový ŠVP, konkrétní stránky] |
 | Vazba na maturitu | [číslo otázky a přesný podbod; nebo žádná] |
 | Předpoklady | [...] |
 | Čas a organizace | [...] minut, jednotlivě / dvojice / tým |
