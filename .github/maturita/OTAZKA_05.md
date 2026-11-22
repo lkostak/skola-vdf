@@ -1,7 +1,7 @@
 # Maturitní otázka 05 · Produkční osnova a stav realizace
 
 **Název podle stávajícího portálu:** Základní sekvenční logické obvody, klopné obvody  
-**Stav:** ROZPRACOVÁNO; **část 5A implementována jako revidovatelný prototyp** (v0.2, 2026-11-22). Celá otázka 05 stále není hotová.  
+**Stav:** ROZPRACOVÁNO; **části 5A i 5B implementovány jako revidovatelné výukové prototypy** (v0.3, 2026-11-22). Celá otázka 05 stále není schválená jako HOTOVO.  
 **Oficiální podoba zadání:** ⚠️ Přesné znění schválených podbodů školy **není dosud nezávisle ověřeno**. Osnova níže vychází z existujícího portálu a dřívějšího pracovního dokumentu `Mechatronika_maturitni_otazky_1-8_editovatelna_tabulka.docx` a je nutné ji před schválením porovnat s originálem.
 
 ## 1. Výstupy učení
@@ -34,10 +34,10 @@ Primární: `MER3-V012` (navrhne jednoduché kombinační a sekvenční řídic�
 | 05-04 | Typy monostabilní/bistabilní/astabilní | M | Rozpozná průběhy a přiřadí aplikace | Grafy průběhů | připravit |
 | 05-05 | RS: vstupy, stavy a zakázaná kombinace | M | Přepíná S/R, vyplňuje tabulku, interpretuje hazard | Sdílený model NOR-RS | 5A: model a tabulka fungují; aktivní vyplňování tabulky ještě doplnit |
 | 05-06 | Paměť v řízení START/STOP | M/P | Testuje impuls, uvolnění, STOP prioritu | Model motoru + rovnice | 5A: implementováno, čeká na pedagogickou revizi |
-| 05-07 | Synchronní/asynchronní a CLK | M | Vysvětlí rozdíl úrovně/hran, předpoví změnu Q | Clock krokovač | 5B: připravit |
-| 05-08 | D, časové diagramy | M | Navrhne a vyhodnotí průběh D/CLK/Q | Model D + diagramový trenažér | 5B: připravit |
-| 05-09 | JK, toggle | M | Vyplní tabulku a vyzkouší J=K=1 | Model JK | 5B: připravit |
-| 05-10 | Porovnání, praxe, ústní maturita | M/P | Odůvodní volbu obvodu, kreslí tabulky | Porovnání + test + příklady | připravit |
+| 05-07 | Synchronní/asynchronní a CLK | M | Vysvětlí rozdíl úrovně/hran, předpoví změnu Q | Clock krokovač + D latch | 5B: implementováno, čeká na revizi |
+| 05-08 | D, časové diagramy | M | Navrhne a vyhodnotí průběh D/CLK/Q | Model D s výběrem hrany + 10krokový diagramový trenažér | 5B: implementováno, čeká na revizi |
+| 05-09 | JK, toggle | M | Vyplní tabulku a vyzkouší J=K=1 | Model JK s předpovědí a krokováním CLK | 5B: implementováno, čeká na revizi |
+| 05-10 | Porovnání, praxe, ústní maturita | M/P | Odůvodní volbu obvodu, kreslí tabulky | Porovnání a kvíz 5B jsou implementovány; souhrnný pracovní list a plný test zbývají | dílčí implementace |
 
 Do výkladu vložit názornou praktickou činnost **na konkrétním místě**, nikoli až za teorií; samostatná Laboratoř bude používat stejné komponenty.
 
@@ -57,7 +57,7 @@ Do výkladu vložit názornou praktickou činnost **na konkrétním místě**, n
 
 ## 5. Kritéria následujících etap
 
-**Etapa II:** synchronní logika 5B, D a JK, krokování hodin, řešené časové diagramy.  
+**Etapa II:** synchronní logika 5B, D latch, hranově řízené D a JK, krokování hodin, řešené časové diagramy. **Implementováno jako prototyp; čeká na vizuální a pedagogickou revizi.**  
 **Etapa III:** samostatná Laboratoř se znovupoužitím simulačního jádra; typy multivibrátorů, porovnání a rozšíření.  
 **Etapa IV:** souvislý studijní dokument, pracovní list, robustní interaktivní test, ústní maturita nanečisto.  
 **Etapa V:** odborná revize obvodu a simulací, kontrola podle oficiálního zadání, ŠVP, funkční a přístupnostní testy, zveřejnění stavu HOTOVO.
@@ -75,7 +75,7 @@ Do výkladu vložit názornou praktickou činnost **na konkrétním místě**, n
 
 - [Otázka 05: rozcestník](../../mechatronika/maturita/05-sekvencni-logika/index.html)
 - [5A: paměť a RS](../../mechatronika/maturita/05a-pamet-rs/index.html)
-- 5B: zatím neexistuje.
+- [5B: hodinový signál, D, JK a časové diagramy](../../mechatronika/maturita/05b-synchronni-logika/index.html) · **implementovaný, dosud neschválený prototyp**.
 - [Standard maturity](README.md) · [Kontrola kvality](REVIEW.md).
 
 **Žádná další část kromě výslovně uvedených prototypů se nesmí prezentovat jako dokončená.**
@@ -110,3 +110,44 @@ Na základě hodnocení učitele byla část 5A rozšířena o souvislé, samost
 
 **Před přijetím učitelem stále zbývá:** projít lekci vizuálně na iPhonu a projektoru, provést ručně všechny interaktivní scénáře, vylepšit interaktivní zadání pro samostatné sestavování pravdivostní tabulky, doplnit schéma konkrétní realizace RS pomocí hradel, potvrdit terminologii podle oficiálního zadání a odbornou/pedagogickou revizi. **Testy logického jádra neznamenají kompletní otestování prohlížeče.**
 
+
+
+## 10. Záznam realizace etapy II · 5B (2026-11-22)
+
+### Publikované studentské soubory
+
+- `mechatronika/maturita/05b-synchronni-logika/index.html`: 7 kapitol, každá se samostatně čitelným vysvětlením, praktickou ukázkou, řešeným příkladem či ověřením.
+- `mechatronika/maturita/05b-synchronni-logika/app.js`: interaktivní předpověď, krokovač CLK, transparentní D latch, D se změnou polarity aktivní hrany a povinnou předpovědí Q, trenažér časových diagramů s desetistupňovou tabulkou a následně odkrytým průběhem Q, JK s předpovědí a překlápěním při J=K=1, závěrečný čtyřotázkový test.
+- `mechatronika/maturita/05b-synchronni-logika/lesson.css`: lokální rozšíření vzhledu 5A; sdílená paleta, typografie, mobilní režim, tisk a ovládání klávesnicí.
+- `assets/js/clock-core.js`: **jediné bezstavové vůči UI sdílené simulační jádro**, které obsahuje znovupoužitelné modely D latch, D flip-flop (náběžná/sestupná hrana), JK (náběžná/sestupná) a vyhodnocení časového diagramu.
+- `tests/clock-core.test.js`: jednotkové testy modelů latch, D, JK a přechodů v diagramu, spouštěné v CI spolu s RS testy z části 5A.
+- Rozcestník `05-sekvencni-logika/index.html` nabízí oba výukové bloky a 5A odkazuje na 5B.
+
+### Didaktický průchod kapitolami
+
+1. **Od paměti k řízené změně:** synchronizace registru; vstup D se může změnit, Q bez aktivní hrany ještě ne.
+2. **CLK:** úroveň, náběžná/sestupná hrana, perioda a frekvence; krokování hodin.
+3. **D latch a synchronizace:** úrovňová citlivost EN versus hranové řízení CLK; asynchronní ovládání a poznámka o asynchronním resetu.
+4. **Hranově řízené D:** model s aktivní náběžnou i sestupnou hranou, student musí před krokem zvolit očekávané Q.
+5. **Časové diagramy:** student sám odvodí hodnoty Q po deseti událostech; řešení a výstupní křivka se odkryjí po doplnění všech kroků.
+6. **JK:** čtyři vstupní kombinace, překlápění na hraně, návaznost na dělení frekvence a otázku 06.
+7. **Maturitní příprava:** srovnávací tabulka RS–D latch–D flip-flop–JK, odborně motivované distraktory a osnova ústní odpovědi.
+
+### Odborné předpoklady modelu
+
+- Simulátory zobrazují **ideální logické stavy**, nikoliv analogové přechody či metastabilitu.
+- D/JK reagují na vybranou hranu, ne na každou změnu vstupu nebo trvající vysokou úroveň CLK.
+- D latch je transparentní pouze při EN=1.
+- JK J=K=1 překlopí Q pouze při aktivní hodinové události.
+- Setup/hold čas a zpoždění šíření jsou vysvětleny textově, **nejsou fyzikálně modelovány**.
+- Čítače a posuvné registry jako složitější celky patří otázce 06.
+
+### Otevřené položky k profesionálnímu schválení
+
+- [ ] Ručně projít 5B na telefonu a ve třídě na projektoru, včetně všech interakcí.
+- [ ] Porovnat grafy s tabulkami modelů a důsledně ověřit každou časovou hranu; kontrolní sada je v `tests/clock-core.test.js`.
+- [ ] Potvrdit výklad pojmů s přesným oficiálním maturitním zadáním a ŠVP.
+- [ ] Doplnit samostatné typy multivibrátorů (monostabilní/astabilní/bistabilní) a profesní použití, které jsou součástí pracovního rozsahu otázky 05.
+- [ ] Vytvořit plný studijní materiál, souhrnný pracovní list, samostatnou Laboratoř a ústní maturitní hodnocení.
+
+**Výsledek etapy II:** obsah 5B je připraven k pedagogickému posouzení; neoznačovat ještě celý tematický celek za HOTOVO.
