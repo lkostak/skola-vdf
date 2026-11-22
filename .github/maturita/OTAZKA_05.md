@@ -151,3 +151,19 @@ Na základě hodnocení učitele byla část 5A rozšířena o souvislé, samost
 - [ ] Vytvořit plný studijní materiál, souhrnný pracovní list, samostatnou Laboratoř a ústní maturitní hodnocení.
 
 **Výsledek etapy II:** obsah 5B je připraven k pedagogickému posouzení; neoznačovat ještě celý tematický celek za HOTOVO.
+
+
+## 11. Rozbalovací ústní osnova v studentském přehledu otázky 05 (2026-11-22)
+
+Na přímý požadavek učitele byla část **KOSTRA OTÁZKY** na studentské stránce `mechatronika/maturita/05-sekvencni-logika/index.html` změněna na **deset nativních HTML prvků `<details><summary>…</summary>…</details>`**.
+
+Každá z deseti původních oblastí obsahuje:
+- tři srozumitelné odstavce souvislého mluveného vysvětlení, které může maturant převyprávět vlastními slovy;
+- konkrétní poznámku **„Co umět na tabuli“** (schéma, časový diagram, tabulka či zdůvodnění);
+- přímý odkaz do příslušné lekce 5A nebo 5B.
+
+Výklad neobsahuje pouze definice: propojuje důvod použití, princip, konkrétní příklad a návaznost na automatizaci. Ve čtvrtém bodě je stručně vysvětleno i rozlišení **monostabilní / bistabilní / astabilní**, které zatím není samostatnou kapitolou 5A/5B a zůstává k rozpracování. Texty jsou **pracovní vzorové formulace, nikoliv závazný přednes k mechanickému memorování**.
+
+**Technické provedení:** zachována hlavní navigace a karty 5A/5B, doplněna pouze lokální šablona `mechatronika/maturita/05-sekvencni-logika/outline.css`. Rozbalování funguje nativně v prohlížeči, bez JavaScriptu. Otevírání jednotlivých bodů navzájem neomezuje ostatní body.
+
+**Kontrola před finálním schválením:** odborně potvrdit ústní formulace podle přesného maturitního zadání; vizuálně ověřit mobil/projektor; pro budoucí otázky zvažovat shodný vzor ústní osnovy v studentských přehledech. Stále platí, že celá otázka 05 **není označena HOTOVO**.
