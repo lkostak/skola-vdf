@@ -1,0 +1,35 @@
+name: Maturita 04 · kombinační obvody
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "assets/js/combinational-core.js"
+      - "mechatronika/maturita/04-kombinacni-logicke-obvody/**"
+      - "tests/combinational-core.test.js"
+      - ".github/workflows/mer04-tests.yml"
+  pull_request:
+    paths:
+      - "assets/js/combinational-core.js"
+      - "mechatronika/maturita/04-kombinacni-logicke-obvody/**"
+      - "tests/combinational-core.test.js"
+      - ".github/workflows/mer04-tests.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Kontrola syntaxe
+        run: |
+          node --check assets/js/combinational-core.js
+          node --check mechatronika/maturita/04-kombinacni-logicke-obvody/app.js
+      - name: Logické modely, 256 pravdivostních funkcí a bloky
+        run: node --test tests/combinational-core.test.js
