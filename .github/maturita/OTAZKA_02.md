@@ -89,7 +89,7 @@ Vzor **„úvod → souvislý výklad → aktivní krok → zpětná vazba → �
 - [x] Připravena tisková 33stránková studijní verze ze starších skript a samostatného 2stránkového dodatku.
 - [x] Vytvořen studentský pracovní list (7 stran / 14 úloh / 100 bodů) a neveřejný učitelský klíč (4 strany).
 - [x] Všechny PDF strany vykresleny a vizuálně zkontrolováno rozložení a použitelnost.
-- [ ] Nejnovější CI pro `code-core.js` a navazující skripty má stav PASS.
+- [x] Nejnovější CI pro `code-core.js` a navazující skripty má stav [PASS (GitHub Actions)](https://github.com/lkostak/skola-vdf/actions/runs/45052032989).
 - [ ] Výklad ručně vyzkoušen na mobilu a projektoru, interakce podle scénáře „předpověz → ověř“.
 - [ ] Učitel projde text všech 33 stran včetně původu dodatku a případných starších nepřesností.
 - [ ] Učitel projde zadání i výsledky 14 pracovních úloh.
