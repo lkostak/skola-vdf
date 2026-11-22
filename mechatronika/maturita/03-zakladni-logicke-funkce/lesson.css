@@ -1,0 +1,87 @@
+/* Maturitní otázka 03: lokální vzhled sdílející typografii a paletu 05.
+ * Značky jsou didaktické obdélníkové kresby podle logické konvence IEC. */
+.logic-page .hero h1{max-width:990px;}
+.logic-page .chapter{scroll-margin-top:30px;}
+.logic-page .lesson-shell{max-width:1180px;}
+.logic-page .oral-topics{margin-top:20px;}
+.logic-page .process-strip{display:flex;align-items:center;justify-content:space-around;flex-wrap:wrap;gap:10px;border:1px solid var(--mer-border);padding:17px;background:rgba(0,20,29,.6);margin:25px 0;}
+.logic-page .process-strip span:not(.process-arrow){padding:9px 11px;border:1px solid rgba(169,229,244,.26);background:rgba(10,69,81,.55);font-size:.86rem;font-weight:700;color:#e7f7fb;}
+.logic-page .process-arrow{color:var(--cyan);font-size:1.1rem;}
+.logic-page .table-compare{display:grid;grid-template-columns:1fr 1.1fr;gap:23px;}
+.logic-page .table-title{font-size:.84rem;color:#c9e8ef;font-weight:700;}
+.logic-page .truth-table{border-collapse:collapse;min-width:0;width:100%;font-family:"DejaVu Sans Mono",Consolas,monospace;}
+.logic-page .truth-table th,.logic-page .truth-table td{border:1px solid rgba(169,229,244,.24);padding:12px 13px;text-align:center;font-size:.92rem;}
+.logic-page .truth-table th{background:rgba(65,215,255,.09);color:#beeffa;}
+.logic-page .truth-table td{color:#f1fcff;}
+.logic-page .truth-table .selected-row{background:rgba(65,215,255,.24)!important;}
+.logic-page .logic-field{display:flex;flex-direction:column;gap:6px;min-width:200px;color:#d2ecf3;font-weight:700;font-size:.83rem;}
+.logic-page .logic-field select{background:#034252;color:#fff;min-height:46px;padding:11px 13px;border:1px solid rgba(169,229,244,.38);font-family:Raleway,Arial,sans-serif;font-weight:700;max-width:100%;}
+.logic-page .logic-field select:focus-visible{outline:3px solid var(--yellow);outline-offset:3px;}
+.logic-page .prediction{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:20px 0;}
+.logic-page .prediction>span{font-size:.95rem;font-weight:700;color:#e6f7fa;margin-right:4px;}
+.logic-page button[aria-pressed="true"]{background:#126675;border-color:#9ff3ff;color:#fff;}
+.logic-page .gate-result{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0;}
+.logic-page .gate-result>div{background:rgba(0,14,22,.52);border:1px solid rgba(169,229,244,.23);padding:17px 19px;min-width:0;}
+.logic-page .gate-result small{display:block;color:#bfe4ed;font-size:.72rem;letter-spacing:.08em;font-weight:700;}
+.logic-page .gate-result strong{display:block;color:#a8effc;font:700 clamp(1.1rem,2vw,1.7rem) "DejaVu Sans",Arial,sans-serif;margin-top:13px;overflow-wrap:anywhere;}
+.logic-page .symbol-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin:28px 0 30px;}
+.logic-page .symbol-card{background:rgba(0,20,29,.58);padding:16px 18px;border:1px solid rgba(169,229,244,.24);min-width:0;}
+.logic-page .symbol-name{font-weight:700;font-size:1.18rem;color:#fff;letter-spacing:.045em;}
+.logic-page .symbol-equation{color:#b7f1ff;font-size:1.08rem;font-weight:700;margin-top:5px;font-family:"DejaVu Sans",Arial,sans-serif;}
+.logic-page .symbol-card p{font-size:.85rem;line-height:1.55;color:#c3e1e8;margin:8px 0 0;}
+/* IEC obdélníkové schéma: A/B vlevo, interní funkce, případná výstupní inverze. */
+.logic-page .iec-wrap{position:relative;height:125px;max-width:260px;margin:12px 0;background:rgba(0,9,17,.25);}
+.logic-page .iec-box{position:absolute;left:85px;top:25px;width:91px;height:70px;border:2px solid #c7ebf3;display:grid;place-items:center;color:#fff;font:700 1.4rem "DejaVu Sans",Arial,sans-serif;background:#075061;}
+.logic-page .iec-box span{white-space:nowrap;}
+.logic-page .wire{position:absolute;display:block;height:2px;background:#a9e8f9;}
+.logic-page .wire-a{left:38px;top:47px;width:47px;}
+.logic-page .wire-b{left:38px;top:75px;width:47px;}
+.logic-page .wire-out{left:176px;top:60px;width:50px;}
+.logic-page .pin-label{position:absolute;font-size:.81rem;font-weight:700;color:#e3f2f7;}
+.logic-page .in-a{left:19px;top:37px;}
+.logic-page .in-b{left:19px;top:66px;}
+.logic-page .out-y{left:231px;top:50px;}
+.logic-page .inversion-bubble{position:absolute;left:172px;top:54px;width:12px;height:12px;border-radius:50%;background:#073645;border:2px solid #e3f6fb;z-index:2;}
+.logic-page .laws-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin:26px 0;}
+.logic-page .laws-grid>div{padding:17px;border:1px solid rgba(169,229,244,.2);background:rgba(0,20,28,.62);}
+.logic-page .laws-grid b{display:block;color:#b5f2ff;font:700 clamp(1rem,1.5vw,1.22rem) "DejaVu Sans",Arial,sans-serif;margin-bottom:8px;}
+.logic-page .laws-grid span{color:#c9e5ee;font-size:.87rem;}
+.logic-page .equation-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin:15px 0;}
+.logic-page .equation-pair>div{background:rgba(0,12,23,.5);padding:18px;border:1px solid rgba(169,229,244,.18);}
+.logic-page .equation-pair small{display:block;letter-spacing:.08em;color:#c1e2e9;font-weight:700;font-size:.7rem;}
+.logic-page .equation-pair strong{display:block;color:#b7effe;font:700 1.17rem "DejaVu Sans",Arial,sans-serif;margin-top:13px;}
+.logic-page .universal-list{padding:17px 23px;margin:22px 0;border-left:3px solid var(--cyan);background:rgba(0,20,28,.52);overflow-wrap:anywhere;}
+.logic-page .universal-list p{font:.94rem/1.75 "DejaVu Sans",Arial,sans-serif;color:#e1f5f9;margin:9px 0;}
+.logic-page .universal-list b{color:#c0f4ff;}
+.logic-page .contacts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;}
+.logic-page .contacts>div{padding:14px;background:rgba(0,12,22,.4);border:1px solid rgba(169,229,244,.2);}
+.logic-page .contacts b,.logic-page .contacts small{display:block;color:#d4f3f9;font-size:.78rem;}
+.logic-page .contacts svg{width:100%;height:auto;margin:8px 0;}
+.logic-page .safety-note{line-height:1.8;}
+@media(max-width:810px){
+ .logic-page .symbol-gallery{grid-template-columns:repeat(2,minmax(0,1fr));}
+ .logic-page .table-compare{grid-template-columns:1fr;}
+ .logic-page .contacts{grid-template-columns:1fr;}
+}
+@media(max-width:520px){
+ .logic-page .symbol-gallery,.logic-page .laws-grid,.logic-page .gate-result,.logic-page .equation-pair{grid-template-columns:1fr;}
+ .logic-page .logic-field{min-width:100%;}
+ .logic-page .iec-wrap{margin:10px auto;}
+ .logic-page .process-strip{justify-content:flex-start;}
+ .logic-page .truth-table{min-width:350px;}
+ .logic-page .symbol-card{padding:15px;}
+}
+@media print{
+ .logic-page .symbol-card,.logic-page .laws-grid>div,.logic-page .gate-result>div,
+ .logic-page .equation-pair>div,.logic-page .contacts>div{background:#fff!important;border:1px solid #777;}
+ .logic-page .symbol-card p,.logic-page .symbol-equation,.logic-page .symbol-name,
+ .logic-page .laws-grid b,.logic-page .laws-grid span,.logic-page .gate-result small,.logic-page .gate-result strong,
+ .logic-page .equation-pair strong,.logic-page .equation-pair small,.logic-page .truth-table th,.logic-page .truth-table td,
+ .logic-page .contacts b,.logic-page .contacts small{color:#111!important;}
+ .logic-page .iec-box{background:#fff!important;color:#111!important;border-color:#111;}
+ .logic-page .iec-wrap{background:#fff!important;}
+ .logic-page .wire{background:#111!important;}
+ .logic-page .inversion-bubble{background:#fff!important;border-color:#111!important;}
+ .logic-page .iec-wrap .pin-label{color:#111!important;}
+ .logic-page .contacts svg{filter:grayscale(1);}
+}
