@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Interaktivní maturitní příprava: sekvenční logika, paměť, NOR-RS a řízení START/STOP.">
+  <meta name="description" content="Podrobný interaktivní maturitní výklad: stav a paměť, zpětná vazba, obvod NOR-RS, zakázaný stav a praktické řízení START/STOP. Teorie, experimenty a procvičování.">
   <title>5A · Paměť a klopný obvod RS | Mechatronika a robotika</title>
   <link rel="stylesheet" href="../../../assets/css/site.css">
   <link rel="stylesheet" href="lesson.css">
@@ -52,6 +52,14 @@
         </article>
       </div>
 
+
+      <div class="study-text">
+        <h3>Proč tu samotná logická funkce nestačí?</h3>
+        <p>Představ si nejjednodušší ovládání motoru: dokud držíš tlačítko START, na výstupu je logická jednička a motor běží. Jakmile tlačítko pustíš, vstup se vrátí na nulu a motor se zastaví. Takový obvod reaguje jen na <strong>současný stav vstupů</strong>. Minulé stisknutí tlačítka pro něj neexistuje.</p>
+        <p>V automatizaci ale často chceme jiné chování. Obsluha stiskne START jen na okamžik, přesto dopravník pokračuje. Až samostatný povel STOP jej zastaví. Po uvolnění obou tlačítek tedy může motor buď stát, nebo běžet. <strong>Vstupy jsou stejné, ale výstup je jiný podle předchozích událostí.</strong> Právě to je podstatný rozdíl mezi kombinační a sekvenční logikou.</p>
+        <p>Kombinační obvod lze popsat funkcí <strong>Y = f(X)</strong>: stejné aktuální vstupy znamenají stejný výstup. Sekvenční obvod potřebuje navíc informaci o předchozím stavu <strong>Q</strong>. Z ní spolu s aktuálními vstupy určí svůj nový stav. Proto se někdy říká, že sekvenční obvod má <em>paměť minulosti</em>.</p>
+      </div>
+
       <div class="lab" aria-labelledby="intro-lab-title">
         <div class="lab-label">PŘEDPOVĚZ → VYZKOUŠEJ → VYSVĚTLI</div>
         <h3 id="intro-lab-title">Představ si dopravník</h3>
@@ -72,6 +80,14 @@
           </div>
         </div>
       </div>
+
+      <aside class="worked-example" aria-label="Rozbor dvou situací se stejnými vstupy">
+        <h3>Dvě situace, stejné vstupy</h3>
+        <p><strong>Situace A:</strong> po zapnutí systému ještě nikdo START nestiskl. START=0, STOP=0 a motor stojí (Q=0).</p>
+        <p><strong>Situace B:</strong> obsluha krátce stiskla START a zase jej pustila. START=0, STOP=0, ale motor běží (Q=1).</p>
+        <p>Oba případy mají právě teď stejné vstupy. Rozdílný výsledek dokážeme vysvětlit pouze tehdy, když do popisu zahrneme také <strong>uložený stav Q</strong>.</p>
+      </aside>
+
       <p class="explain"><strong>Závěr:</strong> Paměť umožní uchovat informaci „motor má běžet“ i po uvolnění tlačítka. Samotný okamžitý vstup START už nestačí k určení stavu motoru.</p>
     </section>
 
@@ -79,6 +95,14 @@
       <div class="kicker">02 · STAV</div>
       <h2 id="stav-title">Jak popíšeme minulost jediným bitem?</h2>
       <p>Budeme používat <strong>Qⁿ</strong> pro stav před vyhodnocením povelu a <strong>Qⁿ⁺¹</strong> pro nový stav. Index <em>n</em> zde znamená pořadí kroků, nikoli konkrétní počet sekund.</p>
+
+      <div class="study-text">
+        <h3>Stav není totéž co vstup</h3>
+        <p><strong>Stav</strong> je informace, kterou si obvod uchovává mezi jednotlivými událostmi. U jednoduchého paměťového obvodu stačí jeden bit: Q=0 může znamenat „motor stojí“ a Q=1 „motor má běžet“. Vstup je naproti tomu povel, který může přijít a zase zmizet. Krátké START tedy mění stav, ale nemusí zůstávat trvale aktivní.</p>
+        <p>Zápis <strong>Qⁿ</strong> označuje <em>starý stav</em> před zpracováním dané události. <strong>Qⁿ⁺¹</strong> je <em>nový stav</em> po jejím vyhodnocení. Horní index není mocnina a n neznamená čas v sekundách. U tohoto asynchronního příkladu jde o pořadí pozorovaných změn; u synchronního obvodu, který poznáme v části 5B, mohou kroky odpovídat hodinovým hranám.</p>
+        <p>Pozor: obvod nepotřebuje uchovat celý sled všech dřívějších vstupů. Pro další rozhodování mu v tomto modelu stačí <strong>výsledek dosavadního děje</strong> uložený v jediném bitu.</p>
+      </div>
+
       <div class="lab">
         <div class="lab-label">KROKOVÝ MODEL</div>
         <div class="statusline">
@@ -94,6 +118,18 @@
         </div>
         <p id="stateFeedback" class="feedback" aria-live="polite">Začni stiskem SET a pak vyzkoušej „Bez povelu“.</p>
       </div>
+
+      <aside class="worked-example">
+        <h3>Řešený postup: od Q=0 přes SET až po RESET</h3>
+        <ol class="study-steps">
+          <li><strong>Začínáme:</strong> Qⁿ=0. Motorový stav je vypnutý.</li>
+          <li><strong>SET:</strong> nový stav je Qⁿ⁺¹=1, bez ohledu na to, zda předtím byla 0 nebo 1.</li>
+          <li><strong>Žádný povel:</strong> předchozí jednička se stává vstupním stavem dalšího kroku. Proto Qⁿ⁺¹=Qⁿ=1.</li>
+          <li><strong>RESET:</strong> nový stav přejde na 0. Při dalším kroku bez povelu už zůstává 0.</li>
+        </ol>
+        <p><strong>Zkus vysvětlit:</strong> Jaký je rozdíl mezi povelem „zapiš 1“ a skutečností „v paměti je 1“? První je vstupní událost, druhé je trvající stav.</p>
+      </aside>
+
       <p class="explain"><strong>Vyzkoušej:</strong> SET → bez povelu → bez povelu → RESET → bez povelu. Stav se mění jen na základě příslušného povelu, jinak zůstává zachován.</p>
     </section>
 
@@ -101,6 +137,14 @@
       <div class="kicker">03 · ZPĚTNÁ VAZBA</div>
       <h2 id="zpetna-title">Co umožňuje, aby informace nezmizela?</h2>
       <p>Klíčem je <strong>zpětná vazba</strong>: výstupní stav se vrací do rozhodovací části obvodu. Dokud nepřijde povel ke změně, obvod může díky této vazbě uchovat předchozí hodnotu.</p>
+
+      <div class="study-text">
+        <h3>Proč může být zpětná vazba základem paměti?</h3>
+        <p>V běžné kombinační logice postupuje informace od vstupů k výstupu. U paměťového obvodu se část informace z výstupu vrací zpět na vstup rozhodovací logiky. Obvod tak v dalším okamžiku nepracuje jen s novým povelem, ale také s tím, <strong>v jakém stavu se nacházel před chvílí</strong>.</p>
+        <p>V základním klopném obvodu RS jsou například dvě logická hradla propojena křížem: výstup jednoho ovlivňuje druhé a naopak. Díky takovému uspořádání mohou existovat dvě stabilní kombinace výstupů. Obvod zůstává v jedné z nich, dokud příslušný vstup nevyvolá přechod do druhé.</p>
+        <p>Samotná existence nějaké zpětné vazby ještě nezaručuje správnou paměť. Zapojení musí mít vhodnou logickou strukturu a stabilní provozní stavy. Naše schéma níže je proto <strong>principiální</strong>. Konkrétní vzájemné propojení dvou hradel NOR si vysvětlíme u RS.</p>
+      </div>
+
       <figure class="glass feedback-figure">
         <svg viewBox="0 0 640 230" role="img" aria-labelledby="feedback-diagram-title feedback-diagram-desc">
           <title id="feedback-diagram-title">Principiální blokové schéma paměťového obvodu</title>
@@ -118,13 +162,27 @@
         </svg>
         <figcaption>Principiální schéma, nikoli konkrétní zapojení hradel. Výstup Q ovlivňuje výpočet dalšího stavu.</figcaption>
       </figure>
-      <p><strong>Bistabilní obvod</strong> má dva stabilní stavy, které reprezentují 0 a 1. V nejjednodušším klopném obvodu RS je paměť realizována dvěma navzájem propojenými logickými hradly.</p>
+
+      <div class="worked-example">
+        <h3>Co znamenají dva stabilní stavy?</h3>
+        <p><strong>Bistabilní</strong> znamená „se dvěma stabilními stavy“. Jedna platná kombinace výstupů je Q=0 a Q̄=1, druhá Q=1 a Q̄=0. Přechod z jednoho stavu do druhého vyvolá vhodný povel, ale bez povelu zapojení nadále drží zvolený stav.</p>
+        <p>Oba výstupy <strong>Q a Q̄</strong> jsou v běžných platných stavech navzájem opačné. Proto jejich dvojice vypadá jako 01 nebo 10. Za určitých nepovolených vstupních podmínek ale tuto vlastnost nemusejí splňovat. To uvidíme v experimentu s RS.</p>
+      </div>
+
     </section>
 
     <section class="section chapter" id="rs" aria-labelledby="rs-title">
       <div class="kicker">04 · KLOPNÝ OBVOD RS</div>
       <h2 id="rs-title">Jak přesně se ukládá jedna logická hodnota?</h2>
       <p>Nejprve použijeme <strong>RS z hradel NOR</strong> se vstupy aktivními logickou jedničkou. <strong>S</strong> nastavuje Q na 1, <strong>R</strong> jej vynuluje. Když jsou oba vstupy 0, pamatuje si poslední platný stav.</p>
+
+      <div class="study-text">
+        <h3>Jak pracují dvě křížově propojená hradla NOR?</h3>
+        <p>Hradlo NOR dává na výstupu jedničku právě tehdy, když jsou <strong>všechny jeho vstupy nulové</strong>. U paměťového obvodu propojení obou hradel způsobí, že výstupy ovlivňují jeden druhý. Při platném klidovém stavu tak může zůstat Q=0 nebo Q=1, přestože jsou S=0 i R=0.</p>
+        <p>Aktivujeme-li <strong>S=1, R=0</strong>, obvod přejde do stavu Q=1. Po návratu S na nulu v něm zůstane. Při <strong>S=0, R=1</strong> naopak přejde do Q=0 a po uvolnění R si tuto nulu uchová. Vstupy SET a RESET tedy neznamenají „na výstupu je právě tolik co na tlačítku“, ale <strong>příkaz ke změně uložené informace</strong>.</p>
+        <p>Výchozí stav naší virtuální ukázky je záměrně nastaven na Q=0, aby experiment začínal vždy stejně. Reálné zapojení bez vhodné inicializace nemusí mít po připojení napájení předem zaručený stav.</p>
+      </div>
+
       <div class="lab">
         <div class="lab-label">INTERAKTIVNÍ MODEL NOR-RS</div>
         <p>Ovládej oba vstupy <strong>nezávisle</strong>. Zkus nejprve S=1,R=0, poté oba 0. Následně vyzkoušej zakázanou kombinaci S=R=1 a oba vstupy uvolni.</p>
@@ -156,15 +214,42 @@
           </tbody>
         </table>
       </div>
+
+      <aside class="worked-example">
+        <h3>Jak správně číst celou stavovou tabulku?</h3>
+        <ol class="study-steps">
+          <li><strong>S=0, R=0:</strong> ani jeden vstup nežádá změnu; nový stav je stejný jako předchozí, tedy Qⁿ⁺¹=Qⁿ.</li>
+          <li><strong>S=1, R=0:</strong> SET nastaví Qⁿ⁺¹=1. Tento výsledek nezávisí na předchozím platném Q.</li>
+          <li><strong>S=0, R=1:</strong> RESET nastaví Qⁿ⁺¹=0, opět bez ohledu na předchozí platný stav.</li>
+          <li><strong>S=1, R=1:</strong> nejde o „ještě jednu paměťovou hodnotu“. V ustáleném modelu NOR jsou oba výstupy 0, a Q a Q̄ tak přestanou být komplementární. Při následném současném uvolnění obou vstupů nelze určit výsledek bez znalosti časového chování skutečných hradel.</li>
+        </ol>
+        <p><strong>Typická chyba:</strong> student tvrdí, že při S=R=1 „má SET přednost“, nebo že se Q a Q̄ za všech okolností musí lišit. Obojí je u <em>základního</em> NOR-RS nesprávné. Priorita se musí realizovat zvláštní logikou nebo být definována konkrétním funkčním blokem.</p>
+      </aside>
+
       <div class="scope-note">
         <strong>Pozor na dvě různé realizace.</strong> U NOR-RS jsou aktivní jedničky. RS ze dvou NAND hradel mívá vstupy označené S̄ a R̄ a je aktivní nulou. Tabulky proto nelze jednoduše zaměňovat. „Zakázaný stav“ není další paměťová hodnota.
       </div>
+
+      <div class="study-text">
+        <h3>Co se změní, když místo NOR použijeme NAND?</h3>
+        <p>NAND je negace součinu, takže jinak reaguje na vstupní úrovně. Základní RS ze dvou NAND se obvykle popisuje vstupy <strong>S̄ a R̄ aktivními nulou</strong>: klidový stav odpovídá S̄=R̄=1, nastavení paměti vyvolá S̄=0, R̄=1 a vynulování S̄=1, R̄=0. Zakázaná je kombinace S̄=R̄=0, při které jsou v ustáleném modelu oba výstupy 1.</p>
+        <p>Proto nestačí říci, že „RS má zakázanou kombinaci 11“. <strong>Vždy je potřeba uvést realizaci a polaritu vstupů.</strong> Tabulka na této stránce patří výhradně k variantě NOR s aktivní jedničkou.</p>
+      </div>
+
     </section>
 
     <section class="section chapter" id="motor" aria-labelledby="motor-title">
       <div class="kicker">05 · PRAKTICKÉ POUŽITÍ</div>
       <h2 id="motor-title">Jak zajistit, aby měl STOP přednost?</h2>
       <p>U jednoduché paměti pro spouštění motoru chceme, aby jednorázové START nastavilo běh, ale aby STOP měl vždy přednost. Nejde o neřešenou zakázanou kombinaci základního NOR-RS. Předřadíme rozhodování s <strong>prioritou STOP</strong>.</p>
+
+      <div class="study-text">
+        <h3>Proč přidáváme ještě rozhodovací pravidlo?</h3>
+        <p>Samotný RS obvod si pamatuje jeden bit, ale u skutečného ovládání potřebujeme určit, co se má stát při současném stisknutí START a STOP. Základní NOR-RS nám pro současnou aktivaci S=R=1 spolehlivý uložený stav neposkytuje. Proto oba povely <strong>nepřivádíme jednoduše přímo na S a R</strong>, ale definujeme samostatné řízení, v němž má STOP přednost.</p>
+        <p>Náš učební model čte <strong>START=1</strong> jako žádost o spuštění a <strong>STOP=1</strong> jako žádost o zastavení. Jestliže je aktivní STOP, výsledný stav je 0 bez ohledu na START i na staré Q. Když STOP není aktivní a přijde START, nastavíme 1. Pokud nepřijde ani jeden povel, staré Q zůstane zachováno.</p>
+        <p>Takové chování můžeme zapsat logickou rovnicí. Na jejím pravém konci je starý stav Qⁿ, na levém nový stav Qⁿ⁺¹. To je přesně stejná myšlenka, kterou jsme použili u sekvenční logiky na začátku lekce.</p>
+      </div>
+
       <div class="lab">
         <div class="lab-label">MODEL ŘÍZENÍ MOTORU S PRIORITOU STOP</div>
         <div class="experiment-grid">
@@ -185,6 +270,18 @@
       </div>
       <p class="formula formula-small">Qⁿ⁺¹ = ¬STOP ∧ (START ∨ Qⁿ)</p>
       <p class="explain">V této rovnici mají povely aktivní hodnotu 1. Pokud STOP=1, výsledek je vždy Qⁿ⁺¹=0, i když je současně START=1. Po uvolnění obou tlačítek zůstává uchovaný stav.</p>
+
+      <aside class="worked-example">
+        <h3>Rozbor rovnice na čtyřech situacích</h3>
+        <ol class="study-steps">
+          <li><strong>START=0, STOP=0:</strong> rovnice se zjednoduší na Qⁿ⁺¹=Qⁿ. Motor zůstane v dosavadním stavu.</li>
+          <li><strong>START=1, STOP=0:</strong> závorka (START ∨ Qⁿ) je 1, proto Qⁿ⁺¹=1. Motor se rozběhne.</li>
+          <li><strong>START=0, STOP=1:</strong> první člen ¬STOP je 0, tedy Qⁿ⁺¹=0. Motor se zastaví.</li>
+          <li><strong>START=1, STOP=1:</strong> i když je závorka rovna 1, násobíme ji ¬STOP=0. Výsledek je 0: STOP má přednost.</li>
+        </ol>
+        <p><strong>Propojení s elektrotechnikou:</strong> podobný požadavek realizujeme v praxi pomocí stykačového samodržného zapojení nebo programového bloku PLC. Konkrétní bezpečné provedení se řídí vlastnostmi zařízení a posouzením rizika.</p>
+      </aside>
+
       <div class="safety-note" role="note">
         <strong>Bezpečnost:</strong> toto je didaktická simulace logiky. Skutečné nouzové zastavení stroje musí být realizováno odpovídajícím bezpečnostním systémem a normami, nikoli pouze obyčejným softwarovým bitem.
       </div>
@@ -194,6 +291,14 @@
       <div class="kicker">06 · OVĚŘENÍ</div>
       <h2 id="overeni-title">Opravdu rozumíš paměti?</h2>
       <p>Nejde o rychlost klikání. Vyber odpověď a po kontrole si přečti vysvětlení. Úlohy si můžeš opakovat.</p>
+
+      <div class="study-text">
+        <h3>Jak poznáš, že principu opravdu rozumíš?</h3>
+        <p>U této otázky nejde hlavně o naučení čtyř řádků tabulky nazpaměť. Maturant by měl umět vysvětlit, <strong>proč mohou dva stejné okamžité vstupy vyvolat různé výstupy</strong>, jak paměť uchovává Q a co se změní, když přijde SET nebo RESET.</p>
+        <p>Ve zkoušce dostaneš často tabulku nebo malý obvod. U každé situace si nejprve řekni, <strong>jaký byl předchozí stav</strong>, potom vyhodnoť aktivní vstupy a nakonec urči další stav. Pokud vstupy vytvářejí zakázanou kombinaci, nesmíš si výsledek domýšlet jako běžný platný stav.</p>
+        <p>Následující úlohy ověřují tři odlišné věci: uchování stavu, pochopení zakázané kombinace NOR-RS a rozlišení RS od stop-prioritní řídicí logiky. Všechny tři principy bys měl umět vysvětlit i bez klikacího testu.</p>
+      </div>
+
       <form id="quizForm" class="quiz-form">
         <fieldset>
           <legend>1. NOR-RS má Q=1. Potom S=0 a R=0. Jaké bude Q?</legend>
@@ -222,6 +327,18 @@
         </div>
         <p id="quizSummary" class="feedback" aria-live="polite"></p>
       </form>
+
+      <aside class="worked-example">
+        <h3>Jak si sestavit krátkou ústní odpověď</h3>
+        <ol class="study-steps">
+          <li><strong>Začni problémem:</strong> na příkladu motoru ukaž, proč samotná kombinační funkce nestačí.</li>
+          <li><strong>Vysvětli princip:</strong> uveď stav Qⁿ, další stav Qⁿ⁺¹ a zpětnou vazbu.</li>
+          <li><strong>Nakresli RS:</strong> popiš vstupy, výstupy, platné kombinace a zakázaný stav základního NOR-RS.</li>
+          <li><strong>Použij znalost:</strong> vysvětli, proč při START/STOP definujeme prioritu a jak pracuje rovnice stavu.</li>
+          <li><strong>Připrav pokračování:</strong> v části 5B na tento princip navážou hodinové signály a klopné obvody D a JK.</li>
+        </ol>
+      </aside>
+
       <div class="glass">
         <h3>Maturita nanečisto</h3>
         <p>Zkus bez nápovědy vlastními slovy vysvětlit: <strong>Proč sekvenční obvod potřebuje vnitřní stav a proč při START+STOP nepoužijeme základní NOR-RS přímo?</strong></p>
