@@ -187,6 +187,11 @@
   }
   byId("timingCheck").addEventListener("click", function () {
     var correct=0,answered=0,rows=byId("timingTableBody").querySelectorAll("tr");
+    var incomplete=Array.from(rows).some(function(row){ return row.querySelector("select").value===""; });
+    if(incomplete){
+      text("timingFeedback","Nejdřív vyplň Q ve všech krocích. Teprve potom ukážeme správný časový průběh.");
+      return;
+    }
     rows.forEach(function (row,i){
       var select=row.querySelector("select"),result=row.querySelector(".timing-result");
       var value=select.value;
@@ -253,7 +258,7 @@
   // 07. Závěrečné otázky se zpětnou vazbou; neukládají se žádná osobní data.
   var solutions=[
     {name:"quiz1",correct:"1",yes:"Správně. D se zapisuje na náběžné hraně 0→1, nikoli během trvání úrovně CLK=1.",no:"Vstup D se změnil, ale žádná nová aktivní náběžná hrana nenastala. Q proto drží nulu."},
-    {name:"quiz2",correct:"0",yes:"Správně. Úrovňově citlivý latch s EN=1 průběžně předává D na Q.",no:"Latch s aktivním EN=1 je průhledný; nečeká na jednotlivou hodinnovou hranu."},
+    {name:"quiz2",correct:"0",yes:"Správně. Úrovňově citlivý latch s EN=1 průběžně předává D na Q.",no:"Latch s aktivním EN=1 je průhledný; nečeká na jednotlivou hodinovou hranu."},
     {name:"quiz3",correct:"2",yes:"Správně. Kombinace J=K=1 znamená překlopení Q: z jedničky na nulu.",no:"U hranově řízeného JK kombinace J=K=1 není zakázaná a nedává prioritu SET. Při hraně překlápí stav."},
     {name:"quiz4",correct:"1",yes:"Správně. Flip-flop se sestupnou aktivní hranou vzorkuje D při 1→0.",no:"Zvolený D flip-flop je citlivý na sestupnou hranu 1→0. Mezi aktivními hranami si uchovává Q."}
   ];
