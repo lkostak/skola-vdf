@@ -140,5 +140,6 @@ Každá změna musí uvést, **co** se změnilo, **proč** a **které části je
 | 03 · Základní logické funkce | [OTAZKA_03.md](OTAZKA_03.md) | [03](../../mechatronika/maturita/03-zakladni-logicke-funkce/index.html) | jediný souvislý interaktivní výklad, 32stránkový studijní text, 7stránkový pracovní list a neveřejný klíč; čeká na revizi |
 | 04 · Kombinační logické obvody | [OTAZKA_04.md](OTAZKA_04.md) | [04](../../mechatronika/maturita/04-kombinacni-logicke-obvody/index.html) | jedna interaktivní stránka, editor K-mapy a SOP/POS, 30stránkový studijní text, 8stránkový pracovní list a neveřejný klíč; čeká na revizi |
 | 05 · Základní sekvenční logické obvody | [OTAZKA_05.md](OTAZKA_05.md) | [05](../../mechatronika/maturita/05-sekvencni-logika/index.html) | výklad 5A/5B a pracovní PDF/list připraveny; čeká na revizi |
+| 06 · Sekvenční logické obvody, registry a čítače | [OTAZKA_06.md](OTAZKA_06.md) | [06](../../mechatronika/maturita/06-registry-citace/index.html) | jednotný interaktivní výklad 10 kapitol/10 ústních bodů; 26stránková skripta, 8stránkový pracovní list a neveřejný 5stránkový klíč; čeká na revizi |
 
-**Učitelské klíče nejsou zveřejněné.** Soukromé PDF k otázce 01 zůstává pouze v rámci pracovního předání, nikoli jako soubor v tomto veřejném repozitáři.
+**Učitelské klíče nejsou zveřejněné.** Soukromá PDF k otázkám 01–06 zůstávají v pracovním předání, nikoli v tomto veřejném repozitáři. Až po revizi se mohou zveřejnit výhradně studentské verze.
