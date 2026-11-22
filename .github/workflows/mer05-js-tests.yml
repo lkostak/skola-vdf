@@ -6,17 +6,25 @@ on:
     paths:
       - "assets/js/rs-core.js"
       - "assets/js/clock-core.js"
+      - "mechatronika/maturita/05a-pamet-rs/index.html"
+      - "mechatronika/maturita/05a-pamet-rs/app.js"
+      - "mechatronika/maturita/05-sekvencni-logika/index.html"
       - "mechatronika/maturita/05b-synchronni-logika/app.js"
       - "tests/rs-core.test.js"
       - "tests/clock-core.test.js"
+      - "tests/lesson-05-content.test.js"
       - ".github/workflows/mer05-js-tests.yml"
   pull_request:
     paths:
       - "assets/js/rs-core.js"
       - "assets/js/clock-core.js"
+      - "mechatronika/maturita/05a-pamet-rs/index.html"
+      - "mechatronika/maturita/05a-pamet-rs/app.js"
+      - "mechatronika/maturita/05-sekvencni-logika/index.html"
       - "mechatronika/maturita/05b-synchronni-logika/app.js"
       - "tests/rs-core.test.js"
       - "tests/clock-core.test.js"
+      - "tests/lesson-05-content.test.js"
       - ".github/workflows/mer05-js-tests.yml"
   workflow_dispatch:
 
@@ -41,4 +49,4 @@ jobs:
           node --check mechatronika/maturita/05a-pamet-rs/app.js
           node --check mechatronika/maturita/05b-synchronni-logika/app.js
       - name: Spusť jednotkové testy RS, D, JK a časových diagramů
-        run: node --test tests/rs-core.test.js tests/clock-core.test.js
+        run: node --test tests/rs-core.test.js tests/clock-core.test.js tests/lesson-05-content.test.js
