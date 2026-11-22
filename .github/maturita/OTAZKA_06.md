@@ -85,7 +85,7 @@ Odkazy jsou odborné referenční podklady, nikoli zdroj školního schválení 
 |---|---|---|---|
 | Studijní text | **26 stran A4** | Nově autorsky vypracovaný souvislý výklad v češtině, schémata, tabulky, deset dodatečných řešených technických laboratoří A–J, model ústní odpovědi, 20 kontrolních otázek | PŘIPRAVENO K REVIZI, NEZVEŘEJNĚNO |
 | Studentský pracovní list | **8 stran A4**, 14 úloh, **100 bodů** | Volné plochy pro schémata, časové tabulky, posuvy, stavové cykly, dělení frekvence, CTU a ústní miniobhajobu | PŘIPRAVENO K REVIZI, NEZVEŘEJNĚNO |
-| Neveřejný učitelský klíč | **5 stran A4** | Všech 14 komentovaných řešení, dílčí maxima, metodické poznámky | **NEPUBLIKOVAT DO PUBLIC REPO** |
+| Neveřejný učitelský klíč | **4 strany A4** | Všech 14 komentovaných řešení, dílčí maxima, metodické poznámky | **NEPUBLIKOVAT DO PUBLIC REPO** |
 
 PDF jsou vytvořena v konverzačním pracovním kontejneru `/mnt/data/mer06/output/` (nejsou součástí repozitáře ani veřejného webu). Propojení studentských PDF až po pedagogickém schválení; učitelský klíč ponechat mimo veřejné úložiště.
 
@@ -107,7 +107,7 @@ PDF jsou vytvořena v konverzačním pracovním kontejneru `/mnt/data/mer06/outp
 - [x] Připravit interaktivní registrové/čítačové funkce se sdíleným výpočtovým jádrem.
 - [x] Ověřit syntax a řadu modelových sekvencí: [CI PASS](https://github.com/lkostak/skola-vdf/actions/runs/45070173132).
 - [x] Propojit do maturitního rozcestníku.
-- [x] Vytvořit tiskovou sadu 26 + 8 + 5 stran a otestovat všechny stránky na prázdný text, klip a ořez.
+- [x] Vytvořit tiskovou sadu 26 + 8 + 4 strany a otestovat všechny stránky na prázdný text, klip a ořez.
 - [ ] Učitel přečte a odborně reviduje všechny kapitoly, deset laboratoří a modelové řešení.
 - [ ] Učitel ověří vhodnost zadání, délku pracovní činnosti a bodování.
 - [ ] Ověřit interakce na konkrétním telefonu a projektoru.
