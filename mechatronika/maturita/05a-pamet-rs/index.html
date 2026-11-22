@@ -1,1 +1,244 @@
-<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>5A Paměť a RS</title><link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../../assets/css/site.css"></head><body><nav class="topbar"><a href="../../../">Portál</a><span class="crumb">/</span><a href="../../">Mechatronika</a><span class="crumb">/</span><a href="../">Maturita</a><span class="crumb">/ 5A</span></nav><main class="content"><header class="hero"><div class="eyebrow">MATURITNÍ OTÁZKA 5A</div><h1>Od kombinační logiky k paměti</h1><p class="lead">Stav • zpětná vazba • RS • START/STOP</p><div class="glass"><h3>Klíčová otázka</h3><p style="font-size:1.45rem">Jak může obvod reagovat na něco, co už na vstupu není?</p></div></header><section class="section"><div class="kicker">01 · PROBLÉM</div><h2>Kombinační logika zná jen přítomnost</h2><div class="concept"><div class="glass"><h3>Kombinační obvod</h3><p>Výstup určuje pouze aktuální kombinace vstupů.</p><p class="big-state">Y = f(A,B,C)</p></div><div class="glass"><h3>Ale motor má běžet dál</h3><p>Stiskneš START, motor se rozběhne. Tlačítko pustíš, ale motor má pokračovat.</p><p><b style="color:var(--yellow)">Potřebujeme paměť.</b></p></div></div></section><section class="section"><div class="kicker">02 · STAV</div><h2>Qⁿ a Qⁿ⁺¹</h2><p>Index n znamená krok, nikoli sekundy.</p><div class="lab"><div class="statusline"><div class="status">Qⁿ<b id="qn">0</b></div><div class="status">Povel<b id="cmd">žádný</b></div><div class="status">Qⁿ⁺¹<b id="qnext">0</b></div></div><div class="controls"><button onclick="stateDemo('set')">SET</button><button class="stop" onclick="stateDemo('reset')">RESET</button><button class="secondary" onclick="stateDemo('hold')">Žádný povel</button></div><p id="stateExplain" class="feedback">Zvol povel.</p></div></section><section class="section"><div class="kicker">03 · PAMĚŤ</div><h2>Zpětná vazba</h2><div class="glass"><p>Informace o výstupu se vrací do logiky. Obvod tak nese informaci o předchozím stavu.</p><p class="big-state">Q → ↺ → Q</p></div></section><section class="section"><div class="kicker">04 · RS</div><h2>Jeden bit, který si pamatuje</h2><div class="lab"><div class="concept"><div><div class="controls"><button onclick="rs('set')">SET</button><button class="stop" onclick="rs('reset')">RESET</button><button class="secondary" onclick="rs('release')">Uvolnit</button></div><p id="rsText" class="feedback">Q = 0. Obvod čeká.</p></div><div><div class="status">Q<b id="rsQ">0</b></div><div class="status">Q̄<b id="rsQB" class="on">1</b></div></div></div></div><table><thead><tr><th>S</th><th>R</th><th>Qⁿ⁺¹</th><th>Význam</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>Qⁿ</td><td>Pamatuj</td></tr><tr><td>1</td><td>0</td><td>1</td><td>SET</td></tr><tr><td>0</td><td>1</td><td>0</td><td>RESET</td></tr><tr><td>1</td><td>1</td><td>−</td><td>Nepovolený stav základního NOR RS</td></tr></tbody></table><p class="muted">RS z NAND hradel pracuje s aktivní nulou. PLC RS/SR bloky navíc definují prioritu.</p></section><section class="section"><div class="kicker">05 · START / STOP</div><h2>Paměť dostane práci</h2><div class="lab"><div class="concept"><div><div class="controls"><button onclick="motorStart()">START</button><button class="stop" onclick="motorStop()">STOP</button></div><p id="motorText" class="feedback">Motor stojí. Q = 0.</p></div><div><div id="motor" class="motor"></div><div class="status">Paměť Q<b id="motorQ">0</b></div></div></div></div></section><section class="section"><div class="kicker">06 · OVĚŘENÍ</div><h2>Pochopil jsi paměť?</h2><div class="lab"><p><b>Motor stojí. Krátce stiskneš START a pustíš ho. Jaký bude stav Q?</b></p><div class="controls"><button class="secondary" onclick="quiz(0)">Q = 0</button><button class="secondary" onclick="quiz(1)">Q = 1</button></div><p id="quizFeedback" class="feedback"></p></div></section><footer class="footer">VOŠ, SPŠ a SOŠ Varnsdorf · Výukový prototyp 5A</footer></main><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Interaktivní maturitní příprava: sekvenční logika, paměť, NOR-RS a řízení START/STOP.">
+  <title>5A · Paměť a klopný obvod RS | Mechatronika a robotika</title>
+  <link rel="stylesheet" href="../../../assets/css/site.css">
+  <link rel="stylesheet" href="lesson.css">
+</head>
+<body class="lesson-page">
+  <nav class="topbar" aria-label="Drobečková navigace">
+    <a href="../../../">Portál</a><span class="crumb">/</span>
+    <a href="../../">Mechatronika</a><span class="crumb">/</span>
+    <a href="../">Maturita</a><span class="crumb">/</span>
+    <a href="../05-sekvencni-logika/">Otázka 05</a><span class="crumb">/ 5A</span>
+  </nav>
+
+  <main class="content lesson-shell">
+    <header class="hero" id="uvod">
+      <div class="eyebrow">MATURITNÍ OTÁZKA 05 · INTERAKTIVNÍ VÝKLAD · ČÁST 5A</div>
+      <h1>Jak si obvod<br>pamatuje?</h1>
+      <p class="lead">Od stisku tlačítka START přes zpětnou vazbu až ke klopnému obvodu RS. Nejdřív předpovíš výsledek, potom ho ověříš.</p>
+      <div class="chapter-meta"><span>6 kapitol</span><span>Vysvětlení + experiment</span><span>ŠVP: MER3-V012</span></div>
+      <div class="scope-note" role="note">
+        <strong>Co zde zvládneš:</strong> vysvětlit rozdíl kombinační a sekvenční logiky, pracovat se stavy Qⁿ/Qⁿ⁺¹, sestavit tabulku NOR-RS a objasnit řízení START/STOP. Hodinový signál, D a JK následují v části 5B.
+      </div>
+    </header>
+
+    <nav class="chapter-nav" aria-label="Obsah části 5A">
+      <a href="#problem">01 Problém</a>
+      <a href="#stav">02 Stav</a>
+      <a href="#zpetna-vazba">03 Paměť</a>
+      <a href="#rs">04 RS</a>
+      <a href="#motor">05 START/STOP</a>
+      <a href="#overeni">06 Ověření</a>
+    </nav>
+
+    <section class="section chapter" id="problem" aria-labelledby="problem-title">
+      <div class="kicker">01 · PROBLÉM</div>
+      <h2 id="problem-title">Proč motor běží, i když už nedržíš START?</h2>
+      <div class="concept">
+        <article class="glass">
+          <h3>Kombinační obvod</h3>
+          <p>Výstup závisí pouze na právě platných vstupech. Změníš vstup, obvod odpovídá podle stejného pravidla.</p>
+          <p class="formula">Y = f(X)</p>
+        </article>
+        <article class="glass">
+          <h3>Sekvenční obvod</h3>
+          <p>Výsledek závisí i na uloženém stavu z minulosti. Krátký povel může ovlivnit chování po dlouhou dobu.</p>
+          <p class="formula">Qⁿ⁺¹ = f(X, Qⁿ)</p>
+        </article>
+      </div>
+
+      <div class="lab" aria-labelledby="intro-lab-title">
+        <div class="lab-label">PŘEDPOVĚZ → VYZKOUŠEJ → VYSVĚTLI</div>
+        <h3 id="intro-lab-title">Představ si dopravník</h3>
+        <p>Motor stojí. Obsluha krátce stiskne START a tlačítko pustí. Co se má stát, pokud je řízení vybaveno pamětí?</p>
+        <div class="controls" role="group" aria-label="Předpověď chování motoru">
+          <button type="button" class="secondary choice" data-intro-prediction="0" aria-pressed="false">Motor se zastaví</button>
+          <button type="button" class="secondary choice" data-intro-prediction="1" aria-pressed="false">Motor poběží dál</button>
+        </div>
+        <div class="experiment-grid">
+          <div>
+            <button type="button" id="introRun" disabled>Ověřit předpověď</button>
+            <button type="button" class="secondary" id="introReset">Začít znovu</button>
+            <p class="feedback" id="introFeedback" aria-live="polite">Nejprve vyber svoji předpověď.</p>
+          </div>
+          <div class="visual-state">
+            <div id="introMotor" class="motor" role="img" aria-label="Motor stojí"></div>
+            <div class="status">Motor <b id="introMotorLabel">STOJÍ</b></div>
+          </div>
+        </div>
+      </div>
+      <p class="explain"><strong>Závěr:</strong> Paměť umožní uchovat informaci „motor má běžet“ i po uvolnění tlačítka. Samotný okamžitý vstup START už nestačí k určení stavu motoru.</p>
+    </section>
+
+    <section class="section chapter" id="stav" aria-labelledby="stav-title">
+      <div class="kicker">02 · STAV</div>
+      <h2 id="stav-title">Jak popíšeme minulost jediným bitem?</h2>
+      <p>Budeme používat <strong>Qⁿ</strong> pro stav před vyhodnocením povelu a <strong>Qⁿ⁺¹</strong> pro nový stav. Index <em>n</em> zde znamená pořadí kroků, nikoli konkrétní počet sekund.</p>
+      <div class="lab">
+        <div class="lab-label">KROKOVÝ MODEL</div>
+        <div class="statusline">
+          <div class="status">Předchozí stav Qⁿ <b id="stateOld">0</b></div>
+          <div class="status">Povel <b id="stateCommand">ŽÁDNÝ</b></div>
+          <div class="status">Nový stav Qⁿ⁺¹ <b id="stateNew">0</b></div>
+        </div>
+        <div class="controls">
+          <button type="button" data-state-action="set">SET: ulož 1</button>
+          <button type="button" class="stop" data-state-action="reset">RESET: ulož 0</button>
+          <button type="button" class="secondary" data-state-action="hold">Bez povelu</button>
+          <button type="button" class="secondary" data-state-action="restart">Začít znovu</button>
+        </div>
+        <p id="stateFeedback" class="feedback" aria-live="polite">Začni stiskem SET a pak vyzkoušej „Bez povelu“.</p>
+      </div>
+      <p class="explain"><strong>Vyzkoušej:</strong> SET → bez povelu → bez povelu → RESET → bez povelu. Stav se mění jen na základě příslušného povelu, jinak zůstává zachován.</p>
+    </section>
+
+    <section class="section chapter" id="zpetna-vazba" aria-labelledby="zpetna-title">
+      <div class="kicker">03 · ZPĚTNÁ VAZBA</div>
+      <h2 id="zpetna-title">Co umožňuje, aby informace nezmizela?</h2>
+      <p>Klíčem je <strong>zpětná vazba</strong>: výstupní stav se vrací do rozhodovací části obvodu. Dokud nepřijde povel ke změně, obvod může díky této vazbě uchovat předchozí hodnotu.</p>
+      <figure class="glass feedback-figure">
+        <svg viewBox="0 0 640 230" role="img" aria-labelledby="feedback-diagram-title feedback-diagram-desc">
+          <title id="feedback-diagram-title">Principiální blokové schéma paměťového obvodu</title>
+          <desc id="feedback-diagram-desc">Povely vstupují do rozhodovací logiky, která vytváří výstup Q. Stav Q je zpětnou vazbou veden do rozhodovací logiky a ovlivňuje další stav.</desc>
+          <defs><marker id="arrow05a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#41d7ff"/></marker></defs>
+          <rect x="200" y="45" width="245" height="90" rx="10" fill="#003545" stroke="#41d7ff" stroke-width="2"/>
+          <text x="322" y="82" text-anchor="middle" fill="white" font-size="18" font-weight="700">ROZHODOVACÍ</text>
+          <text x="322" y="107" text-anchor="middle" fill="white" font-size="18" font-weight="700">LOGIKA</text>
+          <text x="25" y="78" fill="#ffd400" font-size="16">SET / RESET</text>
+          <path d="M 140 91 H 196" fill="none" stroke="#41d7ff" stroke-width="3" marker-end="url(#arrow05a)"/>
+          <path d="M 447 91 H 585" fill="none" stroke="#41d7ff" stroke-width="3" marker-end="url(#arrow05a)"/>
+          <text x="495" y="75" fill="#a6ce39" font-size="18" font-weight="700">Q</text>
+          <path d="M 515 91 V 187 H 310 V 138" fill="none" stroke="#41d7ff" stroke-width="3" stroke-dasharray="8 6" marker-end="url(#arrow05a)"/>
+          <text x="395" y="210" text-anchor="middle" fill="white" font-size="15">ZPĚTNÁ VAZBA</text>
+        </svg>
+        <figcaption>Principiální schéma, nikoli konkrétní zapojení hradel. Výstup Q ovlivňuje výpočet dalšího stavu.</figcaption>
+      </figure>
+      <p><strong>Bistabilní obvod</strong> má dva stabilní stavy, které reprezentují 0 a 1. V nejjednodušším klopném obvodu RS je paměť realizována dvěma navzájem propojenými logickými hradly.</p>
+    </section>
+
+    <section class="section chapter" id="rs" aria-labelledby="rs-title">
+      <div class="kicker">04 · KLOPNÝ OBVOD RS</div>
+      <h2 id="rs-title">Jak přesně se ukládá jedna logická hodnota?</h2>
+      <p>Nejprve použijeme <strong>RS z hradel NOR</strong> se vstupy aktivními logickou jedničkou. <strong>S</strong> nastavuje Q na 1, <strong>R</strong> jej vynuluje. Když jsou oba vstupy 0, pamatuje si poslední platný stav.</p>
+      <div class="lab">
+        <div class="lab-label">INTERAKTIVNÍ MODEL NOR-RS</div>
+        <p>Ovládej oba vstupy <strong>nezávisle</strong>. Zkus nejprve S=1,R=0, poté oba 0. Následně vyzkoušej zakázanou kombinaci S=R=1 a oba vstupy uvolni.</p>
+        <div class="experiment-grid">
+          <div>
+            <div class="controls">
+              <button type="button" class="secondary state-toggle" id="toggleS" aria-pressed="false">S = <span id="sValue">0</span></button>
+              <button type="button" class="secondary state-toggle" id="toggleR" aria-pressed="false">R = <span id="rValue">0</span></button>
+              <button type="button" class="secondary" id="rsRelease">Uvolnit oba</button>
+              <button type="button" class="secondary" id="rsReset">Inicializovat</button>
+            </div>
+            <p class="feedback" id="rsFeedback" aria-live="polite">S=0, R=0. Výchozí zvolený stav Q=0. Přepni S na 1.</p>
+          </div>
+          <div class="statusline rs-status">
+            <div class="status">Q <b id="rsQ">0</b></div>
+            <div class="status">Q̄ <b id="rsQbar">1</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="table-scroll">
+        <table id="rsTruthTable">
+          <caption>Stavová tabulka NOR-RS (vstupy aktivní jedničkou)</caption>
+          <thead><tr><th scope="col">S</th><th scope="col">R</th><th scope="col">Qⁿ⁺¹</th><th scope="col">Co nastane</th></tr></thead>
+          <tbody>
+            <tr data-rs-row="00"><td>0</td><td>0</td><td>Qⁿ</td><td>Paměť, platný stav se nemění</td></tr>
+            <tr data-rs-row="10"><td>1</td><td>0</td><td>1</td><td>Nastavení SET</td></tr>
+            <tr data-rs-row="01"><td>0</td><td>1</td><td>0</td><td>Vynulování RESET</td></tr>
+            <tr data-rs-row="11"><td>1</td><td>1</td><td>Zakázáno</td><td>V ustáleném modelu Q=Q̄=0; výsledek následného současného uvolnění není zaručen</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="scope-note">
+        <strong>Pozor na dvě různé realizace.</strong> U NOR-RS jsou aktivní jedničky. RS ze dvou NAND hradel mívá vstupy označené S̄ a R̄ a je aktivní nulou. Tabulky proto nelze jednoduše zaměňovat. „Zakázaný stav“ není další paměťová hodnota.
+      </div>
+    </section>
+
+    <section class="section chapter" id="motor" aria-labelledby="motor-title">
+      <div class="kicker">05 · PRAKTICKÉ POUŽITÍ</div>
+      <h2 id="motor-title">Jak zajistit, aby měl STOP přednost?</h2>
+      <p>U jednoduché paměti pro spouštění motoru chceme, aby jednorázové START nastavilo běh, ale aby STOP měl vždy přednost. Nejde o neřešenou zakázanou kombinaci základního NOR-RS. Předřadíme rozhodování s <strong>prioritou STOP</strong>.</p>
+      <div class="lab">
+        <div class="lab-label">MODEL ŘÍZENÍ MOTORU S PRIORITOU STOP</div>
+        <div class="experiment-grid">
+          <div>
+            <div class="controls">
+              <button type="button" id="motorStart">START</button>
+              <button type="button" class="stop" id="motorStop">STOP</button>
+              <button type="button" class="secondary" id="motorBoth">START + STOP</button>
+              <button type="button" class="secondary" id="motorReset">Začít znovu</button>
+            </div>
+            <p class="feedback" id="motorFeedback" aria-live="polite">Motor stojí. Zkus krátký impuls START a pak současný povel START + STOP.</p>
+          </div>
+          <div class="visual-state">
+            <div id="motorGraphic" class="motor" role="img" aria-label="Motor stojí"></div>
+            <div class="status">Paměť motoru Q <b id="motorQ">0</b></div>
+          </div>
+        </div>
+      </div>
+      <p class="formula formula-small">Qⁿ⁺¹ = ¬STOP ∧ (START ∨ Qⁿ)</p>
+      <p class="explain">V této rovnici mají povely aktivní hodnotu 1. Pokud STOP=1, výsledek je vždy Qⁿ⁺¹=0, i když je současně START=1. Po uvolnění obou tlačítek zůstává uchovaný stav.</p>
+      <div class="safety-note" role="note">
+        <strong>Bezpečnost:</strong> toto je didaktická simulace logiky. Skutečné nouzové zastavení stroje musí být realizováno odpovídajícím bezpečnostním systémem a normami, nikoli pouze obyčejným softwarovým bitem.
+      </div>
+    </section>
+
+    <section class="section chapter" id="overeni" aria-labelledby="overeni-title">
+      <div class="kicker">06 · OVĚŘENÍ</div>
+      <h2 id="overeni-title">Opravdu rozumíš paměti?</h2>
+      <p>Nejde o rychlost klikání. Vyber odpověď a po kontrole si přečti vysvětlení. Úlohy si můžeš opakovat.</p>
+      <form id="quizForm" class="quiz-form">
+        <fieldset>
+          <legend>1. NOR-RS má Q=1. Potom S=0 a R=0. Jaké bude Q?</legend>
+          <label><input type="radio" name="quiz1" value="0"> Q=0, protože žádný vstup není aktivní</label>
+          <label><input type="radio" name="quiz1" value="1"> Q=1, protože obvod uchová poslední platný stav</label>
+          <label><input type="radio" name="quiz1" value="2"> Stav musí přecházet mezi 0 a 1</label>
+          <p class="quiz-feedback" id="quizFeedback1" aria-live="polite"></p>
+        </fieldset>
+        <fieldset>
+          <legend>2. Co nastane u základního NOR-RS při S=1 a R=1?</legend>
+          <label><input type="radio" name="quiz2" value="0"> Ustáleně Q=Q̄=0, což je zakázaná kombinace</label>
+          <label><input type="radio" name="quiz2" value="1"> Q=1 a Q̄=0, protože SET má vždy přednost</label>
+          <label><input type="radio" name="quiz2" value="2"> Q=0 a Q̄=1, protože RESET má vždy přednost</label>
+          <p class="quiz-feedback" id="quizFeedback2" aria-live="polite"></p>
+        </fieldset>
+        <fieldset>
+          <legend>3. Motor běží (Q=1). Současně přijde START=1 a STOP=1. Co udělá náš stop-prioritní model?</legend>
+          <label><input type="radio" name="quiz3" value="0"> Motor zůstane v běhu, protože byl spuštěn dříve</label>
+          <label><input type="radio" name="quiz3" value="1"> Stav je neurčený stejně jako při základním NOR-RS</label>
+          <label><input type="radio" name="quiz3" value="2"> Motor se zastaví, protože STOP má definovanou přednost</label>
+          <p class="quiz-feedback" id="quizFeedback3" aria-live="polite"></p>
+        </fieldset>
+        <div class="controls">
+          <button type="submit">Vyhodnotit odpovědi</button>
+          <button type="reset" class="secondary">Smazat odpovědi</button>
+        </div>
+        <p id="quizSummary" class="feedback" aria-live="polite"></p>
+      </form>
+      <div class="glass">
+        <h3>Maturita nanečisto</h3>
+        <p>Zkus bez nápovědy vlastními slovy vysvětlit: <strong>Proč sekvenční obvod potřebuje vnitřní stav a proč při START+STOP nepoužijeme základní NOR-RS přímo?</strong></p>
+        <details class="sample-answer">
+          <summary>Zobrazit příklad vysvětlení</summary>
+          <p>Sekvenční obvod musí rozlišovat situace, kdy jsou vstupy stejné, ale předchozí události byly různé. Proto uchovává stav Q a zpětnou vazbou ho používá pro určení dalšího stavu. Základní NOR-RS má při současném S=R=1 zakázanou kombinaci. Řízení START/STOP proto řešíme samostatnou logikou s definovanou prioritou STOP.</p>
+        </details>
+      </div>
+      <nav class="lesson-bottom-nav" aria-label="Další studium">
+        <a href="../05-sekvencni-logika/">← Zpět na přehled otázky 05</a>
+        <span>Pokračování: 5B · hodinový signál, D a JK (připravujeme)</span>
+      </nav>
+    </section>
+
+    <footer class="footer">VOŠ, SPŠ a SOŠ Varnsdorf · Interaktivní výukový prototyp 5A · Součást maturitní otázky 05</footer>
+  </main>
+  <script src="../../../assets/js/rs-core.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
