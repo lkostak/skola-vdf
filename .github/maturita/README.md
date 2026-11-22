@@ -126,7 +126,16 @@ Každá změna musí uvést, **co** se změnilo, **proč** a **které části je
 
 - Pro každou další otázku vyplnit `TEMPLATE.md`.
 - Před vyznačením stavu **HOTOVO** projít `REVIEW.md`.
-- Nejprve dokončit a zrevidovat otázku 05 jako vzor; potom 06 a případně upravit standard podle skutečného ověření.
+- První rozpracovanou otázkou byla **05** (sekvenční logika), následně se přidala **01** (číselné soustavy). Obě tvoří vzory; pořadí dalších otázek určuje učitel. U žádné nepředstírat HOTOVO před absolvováním revize.
 - Změny samotného standardu verzovat v Git a stručně zdůvodnit v commit message.
 
 **Poznámka k publikaci:** Tyto dokumenty jsou v `.github/maturita/`, aby nebyly součástí navigace ani běžného výstupu GitHub Pages sestavovaného Jekyllem. Neznamená to utajení: veřejný GitHub repozitář zůstává přístupný.
+
+## 8. Evidence rozpracovaných otázek
+
+| Otázka | Autorský produkční záznam | Studentský přehled | Stav |
+|---|---|---|---|
+| 01 · Číselné soustavy | [OTAZKA_01.md](OTAZKA_01.md) | [01](../../mechatronika/maturita/01-ciselne-soustavy/index.html) | výklad 1A/1B a pracovní PDF/list připraveny; čeká na revizi |
+| 05 · Základní sekvenční logické obvody | [OTAZKA_05.md](OTAZKA_05.md) | [05](../../mechatronika/maturita/05-sekvencni-logika/index.html) | výklad 5A/5B a pracovní PDF/list připraveny; čeká na revizi |
+
+**Učitelské klíče nejsou zveřejněné.** Soukromé PDF k otázce 01 zůstává pouze v rámci pracovního předání, nikoli jako soubor v tomto veřejném repozitáři.
