@@ -1,0 +1,35 @@
+name: Maturita 06 · registry a čítače
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "assets/js/sequential-blocks-core.js"
+      - "mechatronika/maturita/06-registry-citace/**"
+      - "tests/sequential-blocks-core.test.js"
+      - ".github/workflows/mer06-tests.yml"
+  pull_request:
+    paths:
+      - "assets/js/sequential-blocks-core.js"
+      - "mechatronika/maturita/06-registry-citace/**"
+      - "tests/sequential-blocks-core.test.js"
+      - ".github/workflows/mer06-tests.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Syntaxe
+        run: |
+          node --check assets/js/sequential-blocks-core.js
+          node --check mechatronika/maturita/06-registry-citace/app.js
+      - name: Modely, sekvence stavů a lekce
+        run: node --test tests/sequential-blocks-core.test.js
