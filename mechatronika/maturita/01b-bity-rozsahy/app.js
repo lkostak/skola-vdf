@@ -15,6 +15,7 @@ function widthChange(){
 el("widthSelect").addEventListener("change",widthChange);widthChange();
 function sumChange(){
   try{
+    if(el("addA").value.trim()===""||el("addB").value.trim()==="") throw Error("Vyplň oba celé osmibitové operandy");
     var a=Number(el("addA").value),b=Number(el("addB").value),r=model.add8(a,b);
     text("sumMath",r.sum);text("sumStored",r.stored);text("sumCarry",r.carry?1:0);
     text("addFeedback",r.carry?
