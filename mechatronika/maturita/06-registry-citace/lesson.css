@@ -1,0 +1,78 @@
+/* Otázka 06. Typografie Raleway a barvy sdílené s otázkami 01–05. */
+.seq-page .hero h1{max-width:1040px;}
+.seq-page .lesson-shell{max-width:1180px;}
+.seq-page .chapter{scroll-margin-top:34px;}
+.seq-page .oral-topics{margin-top:22px;}
+.seq-page .block-diagram{margin:26px 0;padding:22px;border:1px solid rgba(155,230,245,.3);background:rgba(0,27,37,.63);}
+.seq-page .block-diagram h3{margin-top:0;font-size:1.25rem;}
+.seq-page .block-diagram svg{display:block;width:100%;height:auto;max-width:920px;margin:18px auto;}
+.seq-page figcaption{color:#b9d6e0;font-size:.85rem;line-height:1.65;}
+.seq-page .modes-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:25px 0;}
+.seq-page .modes-grid>div{padding:22px;background:rgba(0,16,27,.56);border:1px solid rgba(169,229,244,.22);}
+.seq-page .modes-grid b{display:block;color:#b1f0ff;font-size:1.35rem;}
+.seq-page .modes-grid small{display:block;color:#f3e09c;font-size:.74rem;letter-spacing:.05em;font-weight:700;margin:8px 0 15px;}
+.seq-page .modes-grid p{margin:0;font-size:.94rem;line-height:1.74;color:#e3f3f8;}
+.seq-page .seq-field{display:flex;flex-direction:column;gap:8px;color:#e5f2f8;font-weight:700;font-size:.85rem;min-width:180px;max-width:360px;line-height:1.45;margin:10px 0;}
+.seq-page .seq-field input,.seq-page .seq-field select{min-height:46px;width:100%;background:#073e4e;color:#fff;padding:12px 13px;border:1px solid rgba(169,229,244,.4);font:600 .98rem Raleway,Arial,sans-serif;border-radius:4px;}
+.seq-page .seq-field input:focus-visible,.seq-page .seq-field select:focus-visible{outline:3px solid var(--yellow);outline-offset:3px;}
+.seq-page .register-bits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:22px 0;max-width:640px;}
+.seq-page .register-bits>div{padding:17px;background:rgba(0,12,23,.63);border:1px solid rgba(169,229,244,.28);text-align:center;}
+.seq-page .register-bits small{display:block;color:#c9e6f1;font-size:.83rem;margin-bottom:8px;}
+.seq-page .register-bits strong{display:block;font:700 clamp(1.8rem,3vw,2.55rem) "DejaVu Sans Mono",Consolas,monospace;color:#a2ebff;}
+.seq-page .seq-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:22px 0;}
+.seq-page .seq-summary>div{background:rgba(0,13,22,.6);border:1px solid rgba(169,229,244,.24);padding:18px;}
+.seq-page .seq-summary small{display:block;color:#bcdee6;font-size:.72rem;font-weight:700;letter-spacing:.1em;margin-bottom:13px;}
+.seq-page .seq-summary strong{display:block;color:#adf1ff;font:700 clamp(1.28rem,2.2vw,1.88rem) "DejaVu Sans Mono",Consolas,monospace;}
+.seq-page .seq-table{border-collapse:collapse;width:100%;max-width:950px;font-family:"DejaVu Sans Mono",Consolas,monospace;}
+.seq-page .seq-table th,.seq-page .seq-table td{border:1px solid rgba(169,229,244,.25);padding:11px 14px;text-align:center;color:#e3f6fb;font-size:.84rem;}
+.seq-page .seq-table th{background:rgba(65,215,255,.09);color:#c3ebf7;font-size:.77rem;}
+.seq-page .seq-table tr:nth-child(even){background:rgba(0,27,35,.42);}
+.seq-page .seq-table .transient-row{background:rgba(255,211,70,.13)!important;}
+.seq-page .table-scroll{overflow-x:auto;margin:20px 0;}
+.seq-page .pulse-wave{margin:19px 0;overflow-x:auto;}
+.seq-page .counter-display{display:grid;grid-template-columns:145px 1fr;gap:18px;align-items:center;margin:20px 0;padding:19px;border:1px solid rgba(169,229,244,.25);background:rgba(0,14,23,.55);}
+.seq-page .counter-display>strong{font:700 3.5rem "DejaVu Sans Mono",Consolas,monospace;color:#b5f1ff;text-align:center;}
+.seq-page .counter-bits{display:flex;gap:9px;flex-wrap:wrap;}
+.seq-page .counter-bits span{display:inline-block;background:rgba(39,114,132,.42);border:1px solid rgba(169,229,244,.2);padding:13px;font:700 .92rem "DejaVu Sans Mono",Consolas,monospace;color:#eaf7fb;}
+.seq-page .frequency-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin:22px 0;}
+.seq-page .frequency-grid>div{border:1px solid rgba(169,229,244,.23);background:rgba(0,14,24,.54);padding:17px 12px;}
+.seq-page .frequency-grid small{display:block;color:#b7d9e5;margin-bottom:12px;font-size:.77rem;letter-spacing:.06em;}
+.seq-page .frequency-grid strong{display:block;color:#b5f0ff;font:700 clamp(.98rem,1.7vw,1.24rem) "DejaVu Sans",Arial,sans-serif;}
+.seq-page .state-strip{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px;margin:26px 0;}
+.seq-page .state-strip>div{background:rgba(0,16,24,.63);border:1px solid rgba(169,229,244,.23);text-align:center;padding:15px 6px;}
+.seq-page .state-strip small{display:block;color:#cce2eb;font-size:.62rem;margin-bottom:11px;}
+.seq-page .state-strip strong{display:block;font:700 1.25rem "DejaVu Sans Mono",Consolas,monospace;color:#b5eeff;}
+.seq-page button[aria-pressed="true"].secondary{background:#126675;border-color:#aff2ff;color:#fff;}
+.seq-page button:disabled{opacity:.45;cursor:not-allowed;}
+@media(max-width:800px){
+ .seq-page .frequency-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+ .seq-page .state-strip{grid-template-columns:repeat(3,minmax(0,1fr));}
+}
+@media(max-width:570px){
+ .seq-page .modes-grid,.seq-page .seq-summary{grid-template-columns:1fr 1fr;}
+ .seq-page .seq-summary>div{padding:13px;}
+ .seq-page .counter-display{grid-template-columns:1fr;justify-items:start;}
+ .seq-page .counter-display>strong{text-align:left;}
+ .seq-page .seq-table th,.seq-page .seq-table td{padding:8px;font-size:.74rem;}
+ .seq-page .seq-field{min-width:100%;max-width:100%;}
+ .seq-page .block-diagram{overflow-x:auto;}
+ .seq-page .block-diagram svg{min-width:500px;}
+}
+@media(max-width:385px){
+ .seq-page .modes-grid{grid-template-columns:1fr;}
+ .seq-page .frequency-grid{grid-template-columns:1fr;}
+ .seq-page .register-bits{gap:5px;}
+ .seq-page .register-bits>div{padding:11px 5px;}
+}
+@media print{
+ .seq-page .modes-grid>div,.seq-page .register-bits>div,.seq-page .seq-summary>div,
+ .seq-page .frequency-grid>div,.seq-page .state-strip>div,.seq-page .counter-display{
+  background:white!important;border-color:#888!important;
+ }
+ .seq-page .modes-grid b,.seq-page .modes-grid p,.seq-page .modes-grid small,
+ .seq-page .register-bits strong,.seq-page .register-bits small,.seq-page .seq-summary small,
+ .seq-page .seq-summary strong,.seq-page .seq-table th,.seq-page .seq-table td,
+ .seq-page .frequency-grid strong,.seq-page .frequency-grid small,.seq-page .state-strip strong{color:#111!important;}
+ .seq-page .seq-table th,.seq-page .seq-table td{border-color:#aaa!important;}
+ .seq-page .block-diagram svg{filter:grayscale(1);}
+}
