@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Maturitní otázka 1A. Podrobný výklad číselných soustav, poziční zápis, převody mezi 2, 8, 10 a 16 a interaktivní převodník.">
+<title>01A · Číselné soustavy a převody | Mechatronika</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/css/site.css">
+<link rel="stylesheet" href="../05a-pamet-rs/lesson.css">
+<link rel="stylesheet" href="../01-ciselne-soustavy/number.css">
+</head>
+<body class="lesson-page number-page">
+<nav class="topbar" aria-label="Drobečková navigace"><a href="../../../">Portál</a><span class="crumb">/</span><a href="../">Maturita</a><span class="crumb">/</span><a href="../01-ciselne-soustavy/">Otázka 01</a><span class="crumb">/ 1A</span></nav>
+<main class="content lesson-shell">
+<header class="hero"><div class="eyebrow">MATURITNÍ OTÁZKA 01 · VÝKLAD 1A</div>
+<h1>Jedna hodnota.<br>Čtyři různé zápisy.</h1>
+<p class="lead">Od dvou elektrických stavů k dvojkové, desítkové, osmičkové a šestnáctkové soustavě. Vysvětlení, ruční postupy i interaktivní převody.</p>
+<div class="chapter-meta"><span>6 kapitol</span><span>Podrobné příklady + převodník</span><span>ŠVP: MER3-U04</span></div>
+<div class="scope-note"><strong>Maturitní cíl:</strong> umět vlastními slovy popsat poziční soustavu, určit váhy řádů a bez kalkulačky převést jednoduchá čísla mezi základy 2, 10 a 16. Osmičkovou soustavu znát především jako seskupování po třech bitech.</div>
+</header>
+<nav class="chapter-nav" aria-label="Obsah výkladu 1A"><a href="#proc">01 Proč</a><a href="#pozicni">02 Poziční princip</a><a href="#bin">03 Dvojková</a><a href="#prevody">04 Převody</a><a href="#hex">05 Hex a oktal</a><a href="#laborator">06 Trenažér</a></nav>
+
+<section class="section chapter" id="proc">
+<div class="kicker">01 · OD SKUTEČNÉHO SIGNÁLU K ČÍSLU</div>
+<h2>Proč digitální technika používá nuly a jedničky?</h2>
+<div class="study-text"><h3>Číslo není totéž co jeho zápis</h3>
+<p>Když řekneme, že snímač naměřil hodnotu <strong>45</strong>, mluvíme o jedné určité hodnotě. Tu ovšem můžeme zapsat několika způsoby: <strong>45₁₀ = 101101₂ = 2D₁₆ = 55₈</strong>. Vždy jde o stejnou hodnotu, jen používáme jinou číselnou soustavu. Index u čísla nám říká základ soustavy, tedy jakým způsobem zápis číst.</p>
+<p>Digitální elektronika běžně rozlišuje dva logické stavy, označované <strong>0 a 1</strong>. V konkrétním obvodu jim odpovídají stanovené rozsahy fyzických úrovní, například elektrického napětí. Neznamená to, že logická nula musí vždy přesně odpovídat 0 V nebo že logická jednička je u všech technologií stejná hodnota napětí.</p>
+<p>Z jediného bitu získáme dva stavy. Více bitů dohromady dovoluje reprezentovat větší počet kombinací. Proto se dvojkový zápis uplatňuje v mikrořadičích, registrech, pamětech, komunikačních protokolech i na vstupech PLC.</p></div>
+<aside class="worked-example"><h3>Krátký příklad z automatizace</h3>
+<p>Osm digitálních vstupů PLC může vytvářet osmibitový vzor. Každý bit odpovídá jednomu vstupu, například koncovému spínači či signálu snímače. Vzor <strong>00101101₂</strong> můžeme zobrazit jako číslo 45₁₀, avšak pokud jde o <em>stavové slovo</em>, význam jednotlivých bitů určuje dokumentace zařízení. Hodnota a technický význam nejsou totéž.</p></aside>
+</section>
+
+<section class="section chapter" id="pozicni">
+<div class="kicker">02 · ZÁKLAD A VÁHY</div><h2>Jak funguje poziční zápis?</h2>
+<div class="study-text"><h3>Hodnota číslice závisí na místě</h3>
+<p>V <strong>poziční číselné soustavě</strong> má každá pozice určitou váhu. Počítáme ji jako mocninu základu soustavy. Nejpravější pozice celého čísla má váhu b⁰ = 1, další b¹, potom b² a tak dále. Každou číslici vynásobíme její vahou a příspěvky sečteme.</p>
+<p>Základ <strong>b</strong> zároveň určuje povolené číslice: dvojková soustava používá 0 a 1; osmičková 0 až 7; desítková 0 až 9; šestnáctková 0 až 9 a A až F. Písmena A, B, C, D, E, F zastupují desítkové hodnoty 10 až 15.</p>
+<p>Nula uvnitř zápisu má význam: například <strong>507₁₀ = 5·10² + 0·10¹ + 7·10⁰</strong>. Nula drží prázdnou pozici desítek. Při převodu proto nesmíme nevědomky vynechávat nebo posouvat pozice.</p></div>
+<div class="glass">
+<h3>Řešený příklad: 3A7₁₆ do desítkové soustavy</h3>
+<div class="power-strip" aria-label="Rozklad čísla podle vah">
+<div><span>3</span><small>3 × 16²</small><b>768</b></div>
+<div><span>A</span><small>10 × 16¹</small><b>160</b></div>
+<div><span>7</span><small>7 × 16⁰</small><b>7</b></div>
+</div>
+<p class="formula formula-small">768 + 160 + 7 = 935₁₀</p>
+<p>A je hexadecimální číslice s hodnotou deset. Bez této záměny je převod jednoznačný.</p></div>
+</section>
+
+<section class="section chapter" id="bin">
+<div class="kicker">03 · VÁHY BITŮ</div><h2>Jak čteme dvojkové číslo?</h2>
+<div class="study-text"><h3>Každý bit zastupuje mocninu dvou</h3>
+<p>Ve dvojkové soustavě jsou možné pouze číslice 0 a 1. Její řády mají váhy <strong>1, 2, 4, 8, 16, 32, 64, 128, …</strong>. Bit má hodnotu 1, pokud se příslušná váha započítá, jinak je jeho příspěvek nulový. Nejnižší platný řád je <strong>LSB</strong> (nejméně významný bit). Nejvyšší řád dané šířky je <strong>MSB</strong> (nejvýznamnější bit).</p>
+<p>V osmibitové hodnotě číslujeme pozice zprava od b0 do b7. Váha b0 je 1, váha b7 je 128. U čísla <strong>11010110₂</strong> jsou jedničky na pozicích b7, b6, b4, b2 a b1. Jejich součet je <strong>128 + 64 + 16 + 4 + 2 = 214₁₀</strong>.</p>
+<p>Nuly přidané <strong>zleva</strong> nemění hodnotu nezáporného čísla: 1011₂ = 00001011₂. Naproti tomu přidání nuly <strong>vpravo</strong> znamená v binární soustavě násobení dvěma: 1011₂ = 11₁₀, ale 10110₂ = 22₁₀.</p></div>
+<div class="bits-readonly" aria-label="Osm bitů čísla 11010110">
+<div class="bits-row"><span>b7<small>128</small><strong>1</strong></span><span>b6<small>64</small><strong>1</strong></span><span>b5<small>32</small><strong>0</strong></span><span>b4<small>16</small><strong>1</strong></span><span>b3<small>8</small><strong>0</strong></span><span>b2<small>4</small><strong>1</strong></span><span>b1<small>2</small><strong>1</strong></span><span>b0<small>1</small><strong>0</strong></span></div>
+<div class="bits-result">11010110₂ = 214₁₀ = D6₁₆</div></div>
+</section>
+
+<section class="section chapter" id="prevody">
+<div class="kicker">04 · PŘEVODY</div><h2>Jak převádíme čísla mezi desítkovou a dvojkovou soustavou?</h2>
+<div class="study-text"><h3>Z dvojkové do desítkové: součet vah</h3>
+<p>Pro každou binární jedničku zapíšeme odpovídající mocninu dvou a všechny tyto váhy sečteme. Například <strong>101101₂ = 32 + 8 + 4 + 1 = 45₁₀</strong>. Tím zároveň dokážeme ověřit jiný postup převodu.</p>
+<h3>Z desítkové do dvojkové: dělení základem</h3>
+<p>Celé nezáporné číslo opakovaně dělíme dvěma a zapisujeme zbytky 0 nebo 1. Po dokončení čteme zbytky <strong>od posledního dělení nahoru</strong>. Druhý způsob je skládat číslo z největších přípustných mocnin dvou. Oba postupy vedou ke stejnému výsledku.</p></div>
+<div class="glass"><h3>Řešený příklad: 173₁₀</h3>
+<table class="clean-table"><thead><tr><th>Dělení</th><th>Podíl</th><th>Zbytek</th></tr></thead><tbody>
+<tr><td>173 ÷ 2</td><td>86</td><td>1</td></tr><tr><td>86 ÷ 2</td><td>43</td><td>0</td></tr>
+<tr><td>43 ÷ 2</td><td>21</td><td>1</td></tr><tr><td>21 ÷ 2</td><td>10</td><td>1</td></tr>
+<tr><td>10 ÷ 2</td><td>5</td><td>0</td></tr><tr><td>5 ÷ 2</td><td>2</td><td>1</td></tr>
+<tr><td>2 ÷ 2</td><td>1</td><td>0</td></tr><tr><td>1 ÷ 2</td><td>0</td><td>1</td></tr>
+</tbody></table>
+<p class="formula formula-small">173₁₀ = 10101101₂ = AD₁₆</p>
+<p>Kontrola: 128 + 32 + 8 + 4 + 1 = 173.</p></div>
+</section>
+
+<section class="section chapter" id="hex">
+<div class="kicker">05 · KRATŠÍ ZÁPISY</div><h2>Proč technici používají hexadecimální soustavu?</h2>
+<div class="study-text"><h3>Jedna hexadecimální číslice odpovídá čtyřem bitům</h3>
+<p>V soustavě se základem 16 je přesně <strong>16 možností</strong>, tedy 2⁴ kombinací. Proto můžeme převádět mezi binárním a hexadecimálním zápisem přímo po čtveřicích bitů. Číslo rozdělíme <strong>zprava po čtyřech bitech</strong>, případnou neúplnou první čtveřici zleva doplníme nulami a každou skupinu nahradíme odpovídajícím symbolem.</p>
+<p>Například <strong>11101100101₂</strong> rozdělíme jako 0111 | 0110 | 0101. Dostaneme 7, 6 a 5, tedy <strong>765₁₆</strong>. Dvě hexadecimální číslice popisují jeden byte, proto takto snadno čteme adresy, registry, diagnostické výpisy a bitové masky.</p>
+<h3>Osmičková soustava: trojice bitů</h3>
+<p>Osmičková soustava má základ 8, takže jedné její číslici odpovídají <strong>tři bity</strong> (2³ = 8). Příklad: 101101₂ rozdělíme na 101 | 101, tedy <strong>55₈</strong>. V dnešní mechatronice je oktalový zápis méně obvyklý než hexadecimální, ale princip je stejný.</p>
+<p><strong>Pozor:</strong> číselná soustava není totéž jako kódování. BCD, Grayův kód nebo ASCII mají své vlastní pravidlo reprezentace a budou patřit především do otázky 2.</p></div>
+<div class="glass"><h3>Rychlá hexadecimální tabulka</h3><div class="table-scroll"><table class="clean-table">
+<thead><tr><th>Dec</th><th>Bin</th><th>Hex</th><th>Dec</th><th>Bin</th><th>Hex</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>0000</td><td>0</td><td>8</td><td>1000</td><td>8</td></tr>
+<tr><td>1</td><td>0001</td><td>1</td><td>9</td><td>1001</td><td>9</td></tr>
+<tr><td>2</td><td>0010</td><td>2</td><td>10</td><td>1010</td><td>A</td></tr>
+<tr><td>3</td><td>0011</td><td>3</td><td>11</td><td>1011</td><td>B</td></tr>
+<tr><td>4</td><td>0100</td><td>4</td><td>12</td><td>1100</td><td>C</td></tr>
+<tr><td>5</td><td>0101</td><td>5</td><td>13</td><td>1101</td><td>D</td></tr>
+<tr><td>6</td><td>0110</td><td>6</td><td>14</td><td>1110</td><td>E</td></tr>
+<tr><td>7</td><td>0111</td><td>7</td><td>15</td><td>1111</td><td>F</td></tr>
+</tbody></table></div></div>
+</section>
+
+<section class="section chapter" id="laborator">
+<div class="kicker">06 · PŘEDPOVĚZ A OVĚŘ</div><h2>Interaktivní převodník se skutečným rozkladem čísla</h2>
+<div class="study-text"><h3>Vyzkoušej všechno, co jsme odvodili</h3>
+<p>Zvol výchozí soustavu a zadej číslo. Převodník ukáže jeho hodnotu ve všech čtyřech soustavách a pod každou pozicí vysvětlí, jak přispívá k výsledku. Můžeš zadat třeba 173 v desítkové soustavě, AD v šestnáctkové nebo 10101101 v dvojkové. <strong>Nejprve si ale výsledek zkus odhadnout sám.</strong></p></div>
+<div class="lab"><div class="lab-label">INTERAKTIVNÍ MODEL · CELÁ NEZÁPORNÁ ČÍSLA</div>
+<div class="controls"><label class="form-field">Vstupní soustava<select id="baseSelect"><option value="10">Desítková (10)</option><option value="2">Dvojková (2)</option><option value="16">Šestnáctková (16)</option><option value="8">Osmičková (8)</option></select></label>
+<label class="form-field">Zapsané číslo<input type="text" id="baseInput" value="173" maxlength="24" autocomplete="off" spellcheck="false"></label></div>
+<div class="controls"><button id="convertButton" type="button">Převést a vysvětlit</button><button id="convertReset" type="button" class="secondary">Výchozí příklad</button></div>
+<p id="convertFeedback" class="feedback" role="status" aria-live="polite">Zadej číslo v jedné ze čtyř soustav a spusť převod.</p>
+<div class="result-grid"><div><small>DEC · 10</small><strong id="resultDec">173</strong></div><div><small>BIN · 2</small><strong id="resultBin">10101101</strong></div><div><small>HEX · 16</small><strong id="resultHex">AD</strong></div><div><small>OCT · 8</small><strong id="resultOct">255</strong></div></div>
+<p class="lesson-microtitle">Poziční rozklad původního zápisu</p><div id="positionBreakdown" class="breakdown" aria-live="polite"></div></div>
+<aside class="worked-example"><h3>Jak by zněla odpověď u maturity?</h3>
+<p>„Číselná soustava určuje pravidla zápisu čísel. U pozičních soustav závisí hodnota číslice na jejím řádu, jehož váhou je mocnina základu. Dvojková soustava používá jen nulu a jedničku, proto odpovídá digitálním logickým stavům. Hexadecimální zápis se v technice používá kvůli přehlednosti, protože jedna hexadecimální číslice zastupuje čtyři bity. Převod z dvojkové do desítkové provedu součtem vah a opačný převod opakovaným dělením dvěma.“</p></aside>
+<nav class="lesson-bottom-nav"><a href="../01-ciselne-soustavy/">← Přehled otázky 01</a><a href="../01b-bity-rozsahy/">Pokračovat: 1B · bity, rozsahy a praxe →</a></nav>
+</section>
+<footer class="footer">VOŠ, SPŠ a SOŠ Varnsdorf · Maturitní otázka 01 · pracovní interaktivní výklad 1A</footer>
+</main><script src="../../../assets/js/number-core.js"></script><script src="app.js"></script>
+</body></html>
