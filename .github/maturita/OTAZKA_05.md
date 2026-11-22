@@ -1,7 +1,7 @@
 # Maturitní otázka 05 · Produkční osnova a stav realizace
 
 **Název podle stávajícího portálu:** Základní sekvenční logické obvody, klopné obvody  
-**Stav:** ROZPRACOVÁNO (pracovní specifikace v0.1, 2026-11-22)  
+**Stav:** ROZPRACOVÁNO; **část 5A implementována jako revidovatelný prototyp** (v0.2, 2026-11-22). Celá otázka 05 stále není hotová.  
 **Oficiální podoba zadání:** ⚠️ Přesné znění schválených podbodů školy **není dosud nezávisle ověřeno**. Osnova níže vychází z existujícího portálu a dřívějšího pracovního dokumentu `Mechatronika_maturitni_otazky_1-8_editovatelna_tabulka.docx` a je nutné ji před schválením porovnat s originálem.
 
 ## 1. Výstupy učení
@@ -28,12 +28,12 @@ Primární: `MER3-V012` (navrhne jednoduché kombinační a sekvenční řídic�
 
 | ID | Kapitola | Úroveň | Co student aktivně dělá | Demonstrace / sdílená komponenta | Stav |
 |---|---|---|---|---|---|
-| 05-01 | Proč nestačí kombinační logika? | M | Předpoví, co nastane po uvolnění START | Interaktivní úvod s motorem | prototyp v 5A |
-| 05-02 | Stav, `Qⁿ` a `Qⁿ⁺¹` | M | Mění vstupy, sleduje uchování stavu | Stavový krokovací model | prototyp v 5A |
-| 05-03 | Jak funguje zpětná vazba? | M | Popíše, proč se informace nevytratí | Principiální blokové schéma zpětné vazby | prototyp v 5A |
+| 05-01 | Proč nestačí kombinační logika? | M | Předpoví, co nastane po uvolnění START | Interaktivní úvod s motorem | 5A: implementováno, čeká na pedagogickou revizi |
+| 05-02 | Stav, `Qⁿ` a `Qⁿ⁺¹` | M | Mění vstupy, sleduje uchování stavu | Stavový krokovací model | 5A: implementováno, čeká na pedagogickou revizi |
+| 05-03 | Jak funguje zpětná vazba? | M | Popíše, proč se informace nevytratí | Principiální blokové schéma zpětné vazby | 5A: implementováno, čeká na pedagogickou revizi |
 | 05-04 | Typy monostabilní/bistabilní/astabilní | M | Rozpozná průběhy a přiřadí aplikace | Grafy průběhů | připravit |
-| 05-05 | RS: vstupy, stavy a zakázaná kombinace | M | Přepíná S/R, vyplňuje tabulku, interpretuje hazard | Sdílený model NOR-RS | prototyp 5A rozšířit |
-| 05-06 | Paměť v řízení START/STOP | M/P | Testuje impuls, uvolnění, STOP prioritu | Model motoru + rovnice | prototyp 5A rozšířit |
+| 05-05 | RS: vstupy, stavy a zakázaná kombinace | M | Přepíná S/R, vyplňuje tabulku, interpretuje hazard | Sdílený model NOR-RS | 5A: model a tabulka fungují; aktivní vyplňování tabulky ještě doplnit |
+| 05-06 | Paměť v řízení START/STOP | M/P | Testuje impuls, uvolnění, STOP prioritu | Model motoru + rovnice | 5A: implementováno, čeká na pedagogickou revizi |
 | 05-07 | Synchronní/asynchronní a CLK | M | Vysvětlí rozdíl úrovně/hran, předpoví změnu Q | Clock krokovač | 5B: připravit |
 | 05-08 | D, časové diagramy | M | Navrhne a vyhodnotí průběh D/CLK/Q | Model D + diagramový trenažér | 5B: připravit |
 | 05-09 | JK, toggle | M | Vyplní tabulku a vyzkouší J=K=1 | Model JK | 5B: připravit |
@@ -79,3 +79,16 @@ Do výkladu vložit názornou praktickou činnost **na konkrétním místě**, n
 - [Standard maturity](README.md) · [Kontrola kvality](REVIEW.md).
 
 **Žádná další část kromě výslovně uvedených prototypů se nesmí prezentovat jako dokončená.**
+
+## 8. Záznam realizace etapy I (2026-11-22)
+
+**Publikovaný zdroj:** `mechatronika/maturita/05a-pamet-rs/index.html`; zachována původní URL.  
+**Vzhled:** `mechatronika/maturita/05a-pamet-rs/lesson.css` (lokální, responzivní, tisk, redukce animace).  
+**Výuková interaktivita:** `mechatronika/maturita/05a-pamet-rs/app.js` (předpovědi, krokování, NOR-RS, START/STOP, 3 otázky s vysvětlením).  
+**Sdílené simulační jádro:** `assets/js/rs-core.js` (bez DOM, připraveno pro znovupoužití v Laboratoři).  
+**Automatické testy:** `tests/rs-core.test.js` a CI workflow `.github/workflows/mer05-js-tests.yml`.
+
+**Potvrzená technická kontrola:** všech 6 kapitol a vnitřních navigačních kotev se nachází v HTML, všechny lokální JS/CSS soubory byly v GitHubu ověřeny. Jednotkové testy sdíleného modelu RS/START-STOP prošly úspěšně v [GitHub Actions](https://github.com/lkostak/skola-vdf/actions/runs/45039346229).
+
+**Před přijetím učitelem stále zbývá:** projít lekci vizuálně na iPhonu a projektoru, provést ručně všechny interaktivní scénáře, vylepšit interaktivní zadání pro samostatné sestavování pravdivostní tabulky, doplnit schéma konkrétní realizace RS pomocí hradel, potvrdit terminologii podle oficiálního zadání a odbornou/pedagogickou revizi. **Testy logického jádra neznamenají kompletní otestování prohlížeče.**
+
