@@ -1,0 +1,35 @@
+name: Maturita 02 · kódy a kódování
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "assets/js/code-core.js"
+      - "mechatronika/maturita/02-kody-a-kodovani-dat/**"
+      - "tests/code-core.test.js"
+      - ".github/workflows/mer02-tests.yml"
+  pull_request:
+    paths:
+      - "assets/js/code-core.js"
+      - "mechatronika/maturita/02-kody-a-kodovani-dat/**"
+      - "tests/code-core.test.js"
+      - ".github/workflows/mer02-tests.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Zkontroluj syntaxi
+        run: |
+          node --check assets/js/code-core.js
+          node --check mechatronika/maturita/02-kody-a-kodovani-dat/app.js
+      - name: Jednotkové testy matematických a kódovacích modelů
+        run: node --test tests/code-core.test.js
