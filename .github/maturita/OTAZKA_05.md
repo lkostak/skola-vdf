@@ -80,6 +80,24 @@ Do výkladu vložit názornou praktickou činnost **na konkrétním místě**, n
 
 **Žádná další část kromě výslovně uvedených prototypů se nesmí prezentovat jako dokončená.**
 
+## 9. Redakční revize 5A · podrobnější textový výklad (2026-11-22)
+
+Na základě hodnocení učitele byla část 5A rozšířena o souvislé, samostatně čitelné vysvětlující pasáže **přímo uvnitř šesti existujících kapitol**. Zůstaly zachovány původní interaktivní modely, adresy a pořadí kapitol.
+
+- **01 Problém:** proč stejná kombinace okamžitých vstupů může vést k rozdílnému stavu podle historie; dvě srovnávací situace.
+- **02 Stav:** definice uloženého bitu, rozlišení stavu od vstupního povelu a `Qⁿ` proti `Qⁿ⁺¹`; komentovaný postup SET–uchování–RESET.
+- **03 Zpětná vazba:** princip křížového propojení, dva stabilní platné stavy a význam komplementárních výstupů.
+- **04 NOR-RS:** vysvětlení všech stavů, důležitost polarit a zakázané kombinace, porovnání s NAND-RS.
+- **05 START/STOP:** důvod zavedení priority STOP, rozbor rovnice `Qⁿ⁺¹ = ¬STOP ∧ (START ∨ Qⁿ)` na čtyřech situacích, výslovné odlišení od bezpečnostního řízení stroje.
+- **06 Ověření:** jak argumentovat při ústní zkoušce, analytický postup a osnova odpovědi.
+
+**Technická realizace:** `mechatronika/maturita/05a-pamet-rs/index.html` a `lesson.css`; nové styly `.study-text`, `.worked-example`, `.study-steps` včetně mobilní a tiskové podoby.
+
+**Pedagogické rozhodnutí:** Výklad není omezen na slidy a animace; student má rozumět textu i samostatně. Při dalších kapitolách 5B udržovat stejnou hloubku a stejné členění text → experiment → interpretace.
+
+**Stav:** implementováno; **ještě neznamená odborně a pedagogicky schválené HOTOVO**. Nutná vizuální kontrola na mobilu/projektoru a revize učitelem.
+
+
 ## 8. Záznam realizace etapy I (2026-11-22)
 
 **Publikovaný zdroj:** `mechatronika/maturita/05a-pamet-rs/index.html`; zachována původní URL.  
