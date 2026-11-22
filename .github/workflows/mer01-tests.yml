@@ -1,0 +1,40 @@
+name: Maturita 01 · převody a bitové operace
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "assets/js/number-core.js"
+      - "mechatronika/maturita/01-ciselne-soustavy/**"
+      - "mechatronika/maturita/01a-ciselne-soustavy/**"
+      - "mechatronika/maturita/01b-bity-rozsahy/**"
+      - "tests/number-core.test.js"
+      - ".github/workflows/mer01-tests.yml"
+  pull_request:
+    paths:
+      - "assets/js/number-core.js"
+      - "mechatronika/maturita/01-ciselne-soustavy/**"
+      - "mechatronika/maturita/01a-ciselne-soustavy/**"
+      - "mechatronika/maturita/01b-bity-rozsahy/**"
+      - "tests/number-core.test.js"
+      - ".github/workflows/mer01-tests.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Zkontroluj syntaxi skriptů
+        run: |
+          node --check assets/js/number-core.js
+          node --check mechatronika/maturita/01a-ciselne-soustavy/app.js
+          node --check mechatronika/maturita/01b-bity-rozsahy/app.js
+      - name: Jednotkové a obsahové testy
+        run: node --test tests/number-core.test.js
