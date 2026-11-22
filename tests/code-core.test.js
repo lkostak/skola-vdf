@@ -42,7 +42,7 @@ test("Sudá a lichá parita pro 1010110",()=>{
  assert.equal(m.parity("1010110","odd").parityBit,1);
  assert.equal(m.parityValid("10101100","even"),true);
  assert.equal(m.parityValid("00101100","even"),false); // Jednobitová chyba.
- assert.equal(m.parityValid("01001100","even"),true);  // Dvoubitová změna může uniknout.
+ assert.equal(m.parityValid("01101100","even"),true);  // Dvoubitová změna může uniknout.
  assert.throws(()=>m.parity("10101X0","even"),/datových/);
 });
 test("Nezkomprimovaný obraz, PCM a video",()=>{
