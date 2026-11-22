@@ -1,7 +1,7 @@
 # Maturitní otázka 05 · Produkční osnova a stav realizace
 
 **Název podle stávajícího portálu:** Základní sekvenční logické obvody, klopné obvody  
-**Stav:** ROZPRACOVÁNO; **části 5A i 5B implementovány jako revidovatelné výukové prototypy** (v0.3, 2026-11-22). Celá otázka 05 stále není schválená jako HOTOVO.  
+**Stav:** ROZPRACOVÁNO; **části 5A a 5B implementovány jako revidovatelné výukové prototypy; doplněny tři typy multivibrátorů a konkrétní NOR-RS schéma** (v0.4, 2026-11-22). Celá otázka 05 stále není schválená jako HOTOVO.  
 **Oficiální podoba zadání:** ⚠️ Přesné znění schválených podbodů školy **není dosud nezávisle ověřeno**. Osnova níže vychází z existujícího portálu a dřívějšího pracovního dokumentu `Mechatronika_maturitni_otazky_1-8_editovatelna_tabulka.docx` a je nutné ji před schválením porovnat s originálem.
 
 ## 1. Výstupy učení
@@ -31,8 +31,8 @@ Primární: `MER3-V012` (navrhne jednoduché kombinační a sekvenční řídic�
 | 05-01 | Proč nestačí kombinační logika? | M | Předpoví, co nastane po uvolnění START | Interaktivní úvod s motorem | 5A: implementováno, čeká na pedagogickou revizi |
 | 05-02 | Stav, `Qⁿ` a `Qⁿ⁺¹` | M | Mění vstupy, sleduje uchování stavu | Stavový krokovací model | 5A: implementováno, čeká na pedagogickou revizi |
 | 05-03 | Jak funguje zpětná vazba? | M | Popíše, proč se informace nevytratí | Principiální blokové schéma zpětné vazby | 5A: implementováno, čeká na pedagogickou revizi |
-| 05-04 | Typy monostabilní/bistabilní/astabilní | M | Rozpozná průběhy a přiřadí aplikace | Grafy průběhů | připravit |
-| 05-05 | RS: vstupy, stavy a zakázaná kombinace | M | Přepíná S/R, vyplňuje tabulku, interpretuje hazard | Sdílený model NOR-RS | 5A: model a tabulka fungují; aktivní vyplňování tabulky ještě doplnit |
+| 05-04 | Typy monostabilní/bistabilní/astabilní | M | Rozpozná průběhy a přiřadí aplikace | Tři komentované časové průběhy, srovnání, aktivní otázka | 5A: implementováno, čeká na odbornou/pedagogickou revizi |
+| 05-05 | RS: vstupy, stavy a zakázaná kombinace | M | Přepíná S/R, vyplňuje tabulku, interpretuje hazard | Skutečné zapojení dvou NOR s oběma zpětnými vazbami + rovnice + živý výpis hradel + model | 5A: schéma a výklad implementovány; aktivní vyplňování tabulky ještě doplnit |
 | 05-06 | Paměť v řízení START/STOP | M/P | Testuje impuls, uvolnění, STOP prioritu | Model motoru + rovnice | 5A: implementováno, čeká na pedagogickou revizi |
 | 05-07 | Synchronní/asynchronní a CLK | M | Vysvětlí rozdíl úrovně/hran, předpoví změnu Q | Clock krokovač + D latch | 5B: implementováno, čeká na revizi |
 | 05-08 | D, časové diagramy | M | Navrhne a vyhodnotí průběh D/CLK/Q | Model D s výběrem hrany + 10krokový diagramový trenažér | 5B: implementováno, čeká na revizi |
@@ -108,7 +108,7 @@ Na základě hodnocení učitele byla část 5A rozšířena o souvislé, samost
 
 **Potvrzená technická kontrola:** všech 6 kapitol a vnitřních navigačních kotev se nachází v HTML, všechny lokální JS/CSS soubory byly v GitHubu ověřeny. Jednotkové testy sdíleného modelu RS/START-STOP prošly úspěšně v [GitHub Actions](https://github.com/lkostak/skola-vdf/actions/runs/45039346229).
 
-**Před přijetím učitelem stále zbývá:** projít lekci vizuálně na iPhonu a projektoru, provést ručně všechny interaktivní scénáře, vylepšit interaktivní zadání pro samostatné sestavování pravdivostní tabulky, doplnit schéma konkrétní realizace RS pomocí hradel, potvrdit terminologii podle oficiálního zadání a odbornou/pedagogickou revizi. **Testy logického jádra neznamenají kompletní otestování prohlížeče.**
+**Před přijetím učitelem stále zbývá:** projít lekci vizuálně na iPhonu a projektoru, provést ručně všechny interaktivní scénáře, vylepšit interaktivní zadání pro samostatné sestavování pravdivostní tabulky, potvrdit terminologii podle oficiálního zadání a odbornou/pedagogickou revizi. **Testy logického jádra neznamenají kompletní otestování prohlížeče.**
 
 
 
@@ -147,7 +147,7 @@ Na základě hodnocení učitele byla část 5A rozšířena o souvislé, samost
 - [ ] Ručně projít 5B na telefonu a ve třídě na projektoru, včetně všech interakcí.
 - [ ] Porovnat grafy s tabulkami modelů a důsledně ověřit každou časovou hranu; kontrolní sada je v `tests/clock-core.test.js`.
 - [ ] Potvrdit výklad pojmů s přesným oficiálním maturitním zadáním a ŠVP.
-- [ ] Doplnit samostatné typy multivibrátorů (monostabilní/astabilní/bistabilní) a profesní použití, které jsou součástí pracovního rozsahu otázky 05.
+- [x] Doplnit samostatnou kapitolu o monostabilním/bistabilním/astabilním multivibrátoru, základní průběhy, profesní použití a aktivní ověření (implementováno 2026-11-22; odborná revize dosud otevřená).
 - [ ] Vytvořit plný studijní materiál, souhrnný pracovní list, samostatnou Laboratoř a ústní maturitní hodnocení.
 
 **Výsledek etapy II:** obsah 5B je připraven k pedagogickému posouzení; neoznačovat ještě celý tematický celek za HOTOVO.
@@ -167,3 +167,39 @@ Výklad neobsahuje pouze definice: propojuje důvod použití, princip, konkrét
 **Technické provedení:** zachována hlavní navigace a karty 5A/5B, doplněna pouze lokální šablona `mechatronika/maturita/05-sekvencni-logika/outline.css`. Rozbalování funguje nativně v prohlížeči, bez JavaScriptu. Otevírání jednotlivých bodů navzájem neomezuje ostatní body.
 
 **Kontrola před finálním schválením:** odborně potvrdit ústní formulace podle přesného maturitního zadání; vizuálně ověřit mobil/projektor; pro budoucí otázky zvažovat shodný vzor ústní osnovy v studentských přehledech. Stále platí, že celá otázka 05 **není označena HOTOVO**.
+
+
+## 12. Odborný obsah doplněn: tři multivibrátory a NOR-RS z hradel (2026-11-22)
+
+**Důvod změny:** Učitel určil jako prioritní zbývající obsahové mezery otázky 05; viz kapitola 5A.
+
+### Kapitola 04 · Rozdělení multivibrátorů
+
+- Sedmá kapitola 5A byla vložena **mezi zpětnou vazbu a konkrétní RS** na kotvu `#multivibratory`; následující kapitoly přečíslovány na 05/06/07, obsah a staré kotvy `#rs`, `#motor`, `#overeni` zůstaly zachovány.
+- **Monostabilní:** jeden stabilní stav, spouštěcí impuls, jeden časově omezený výstupní puls a návrat do stabilního stavu.
+- **Bistabilní:** dva stabilní stavy; stav se uchovává a mění povelem SET/RESET.
+- **Astabilní:** žádný stabilní stav; samovolné periodické změny výstupu.
+- Každý typ má příklad reálného použití, textové vysvětlení, samostatný řádek vlastního SVG časového diagramu a společnou otázku k ověření.
+- Výslovně rozlišeno třídění multivibrátorů podle **počtu stabilních stavů** od typologie **RS/D/JK** podle funkce paměťových prvků.
+- Nejde o model s přesnými RC konstantami ani o konkrétní 555 obvod.
+
+### Kapitola 05 · Skutečné dvouhradlové NOR-RS schéma
+
+- `#schema-rs`: autorské **vektorové IEC schéma** se dvěma NOR (značka ≥1 + výstupní negace), horní hradlo generuje `Q = ¬(R ∨ Q̄)`, dolní generuje `Q̄ = ¬(S ∨ Q)`.
+- Zapojena **oboustranná křížová zpětná vazba**, vstupy horního hradla R a Q̄, dolního S a Q, výstupy správně označeny.
+- Doplněn komentovaný průchod SET, RESET a zakázaným `S=R=1`; samotná inicializace reálného hardwaru není zaručena.
+- Stávající sdílený simulátor `assets/js/rs-core.js` zůstal zdrojem pravdy; `app.js` pouze zobrazuje odpovídající vstupy a výstupy obou hradel, včetně stavu neurčitého po současném uvolnění zakázané kombinace.
+- **Statické a logické testy** v `tests/lesson-05-content.test.js` kontrolují existenci třídění, dvě hradla, obě křížové vazby, rovnice hradel, navazující odkazy a chování simulačního modelu.
+- Ústní osnova na rozcestníku odkazuje bod 04 přímo na `#multivibratory` a bod 05 na `#schema-rs` včetně připomínky, co nakreslit na tabuli.
+- Styl využívá stejné typografické a barevné principy jako dosavadní 5A; diagramy jsou SVG integrované do HTML a použitelné i při tisku. Žádné kopírované schéma ze zdrojové literatury.
+
+### Odborné zdroje použité ke kontrole
+
+- Analog Devices, *ADALM2000 Activity: BJT Multivibrators*: https://ez.analog.com/adiacademy/university-program/a/studentzone-articles/SA1059/adalm2000-activity-bjt-multivibrators (podstata tří typů multivibrátorů).
+- *ElectronicsTextbook*, *SR Cross-NOR Latch*, oddíl 7.6.1: https://dthuecks.github.io/ElectronicsTextbook/sec-digital-latch.html (konkrétní zapojení NOR a rovnice Q/Q̄, stavy SET, RESET, hold a forbidden).
+- University of Vermont, *Latch and flip flop*: https://www.uvm.edu/~cbcafier/cs2210/content/04_logic_gates/latch_and_flip_flop.html (rozlišení NOR a NAND provedení).
+
+### Stav a otevřené kroky
+
+**Doplnění prioritního odborného obsahu: IMPLEMENTOVÁNO V REPOZITÁŘI.**
+Jde stále o výukový prototyp, nikoli úplné HOTOVO. Zbývá osobní vizuální a pedagogická revize, ověření s přesným oficiálním zadáním, aktivní sestavování RS tabulky, pracovní list, ucelený studijní materiál a závěrečné komplexní ověření.
