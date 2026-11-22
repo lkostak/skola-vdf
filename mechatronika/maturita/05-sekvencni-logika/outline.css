@@ -1,14 +1,19 @@
 /* Maturitní otázka 05 · rozbalovací ústní osnova.
    Lokální styly: ostatní stránky portálu zůstávají beze změny. */
 
-.outline-intro {
-  max-width: 810px;
-  line-height: 1.75;
-  font-size: 1.04rem;
-  color: #e1f1f6;
-  margin: 18px 0 26px;
+.question-overview {
+  max-width: 1030px;
+  margin: 34px 0 36px;
 }
-.outline-intro strong { color: #fff; }
+.question-overview p {
+  max-width: 960px;
+  margin: 0 0 18px;
+  line-height: 1.85;
+  font-size: clamp(1.01rem, 1.22vw, 1.1rem);
+  color: #e4f2f6;
+}
+.question-overview p:last-child { margin-bottom: 0; }
+.question-overview strong { color: #fff6cf; }
 .oral-topics { margin-top: 8px; gap: 11px; }
 
 .oral-topics .topic-accordion {
@@ -110,6 +115,8 @@
   outline-offset: 5px;
 }
 @media(max-width:800px) {
+  .question-overview { margin: 26px 0 30px; }
+  .question-overview p { font-size: 1.02rem; line-height: 1.76; }
   .oral-topics .topic-accordion > summary {
     padding: 17px 15px;
     grid-template-columns: 39px minmax(0,1fr) 20px;
@@ -130,6 +137,7 @@
   .oral-topics .topic-chevron { transition: none; }
 }
 @media print {
+  .question-overview p, .question-overview strong { color: #111; }
   .oral-topics .topic-accordion {
     display: block;
     border: 1px solid #aaa;
