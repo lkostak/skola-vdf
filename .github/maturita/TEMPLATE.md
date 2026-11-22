@@ -9,7 +9,7 @@ Tento soubor je **autorský vzor**, nikoli studentská stránka. Pro každou nov
 | Číslo otázky | NN |
 | **Přesný oficiální název** | [vložit doslovné znění] |
 | Úplné oficiální zadání a podbody | [vložit doslovně; uvést zdroj/datum] |
-| Vazba na ŠVP | [kapitoly / učivo / očekávané výstupy] |
+| Vazba na ŠVP · jednotlivé výstupy | [`MER3-Vxxx` / `MER4-Vxxx`, ověřit přes `.github/kurikulum/`; neuvádět pouze volný název tématu] |\n| Učivo ŠVP · tematické bloky | [`MER3-Uxx` / `MER4-Uxx`, ověřit všechny relevantní položky] |\n| Strany a verze zdrojového ŠVP | [číslo strany PDF a identifikace vydání] |
 | Stav | ROZPRACOVÁNO / OBSAHOVĚ HOTOVO / K REVIZI / HOTOVO / K AKTUALIZACI |
 | Zpracoval(a) | [jméno] |
 | Odborně ověřil(a) | [jméno + datum] |
