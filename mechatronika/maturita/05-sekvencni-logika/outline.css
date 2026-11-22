@@ -2,17 +2,36 @@
    Lokální styly: ostatní stránky portálu zůstávají beze změny. */
 
 .question-overview {
-  max-width: 1030px;
-  margin: 34px 0 36px;
+  max-width: 1050px;
+  margin: 42px 0 50px;
+}
+.question-overview .overview-part {
+  display: grid;
+  grid-template-columns: minmax(165px, 215px) minmax(0, 1fr);
+  align-items: start;
+  column-gap: 35px;
+  padding: 23px 0 24px;
+  border-top: 1px solid rgba(169,229,244,.22);
+}
+.question-overview .overview-part:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.question-overview .overview-label {
+  color: var(--cyan);
+  font-size: .86rem;
+  font-weight: 700;
+  line-height: 1.55;
+  letter-spacing: .055em;
+  margin: 2px 0 0;
 }
 .question-overview p {
-  max-width: 960px;
-  margin: 0 0 18px;
-  line-height: 1.85;
-  font-size: clamp(1.01rem, 1.22vw, 1.1rem);
+  max-width: 740px;
+  margin: 0;
+  line-height: 1.8;
+  font-size: clamp(1.06rem, 1.22vw, 1.17rem);
   color: #e4f2f6;
 }
-.question-overview p:last-child { margin-bottom: 0; }
 .question-overview strong { color: #fff6cf; }
 .oral-topics { margin-top: 8px; gap: 11px; }
 
@@ -115,8 +134,14 @@
   outline-offset: 5px;
 }
 @media(max-width:800px) {
-  .question-overview { margin: 26px 0 30px; }
-  .question-overview p { font-size: 1.02rem; line-height: 1.76; }
+  .question-overview { margin: 28px 0 38px; }
+  .question-overview .overview-part {
+    grid-template-columns: 1fr;
+    row-gap: 9px;
+    padding: 21px 0 22px;
+  }
+  .question-overview .overview-label { font-size: .83rem; }
+  .question-overview p { max-width: 700px; font-size: 1.045rem; line-height: 1.78; }
   .oral-topics .topic-accordion > summary {
     padding: 17px 15px;
     grid-template-columns: 39px minmax(0,1fr) 20px;
@@ -137,7 +162,8 @@
   .oral-topics .topic-chevron { transition: none; }
 }
 @media print {
-  .question-overview p, .question-overview strong { color: #111; }
+  .question-overview p, .question-overview strong, .question-overview .overview-label { color: #111; }
+  .question-overview .overview-part { border-color: #bbb; }
   .oral-topics .topic-accordion {
     display: block;
     border: 1px solid #aaa;
