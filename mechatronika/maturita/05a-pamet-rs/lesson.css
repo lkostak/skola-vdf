@@ -67,8 +67,86 @@
 .lesson-page .lesson-bottom-nav span { color: var(--mer-soft); font-size: .85rem; }
 .lesson-page .motor { border-width: 8px; }
 .lesson-page .motor.running { box-shadow: 0 0 20px rgba(166,206,57,.2); }
+
+/* Delší samostudijní výklad: čtenářské tempo místo zdi drobného textu. */
+.lesson-page .study-text {
+  max-width: 940px;
+  margin: 25px 0 28px;
+  padding: 4px 0 4px 22px;
+  border-left: 3px solid rgba(65,215,255,.55);
+}
+.lesson-page .study-text h3,
+.lesson-page .worked-example h3 {
+  color: #fff;
+  font-size: clamp(1.2rem,2.2vw,1.48rem);
+  line-height: 1.35;
+  letter-spacing: -.01em;
+  margin: 0 0 16px;
+}
+.lesson-page .study-text p {
+  max-width: 840px;
+  font-size: clamp(1.02rem,1.4vw,1.13rem);
+  line-height: 1.84;
+  margin: 0 0 17px;
+  color: #e8f5f8;
+}
+.lesson-page .study-text p:last-child,
+.lesson-page .worked-example p:last-child {
+  margin-bottom: 0;
+}
+.lesson-page .study-text strong,
+.lesson-page .worked-example strong {
+  color: #fff6c9;
+  font-weight: 700;
+}
+.lesson-page .worked-example {
+  background: rgba(0,26,34,.54);
+  border: 1px solid rgba(166,206,57,.32);
+  border-left: 4px solid var(--green);
+  margin: 25px 0 32px;
+  padding: clamp(19px,2.8vw,29px);
+}
+.lesson-page .worked-example p {
+  max-width: 840px;
+  margin: 0 0 13px;
+  font-size: 1.02rem;
+  line-height: 1.8;
+  color: #e4f3f7;
+}
+.lesson-page .study-steps {
+  counter-reset: mer05step;
+  list-style: none;
+  padding: 0;
+  margin: 13px 0 22px;
+  display: grid;
+  gap: 10px;
+}
+.lesson-page .study-steps li {
+  counter-increment: mer05step;
+  position: relative;
+  padding: 13px 15px 13px 53px;
+  background: rgba(0,16,22,.48);
+  border: 1px solid rgba(255,255,255,.10);
+  color: #edf8fa;
+  line-height: 1.7;
+  font-size: .99rem;
+}
+.lesson-page .study-steps li::before {
+  content: counter(mer05step, decimal-leading-zero);
+  position: absolute;
+  left: 14px;
+  top: 13px;
+  color: var(--cyan);
+  font-weight: 700;
+  font-size: .88rem;
+  letter-spacing: .03em;
+}
+
 @media(max-width: 760px) {
   .lesson-page .chapter-meta { gap: 6px; }
+  .lesson-page .study-text { padding-left: 16px; margin: 20px 0 26px; }
+  .lesson-page .study-text p { font-size: 1.02rem; line-height: 1.78; }
+  .lesson-page .worked-example { margin: 20px 0 27px; }
   .lesson-page .experiment-grid { grid-template-columns: 1fr; }
   .lesson-page .lab, .lesson-page .glass { padding: 18px; }
   .lesson-page .statusline { grid-template-columns: repeat(3,minmax(0,1fr)); }
@@ -86,6 +164,9 @@
   .lesson-page button { padding: 10px 14px; }
   .lesson-page fieldset { padding: 18px 12px; }
   .lesson-page fieldset label { padding: 9px 7px; }
+  .lesson-page .study-steps li { padding-left: 45px; }
+  .lesson-page .study-steps li::before { left: 10px; }
+  .lesson-page .worked-example { padding: 16px; }
 }
 @media(prefers-reduced-motion:reduce) {
   .lesson-page .motor.running:after { animation: none; transform: rotate(35deg); }
@@ -101,4 +182,7 @@
   .lesson-page .table-scroll { overflow: visible; }
   .lesson-page th, .lesson-page td { color: #111; }
   .lesson-page .scope-note, .lesson-page .safety-note { border-color: #777; }
+  .lesson-page .study-text, .lesson-page .worked-example, .lesson-page .study-steps li { background: #fff !important; color: #111 !important; border-color: #777; }
+  .lesson-page .study-text p, .lesson-page .worked-example p, .lesson-page .study-text h3, .lesson-page .worked-example h3, .lesson-page .study-steps li, .lesson-page .study-text strong, .lesson-page .worked-example strong { color: #111 !important; }
+  .lesson-page .study-steps li::before { color: #444; }
 }
