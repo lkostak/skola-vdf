@@ -1,1 +1,185 @@
-<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Otázka 5 | Sekvenční logika</title><link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../../assets/css/site.css"></head><body><nav class="topbar"><a href="../../../">Portál</a><span class="crumb">/</span><a href="../../">Mechatronika</a><span class="crumb">/</span><a href="../">Maturita</a><span class="crumb">/ 05</span></nav><main class="content"><header class="hero"><div class="eyebrow">MATURITNÍ OTÁZKA 05</div><h1>Základní sekvenční logické obvody</h1><p class="lead">Klopné obvody, stav a paměť. Od jednoduché zpětné vazby k synchronní logice.</p><div><span class="pill">stav</span><span class="pill">paměť</span><span class="pill">Qⁿ → Qⁿ⁺¹</span><span class="pill">RS</span><span class="pill">clock</span><span class="pill">D</span><span class="pill">JK</span></div></header><section class="section"><div class="cards"><a class="card" href="../05a-pamet-rs/"><span class="tag">5A · INTERAKTIVNÍ</span><h2>Od kombinační logiky k paměti →</h2><p>Stav, zpětná vazba, RS a START/STOP. Interaktivní demonstrace i ověření pochopení.</p></a><a class="card" href="../05b-synchronni-logika/"><span class="tag">5B · INTERAKTIVNÍ</span><h2>Hodinový signál, D a JK →</h2><p>Asynchronní a synchronní chování, úrovňový D latch, klopné obvody D a JK, trenažér časových diagramů a maturitní ověření.</p></a></div><div class="kicker">KOSTRA OTÁZKY</div><div class="topic-list"><div class="topic"><div class="tn">01</div><div>Kombinační × sekvenční</div></div><div class="topic"><div class="tn">02</div><div>Stav, paměť, Qⁿ a Qⁿ⁺¹</div></div><div class="topic"><div class="tn">03</div><div>Zpětná vazba</div></div><div class="topic"><div class="tn">04</div><div>Bistabilní klopný obvod</div></div><div class="topic"><div class="tn">05</div><div>RS a přechodová tabulka</div></div><div class="topic"><div class="tn">06</div><div>START/STOP</div></div><div class="topic"><div class="tn">07</div><div>Clock a hrany</div></div><div class="topic"><div class="tn">08</div><div>Časové diagramy</div></div><div class="topic"><div class="tn">09</div><div>D klopný obvod</div></div><div class="topic"><div class="tn">10</div><div>JK klopný obvod</div></div></div><footer class="footer">VOŠ, SPŠ a SOŠ Varnsdorf · Maturitní otázka 5</footer></section></main></body></html>
+<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Otázka 5 | Sekvenční logika a ústní maturita</title><link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../../assets/css/site.css"><link rel="stylesheet" href="outline.css"></head><body><nav class="topbar"><a href="../../../">Portál</a><span class="crumb">/</span><a href="../../">Mechatronika</a><span class="crumb">/</span><a href="../">Maturita</a><span class="crumb">/ 05</span></nav><main class="content"><header class="hero"><div class="eyebrow">MATURITNÍ OTÁZKA 05</div><h1>Základní sekvenční logické obvody</h1><p class="lead">Klopné obvody, stav a paměť. Od jednoduché zpětné vazby k synchronní logice.</p><div><span class="pill">stav</span><span class="pill">paměť</span><span class="pill">Qⁿ → Qⁿ⁺¹</span><span class="pill">RS</span><span class="pill">clock</span><span class="pill">D</span><span class="pill">JK</span></div></header><section class="section"><div class="cards"><a class="card" href="../05a-pamet-rs/"><span class="tag">5A · INTERAKTIVNÍ</span><h2>Od kombinační logiky k paměti →</h2><p>Stav, zpětná vazba, RS a START/STOP. Interaktivní demonstrace i ověření pochopení.</p></a><a class="card" href="../05b-synchronni-logika/"><span class="tag">5B · INTERAKTIVNÍ</span><h2>Hodinový signál, D a JK →</h2><p>Asynchronní a synchronní chování, úrovňový D latch, klopné obvody D a JK, trenažér časových diagramů a maturitní ověření.</p></a></div><div class="kicker">KOSTRA OTÁZKY</div>
+        <p class="outline-intro">Kliknutím na jednotlivý bod otevřeš <strong>vzorovou mluvenou odpověď</strong>. Text si nemusíš pamatovat doslova. Důležité je porozumět mu a umět ho přirozeně vysvětlit vlastními slovy.</p>
+        <div class="topic-list oral-topics">
+
+          <details class="topic topic-accordion" id="kombinacni-sekvencni">
+            <summary>
+              <span class="tn">01</span>
+              <span class="topic-name">Kombinační × sekvenční</span>
+              <span class="topic-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="topic-body">
+              <div class="topic-body-eyebrow">JAK O TOM MLUVIT U ÚSTNÍ MATURITY</div>
+              <p>Kombinační logický obvod určuje výstup pouze podle právě platných vstupů. Pokud jsou vstupy stejné, bude při ustáleném chování stejný i výstup. Příkladem je obvod s hradly AND, OR nebo NOT, který vyhodnocuje určitou logickou podmínku. Sám o sobě ale neví, co se na vstupech stalo před okamžikem.</p>
+              <p>Sekvenční obvod má navíc vnitřní stav neboli paměť. Jeho výstup proto může záviset nejen na současných vstupech, ale také na předchozích událostech. Jednoduchým příkladem je řízení motoru: tlačítko START krátce stisknu a pustím, ale motor dál běží, protože si řídicí obvod zapamatoval požadavek na běh. Zastaví se až po povelu STOP.</p>
+              <p>Zatímco kombinační obvod popíšeme vztahem Y = f(X), u sekvenčního musíme počítat také s předchozím stavem Q. Sekvenční obvody jsou základem registrů, čítačů a řídicích automatů.</p>
+              <div class="topic-action">
+                <strong>Co umět na tabuli:</strong> Uvést příklad START/STOP a vysvětlit, proč stejné současné vstupy mohou odpovídat různému uloženému stavu.
+              </div>
+              <a class="topic-deep-link" href="../05a-pamet-rs/#problem">Prostudovat detail a interaktivní příklad v části 5A →</a>
+            </div>
+          </details>
+
+          <details class="topic topic-accordion" id="stav-pamet">
+            <summary>
+              <span class="tn">02</span>
+              <span class="topic-name">Stav, paměť, Qⁿ a Qⁿ⁺¹</span>
+              <span class="topic-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="topic-body">
+              <div class="topic-body-eyebrow">JAK O TOM MLUVIT U ÚSTNÍ MATURITY</div>
+              <p>Stav obvodu je informace, kterou si sekvenční obvod uchovává. V jednoduchém případě jde o jeden bit Q, který může mít hodnotu nula nebo jedna. Například Q = 0 znamená, že motor má stát, a Q = 1, že má běžet. Krátký vstupní povel může uložený stav změnit, ale po jeho uvolnění hodnota Q zůstává zachována.</p>
+              <p>Značkou Qⁿ označujeme stav před vyhodnocením určité události a Qⁿ⁺¹ stav po jejím vyhodnocení. Horní index n zde není mocnina ani údaj v sekundách, ale označuje po sobě jdoucí stavy nebo kroky. Jestliže je Qⁿ = 0 a přijde SET, nový stav bude Qⁿ⁺¹ = 1. Když potom žádný další povel nepřijde, obvod si jedničku pamatuje.</p>
+              <p>Podstatné je, že při rozhodování o novém stavu uvažujeme současné vstupy i předchozí Q. Nemusíme přitom ukládat celý průběh minulosti; pro jednoduchý klopný obvod stačí informace o posledním platném stavu.</p>
+              <div class="topic-action">
+                <strong>Co umět na tabuli:</strong> Na příkladu SET → bez povelu → RESET zapsat po sobě Qⁿ a Qⁿ⁺¹.
+              </div>
+              <a class="topic-deep-link" href="../05a-pamet-rs/#stav">Prostudovat detail a interaktivní příklad v části 5A →</a>
+            </div>
+          </details>
+
+          <details class="topic topic-accordion" id="zpetna-vazba">
+            <summary>
+              <span class="tn">03</span>
+              <span class="topic-name">Zpětná vazba</span>
+              <span class="topic-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="topic-body">
+              <div class="topic-body-eyebrow">JAK O TOM MLUVIT U ÚSTNÍ MATURITY</div>
+              <p>Zpětná vazba znamená, že část informace z výstupu obvodu se vrací zpět do jeho rozhodovací logiky. Díky tomu může nový výstup záviset na tom, jaký byl výstup v předchozím okamžiku. Právě tak lze vytvořit paměťový prvek, který si po odeznění vstupního povelu uchová svůj stav.</p>
+              <p>U základního klopného obvodu RS je paměť realizována dvěma logickými hradly propojenými křížem. Výstup prvního ovlivňuje druhé a výstup druhého zase první. Vhodně navržené zapojení má dva stabilní platné stavy. V jednom je Q = 0 a v druhém Q = 1. Bez nového povelu zůstává obvod ve stavu, do kterého byl předtím nastaven.</p>
+              <p>Ne každá zpětná vazba automaticky vytváří paměť. Důležité je konkrétní zapojení a jeho stabilita. V sekvenční logice je však zpětná vazba jedním ze základních způsobů, jak uchovat informaci.</p>
+              <div class="topic-action">
+                <strong>Co umět na tabuli:</strong> Nakreslit jednoduché blokové schéma: vstupy → rozhodovací logika → Q, s návratem Q do logiky.
+              </div>
+              <a class="topic-deep-link" href="../05a-pamet-rs/#zpetna-vazba">Prostudovat detail a interaktivní příklad v části 5A →</a>
+            </div>
+          </details>
+
+          <details class="topic topic-accordion" id="bistabilni">
+            <summary>
+              <span class="tn">04</span>
+              <span class="topic-name">Bistabilní klopný obvod</span>
+              <span class="topic-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="topic-body">
+              <div class="topic-body-eyebrow">JAK O TOM MLUVIT U ÚSTNÍ MATURITY</div>
+              <p>Bistabilní klopný obvod je paměťový prvek se dvěma stabilními stavy. Ty představují logickou nulu a jedničku. V běžném platném stavu má výstup Q určitou hodnotu a doplňkový výstup Q̄ hodnotu opačnou. Obvod může v jednom ze stabilních stavů setrvat i po skončení vstupního povelu. Právě proto se používá k uchování jednoho bitu informace.</p>
+              <p>Při popisu paměťových a časovacích obvodů se setkáme i s pojmy monostabilní a astabilní multivibrátor. Monostabilní má jeden stabilní stav; po spouštěcím impulsu přejde na omezenou dobu do přechodného stavu a potom se vrátí. Astabilní nemá stabilní klidový stav a samovolně periodicky překlápí mezi dvěma stavy, takže může vytvářet impulzy.</p>
+              <p>Rozdělení na monostabilní, bistabilní a astabilní popisuje počet stabilních stavů. Označení RS, D nebo JK naproti tomu popisuje funkci a způsob řízení konkrétních paměťových prvků. Tato dvě rozdělení proto není správné zaměňovat.</p>
+              <div class="topic-action">
+                <strong>Co umět na tabuli:</strong> Popsat rozdíl mezi dvěma stabilními stavy paměti, jedním stabilním stavem časovače a periodickým kmitáním.
+              </div>
+              <a class="topic-deep-link" href="../05a-pamet-rs/#zpetna-vazba">Prostudovat detail a interaktivní příklad v části 5A →</a>
+            </div>
+          </details>
+
+          <details class="topic topic-accordion" id="rs-tabulka">
+            <summary>
+              <span class="tn">05</span>
+              <span class="topic-name">RS a přechodová tabulka</span>
+              <span class="topic-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="topic-body">
+              <div class="topic-body-eyebrow">JAK O TOM MLUVIT U ÚSTNÍ MATURITY</div>
+              <p>Základní klopný obvod RS má vstupy S jako Set a R jako Reset. S slouží k nastavení uloženého stavu Q na jedničku, R k jeho vynulování. U varianty sestavené ze dvou hradel NOR jsou oba vstupy aktivní logickou jedničkou. Pokud je S = 0 a R = 0, obvod uchovává předchozí platný stav. Pokud je S = 1 a R = 0, nastaví Q = 1. Při S = 0 a R = 1 nastaví Q = 0.</p>
+              <p>Kombinace S = 1 a R = 1 je u základního NOR-RS zakázaná. V ustáleném modelu jsou tehdy oba výstupy Q i Q̄ rovny nule, takže nejsou navzájem opačné. Při současném uvolnění obou vstupů nelze spolehlivě určit, který platný stav se nakonec ustálí. Proto se takové kombinaci vyhýbáme.</p>
+              <p>Je důležité říci, o jakou realizaci jde. RS ze dvou hradel NAND má obvykle vstupy aktivní nulou, často označené S̄ a R̄. Jeho klidová kombinace je 1 a 1 a zakázaná kombinace 0 a 0. Stavovou tabulku NOR tedy nesmíme automaticky používat pro NAND.</p>
+              <div class="topic-action">
+                <strong>Co umět na tabuli:</strong> Nakreslit nebo sestavit čtyřřádkovou stavovou tabulku NOR-RS, rozlišit SET, RESET, uchování a zakázaný stav.
+              </div>
+              <a class="topic-deep-link" href="../05a-pamet-rs/#rs">Prostudovat detail a interaktivní příklad v části 5A →</a>
+            </div>
+          </details>
+
+          <details class="topic topic-accordion" id="start-stop">
+            <summary>
+              <span class="tn">06</span>
+              <span class="topic-name">START/STOP</span>
+              <span class="topic-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="topic-body">
+              <div class="topic-body-eyebrow">JAK O TOM MLUVIT U ÚSTNÍ MATURITY</div>
+              <p>Praktickým příkladem sekvenční logiky je ovládání motoru tlačítky START a STOP. Motor se má po krátkém stisknutí START rozběhnout a pokračovat v běhu i po uvolnění tlačítka. Obvod si tedy musí zapamatovat stav běhu. Po stisknutí STOP se má uložená jednička zrušit a motor zastavit.</p>
+              <p>V řízení obvykle požadujeme, aby STOP mělo přednost, pokud by obsluha stiskla obě tlačítka současně. To není vlastnost samotného základního NOR-RS s aktivními vstupy S = R = 1, protože tam jde o zakázanou kombinaci. Potřebujeme proto vhodné zapojení nebo logický funkční blok s výslovně definovanou prioritou.</p>
+              <p>Pro učební model, kde jsou oba povely aktivní jedničkou, lze další stav zapsat jako Qⁿ⁺¹ = ¬STOP ∧ (START ∨ Qⁿ). Pokud je STOP = 1, výsledek je vždy nula. Jestliže je STOP = 0 a START = 1, výsledkem je jednička. Když není aktivní ani jeden povel, zůstává uložený předchozí stav. Skutečné bezpečnostní zastavení stroje ale vyžaduje odpovídající bezpečnostní řešení; tento model není náhradou bezpečnostního obvodu.</p>
+              <div class="topic-action">
+                <strong>Co umět na tabuli:</strong> Na jednoduchém schématu nebo pravdivostním rozboru vysvětlit, proč při současném START a STOP motor stojí.
+              </div>
+              <a class="topic-deep-link" href="../05a-pamet-rs/#motor">Prostudovat detail a interaktivní příklad v části 5A →</a>
+            </div>
+          </details>
+
+          <details class="topic topic-accordion" id="clock-hrany">
+            <summary>
+              <span class="tn">07</span>
+              <span class="topic-name">Clock a hrany</span>
+              <span class="topic-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="topic-body">
+              <div class="topic-body-eyebrow">JAK O TOM MLUVIT U ÚSTNÍ MATURITY</div>
+              <p>V synchronních sekvenčních obvodech potřebujeme určit, kdy se smí změnit uložený stav. K tomu používáme hodinový neboli taktovací signál CLK. Ten se pravidelně střídá mezi logickou nulou a jedničkou a umožňuje řídit činnost více paměťových prvků ve společných časových okamžicích.</p>
+              <p>Přechod CLK z 0 na 1 nazýváme náběžná hrana, přechod z 1 na 0 sestupná hrana. Hranově řízený klopný obvod mění svůj stav pouze při zvolené hraně, nikoli po celou dobu, kdy je CLK na jedničce. Například D flip-flop s aktivní náběžnou hranou převezme hodnotu D při přechodu 0 → 1. Při následné sestupné hraně si stav pouze uchová.</p>
+              <p>Rozlišujeme také periodu a frekvenci hodinového signálu. Perioda T je doba jednoho cyklu a frekvence f udává počet cyklů za sekundu; platí f = 1/T. Asynchronní obvody nemusí na společnou hodinovou hranu čekat, zatímco synchronní obvody jsou na ni navázané. Ve skutečných součástkách přitom musíme dodržet i požadované časování dat vůči hraně.</p>
+              <div class="topic-action">
+                <strong>Co umět na tabuli:</strong> Nakreslit CLK, označit náběžnou a sestupnou hranu a vysvětlit, při které z nich obvod ukládá data.
+              </div>
+              <a class="topic-deep-link" href="../05b-synchronni-logika/#clock">Prostudovat detail a interaktivní příklad v části 5B →</a>
+            </div>
+          </details>
+
+          <details class="topic topic-accordion" id="casove-diagramy">
+            <summary>
+              <span class="tn">08</span>
+              <span class="topic-name">Časové diagramy</span>
+              <span class="topic-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="topic-body">
+              <div class="topic-body-eyebrow">JAK O TOM MLUVIT U ÚSTNÍ MATURITY</div>
+              <p>Časový diagram ukazuje průběhy logických signálů v čase. Na vodorovné ose postupuje čas a jednotlivé řádky znázorňují například CLK, datový vstup D a výstup Q. Z diagramu můžeme určit, ve kterých okamžicích se má uložený stav změnit a kdy si ho obvod uchovává.</p>
+              <p>U D flip-flopu řízeného náběžnou hranou nejprve vyhledám všechny přechody CLK z 0 na 1. Při každé náběžné hraně zjistím aktuální hodnotu D a tu zapíšu na Q. Mezi dvěma aktivními hranami Q neměním, i kdyby se vstup D mezitím změnil několikrát. Musím samozřejmě znát počáteční stav Q, pokud ho zadání potřebuje.</p>
+              <p>Například pokud je počáteční Q = 0 a vstup D má na třech po sobě jdoucích náběžných hranách hodnoty 1, 1 a 0, výstup Q bude po těchto hranách postupně 1, 1 a 0. Změna Q tedy není povinná při každé hodinové hraně; nastane jen tehdy, když se nově převzatá hodnota D liší od dosavadního Q. V reálném obvodu se výstup mění po malém zpoždění za hodinovou hranou.</p>
+              <div class="topic-action">
+                <strong>Co umět na tabuli:</strong> Z časového průběhu CLK a D odvodit průběh Q a zdůvodnit každou změnu i úsek beze změny.
+              </div>
+              <a class="topic-deep-link" href="../05b-synchronni-logika/#diagram">Prostudovat detail a interaktivní příklad v části 5B →</a>
+            </div>
+          </details>
+
+          <details class="topic topic-accordion" id="d-klopny-obvod">
+            <summary>
+              <span class="tn">09</span>
+              <span class="topic-name">D klopný obvod</span>
+              <span class="topic-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="topic-body">
+              <div class="topic-body-eyebrow">JAK O TOM MLUVIT U ÚSTNÍ MATURITY</div>
+              <p>Klopný obvod D slouží k uložení jednoho bitu dat. Má datový vstup D, hodinový vstup CLK a výstup Q. U hranově řízeného D flip-flopu platí jednoduché pravidlo: při aktivní hodinové hraně se na Q uloží právě ta logická hodnota, která je na vstupu D. Mimo aktivní hranu zůstává Q na předchozí hodnotě.</p>
+              <p>Například máme Q = 0 a na vstupu D nastavíme jedničku. Samotná změna D výstup nezmění. Až při další náběžné hraně CLK se Q přepne na 1. Pokud potom D klesne na nulu, Q zůstane jednička až do následující aktivní hrany. Tento princip umožňuje ukládat informace v přesně určených okamžicích.</p>
+              <p>Je důležité nezaměnit D flip-flop s úrovňově řízeným D latchem. U latche se aktivním povolením EN může výstup sledovat D po celou dobu EN = 1. Hranově řízený flip-flop přebírá D pouze při příslušné hraně. Z D flip-flopů se sestavují například registry a stavové paměti řídicích systémů.</p>
+              <div class="topic-action">
+                <strong>Co umět na tabuli:</strong> Nakreslit značku D, CLK a Q, vysvětlit aktivní hranu a sestavit krátký časový diagram.
+              </div>
+              <a class="topic-deep-link" href="../05b-synchronni-logika/#d">Prostudovat detail a interaktivní příklad v části 5B →</a>
+            </div>
+          </details>
+
+          <details class="topic topic-accordion" id="jk-klopny-obvod">
+            <summary>
+              <span class="tn">10</span>
+              <span class="topic-name">JK klopný obvod</span>
+              <span class="topic-chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="topic-body">
+              <div class="topic-body-eyebrow">JAK O TOM MLUVIT U ÚSTNÍ MATURITY</div>
+              <p>Klopný obvod JK má dva řídicí vstupy J a K, hodinový vstup CLK a výstup Q. Na aktivní hodinové hraně podle vstupů buď uchová, nastaví, vynuluje, nebo překlopí svůj dosavadní stav. Při J = 0 a K = 0 zůstává Q beze změny. Při J = 1 a K = 0 nastává SET, tedy Q = 1. Při J = 0 a K = 1 nastává RESET, tedy Q = 0.</p>
+              <p>Zvláštní je kombinace J = 1 a K = 1. Na rozdíl od zakázané kombinace základního RS zde znamená <strong>překlopení</strong> neboli toggle. Pokud bylo Q = 0, změní se na 1; pokud bylo Q = 1, změní se na 0. V našem modelu se to děje při náběžné hodinové hraně, takže mimo aktivní hrany se Q nemění.</p>
+              <p>Když jsou J i K trvale v jedničce, Q se při každé aktivní hodinové hraně převrátí. Jeden celý cyklus Q proto trvá dvě periody vstupního CLK a jeho frekvence je poloviční. Tím se dostáváme k principu děličů frekvence a čítačů, které jsou hlavním tématem navazující maturitní otázky 6.</p>
+              <div class="topic-action">
+                <strong>Co umět na tabuli:</strong> Předvést stavovou tabulku JK a na třech aktivních hranách ukázat překlápění 0 → 1 → 0 → 1.
+              </div>
+              <a class="topic-deep-link" href="../05b-synchronni-logika/#jk">Prostudovat detail a interaktivní příklad v části 5B →</a>
+            </div>
+          </details>
+        </div>
+        <footer class="footer">VOŠ, SPŠ a SOŠ Varnsdorf · Maturitní otázka 5</footer></section></main></body></html>
