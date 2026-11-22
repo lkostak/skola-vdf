@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Maturitní otázka 1B: bit, byte, slovo, rozsah 2^n, binární aritmetika, přetečení, dvojkový doplněk, bitové masky a praxe PLC a ADC.">
+<title>01B · Bity, rozsahy a použití | Mechatronika</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../assets/css/site.css">
+<link rel="stylesheet" href="../05a-pamet-rs/lesson.css">
+<link rel="stylesheet" href="../01-ciselne-soustavy/number.css"></head>
+<body class="lesson-page number-page"><nav class="topbar" aria-label="Drobečková navigace"><a href="../../../">Portál</a><span class="crumb">/</span><a href="../">Maturita</a><span class="crumb">/</span><a href="../01-ciselne-soustavy/">Otázka 01</a><span class="crumb">/ 1B</span></nav>
+<main class="content lesson-shell">
+<header class="hero"><div class="eyebrow">MATURITNÍ OTÁZKA 01 · VÝKLAD 1B</div><h1>Kolik informací<br>se vejde do bitů?</h1>
+<p class="lead">Počet stavů, rozsahy, přetečení a technické použití dvojkového zápisu. Rozsah registru si odvodíš, jednotlivé bity si budeš moci sám přepínat.</p>
+<div class="chapter-meta"><span>6 kapitol</span><span>Bitový registr + výpočty</span><span>ŠVP: MER3-U04</span></div>
+<div class="scope-note"><strong>Co musíš umět:</strong> vysvětlit bit, byte a slovo; odvodit 2ⁿ kombinací a maximum 2ⁿ − 1; rozpoznat přetečení a uvést praktické použití hex zápisu. Dvojkový doplněk a masky probíráme jako užitečné prohloubení.</div></header>
+<nav class="chapter-nav" aria-label="Obsah výkladu 1B"><a href="#jednotky">07 Jednotky</a><a href="#rozsahy">08 Rozsah</a><a href="#aritmetika">09 Aritmetika</a><a href="#zaporne">10 Záporná</a><a href="#masky">11 Masky</a><a href="#praxe">12 Praxe a kontrola</a></nav>
+
+<section class="section chapter" id="jednotky">
+<div class="kicker">07 · STAVEBNÍ JEDNOTKY DAT</div><h2>Co je bit, nibble, byte a slovo?</h2>
+<div class="study-text">
+<h3>Jeden bit je jediná binární volba</h3>
+<p><strong>Bit</strong> je dvojková číslice 0 nebo 1. Můžeme s ním vyjádřit stav spínače nebo jeden příznak v řídicím systému. Čtyři bity nazýváme <strong>nibble</strong> (česky někdy půlbajt) a představují šestnáct možných kombinací. <strong>Byte neboli bajt</strong> má přesně osm bitů a umí reprezentovat 256 různých kombinací.</p>
+<p><strong>Slovo</strong> je skupina bitů, se kterou procesor nebo konkrétní zařízení pracuje jako s celkem. Jeho šířka není všude pevná: běžně se setkáme například se 16bitovým nebo 32bitovým slovem. Proto při čtení registru nesmíme šířku slova jen předpokládat, ale musíme ji znát z dokumentace.</p>
+<p>Čtyři bity odpovídají jedné hexadecimální číslici. Jeden byte proto zapíšeme dvěma hexadecimálními číslicemi, například <strong>10110101₂ = B5₁₆</strong>. Tento zápis je výrazně přehlednější než dlouhý řetězec nul a jedniček.</p>
+</div><div class="glass">
+<h3>Bitová struktura jednoho byte</h3>
+<div class="bits-row" aria-label="Osmibitový vzor B5: 10110101">
+<span>b7<small>128</small><strong>1</strong></span><span>b6<small>64</small><strong>0</strong></span><span>b5<small>32</small><strong>1</strong></span><span>b4<small>16</small><strong>1</strong></span><span>b3<small>8</small><strong>0</strong></span><span>b2<small>4</small><strong>1</strong></span><span>b1<small>2</small><strong>0</strong></span><span>b0<small>1</small><strong>1</strong></span>
+</div><p class="formula formula-small">B5₁₆ = 10110101₂ = 181₁₀</p></div></section>
+
+<section class="section chapter" id="rozsahy">
+<div class="kicker">08 · 2ⁿ KOMBINACÍ</div><h2>Kolik hodnot lze uložit do n bitů?</h2>
+<div class="study-text">
+<h3>Každý další bit zdvojnásobí počet možností</h3>
+<p>Jeden bit má dvě kombinace. Dva bity mohou mít stavy 00, 01, 10 a 11, tedy čtyři. Pro <strong>n bitů</strong> získáme celkem <strong>2ⁿ kombinací</strong>. Pokud všechny použijeme pro <em>celá čísla bez znaménka</em> (unsigned), nejnižší hodnota je 0 a nejvyšší <strong>2ⁿ − 1</strong>. Jednička se odečítá proto, že počítáme od nuly.</p>
+<p>Osmibitové číslo bez znaménka má 256 kombinací a rozsah <strong>0 až 255</strong>. Desetibitový A/D převodník rozlišuje 1024 číselných kódů, obvykle 0 až 1023. Dvanáctibitová hodnota má 4096 kombinací a rozsah 0 až 4095. Samotný počet bitů neurčuje, zda jde o měřenou teplotu, barvu nebo stavové slovo. Určuje počet možných bitových vzorů.</p>
+</div>
+<div class="lab"><div class="lab-label">INTERAKTIVNÍ ODHAD ROZSAHU</div><h3>Co udělá přidání dalšího bitu?</h3>
+<label class="form-field">Počet bitů <select id="widthSelect"><option value="4">4 bity</option><option value="8" selected>8 bitů</option><option value="10">10 bitů</option><option value="12">12 bitů</option><option value="16">16 bitů</option></select></label>
+<div class="result-grid result-grid-3"><div><small>BITŮ</small><strong id="rangeBits">8</strong></div><div><small>POČET KOMBINACÍ</small><strong id="rangeCount">256</strong></div><div><small>MAXIMUM UNSIGNED</small><strong id="rangeMax">255</strong></div></div>
+<p id="rangeFeedback" class="feedback" aria-live="polite">8 bitů poskytuje 256 kombinací, ale nejvyšší kód je 255.</p></div>
+<aside class="worked-example"><h3>Řešený příklad: Kolik bitů potřebuje čítač do 500?</h3>
+<p>Devět bitů má <strong>2⁹ = 512 kombinací</strong>, tedy rozsah bez znaménka <strong>0 až 511</strong>. Pro hodnoty od nuly do 500 proto stačí devět bitů. Pro kódování hodnoty 512 už by bylo potřeba deset bitů.</p></aside></section>
+
+<section class="section chapter" id="aritmetika">
+<div class="kicker">09 · SOUČET A PŘENOS</div><h2>Co se stane, když se výsledek do registru nevejde?</h2>
+<div class="study-text">
+<h3>V dvojkové soustavě se sčítá podobně jako v desítkové</h3>
+<p>V každém řádu sčítáme aktuální bity a případný přenos z nižšího řádu. Platí například <strong>1 + 1 = 10₂</strong>, což znamená 0 v právě zpracovávaném bitu a přenos jedničky do vyššího řádu. Pokud máme pevně omezenou šířku registru, může se přenos objevit až za jeho nejvyšším bitem.</p>
+<p>Při sčítání neznaménkových osmibitových hodnot <strong>250 + 10 = 260</strong> se matematický výsledek do osmi bitů nevejde, protože maximum je 255. Osm uložených bitů proto při běžné aritmetice modulo 256 představuje hodnotu 4 a samostatný přenos má hodnotu 1. Takovému případu říkáme přetečení rozsahu dané šířky. Pozor: <em>unsigned přenos</em> není totéž jako <em>signed overflow</em>.</p>
+<p>Posun nezáporného binárního čísla o jeden bit vlevo odpovídá násobení dvěma, pokud se žádný významný bit neztratí. Posun doprava odpovídá celočíselnému dělení dvěma se ztrátou zbytku. U záporných a omezených typů se pravidla musí vykládat s ohledem na reprezentaci.</p>
+</div>
+<div class="lab"><div class="lab-label">PŘENOS MIMO BYTE</div><h3>Kolik se uloží do osmi bitů?</h3>
+<div class="controls"><label class="form-field">První operand (0–255)<input id="addA" type="number" min="0" max="255" value="250"></label><label class="form-field">Druhý operand (0–255)<input id="addB" type="number" min="0" max="255" value="10"></label></div>
+<div class="controls"><button id="addButton" type="button">Sečíst v 8 bitech</button></div>
+<div class="result-grid result-grid-3"><div><small>MATEMATICKÝ SOUČET</small><strong id="sumMath">260</strong></div><div><small>ULOŽENÝ BYTE</small><strong id="sumStored">4</strong></div><div><small>PŘENOS</small><strong id="sumCarry">1</strong></div></div>
+<p id="addFeedback" class="feedback" aria-live="polite">Vyzkoušej výpočet 250 + 10 a vysvětli, proč se uloží 4.</p>
+</div></section>
+
+<section class="section chapter" id="zaporne">
+<div class="kicker">10 · ROZŠÍŘENÍ</div><h2>Jak se do bitů zapisují záporná čísla?</h2>
+<div class="study-text">
+<h3>Dvojkový doplněk: stejný bitový vzor může znamenat jinou hodnotu</h3>
+<p>V mnoha procesorech se záporná celá čísla reprezentují ve <strong>dvojkovém doplňku</strong> (two's complement). Pro nbitovou hodnotu je jeho rozsah <strong>−2ⁿ⁻¹ až +2ⁿ⁻¹−1</strong>. Například u osmi bitů je to <strong>−128 až +127</strong>. Bitový vzor 11100110₂ představuje bez znaménka 230, ale jako osmibitové číslo ve dvojkovém doplňku znamená −26.</p>
+<p>Postup, jak získat zápis záporného čísla: nejprve zapíšeme jeho kladnou velikost ve zvolené šířce, <strong>invertujeme všechny bity a přičteme 1</strong>. Pro +26 máme 00011010₂. Po inverzi dostaneme 11100101₂ a po přičtení jedničky 11100110₂. Je nutné předem stanovit šířku, bez ní zápis záporných hodnot není jednoznačný.</p>
+<p>Všimni si, že bit b7 může být v některých datových typech znaménkový, ale ve stavovém slově stále může jít jen o běžný příznak. Význam bitů neurčuje pouze jejich pořadí.</p>
+</div>
+<div class="lab"><div class="lab-label">VYPOČÍTEJ DVOJKOVÝ DOPLNĚK</div><h3>Jedno číslo, dva způsoby interpretace</h3>
+<div class="controls"><label class="form-field">Hodnota od −128 do 127<input id="signedInput" type="number" min="-128" max="127" value="-26"></label><button id="signedButton" type="button">Zobrazit 8bitový vzor</button></div>
+<div class="result-grid result-grid-3"><div><small>ULOŽENÉ BITY</small><strong id="signedBits">11100110</strong></div><div><small>UNSIGNED</small><strong id="signedUnsigned">230</strong></div><div><small>SIGNED</small><strong id="signedSigned">−26</strong></div></div>
+<p id="signedFeedback" class="feedback" aria-live="polite">Zápis 11100110₂ je 230 bez znaménka, ale −26 v osmibitovém dvojkovém doplňku.</p></div>
+</section>
+
+<section class="section chapter" id="masky">
+<div class="kicker">11 · ROZŠÍŘENÍ A PRAKTICKÉ POUŽITÍ</div><h2>Jak číst a měnit jednotlivé bity stavového slova?</h2>
+<div class="study-text">
+<h3>Bitová maska vybírá konkrétní příznak</h3>
+<p>Představ si osm digitálních vstupů PLC uložených v jediném byte. Pokud je chceme zkoumat jednotlivě, používáme <strong>bitové masky</strong>. Maska pro bit b3 má binární podobu 00001000₂, tedy <strong>08₁₆</strong>. Logická operace AND s maskou ponechá pouze vybraný bit. Operace OR může daný bit nastavit; XOR s maskou jej překlopí.</p>
+<p>Výhoda hexadecimálního zápisu se tady projeví okamžitě: například stav <strong>B5₁₆</strong> znamená 10110101₂. Maska 20₁₆ odpovídá bitu b5. Výsledek <strong>B5₁₆ AND 20₁₆</strong> je 20₁₆, takže bit b5 je nastaven. Při programování se tento způsob běžně používá pro čtení registrů, diagnostiku a nastavování příznaků.</p>
+<p>Takové bitové operace souvisejí i s maturitní otázkou 3 o logických funkcích, ale tady je používáme jako <strong>praktický příklad interpretace čísla</strong>.</p>
+</div>
+<div class="lab"><div class="lab-label">INTERAKTIVNÍ 8BITOVÝ REGISTR</div>
+<h3>Zapínej a vypínej jednotlivé bity</h3>
+<p>Výchozí vzor je B5₁₆. Klepnutím na jednotlivé pozice změníš její bit. Hodnoty decimal, hexadecimal a signed se přepočítají automaticky. Maska pod registrem ukáže, zda je zvolený bit aktivní.</p>
+<div id="bitControls" class="bits-row bits-interactive" role="group" aria-label="Přepínače jednotlivých bitů od b7 po b0"></div>
+<div class="controls"><button id="bitsReset" type="button" class="secondary">Vrátit B5₁₆</button><label class="form-field">Testovaný bit <select id="maskIndex"><option value="0">b0</option><option value="1">b1</option><option value="2">b2</option><option value="3">b3</option><option value="4">b4</option><option value="5" selected>b5</option><option value="6">b6</option><option value="7">b7</option></select></label></div>
+<div class="result-grid"><div><small>BINÁRNĚ</small><strong id="registerBin">10110101</strong></div><div><small>HEX</small><strong id="registerHex">B5</strong></div><div><small>UNSIGNED</small><strong id="registerDec">181</strong></div><div><small>SIGNED</small><strong id="registerSigned">−75</strong></div></div>
+<p id="maskFeedback" class="feedback" aria-live="polite">Bit b5 je nastaven. Maska je 20₁₆.</p>
+</div></section>
+
+<section class="section chapter" id="praxe">
+<div class="kicker">12 · TECHNICKÉ SOUVISLOSTI</div><h2>Kde se s číselnými soustavami setkáš v mechatronice?</h2>
+<div class="study-text">
+<h3>PLC, mikrořadič, registr i A/D převodník</h3>
+<p><strong>PLC:</strong> osm binárních vstupů lze uložit do osmibitového stavového slova. Čtení zvoleného příznaku pomocí masky pak může rozhodnout, zda se aktivoval konkrétní snímač. <strong>Mikrořadič:</strong> vstupní a výstupní porty mají bitovou strukturu a jejich aktuální stav se často zobrazuje hexadecimálně. <strong>Registr a paměť:</strong> při návrhu potřebujeme znát šířku dat i nejvyšší reprezentovatelnou hodnotu.</p>
+<p><strong>A/D převodník:</strong> dvanáctibitový převod má 2¹² = 4096 možných kódů, typicky od 0 do 4095. Pro ideální lineární mapování kódu mezi koncovými body 0 V a 3,3 V získáme přibližně 3,3/4095 ≈ 0,806 mV na jeden číselný krok. Je však důležité říci, jakou konvenci převodník používá; některé popisy rozlišení pracují s plným rozsahem děleným 4096. Rozlišení navíc samo o sobě neurčuje přesnost měření.</p>
+<p><strong>Komunikační diagnostika:</strong> ve výpisu zařízení se mohou objevit například bajty 0x3A nebo 0xB5. Než je budeme interpretovat, musíme zjistit, zda představují celé číslo, znaménkovou hodnotu, stavové příznaky nebo část delší zprávy. U delších hodnot záleží také na pořadí bajtů.</p></div>
+<aside class="worked-example"><h3>Souvislá odpověď vhodná k ústní maturitě</h3>
+<p>„Základní jednotkou digitální reprezentace je bit. Kombinací n bitů máme 2ⁿ různých stavů a pro neznaménkové číslo rozsah od nuly do 2ⁿ−1. Osmibitová hodnota proto může představovat 256 různých vzorů. Číslo ale nemusí být vždy jen hodnota; v PLC může každý bit znamenat jiný vstup nebo příznak. Hexadecimální zápis je proto pro technika výhodný, protože každá jeho číslice odpovídá čtyřem bitům. Při práci s registrem si musíme hlídat šířku, datový typ a případné přetečení.“</p></aside>
+<div class="glass"><h3>Ověř si porozumění</h3>
+<form id="numberQuiz" class="quiz-form">
+<fieldset><legend>1. Kolik různých neznaménkových hodnot lze zapsat pomocí 10 bitů?</legend><label><input type="radio" name="q1" value="a"> 1023</label><label><input type="radio" name="q1" value="b"> 1024</label><label><input type="radio" name="q1" value="c"> 1000</label><p id="ans1" class="quiz-feedback" aria-live="polite"></p></fieldset>
+<fieldset><legend>2. Jaké jsou dvě správné interpretace bitového vzoru 11100110₂ v 8 bitech?</legend><label><input type="radio" name="q2" value="a"> 230 unsigned a −26 signed</label><label><input type="radio" name="q2" value="b"> 230 unsigned a +230 signed</label><label><input type="radio" name="q2" value="c"> −26 unsigned a 26 signed</label><p id="ans2" class="quiz-feedback" aria-live="polite"></p></fieldset>
+<fieldset><legend>3. Co se stane při unsigned sčítání 250 + 10 v osmibitovém registru?</legend><label><input type="radio" name="q3" value="a"> Uloží se 260 do osmi bitů.</label><label><input type="radio" name="q3" value="b"> Uloží se 255, protože je to maximum.</label><label><input type="radio" name="q3" value="c"> Uloží se 4 a vznikne přenos 1.</label><p id="ans3" class="quiz-feedback" aria-live="polite"></p></fieldset>
+<div class="controls"><button type="submit">Vyhodnotit</button><button type="reset" class="secondary">Nový pokus</button></div><p id="quizResult" class="feedback" aria-live="polite"></p></form></div>
+<nav class="lesson-bottom-nav"><a href="../01a-ciselne-soustavy/">← Zopakovat soustavy a převody</a><a href="../01-ciselne-soustavy/">Zpět na přehled otázky 01 →</a></nav>
+</section>
+<footer class="footer">VOŠ, SPŠ a SOŠ Varnsdorf · Maturitní otázka 01 · pracovní interaktivní výklad 1B</footer>
+</main><script src="../../../assets/js/number-core.js"></script><script src="app.js"></script>
+</body></html>
