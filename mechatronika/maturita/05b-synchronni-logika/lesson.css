@@ -1,0 +1,63 @@
+/* Maturitní otázka 05B: doplňky pro časové diagramy a trenažéry.
+   Základní sazba, paleta a responzivita se přebírají z části 5A. */
+.lesson-b .scope-note a { color: #ffe999; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.lesson-b .waveform-figure { margin: 24px auto; max-width: 960px; }
+.lesson-b .waveform-figure svg { display:block; width:100%; height:auto; max-width: 780px; margin:auto; }
+.lesson-b .waveform-figure figcaption { color: #c6dce3; line-height: 1.6; font-size: .9rem; margin-top: 12px; }
+.lesson-b .control-label {
+  display: inline-flex; flex-direction: column; gap: 7px; justify-content: center;
+  font-size: .83rem; line-height: 1.35; color: #e8f7fb; font-weight: 700;
+}
+.lesson-b .control-label select,
+.lesson-b .timing-select {
+  min-height: 46px; border: 1px solid rgba(169,229,244,.45); border-radius: 4px;
+  background: #073d4e; color: #fff; font: 600 .87rem Raleway,Arial,sans-serif;
+  padding: 9px 12px; cursor: pointer; max-width: 100%;
+}
+.lesson-b select:focus-visible { outline: 3px solid #ffd400; outline-offset: 4px; }
+.lesson-b .control-label select:hover, .lesson-b .timing-select:hover { border-color: #b6ecff; }
+.lesson-b .history-box { border-top: 1px solid rgba(169,229,244,.24); margin-top: 26px; padding-top: 16px; }
+.lesson-b .history-box h4 { margin: 0 0 12px; font-size: .92rem; color: #d6eff5; letter-spacing: .03em; }
+.lesson-b .event-history {
+  display: grid; grid-template-columns: repeat(auto-fit,minmax(215px,1fr));
+  gap: 8px; padding: 0; margin: 0; list-style:none;
+}
+.lesson-b .event-history li {
+  border: 1px solid rgba(169,229,244,.20);
+  padding: 10px 12px; background: rgba(0,20,26,.55); line-height: 1.5;
+  color: #e2f5fa; font-size: .83rem;
+}
+.lesson-b .wave-chart-holder {
+  margin: 24px 0; width: 100%; overflow-x: auto; background: rgba(0,25,34,.5);
+  border: 1px solid rgba(169,229,244,.18); padding: 8px 0 0;
+}
+.lesson-b .wave-chart-holder svg { display: block; width:100%; min-width: 780px; height: auto; }
+.lesson-b .timing-table { min-width: 800px; }
+.lesson-b .timing-table th, .lesson-b .timing-table td { padding: 11px 13px; white-space: nowrap; }
+.lesson-b .timing-table td:nth-child(4) { white-space: normal; min-width: 125px; }
+.lesson-b .timing-table td:last-child { font-size: .82rem; min-width: 125px; white-space: normal; }
+.lesson-b .timing-table tr.is-correct { background: rgba(166,206,57,.14); }
+.lesson-b .timing-table tr.is-wrong { background: rgba(255,205,104,.12); }
+.lesson-b .timing-table tr.is-correct td:last-child { color: #d8ffbd; font-weight: 700; }
+.lesson-b .timing-table tr.is-wrong td:last-child { color: #ffe4a2; font-weight: 700; }
+.lesson-b .timing-select { width: 100%; min-width: 110px; }
+.lesson-b .compare-table { min-width: 690px; }
+.lesson-b .compare-table th, .lesson-b .compare-table td { text-align: left; }
+.lesson-b .compare-table td:nth-child(1) { font-weight:700; color: #b9eefe; }
+.lesson-b .lesson-bottom-nav a { color:#ffe281; }
+.lesson-b .sample-answer p { color:#eaf6f9; }
+@media(max-width:760px) {
+  .lesson-b .control-label { width:100%; }
+  .lesson-b .control-label select { width:100%; }
+  .lesson-b .chapter-nav a { flex: 1 1 auto; }
+  .lesson-b .event-history { grid-template-columns: 1fr; }
+}
+@media print {
+  .lesson-b .control-label select, .lesson-b .timing-select { background: #fff; color:#111; }
+  .lesson-b .wave-chart-holder { overflow:visible; }
+  .lesson-b .wave-chart-holder svg { min-width:0; width:100%; filter:grayscale(1); }
+  .lesson-b .waveform-figure svg { filter:grayscale(1); }
+  .lesson-b .event-history li { background:#fff; color:#111; }
+  .lesson-b .timing-table tr.is-correct, .lesson-b .timing-table tr.is-wrong { background:#fff; }
+  .lesson-b .timing-table td:last-child { color:#111 !important; }
+}
