@@ -1,7 +1,7 @@
 # ŠVP – závazný podklad pro Mechatroniku a robotiku
 
 **Datum evidence:** 2026-11-22  
-**Stav:** originál a archivní uživatelská kopie dohledány; věcný přehled předmětu zkontrolován podle stran 474–482. Přesné mapování jednotlivých lekcí a 20 maturitních otázek **dosud neprovedeno**.
+**Stav:** originál a archivní uživatelská kopie dohledány; **89 jednotlivých výstupů** 3. a 4. ročníku přepsáno do kontrolních matic. **Návazné lekce, úlohy, odučení a znalosti studentů zatím nejsou kompletně doloženy.**
 
 ## 1. Primární (autoritativní) zdroj
 
@@ -20,11 +20,14 @@
 
 ## 2. Přesná lokalizace klíčových částí
 
+**Detailní výstupové registry:** [3. ročník · 47 výstupů](VYSTUPY_3_ROCNIK.md) · [4. ročník · 42 výstupů](VYSTUPY_4_ROCNIK.md) · [pracovní plán návaznosti na výuku a maturitu](PLAN_NAVAZNOSTI.md).
+
+
 | Co | PDF strany (1-index, odpovídají tištěným) | Význam |
 |---|---|---|
 | Identifikační údaje dokumentu | 4–5 | Oficiální název, obor, verze, platnost |
 | Mechatronika a robotika: charakteristika předmětu a kompetence | 474–475 | Metodika, hodnoticí kritéria, bezpečnost a organizace |
-| Mechatronika a robotika: **3. ročník** | **475–479** | Učivo a očekávané ŠVP výstupy; **96 h** |
+| Mechatronika a robotika: **3. ročník** | **476–479** | Tabulky učiva a očekávaných ŠVP výstupů; **96 h** |
 | Mechatronika a robotika: **4. ročník** | **479–482** | Učivo a očekávané ŠVP výstupy; **128 h** |
 
 **Důležitý detail:** konec 3. ročníku i začátek 4. ročníku jsou na straně 479. Vlastní předmět začíná dříve než samotné tabulky s učivem.
@@ -34,7 +37,7 @@
 Všechny výukové hodiny a maturitní otázky musí být zpracovány oproti **konkrétním, skutečně předepsaným ŠVP výstupům a učivu**, nikoli jen oproti volnému názvu kapitoly.
 
 Každé téma se mapuje na:
-- `SVP_REF`: kód ŠVP, oblast, ročník, PDF strana, identifikátor námi evidovaného výstupu (např. `MER3-017`, `MER4-008`);
+- `SVP_REF`: kód ŠVP, oblast, ročník, PDF strana a konkrétní interní identifikátor doslovného výstupu (např. `MER3-V017`, `MER4-V008`);
 - **výstup / kompetence:** co má student prokazatelně umět;
 - **učivo:** co je potřeba vysvětlit;
 - **důkaz naplnění:** konkrétní výuková kapitola, řešená či samostatná úloha, praktický experiment a ověření;
@@ -62,7 +65,7 @@ Každé téma se mapuje na:
 1. **Pro školní rok 2026/27 ověřit**, zda škola mezitím nevydala změnové listy, aktualizované ŠVP nebo specifickou verzi pro současný 4. ročník. Dostupný školní web aktuálně nabízí dokument označený jako „2024“, s platností uvedenou od roku 2022.
 2. Zajistit, že máme **aktuální školní tematické plány** 3. a 4. ročníku, místo kopírování rozvrhu z roku 2022/23.
 3. Získat přesný seznam všech 20 oficiálních maturitních otázek i s podbody; nedomýšlet chybějící zadání z rozcestníku webu.
-4. Zpracovat úplnou tabulku výstupů ŠVP s ID a jednoznačnými vazbami na výuku, praxi, maturitu a kontrolní úlohy. Pracovní struktura viz [MAPA_POKRYTI.md](MAPA_POKRYTI.md).
+4. **Inventář jednotlivých výstupů je dokončen:** [47 výstupů 3. ročníku](VYSTUPY_3_ROCNIK.md) a [42 výstupů 4. ročníku](VYSTUPY_4_ROCNIK.md). **Úplná matice výuka → praxe → maturita → ověření je otevřený úkol**; počáteční návrh pro 32 bloků viz [PLAN_NAVAZNOSTI.md](PLAN_NAVAZNOSTI.md) a stavový přehled [MAPA_POKRYTI.md](MAPA_POKRYTI.md).
 
 ## 7. Přijímací podmínka pro nové téma
 
