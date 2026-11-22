@@ -9,6 +9,11 @@
 | **Maturitní otázky** | [README](maturita/README.md) | [TEMPLATE](maturita/TEMPLATE.md) | [REVIEW](maturita/REVIEW.md) |
 | **Úlohy a projekty** | [README](ulohy/README.md) | [TEMPLATE](ulohy/TEMPLATE.md) | [REVIEW](ulohy/REVIEW.md) |
 
+## Závazné podklady a rešerše
+
+- **ŠVP – primární obsahový zdroj:** [identifikace originálu, platnost a stránky](kurikulum/README.md); [pracovní mapa pokrytí ŠVP 3. a 4. ročníku](kurikulum/MAPA_POKRYTI.md). Před označením HOTOVO ověřit vazby na konkrétní ŠVP výstupy.
+- **Pedagogická inspirace:** [interní analýza materiálů Michala Bubílka (KYME)](research/MICHAL_BUBILEK_KYME.md). Doporučení se nepovažují automaticky za schválené standardy; ověřit je na vzorové otázce a lekci.
+
 ## Vztahy a odpovědnosti
 
 - **Výuka:** postupný rozvoj znalostí a praktických schopností v čase, návaznost na ŠVP a skutečné hodiny, scénář pro učitele i samostudium pro žáka.
