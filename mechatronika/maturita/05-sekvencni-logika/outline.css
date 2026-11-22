@@ -1,0 +1,148 @@
+/* Maturitní otázka 05 · rozbalovací ústní osnova.
+   Lokální styly: ostatní stránky portálu zůstávají beze změny. */
+
+.outline-intro {
+  max-width: 810px;
+  line-height: 1.75;
+  font-size: 1.04rem;
+  color: #e1f1f6;
+  margin: 18px 0 26px;
+}
+.outline-intro strong { color: #fff; }
+.oral-topics { margin-top: 8px; gap: 11px; }
+
+.oral-topics .topic-accordion {
+  display: block;
+  padding: 0;
+  background: rgba(0,27,34,.59);
+  border: 1px solid rgba(169,229,244,.18);
+  border-left: 4px solid transparent;
+  backdrop-filter: blur(12px);
+  min-width: 0;
+}
+.oral-topics .topic-accordion[open] {
+  border-left-color: var(--cyan);
+  background: rgba(0,24,32,.80);
+}
+.oral-topics .topic-accordion > summary {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 54px minmax(0,1fr) 24px;
+  align-items: center;
+  gap: 16px;
+  min-height: 69px;
+  padding: 18px 22px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.07rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.oral-topics .topic-accordion > summary::-webkit-details-marker { display: none; }
+.oral-topics .topic-accordion > summary::marker { content: ""; }
+.oral-topics .topic-accordion > summary:hover {
+  background: rgba(65,215,255,.075);
+}
+.oral-topics .topic-accordion > summary:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: -4px;
+}
+.oral-topics .topic-accordion .tn {
+  font-weight: 700;
+  font-size: 1.22rem;
+  line-height: 1;
+  color: var(--cyan);
+}
+.oral-topics .topic-name { min-width: 0; }
+.oral-topics .topic-chevron {
+  height: 11px;
+  width: 11px;
+  display: block;
+  justify-self: center;
+  border-bottom: 2px solid var(--cyan);
+  border-right: 2px solid var(--cyan);
+  transform: rotate(45deg) translate(-2px,-2px);
+  transition: transform .16s ease;
+}
+.oral-topics .topic-accordion[open] .topic-chevron {
+  transform: rotate(225deg) translate(-2px,-2px);
+}
+.oral-topics .topic-body {
+  padding: 10px 35px 30px 92px;
+  border-top: 1px solid rgba(169,229,244,.16);
+}
+.oral-topics .topic-body-eyebrow {
+  color: var(--yellow);
+  font-weight: 700;
+  letter-spacing: .12em;
+  font-size: .70rem;
+  line-height: 1.5;
+  margin: 16px 0 18px;
+}
+.oral-topics .topic-body p {
+  font-size: clamp(1rem,1.15vw,1.085rem);
+  line-height: 1.88;
+  color: #edf8fb;
+  max-width: 880px;
+  margin: 0 0 18px;
+}
+.oral-topics .topic-body p strong { color: #fff7c5; }
+.oral-topics .topic-action {
+  max-width: 880px;
+  margin: 22px 0 23px;
+  padding: 17px 20px;
+  border-left: 3px solid var(--green);
+  background: rgba(0,43,53,.55);
+  line-height: 1.75;
+  color: #e2f1f5;
+  font-size: .94rem;
+}
+.oral-topics .topic-action strong { color: #dbffbd; }
+.oral-topics .topic-deep-link {
+  display: inline-block;
+  line-height: 1.65;
+  font-size: .94rem;
+  font-weight: 700;
+  color: var(--yellow);
+}
+.oral-topics .topic-deep-link:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 5px;
+}
+@media(max-width:800px) {
+  .oral-topics .topic-accordion > summary {
+    padding: 17px 15px;
+    grid-template-columns: 39px minmax(0,1fr) 20px;
+    gap: 10px;
+  }
+  .oral-topics .topic-body { padding: 8px 21px 24px 64px; }
+  .oral-topics .topic-body p { font-size: 1.015rem; line-height: 1.78; }
+}
+@media(max-width:480px) {
+  .oral-topics .topic-accordion > summary { grid-template-columns: 34px minmax(0,1fr) 18px; }
+  .oral-topics .topic-accordion .tn { font-size: 1rem; }
+  .oral-topics .topic-name { font-size: .98rem; }
+  .oral-topics .topic-body { padding: 12px 15px 25px; }
+  .oral-topics .topic-body-eyebrow { margin-top: 13px; }
+  .oral-topics .topic-action { padding: 15px 16px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .oral-topics .topic-chevron { transition: none; }
+}
+@media print {
+  .oral-topics .topic-accordion {
+    display: block;
+    border: 1px solid #aaa;
+    background: #fff;
+    color: #111;
+  }
+  .oral-topics .topic-accordion > summary { color: #111; }
+  .oral-topics .topic-accordion .tn,
+  .oral-topics .topic-chevron { color: #111; border-color:#555; }
+  .oral-topics .topic-body { display: block; border-color: #ccc; }
+  .oral-topics .topic-body p, .oral-topics .topic-action,
+  .oral-topics .topic-action strong { color: #111; }
+  .oral-topics .topic-action { background: #fff; border-color: #888; }
+  .oral-topics .topic-body-eyebrow { color: #555; }
+  .oral-topics .topic-deep-link { color: #444; }
+}
