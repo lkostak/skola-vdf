@@ -1,0 +1,35 @@
+name: Maturita 03 · logické funkce
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "assets/js/logic-core.js"
+      - "mechatronika/maturita/03-zakladni-logicke-funkce/**"
+      - "tests/logic-core.test.js"
+      - ".github/workflows/mer03-tests.yml"
+  pull_request:
+    paths:
+      - "assets/js/logic-core.js"
+      - "mechatronika/maturita/03-zakladni-logicke-funkce/**"
+      - "tests/logic-core.test.js"
+      - ".github/workflows/mer03-tests.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Syntaxe interaktivních skriptů
+        run: |
+          node --check assets/js/logic-core.js
+          node --check mechatronika/maturita/03-zakladni-logicke-funkce/app.js
+      - name: Výpočty a obsahová kontrola
+        run: node --test tests/logic-core.test.js
