@@ -15,7 +15,7 @@
       var digit=DIGITS.indexOf(t[i]);
       if(digit<0||digit>=base)throw Error("Číslice "+t[i]+" není v soustavě o základu "+base+" povolena");
       n=n*base+digit;
-      if(!Number.isSafeInteger(n)||n>65535)throw Error("Výukový převodník pracuje s čísly od 0 do 65 535");
+      if(!Number.isSafeInteger(n)||n>65535)throw Error("Číslo je mimo rozsah výukového převodníku 0 až 65 535");
     }
     return n;
   }
