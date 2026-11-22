@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Podrobný interaktivní maturitní výklad: hodinový signál, asynchronní a synchronní logika, D latch, klopné obvody D a JK, časové diagramy, simulace a úlohy.">
+  <title>5B · Hodinový signál, D a JK | Mechatronika a robotika</title>
+  <link rel="stylesheet" href="../../../assets/css/site.css">
+  <link rel="stylesheet" href="../05a-pamet-rs/lesson.css">
+  <link rel="stylesheet" href="lesson.css">
+</head>
+<body class="lesson-page lesson-b">
+  <nav class="topbar" aria-label="Drobečková navigace">
+    <a href="../../../">Portál</a><span class="crumb">/</span>
+    <a href="../../">Mechatronika</a><span class="crumb">/</span>
+    <a href="../">Maturita</a><span class="crumb">/</span>
+    <a href="../05-sekvencni-logika/">Otázka 05</a><span class="crumb">/ 5B</span>
+  </nav>
+
+  <main class="content lesson-shell">
+    <header class="hero" id="uvod">
+      <div class="eyebrow">MATURITNÍ OTÁZKA 05 · INTERAKTIVNÍ VÝKLAD · ČÁST 5B</div>
+      <h1>Kdy má obvod<br>změnit stav?</h1>
+      <p class="lead">Hodinový signál, synchronizace, klopné obvody D a JK. Naučíš se číst jejich časové diagramy a předpovídat výstup dříve, než ho ukáže simulátor.</p>
+      <div class="chapter-meta">
+        <span>7 kapitol</span><span>Podrobný výklad + experimenty</span><span>ŠVP: MER3-V012 · MER3-V019</span>
+      </div>
+      <div class="scope-note" role="note">
+        <strong>Co zde zvládneš:</strong> rozlišit asynchronní a synchronní chování, vysvětlit takt a hrany, předvést funkci D a JK a samostatně vyhodnotit časový diagram. Pokud si potřebuješ připomenout, proč obvod ukládá stav, vrať se nejprve k <a href="../05a-pamet-rs/">části 5A: Paměť a RS</a>.
+      </div>
+    </header>
+
+    <nav class="chapter-nav" aria-label="Obsah části 5B">
+      <a href="#proc-hodiny">01 Proč hodiny?</a>
+      <a href="#clock">02 CLK</a>
+      <a href="#latch">03 Synchronizace</a>
+      <a href="#d">04 Klopný obvod D</a>
+      <a href="#diagram">05 Časové diagramy</a>
+      <a href="#jk">06 Klopný obvod JK</a>
+      <a href="#maturita">07 Ověření</a>
+    </nav>
+
+    <section class="section chapter" id="proc-hodiny" aria-labelledby="proc-hodiny-title">
+      <div class="kicker">01 · OD PAMĚTI K ŘÍZENÉ ZMĚNĚ STAVU</div>
+      <h2 id="proc-hodiny-title">Nestačí si pamatovat. Potřebujeme také určit kdy.</h2>
+      <div class="study-text">
+        <h3>Co přibude ke klopnému obvodu RS?</h3>
+        <p>V části 5A jsme zjistili, že sekvenční obvod si může uchovávat předchozí stav. Základní asynchronní RS mění tento stav v reakci na změnu aktivních vstupů. V jednodušším zařízení to může stačit. Ve složitějším řídicím systému ale spolupracují desítky nebo miliony paměťových prvků a každý z nich může dostávat vstupní signály v jiný okamžik.</p>
+        <p>Představ si čtyřbitový registr. Jeho jednotlivé vstupy se kvůli zpoždění elektrických cest neustálí přesně zároveň. Kdyby se jednotlivé bity zapisovaly okamžitě při každé změně vstupu, po krátkou dobu bychom mohli číst směs starých a nových hodnot. Proto chceme pro všechny prvky určit <strong>společný okamžik, kdy se nové hodnoty mají převzít</strong>.</p>
+        <p>K tomu se používá <strong>hodinový neboli taktovací signál CLK</strong>. V typickém synchronním obvodu se nový stav uloží při určené hraně signálu. Mezi těmito okamžiky si klopný obvod hodnotu Q ponechá, i když se jeho datové vstupy mezitím mění.</p>
+      </div>
+      <aside class="worked-example">
+        <h3>Příklad: Zápis do registru</h3>
+        <ol class="study-steps">
+          <li>Čtyři vstupní vodiče postupně dosáhnou hodnoty 1, 0, 1, 1. Během jejich ustalování se na některých vodičích ještě mohou objevit přechodné hodnoty.</li>
+          <li>Dokud nepřijde aktivní hodinová hrana, čtyři hranově řízené klopné obvody drží starý stav.</li>
+          <li>Na společné aktivní hraně vzorkují jednotlivé vstupy a po krátkém fyzickém zpoždění předají nové hodnoty na výstupy.</li>
+        </ol>
+        <p><strong>Smysl synchronizace:</strong> řízení změny stavu je předvídatelné. Neznamená to ovšem, že všechny fyzické změny proběhnou bez jakéhokoliv zpoždění.</p>
+      </aside>
+      <div class="lab">
+        <div class="lab-label">PŘEDPOVĚZ CHOVÁNÍ HRANOVĚ ŘÍZENÉHO OBVODU</div>
+        <h3>Vstup D se změní, CLK zůstane beze změny</h3>
+        <p>Máme klopný obvod D s Q=0. Datový vstup D se změní z 0 na 1, ale žádná aktivní hodinová hrana zatím nepřišla. Jaká bude hodnota Q?</p>
+        <div class="controls" role="group" aria-label="Předpověď výstupu Q">
+          <button type="button" class="secondary choice" data-intro-prediction="1" aria-pressed="false">Q se ihned změní na 1</button>
+          <button type="button" class="secondary choice" data-intro-prediction="0" aria-pressed="false">Q zůstane 0</button>
+        </div>
+        <p class="feedback" id="introFeedback" aria-live="polite">Vyber odpověď. Další kapitoly ti umožní výsledek ověřit.</p>
+      </div>
+    </section>
+
+    <section class="section chapter" id="clock" aria-labelledby="clock-title">
+      <div class="kicker">02 · HODINOVÝ SIGNÁL</div>
+      <h2 id="clock-title">Co je náběžná a sestupná hrana?</h2>
+      <div class="study-text">
+        <h3>Hodiny nejsou jen další datový vstup</h3>
+        <p>Hodinový signál <strong>CLK</strong> se pravidelně střídá mezi logickou nulou a jedničkou. Přechod <strong>0 → 1</strong> nazýváme <em>náběžná (vzestupná) hrana</em>, přechod <strong>1 → 0</strong> je <em>sestupná hrana</em>. Některé klopné obvody reagují na náběžnou, jiné na sestupnou hranu.</p>
+        <p><strong>Perioda T</strong> udává čas mezi odpovídajícími hranami dvou sousedních cyklů, například mezi dvěma náběžnými hranami. <strong>Frekvence f</strong> je počet period za sekundu a platí <strong>f = 1/T</strong>. Má-li například signál periodu 10 ms, jeho frekvence je 100 Hz. Doba vysoké a nízké úrovně nemusí být stejná; pro základní pochopení klopného obvodu je ale nejdůležitější okamžik aktivní hrany.</p>
+        <p>Je nutné rozlišovat tři věci: <strong>úroveň</strong> (CLK je právě 0 či 1), <strong>hranu</strong> (právě nastala změna) a <strong>periodu</strong> (celý opakující se cyklus). Řekneme-li, že je D klopný obvod řízen náběžnou hranou, neznamená to, že se Q neustále mění po celou dobu, kdy je CLK=1.</p>
+      </div>
+      <figure class="glass waveform-figure">
+        <svg viewBox="0 0 780 215" role="img" aria-labelledby="clock-fig-title clock-fig-desc">
+          <title id="clock-fig-title">Hodinový signál s náběžnými a sestupnými hranami</title>
+          <desc id="clock-fig-desc">Signál CLK střídá nulu a jedničku. Při přechodu z nuly na jedničku je náběžná hrana, při přechodu z jedničky na nulu je sestupná. Vzdálenost dvou náběžných hran je perioda T.</desc>
+          <line x1="55" y1="166" x2="739" y2="166" stroke="#567985" stroke-width="1"/>
+          <text x="8" y="74" fill="#fff" font-size="17" font-weight="700">CLK</text>
+          <text x="17" y="103" fill="#9acbd9" font-size="13">1</text>
+          <text x="17" y="161" fill="#9acbd9" font-size="13">0</text>
+          <path d="M 55 150 H 150 V 92 H 260 V 150 H 370 V 92 H 480 V 150 H 590 V 92 H 700 V 150 H 739" fill="none" stroke="#41d7ff" stroke-width="4" stroke-linejoin="round"/>
+          <line x1="150" y1="64" x2="150" y2="166" stroke="#a6ce39" stroke-width="2" stroke-dasharray="5 5"/>
+          <line x1="370" y1="64" x2="370" y2="166" stroke="#a6ce39" stroke-width="2" stroke-dasharray="5 5"/>
+          <line x1="260" y1="64" x2="260" y2="166" stroke="#ffd400" stroke-width="2" stroke-dasharray="5 5"/>
+          <text x="120" y="40" fill="#bdf29b" font-size="15">↑ náběžná</text>
+          <text x="229" y="26" fill="#ffe782" font-size="15">↓ sestupná</text>
+          <path d="M 150 183 H 370" fill="none" stroke="#fff" stroke-width="1.5"/>
+          <line x1="150" y1="176" x2="150" y2="190" stroke="#fff" stroke-width="1.5"/>
+          <line x1="370" y1="176" x2="370" y2="190" stroke="#fff" stroke-width="1.5"/>
+          <text x="259" y="206" text-anchor="middle" fill="#fff" font-size="15">perioda T</text>
+        </svg>
+        <figcaption>Zelené značky vyznačují náběžné hrany, žlutá značka jednu ze sestupných hran. Jde o názorný diagram bez měřítka.</figcaption>
+      </figure>
+      <div class="lab">
+        <div class="lab-label">KROKOVÁNÍ HODINOVÉHO SIGNÁLU</div>
+        <h3>Každým krokem vytvoř další hranu</h3>
+        <p>Výchozí CLK=0. Stiskem tlačítka postupně přepínej 0→1 a 1→0. Všimni si, že počítadlo náběžných hran se mění jen při přechodu 0→1.</p>
+        <div class="controls">
+          <button type="button" id="clockStep">Další hrana CLK</button>
+          <button type="button" class="secondary" id="clockReset">Vrátit na 0</button>
+        </div>
+        <div class="statusline">
+          <div class="status">Aktuální CLK <b id="clockLevel">0</b></div>
+          <div class="status">Poslední hrana <b id="clockEvent">ŽÁDNÁ</b></div>
+          <div class="status">Náběžné hrany <b id="clockRiseCount">0</b></div>
+        </div>
+        <p id="clockFeedback" class="feedback" aria-live="polite">Když přejde CLK z 0 na 1, nastane náběžná hrana.</p>
+      </div>
+      <aside class="worked-example">
+        <h3>Vyřešený příklad: Jak číst tři po sobě jdoucí změny?</h3>
+        <ol class="study-steps">
+          <li>Na začátku CLK=0. Přechod 0→1 je <strong>první náběžná hrana</strong>.</li>
+          <li>Další změna 1→0 je <strong>sestupná hrana</strong>. Hranově řízený obvod s aktivní náběžnou hranou tu svůj stav nepřebírá.</li>
+          <li>Třetí změna 0→1 je <strong>druhá náběžná hrana</strong>. Teprve nyní může takový obvod převzít nová data z D.</li>
+        </ol>
+        <p>Pokud místo náběžné hrany používáme sestupnou, všechno se obrátí: aktivní budou přechody 1→0. Model v kapitole D umožní toto nastavení změnit.</p>
+      </aside>
+    </section>
+
+    <section class="section chapter" id="latch" aria-labelledby="latch-title">
+      <div class="kicker">03 · ASYNCHRONNÍ A SYNCHRONNÍ CHOVÁNÍ</div>
+      <h2 id="latch-title">V čem se liší záchytný obvod a klopný obvod řízený hranou?</h2>
+      <div class="study-text">
+        <h3>Různé způsoby, jak rozhodovat o okamžiku zápisu</h3>
+        <p>U <strong>asynchronního sekvenčního obvodu</strong> nemusí změna stavu čekat na společnou hodinovou hranu. To jsme viděli u základního RS. V synchronní číslicové technice se naopak běžně pracuje s taktem, který organizuje okamžiky změn stavů.</p>
+        <p>Je ale důležité nezaměnit dva podobně vypadající prvky. <strong>D latch</strong> je <em>úrovňově citlivý</em> paměťový prvek: když je povolovací vstup EN=1, je „průhledný“ a jeho výstup Q sleduje D. Po vypnutí EN poslední hodnotu drží. <strong>D flip-flop</strong> řízený hranou naproti tomu přebírá D pouze při vybrané hodinové hraně a jinak uchovává stav.</p>
+        <p>V českých učebnicích se občas slovem „klopný obvod“ označuje širší rodina paměťových prvků. Proto vždy uvádíme, zda mluvíme o <em>úrovňově řízeném latchi</em>, nebo o <em>hranově řízeném flip-flopu</em>. Také synchronní klopný obvod může mít samostatný <strong>asynchronní RESET</strong>, který jej vynuluje i bez čekání na CLK. V našem základním výukovém modelu takový vstup zatím nezahrnujeme.</p>
+      </div>
+      <div class="concept">
+        <article class="glass">
+          <h3>D latch · citlivý na úroveň EN</h3>
+          <p>Při EN=1 výstup Q sleduje změny D. Při EN=0 se uchovává poslední hodnota.</p>
+          <p class="formula formula-small">EN=1 → Q = D</p>
+        </article>
+        <article class="glass">
+          <h3>D flip-flop · citlivý na hranu CLK</h3>
+          <p>Data se převezmou jen při vybrané hraně CLK. Změna D mezi hranami Q nezmění.</p>
+          <p class="formula formula-small">↑CLK → Qⁿ⁺¹ = D</p>
+        </article>
+      </div>
+      <div class="lab">
+        <div class="lab-label">INTERAKTIVNÍ D LATCH · ÚROVŇOVĚ ŘÍZENÝ</div>
+        <h3>Zapni EN a měň D</h3>
+        <p>Zkus nejprve EN=0 a několikrát změň D. Potom EN zapni, změň D a nakonec EN vypni. Bude se Q měnit při každém kroku?</p>
+        <div class="controls">
+          <button type="button" class="secondary state-toggle" id="latchDButton" aria-pressed="false">Datový vstup D = <span id="latchD">0</span></button>
+          <button type="button" class="secondary state-toggle" id="latchENButton" aria-pressed="false">Povolení EN = <span id="latchEN">0</span></button>
+          <button type="button" class="secondary" id="latchReset">Inicializovat</button>
+        </div>
+        <div class="statusline">
+          <div class="status">Vstup D <b id="latchDStatus">0</b></div>
+          <div class="status">EN <b id="latchENStatus">0</b></div>
+          <div class="status">Výstup Q <b id="latchQ">0</b></div>
+        </div>
+        <p id="latchFeedback" class="feedback" aria-live="polite">EN=0, obvod je uzavřený a uchovává Q=0.</p>
+      </div>
+      <aside class="worked-example">
+        <h3>Vyřešený příklad: Stejné D, rozdílná reakce Q</h3>
+        <ol class="study-steps">
+          <li>Latch má Q=0 a EN=0. Změníme D na 1. Q stále zůstává 0, protože zápis není povolen.</li>
+          <li>Zapneme EN=1. Vstup D=1 se nyní promítne do Q, tedy Q=1.</li>
+          <li>Při EN=1 přepneme D na 0. Q se změní na 0 hned, bez vyčkávání na další hranu.</li>
+          <li>Vypneme EN=0 a D znovu změníme na 1. Q zůstane 0, protože latch drží poslední stav.</li>
+        </ol>
+        <p>Právě krok 3 odlišuje tento latch od hranově řízeného D flip-flopu. V následující kapitole budeš moci oba přístupy přímo porovnat.</p>
+      </aside>
+    </section>
+
+    <section class="section chapter" id="d" aria-labelledby="d-title">
+      <div class="kicker">04 · KLOPNÝ OBVOD D</div>
+      <h2 id="d-title">Jak uložit hodnotu právě při zvolené hraně?</h2>
+      <div class="study-text">
+        <h3>Jeden datový vstup, jeden uložený bit</h3>
+        <p>Hranově řízený <strong>D flip-flop</strong> má vstup D (data), hodinový vstup CLK a výstup Q. Jeho základní funkce je jednoduchá: <strong>při aktivní hraně CLK převezme hodnotu D na Q</strong>. Až do další aktivní hrany si poslední uloženou hodnotu pamatuje, i když se D mezitím několikrát změní.</p>
+        <p>Představ si, že D=1, ale CLK je trvale na nule. U flip-flopu s aktivní náběžnou hranou se Q samo od sebe nezmění. Až přijde přechod 0→1, obvod uloží D=1. Změníme-li potom D=0 v době, kdy CLK=1, Q stále zůstane 1. Teprve při další <em>náběžné</em> hraně se uloží nová nula.</p>
+        <p>Pro ideální model platí <strong>Qⁿ⁺¹ = D</strong> při aktivní hodinové hraně. Mimo ni platí <strong>Qⁿ⁺¹ = Qⁿ</strong>. D flip-flop je základním stavebním prvkem paměťových registrů, synchronizačních řetězců a stavových automatů.</p>
+      </div>
+      <div class="glass">
+        <h3>Stavové pravidlo D flip-flopu</h3>
+        <div class="table-scroll">
+          <table>
+            <caption>Ideální D flip-flop bez asynchronních vstupů SET/RESET</caption>
+            <thead><tr><th>Událost CLK</th><th>D</th><th>Qⁿ⁺¹</th><th>Význam</th></tr></thead>
+            <tbody>
+              <tr><td>aktivní hrana</td><td>0</td><td>0</td><td>Uloží nulu</td></tr>
+              <tr><td>aktivní hrana</td><td>1</td><td>1</td><td>Uloží jedničku</td></tr>
+              <tr><td>bez aktivní hrany</td><td>0 nebo 1</td><td>Qⁿ</td><td>Pamatuje předchozí stav</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="lab">
+        <div class="lab-label">PŘEDPOVĚZ → VYTVOR HRANU → ZKONTROLUJ</div>
+        <h3>Experiment: D flip-flop řízený hodinovou hranou</h3>
+        <p>Nejprve nastav D a vyber, jaké Q očekáváš po <strong>následujícím přechodu CLK</strong>. Potom spusť krok. Všimni si, že ne každý přechod hodin je pro zvolený typ obvodu aktivní.</p>
+        <div class="controls">
+          <button type="button" class="secondary state-toggle" id="dToggle" aria-pressed="false">Změnit D (nyní <span id="dDButtonValue">0</span>)</button>
+          <label class="control-label" for="dEdgeSelect">Aktivní hrana
+            <select id="dEdgeSelect">
+              <option value="rising">Náběžná ↑ (0→1)</option>
+              <option value="falling">Sestupná ↓ (1→0)</option>
+            </select>
+          </label>
+          <label class="control-label" for="dPredict">Předpověď Q po kroku
+            <select id="dPredict">
+              <option value="">Nejprve zvol Q</option>
+              <option value="0">Q = 0</option>
+              <option value="1">Q = 1</option>
+            </select>
+          </label>
+        </div>
+        <div class="controls">
+          <button type="button" id="dStep" disabled>Provést další přechod CLK</button>
+          <button type="button" class="secondary" id="dReset">Začít znovu</button>
+        </div>
+        <div class="statusline">
+          <div class="status">D <b id="dInput">0</b></div>
+          <div class="status">CLK <b id="dClock">0</b></div>
+          <div class="status">Q <b id="dQ">0</b></div>
+        </div>
+        <p id="dFeedback" class="feedback" aria-live="polite">Výchozí Q=0, CLK=0. Změň D a předpověz Q po dalším přechodu hodin.</p>
+        <div class="history-box"><h4>Historie kroků</h4><ol id="dHistory" class="event-history" aria-label="Historie změn D flip-flopu"></ol></div>
+      </div>
+      <aside class="worked-example">
+        <h3>Vyřešený příklad: D se změní, ale Q čeká</h3>
+        <ol class="study-steps">
+          <li>Na počátku je Q=0 a CLK=0. Změníme vstup D na 1; bez hrany se Q nemění.</li>
+          <li>CLK přejde z 0 na 1. Nastala aktivní náběžná hrana a uloží se D=1, takže nové Q=1.</li>
+          <li>Vstup D změníme na 0, zatímco CLK=1. Q stále drží 1, protože nenastala další aktivní hrana.</li>
+          <li>CLK klesne na 0. Při sestupné hraně náš náběžně řízený obvod Q nezmění.</li>
+          <li>Při dalším přechodu CLK z 0 na 1 se uloží aktuální D=0 a Q se změní na 0.</li>
+        </ol>
+        <p><strong>Rozšíření:</strong> ve skutečném obvodu musí být D stabilní určitou dobu před a po aktivní hraně, označovanou <em>setup time</em> a <em>hold time</em>. Porušení těchto požadavků může vést k neurčitému průběhu (metastabilitě). Zde pracujeme s ideálním modelem.</p>
+      </aside>
+    </section>
+
+    <section class="section chapter" id="diagram" aria-labelledby="diagram-title">
+      <div class="kicker">05 · ČASOVÉ DIAGRAMY</div>
+      <h2 id="diagram-title">Dokážeš nakreslit výstup Q podle průběhů CLK a D?</h2>
+      <div class="study-text">
+        <h3>Časový diagram je příběh obvodu zapsaný na vodorovné ose</h3>
+        <p>Časový diagram ukazuje, kdy je konkrétní signál roven 0 nebo 1. Vodorovně postupuje čas, svisle přepínáme mezi úrovněmi. Pro hranově řízený D flip-flop čteme nejprve hodinový signál a označíme všechny <strong>aktivní hrany</strong>. Potom se v každé takové hraně podíváme na hodnotu D. Tu zapíšeme na Q a mezi dalšími aktivními hranami vedeme Q beze změny.</p>
+        <p>Nejčastější studentská chyba je sledovat všechny změny D a podle nich ihned kreslit také Q. To by odpovídalo průhlednému latchi při aktivním povolení, nikoliv hranově řízenému flip-flopu. Druhou častou chybou je vzorkovat D i při opačné hodinové hraně. Musíme proto vždy znát <strong>polaritu aktivní hrany a počáteční stav</strong>.</p>
+        <p>V následujícím trenažéru máme Q na začátku rovno 0 a používáme pouze <strong>náběžné hrany</strong>. Průběhy CLK a D jsou dané. Doplň hodnotu Q po každém kroku, potom spusť kontrolu. Výslednou stopu Q odhalíme teprve po vyhodnocení, abys úlohu opravdu řešil.</p>
+      </div>
+      <div class="lab">
+        <div class="lab-label">SAMOSTATNÝ TRENAŽÉR · ČASOVÝ DIAGRAM D</div>
+        <h3>Nejdřív sestav Q, potom odkryj řešení</h3>
+        <div class="wave-chart-holder">
+          <svg id="timingChart" viewBox="0 0 900 320" role="img" aria-label="Časový diagram pro CLK a D, výstup Q se zobrazí po vyhodnocení"></svg>
+        </div>
+        <div class="table-scroll">
+          <table class="timing-table">
+            <caption>Každý sloupec odpovídá kroku ve výše uvedeném diagramu. Počáteční stav Q=0, aktivní je náběžná hrana.</caption>
+            <thead><tr><th>Krok</th><th>CLK</th><th>D</th><th>Událost CLK</th><th>Tvoje Q po kroku</th><th>Kontrola</th></tr></thead>
+            <tbody id="timingTableBody"></tbody>
+          </table>
+        </div>
+        <div class="controls">
+          <button type="button" id="timingCheck">Vyhodnotit časový diagram</button>
+          <button type="button" class="secondary" id="timingReset">Zkusit znovu</button>
+        </div>
+        <p class="feedback" id="timingFeedback" aria-live="polite">Vyplň všechny hodnoty Q v tabulce. Diagram zatím ukazuje jen CLK a D.</p>
+      </div>
+      <aside class="worked-example">
+        <h3>Postup řešení bez nápovědy</h3>
+        <ol class="study-steps">
+          <li><strong>Zapiš počáteční Q:</strong> pokud zadání říká Q=0, vychází první hodnota z této nuly, nikoliv automaticky z D.</li>
+          <li><strong>Označ náběžné hrany:</strong> sleduj pouze přechody CLK z 0 na 1.</li>
+          <li><strong>V aktivní hraně odečti D:</strong> pokud je v tom okamžiku D=1, zapiš od dané hrany Q=1; při D=0 zapiš Q=0.</li>
+          <li><strong>Mezi hranami drž Q:</strong> ani změna D, ani sestupná hrana CLK Q u tohoto modelu nezmění.</li>
+          <li><strong>Zkontroluj:</strong> Q může měnit hodnotu jen na náběžných hranách; i při aktivní hraně ale může zůstat stejné, pokud D odpovídá již uloženému stavu.</li>
+        </ol>
+        <p>Pro reálné obvody počítej ještě s konečným zpožděním změny Q po hraně CLK. V tomto maturitním modelu jej pro přehlednost zanedbáváme.</p>
+      </aside>
+    </section>
+
+    <section class="section chapter" id="jk" aria-labelledby="jk-title">
+      <div class="kicker">06 · KLOPNÝ OBVOD JK</div>
+      <h2 id="jk-title">Jak obvod na každé hodinové hraně překlápí uložený stav?</h2>
+      <div class="study-text">
+        <h3>Čtyři možnosti, žádná zakázaná kombinace jako u základního RS</h3>
+        <p>Klopný obvod <strong>JK</strong> má dva logické vstupy J a K, hodinový vstup CLK a uložený stav Q. Podobně jako RS umí stav nastavit a vynulovat. Zásadní rozdíl je ve vstupní kombinaci <strong>J=K=1</strong>: místo zakázaného stavu dochází při příslušné aktivní hraně k <strong>překlopení</strong> neboli <em>toggle</em>. Pokud je Q=0, změní se na 1; pokud Q=1, změní se na 0.</p>
+        <p>Při <strong>J=K=0</strong> se nic nemění a obvod pamatuje. Při <strong>J=1,K=0</strong> nastává SET, při <strong>J=0,K=1</strong> RESET. V našem trenažéru použijeme moderní idealizovaný JK flip-flop, který reaguje na <strong>náběžnou hranu</strong>. Žádný ze vstupních povelů mezi hranami sám Q nemění.</p>
+        <p>JK je dobrý most k dalšímu maturitnímu tématu. Necháme-li J=K=1, obvod se může při každé aktivní hraně střídavě překlápět. To je jeden ze základních principů čítačů a děličů frekvence, které podrobně rozebereme v otázce 6.</p>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <caption>Stavová tabulka hranově řízeného JK při aktivní hodinové hraně</caption>
+          <thead><tr><th>J</th><th>K</th><th>Qⁿ⁺¹</th><th>Význam</th></tr></thead>
+          <tbody>
+            <tr><td>0</td><td>0</td><td>Qⁿ</td><td>Uchování stavu</td></tr>
+            <tr><td>0</td><td>1</td><td>0</td><td>RESET</td></tr>
+            <tr><td>1</td><td>0</td><td>1</td><td>SET</td></tr>
+            <tr><td>1</td><td>1</td><td>¬Qⁿ</td><td>Překlopení Q při aktivní hraně</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="lab">
+        <div class="lab-label">INTERAKTIVNÍ JK · PREDIKCE PŘED HRANOU</div>
+        <h3>Vyzkoušej všechny kombinace J a K</h3>
+        <p>Nastav J a K. Zkus zejména J=K=1 a několik hodinových kroků. Při každém kroku vyber očekávané Q. Všimni si, že <strong>překlopení probíhá na náběžné hraně</strong>, nikoliv při sestupné.</p>
+        <div class="controls">
+          <button type="button" class="secondary state-toggle" id="jkJButton" aria-pressed="false">J = <span id="jkJButtonValue">0</span></button>
+          <button type="button" class="secondary state-toggle" id="jkKButton" aria-pressed="false">K = <span id="jkKButtonValue">0</span></button>
+          <label class="control-label" for="jkPredict">Předpověď Q po kroku
+            <select id="jkPredict">
+              <option value="">Nejprve zvol Q</option>
+              <option value="0">Q = 0</option>
+              <option value="1">Q = 1</option>
+            </select>
+          </label>
+        </div>
+        <div class="controls">
+          <button type="button" id="jkStep" disabled>Provést další přechod CLK</button>
+          <button type="button" class="secondary" id="jkReset">Začít znovu</button>
+        </div>
+        <div class="statusline">
+          <div class="status">J / K <b id="jkInputs">0 / 0</b></div>
+          <div class="status">CLK <b id="jkClock">0</b></div>
+          <div class="status">Q <b id="jkQ">0</b></div>
+        </div>
+        <p class="feedback" id="jkFeedback" aria-live="polite">Začni kombinací J=0,K=0. Potom vyzkoušej SET, RESET a J=K=1.</p>
+        <div class="history-box"><h4>Historie kroků</h4><ol id="jkHistory" class="event-history" aria-label="Historie změn JK klopného obvodu"></ol></div>
+      </div>
+      <aside class="worked-example">
+        <h3>Vyřešený příklad: JK jako dělič dvěma</h3>
+        <ol class="study-steps">
+          <li>Nastav J=1 a K=1, počáteční Q=0 a CLK=0.</li>
+          <li>První náběžná hrana uložený stav převrátí: 0→1.</li>
+          <li>Na sestupné hraně se u našeho modelu nic nestane: Q zůstane 1.</li>
+          <li>Druhá náběžná hrana převrátí stav zpět: 1→0.</li>
+          <li>Po třetí náběžné hraně bude Q znovu 1. Jeden úplný cyklus výstupního signálu Q tedy trvá dvě periody vstupního CLK.</li>
+        </ol>
+        <p><strong>Hlavní poučení:</strong> v režimu J=K=1 se Q překlápí na každé aktivní hraně. To je jeden ze způsobů, jak při vhodných časových podmínkách získat výstupní frekvenci přibližně poloviční vůči CLK. Podrobný návrh čítačů necháme otázce 6.</p>
+      </aside>
+    </section>
+
+    <section class="section chapter" id="maturita" aria-labelledby="maturita-title">
+      <div class="kicker">07 · PROCVIČENÍ A ÚSTNÍ MATURITA</div>
+      <h2 id="maturita-title">Umíš vysvětlit, kdy a proč se Q změní?</h2>
+      <div class="study-text">
+        <h3>Tři otázky, které si před zkouškou musíš položit</h3>
+        <p>U každého sekvenčního obvodu začni tím, <strong>jaký má právě uložený stav Q</strong>. Potom zjisti, <strong>které vstupy jsou aktivní</strong>. Nakonec určuj, <strong>kdy je povolena změna stavu</strong>. Tento třetí krok je u synchronní logiky zásadní, protože samotná změna D, J nebo K ještě nemusí změnit Q.</p>
+        <p>Pro D se na aktivní hraně zapisuje D. Pro JK vyhodnotíš čtyři kombinace vstupů a v případě 11 převrátíš staré Q. Při práci s časovým diagramem vždy označ aktivní hrany a mezi nimi drž poslední výstupní hodnotu.</p>
+        <p>Na závěr si zkus odpovědět na několik otázek, jejichž nesprávné možnosti odpovídají typickým omylům. Cílem není nasbírat body klikáním, ale dokázat <strong>zdůvodnit každou změnu či uchování stavu</strong>.</p>
+      </div>
+      <div class="glass">
+        <h3>RS, D a JK: jaký je mezi nimi rozdíl?</h3>
+        <div class="table-scroll">
+          <table class="compare-table">
+            <thead><tr><th>Prvek</th><th>Co určuje nový stav</th><th>Kdy se mění Q</th><th>Typické použití</th></tr></thead>
+            <tbody>
+              <tr><td>Základní NOR-RS</td><td>S, R a předchozí Q</td><td>V reakci na platné změny vstupů, bez společného CLK</td><td>Jednoduchá paměť stavu</td></tr>
+              <tr><td>D latch</td><td>D a EN</td><td>Při EN=1 sleduje Q vstup D; při EN=0 drží</td><td>Úrovňově řízené zachycení dat</td></tr>
+              <tr><td>D flip-flop</td><td>D v aktivní hodinové hraně</td><td>Při zvolené hraně CLK</td><td>Synchronní registr, uložený bit</td></tr>
+              <tr><td>JK flip-flop</td><td>J, K a předchozí Q</td><td>Při zvolené hraně CLK</td><td>Paměť, překlápění, základ čítače</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <form id="quizForm" class="quiz-form">
+        <fieldset>
+          <legend>1. Náběžně řízený D flip-flop má Q=0 a CLK=1. Datový vstup D se nyní změní na 1. Co nastane?</legend>
+          <label><input type="radio" name="quiz1" value="0"> Q se hned změní na 1, protože D=1.</label>
+          <label><input type="radio" name="quiz1" value="1"> Q zůstane 0 až do další náběžné hrany.</label>
+          <label><input type="radio" name="quiz1" value="2"> Q se změní na 1 při nejbližší sestupné hraně.</label>
+          <p class="quiz-feedback" id="quizFeedback1" aria-live="polite"></p>
+        </fieldset>
+        <fieldset>
+          <legend>2. Jak se chová D latch, když EN=1?</legend>
+          <label><input type="radio" name="quiz2" value="0"> Výstup Q sleduje D v době aktivního EN.</label>
+          <label><input type="radio" name="quiz2" value="1"> D se zapisuje výhradně při náběžné hraně EN.</label>
+          <label><input type="radio" name="quiz2" value="2"> Q drží stav bez ohledu na D.</label>
+          <p class="quiz-feedback" id="quizFeedback2" aria-live="polite"></p>
+        </fieldset>
+        <fieldset>
+          <legend>3. JK s Q=1 má J=K=1. Na vstup přijde aktivní náběžná hrana. Jaký bude nový stav?</legend>
+          <label><input type="radio" name="quiz3" value="0"> Q=1, protože SET převažuje.</label>
+          <label><input type="radio" name="quiz3" value="1"> Stav je zakázaný jako u základního NOR-RS.</label>
+          <label><input type="radio" name="quiz3" value="2"> Q=0, protože JK v kombinaci 11 překlápí předchozí stav.</label>
+          <p class="quiz-feedback" id="quizFeedback3" aria-live="polite"></p>
+        </fieldset>
+        <fieldset>
+          <legend>4. U D flip-flopu se sestupnou aktivní hranou měníme D mezi sestupnými hranami. Kdy Q převezme nové D?</legend>
+          <label><input type="radio" name="quiz4" value="0"> V okamžiku změny D.</label>
+          <label><input type="radio" name="quiz4" value="1"> Při další sestupné hraně CLK, pokud jsou splněny časové požadavky.</label>
+          <label><input type="radio" name="quiz4" value="2"> Výhradně při náběžné hraně CLK.</label>
+          <p class="quiz-feedback" id="quizFeedback4" aria-live="polite"></p>
+        </fieldset>
+        <div class="controls">
+          <button type="submit">Vyhodnotit odpovědi</button>
+          <button type="reset" class="secondary">Smazat odpovědi</button>
+        </div>
+        <p id="quizSummary" class="feedback" aria-live="polite"></p>
+      </form>
+      <aside class="worked-example">
+        <h3>Jak může vypadat tvoje ústní odpověď</h3>
+        <ol class="study-steps">
+          <li><strong>Navaz na 5A:</strong> vysvětli, že sekvenční obvod má vnitřní stav Q a že samotné vstupy k určení jeho chování nestačí.</li>
+          <li><strong>Vysvětli časování:</strong> ukaž na schématu CLK, aktivní úroveň a rozdíl náběžné a sestupné hrany.</li>
+          <li><strong>Porovnej latch a flip-flop:</strong> EN může umožnit průběžné sledování D, zatímco hranově řízený D přebírá data při hodinové události.</li>
+          <li><strong>Nakresli D a časový diagram:</strong> uveď, že při aktivní hraně platí Qⁿ⁺¹=D a mimo ni Q zůstává zachováno.</li>
+          <li><strong>Doplň JK:</strong> zapiš čtyři kombinace a vysvětli, proč J=K=1 umožňuje překlápění.</li>
+          <li><strong>Uzavři praxí:</strong> popiš, proč se tyto prvky používají jako základ registrů, čítačů a řídicích automatů.</li>
+        </ol>
+      </aside>
+      <div class="glass">
+        <h3>Vyzkoušej maturitu nanečisto</h3>
+        <p>Bez nápovědy vysvětli: <strong>Máme D flip-flop s Q=1 a vstupem D=0. Co nastane na sestupné a co na následující náběžné hraně? Jak by se odpověď lišila u JK s J=K=1?</strong></p>
+        <details class="sample-answer">
+          <summary>Odkrýt vzorovou úvahu</summary>
+          <p>Pro D řízený náběžnou hranou se na sestupné hraně nic nezapíše, takže Q=1. Na následující náběžné hraně se uloží D=0 a Q přejde na 0. U JK s J=K=1 dojde na každé aktivní náběžné hraně k překlopení předchozího Q. Pokud začínáme Q=1, po první aktivní hraně bude Q=0, po další Q=1. Rozhodující je vždy to, na jakou hranu je konkrétní prvek citlivý.</p>
+        </details>
+      </div>
+      <div class="scope-note">
+        <strong>Kam dál:</strong> část 5A a tato část 5B společně tvoří interaktivní výklad paměťových prvků. Podrobným návrhem registrů, posuvných registrů a čítačů se budeme zabývat až v maturitní otázce 6. Celé téma 5 ještě čeká na společný studijní dokument, pracovní list a závěrečnou odbornou revizi.
+      </div>
+      <nav class="lesson-bottom-nav" aria-label="Další studium">
+        <a href="../05a-pamet-rs/">← Zopakovat paměť a RS (5A)</a>
+        <a href="../05-sekvencni-logika/">Přehled otázky 05 →</a>
+      </nav>
+    </section>
+
+    <footer class="footer">VOŠ, SPŠ a SOŠ Varnsdorf · Interaktivní výukový prototyp 5B · Součást maturitní otázky 05</footer>
+  </main>
+  <script src="../../../assets/js/clock-core.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
