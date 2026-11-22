@@ -39,10 +39,10 @@
 | Sdílené logické jádro | `assets/js/number-core.js` | Převody, rozklady, rozsahy, dvojkový doplněk, bitové operace a osmibitové přetečení | IMPLEMENTOVÁNO |
 | Výuková interaktivita | `01a-ciselne-soustavy/app.js`, `01b-bity-rozsahy/app.js` | Převodník, stav bitového registru, šířka a rozsah, sčítání, signed a kvíz | IMPLEMENTOVÁNO |
 | Styling | `01-ciselne-soustavy/number.css` | Vzhled kompatibilní s 5A a souhrnnou osnovou 05 | IMPLEMENTOVÁNO |
-| CI testy | `tests/number-core.test.js`, `.github/workflows/mer01-tests.yml` | Jednotkové testy matematických modelů a syntaktická kontrola | IMPLEMENTOVÁNO, VYŽADUJE ZELENÝ CI |
+| CI testy | `tests/number-core.test.js`, `.github/workflows/mer01-tests.yml` | Jednotkové testy matematických modelů a syntaktická kontrola | IMPLEMENTOVÁNO; CI PASS [běh 45050299523](https://github.com/lkostak/skola-vdf/actions/runs/45050299523) |
 | Studijní PDF | Konverze výše uvedených 29stránkových skript | 17 kapitol, modelové odpovědi, 48 procvičovacích úloh a jejich řešení | PŘIPRAVENO K REVIZI, NEZVEŘEJNĚNO |
-| Samostatný pracovní list | Zatím nevytvořen | Vhodně vybraný soubor úloh na 45–90 minut, místo na výpočty, hodnocení | PLÁNOVÁNO |
-| Neveřejný klíč pro učitele | Zatím nevytvořen | Kompletní řešení a bodování mimo public GitHub | PLÁNOVÁNO |
+| Samostatný pracovní list | Mimo GitHub, pracovní PDF | 6 stran A4, 13 úloh, prostor na výpočty a kreslení, celkem 100 bodů | PŘIPRAVENO K REVIZI, NEZVEŘEJNĚNO |
+| Neveřejný klíč pro učitele | Mimo GitHub, pracovní PDF | 4 strany A4, komentovaná řešení a rozpis 100 bodů, bez zveřejnění studentům | PŘIPRAVENO K REVIZI, NEZVEŘEJNĚNO |
 
 ## 4. Požadavky na kvalitu
 
@@ -62,8 +62,19 @@
 - [ ] Učitel projde odborný obsah 1A/1B a 29stránková skripta; opravy se musí zanést do všech podob materiálu.
 - [ ] Ručně zkontrolovat matematiku interaktivních příkladů, chybové stavy, klávesnici, mobil a projekci.
 - [ ] Nezávisle potvrdit úplné oficiální schválené zadání, podbody, ŠVP a vysvětlit případné rozpory v rozsahu.
-- [ ] Vytvořit **samostatný pracovní list pro studenty** a **neveřejný klíč pro učitele** podle skutečně zvoleného rozsahu učiva.
+- [x] Vytvořit pracovní list student (6 stran / 13 úloh / 100 b) a oddělený klíč učitele (4 strany). **Oba zatím pouze ke kontrole, NEVEŘEJNÉ.**
 - [ ] Připojit ke studentskému webu **až schválené** PDF s výkladem a pracovní listem, nikoli učitelský klíč.
 - [ ] Vyplnit `REVIEW.md`, potvrdit všechny BLOKER položky a zaznamenat konečné schválení.
 
 **Dosavadní status není HOTOVO.** Přesná maturitní terminologie, rozsah rozšíření i finální PDF čekají na revizi.
+
+## 6. Výsledky průběžné technické kontroly
+
+- [x] 2026-11-22: GitHub Actions `Maturita 01 · převody a bitové operace` [PASS](https://github.com/lkostak/skola-vdf/actions/runs/45050299523). Testy obsahují různá zadání pro 2/8/10/16, chybné číslice, rozklad na váhy, rozsahy 4/8/10/12/16 bitů, signed hodnoty, masky a přetečení, a přítomnost ústní osnovy i obou lekcí.
+- [x] 2026-11-22: pracovní PDF převedeno z dřívějších 29stránkových skript, prověřen počet stran a jejich viditelné vykreslení; schéma původního dokumentu zachováno. **Jde o dříve vytvořený text, nikoliv novou autorskou redakci.**
+- [x] 2026-11-22: vytvořen samostatný šestistránkový pracovní list (13 úloh, 100 bodů) a čtyřstránkový neveřejný klíč; renderovány všechny strany a vizuálně zkontrolována sazba.
+- [ ] Zbývá osobní kontrola na konkrétních mobilních zařízeních a projektoru.
+- [ ] Zbývá obsahová revize 29stránkového podkladu, úloh a interpretací ADC před zveřejněním.
+- [ ] Zbývá kontrola oproti schválenému oficiálnímu úplnému maturitnímu zadání.
+
+**Učitelský klíč v žádném případě nepublikovat do veřejného repozitáře.**
