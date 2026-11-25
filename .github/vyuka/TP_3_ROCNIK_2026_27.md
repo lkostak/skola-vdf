@@ -1,74 +1,83 @@
-# Mechatronika a robotika · 3. ročník · 32 témat pro školní rok 2026/27
+# Mechatronika a robotika · 3. ročník · 32 tříhodinovek
 
-**Status:** nové pedagogické rozvržení k revizi, nevydává se za schválený tematický plán ani již odučené učivo.
+**Verze:** 25. listopadu 2026 · schválené rozvržení pro tvorbu výukových materiálů. **Obsah lekcí je stále převážně pouze osnova; nejde o potvrzení jejich odučení nebo úředně schválený školní tematický plán.**
 
-**Závazné obsahové vodítko:** [ŠVP Elektrotechnika – Mechatronika 2024](https://www.skolavdf.cz/file/1942y5b91jst1qyxttb3iglh5n47w2by/svp-ele-2024.pdf?v=251017013451), předmět Mechatronika a robotika, 3. ročník, s. 475–479; [doslovný registr 47 výstupů a 14 bloků učiva](../kurikulum/VYSTUPY_3_ROCNIK.md).
+## Princip
 
-**Inspirace a kontrolní podklad:** tematický plán Radka Boháče 2025/26 (`TP-MER4.pdf`, uvnitř 3. ročník, 15 tematických okruhů, 96 hodin); doslovný starší [převod 15 okruhů do 32 tříhodinovek](ARCHIV_TP_3_2025_26_PREVOD.md) zůstává zachovaný. **Nepřebíráme jeho dílčí hodinové kvóty jako závaznou organizaci hodin:** letos máme 32 nově formulovaných, jednoznačných témat po 3 hodinách. Neměníme celkovou hodinovou dotaci 96 hodin.
+Pět logicky uspořádaných oblastí vytváří cestu: **mechatronický systém jako celek → snímače a pohony → logika → mikroprocesor a program → regulace.**
 
-**Studentský web:** [Přehled 32 témat](../../mechatronika/vyuka/3-rocnik/index.html). Na studentské stránce se **nesmí zobrazovat** metodické komentáře, původní čísla výstupů ŠVP, poznámky o revizích, pedagogické polemiky ani nečitelná tabulka původních hodin. Student vidí jen 5 skupin, 32 témat a stručný popis.
+- **Obsahové východisko:** školní [ŠVP Elektrotechnika – Mechatronika 2024](https://www.skolavdf.cz/file/1942y5b91jst1qyxttb3iglh5n47w2by/svp-ele-2024.pdf?v=251017013451), Mechatronika a robotika, 3. ročník, 96 hodin, PDF s. 475–479.
+- **Kontrolní vodítko:** tematický plán Radka Boháče 2025/26, `TP-MER4.pdf` (uvnitř 3. ročník), 15 okruhů, 96 hodin. Zachován [archiv staršího doslovného převodu](ARCHIV_TP_3_2025_26_PREVOD.md). **Dílčí hodinové kvóty loňského plánu nejsou pro nové členění závazné.**
+- **Pedagogická inspirace:** [KYME Michala Bubílka](https://bubilem.github.io/sps-vyukove-materialy/KYME/index.html). Skutečné mechatronické aplikace, robotika, názorný výklad a navazující technické principy. Jeho jiné předmětové zaměření nepřebíráme mechanicky.
+- **Studentský rozcestník:** [32 témat na školním webu](../../mechatronika/vyuka/3-rocnik/index.html). Zobrazuje **pouze názvy a stručný obsah**, bez metodických komentářů a čísel ŠVP.
 
-## 1. Přehled pěti celků
+## Tematické oblasti
 
-| Celek | Název | Témata | Tříhodinovek | Hodin |
-|---|---|---|---:|---:|
-| A | Automatizace a technické základy | 01–05 | 5 | 15 |
-| B | Číslicová technika a mikropočítače | 06–13 | 8 | 24 |
-| C | Programování řídicích systémů | 14–21 | 8 | 24 |
-| D | Akční členy a praktické řízení | 22–24 | 3 | 9 |
-| E | Regulace a číslicové řízení | 25–32 | 8 | 24 |
-| **Celkem** | | **01–32** | **32** | **96** |
+| Oblast | Tříhodinovky | Rozsah |
+|---|---|---:|
+| **A. Mechatronika a robotika v praxi** | 01–02 | 6 h |
+| **B. Snímače, pohony a řídicí obvody** | 03–06 | 12 h |
+| **C. Číslicová technika a logické řízení** | 07–10 | 12 h |
+| **D. Mikroprocesory a programování** | 11–23 | 39 h |
+| **E. Regulace a inteligentní řízení** | 24–32 | 27 h |
+| **Celkem** | **01–32** | **96 h** |
 
-## 2. Přehled všech 32 témat
+## Všech 32 témat
 
-| Téma | Skupina | Název | Stručný obsah | ŠVP učivo (pracovní) | ŠVP výstupy (pracovní) |
-|---:|:---:|---|---|---|---|
-| 01 | A | Co je automatizace? | Proč automatizujeme, co znamená ovládání a regulace a kdy má automatizace smysl. | `MER3-U01` | `MER3-V001`, `MER3-V002`, `MER3-V003`, `MER3-V004` |
-| 02 | A | Elektrické, pneumatické a hydraulické systémy | Prostředky automatizace, používaná média a základní schematické značky. | `MER3-U02` | `MER3-V005` |
-| 03 | A | Snímače a měření veličin | Jak měříme teplotu, tlak, polohu, otáčky a další fyzikální veličiny. | `MER3-U02` | `MER3-V006` |
-| 04 | A | Signály, zesilovače a napájení | Cesta informace ze snímače do řídicí jednotky a zdroje energie pro systém. | `MER3-U02` | `MER3-V007` |
-| 05 | A | Kontaktní a logická schémata | Kontakty, cívky, integrovaná logika a schémata ovládacích obvodů. | `MER3-U03` | `MER3-V008`, `MER3-V009`, `MER3-V010` |
-| 06 | B | Dvojková soustava a logické úrovně | Bity, nuly a jedničky, dvojková soustava a zobrazení informace v počítači. | `MER3-U04` | `MER3-V011` |
-| 07 | B | Booleova algebra a logická hradla | Operace AND, OR, NOT, další hradla a pravdivostní tabulky. | `MER3-U04` | `MER3-V011`, `MER3-V012` |
-| 08 | B | Kombinační logické obvody | Obvody, jejichž výstup závisí na aktuálních vstupech; sčítačka a dekodér. | `MER3-U04` | `MER3-V012` |
-| 09 | B | Sekvenční logické obvody | Obvody, které si pamatují stav; zpětná vazba, RS a hodinový signál. | `MER3-U04` | `MER3-V012` |
-| 10 | B | Paměti, registry a čítače | Uložení informací v RAM/ROM, registr jako skupina bitů a počítání impulsů. | `MER3-U04`, `MER3-U06` | `MER3-V013`, `MER3-V018` |
-| 11 | B | Mikroprocesory a mikrořadiče | Vývoj a typy procesorových systémů, základní rozdíly a použití. | `MER3-U04`, `MER3-U05` | `MER3-V014`, `MER3-V015`, `MER3-V016` |
-| 12 | B | Architektura mikropočítače | Procesor, paměť, sběrnice, programovatelné pole a podpůrné obvody. | `MER3-U04`, `MER3-U06` | `MER3-V014`, `MER3-V017`, `MER3-V018` |
-| 13 | B | Hodiny, vstupy a výstupy | Synchronizace, registry a vstupně-výstupní obvody mikrořadiče. | `MER3-U06` | `MER3-V018`, `MER3-V019`, `MER3-V020` |
-| 14 | C | Algoritmy a vývojová prostředí | Postup programování, jednoduché algoritmy a symbolické adresy. | `MER3-U07` | `MER3-V021`, `MER3-V023`, `MER3-V024`, `MER3-V025` |
-| 15 | C | Programování mikrořadiče | Řízení digitálních vstupů a výstupů například na Arduinu. | `MER3-U07` | `MER3-V021`, `MER3-V024`, `MER3-V025`, `MER3-V026` |
-| 16 | C | PLC a žebříčkové diagramy | Jak se programuje řídicí systém pomocí kontaktů a cívek. | `MER3-U07` | `MER3-V023`, `MER3-V025`, `MER3-V026` |
-| 17 | C | Programování funkčních bloků | Grafické programování řídicích systémů a propojení funkčních bloků. | `MER3-U07` | `MER3-V025`, `MER3-V026` |
-| 18 | C | Stavové řízení zařízení | Postupné kroky automatického zařízení a práce se stavy. | `MER3-U07` | `MER3-V023`, `MER3-V026`, `MER3-V029` |
-| 19 | C | Sériová komunikace a periferie | Jak si zařízení předávají informace a jak fungují stykové obvody. | `MER3-U06`, `MER3-U07`, `MER3-U08` | `MER3-V020`, `MER3-V022`, `MER3-V030` |
-| 20 | C | Přerušení a časování programu | Interní a externí přerušení, časovače, zpožďovací smyčky a jejich obsluha. | `MER3-U07`, `MER3-U09`, `MER3-U10`, `MER3-U11` | `MER3-V027`, `MER3-V028`, `MER3-V031`, `MER3-V032`, `MER3-V033`, `MER3-V034`, `MER3-V035`, `MER3-V036`, `MER3-V037`, `MER3-V038` |
-| 21 | C | Ladění, testování a bezpečnost | Jak najít chybu, ověřit spolehlivost a bezpečně navrhnout program. | `MER3-U07` | `MER3-V026`, `MER3-V028`, `MER3-V029` |
-| 22 | D | Relé, spínací prvky a elektromotory | Způsoby elektrického spínání a řízení pohybů. | `MER3-U12` | `MER3-V039` |
-| 23 | D | Pneumatické a hydraulické pohony | Válce, rozváděče a pohony využívající stlačený vzduch nebo kapalinu. | `MER3-U12` | `MER3-V039` |
-| 24 | D | Praktický projekt řízení zařízení | Propojení snímače, programu a akčního členu do funkčního systému. | `MER3-U07`, `MER3-U12` | `MER3-V026`, `MER3-V029`, `MER3-V039` |
-| 25 | E | Regulace a zpětná vazba | Regulační smyčka, snímač, požadovaná hodnota a regulační odchylka. | `MER3-U11`, `MER3-U13` | `MER3-V037`, `MER3-V038`, `MER3-V040`, `MER3-V041` |
-| 26 | E | Bloková schémata regulačních obvodů | Regulátor, regulovaná soustava a veličiny ve schématu. | `MER3-U13` | `MER3-V040`, `MER3-V041` |
-| 27 | E | Přenosy a skládání bloků | Co vyjadřuje přenos a jak se propojují jednotlivé části obvodu. | `MER3-U13` | `MER3-V041` |
-| 28 | E | Přechodové a frekvenční charakteristiky | Jak zařízení reaguje na změnu vstupu nebo na různé frekvence. | `MER3-U13` | `MER3-V042`, `MER3-V043` |
-| 29 | E | Regulátory P, I, D, PI a PID | Jak se regulátor rozhoduje a proč mají jeho jednotlivé složky různé účinky. | `MER3-U13` | `MER3-V040`, `MER3-V043` |
-| 30 | E | Regulované soustavy a stabilita | Statické a astatické soustavy, přeregulování a kvalita regulace. | `MER3-U13` | `MER3-V042`, `MER3-V043` |
-| 31 | E | Analogová a číslicová regulace | Spojitý a diskrétní čas, analogové a číslicové hodnoty, jejich výhody a omezení. | `MER3-U11`, `MER3-U14` | `MER3-V037`, `MER3-V038`, `MER3-V044`, `MER3-V045`, `MER3-V046`, `MER3-V047` |
-| 32 | E | Vzorkování, kvantování a číslicový regulátor | Jak převádíme měřené signály na čísla a používáme je v programu regulátoru. | `MER3-U14` | `MER3-V044`, `MER3-V045`, `MER3-V046`, `MER3-V047` |
+*Vazby na ŠVP jsou orientační přiřazení pro přípravu lekcí, nikoli důkaz splnění výstupu.*
 
-## 3. Pravidla tvorby lekcí
+| Č. | Oblast | Téma | Obsah | Vazby na ŠVP (předběžné) |
+|---:|:---:|---|---|---|
+| 01 | A | **Co je mechatronický systém?** | Jak spolupracují mechanika, elektronika, snímače a řízení. Automatizace, ovládání a regulace. | U01, U04; V001, V002, V003, V004, V015 |
+| 02 | A | **Mechatronika a robotika kolem nás** | Průmyslové roboty, manipulátory, CNC stroje, ABS a další praktické aplikace. | U01, U02, U12; V004, V005, V015, V039 |
+| 03 | B | **Elektrické, pneumatické a hydraulické systémy** | Principy, rozdíly, základní prvky a jejich schematické značky. | U02; V005 |
+| 04 | B | **Snímače a měření veličin** | Snímače teploty, tlaku, polohy, otáček a dalších fyzikálních veličin. | U02; V006 |
+| 05 | B | **Signály, zesilovače a napájení** | Jak se informace dostává ze snímače do řídicí jednotky. | U02; V007 |
+| 06 | B | **Akční členy a ovládací obvody** | Motory, relé, ventily, spínací prvky a základní kontaktní schémata. | U03, U12; V008, V009, V010, V039 |
+| 07 | C | **Jak počítač pracuje s informacemi** | Bity, dvojková soustava, logické hodnoty a základy Booleovy algebry. | U04; V011 |
+| 08 | C | **Logická hradla a obvody** | AND, OR, NOT a další funkce, pravdivostní tabulky a jednoduchá schémata. | U03, U04; V009, V011, V012 |
+| 09 | C | **Kombinační logické obvody** | Jak z více vstupů vzniká rozhodnutí. Sčítačka, dekodér a praktické příklady. | U04; V012 |
+| 10 | C | **Sekvenční obvody a paměť** | Jak si obvod pamatuje stav. Klopné obvody, registry a čítače. | U04; V012, V013 |
+| 11 | D | **Mikroprocesory a mikrořadiče** | Typy, vývoj, vlastnosti a použití v řídicích systémech. | U04, U05; V014, V015, V016 |
+| 12 | D | **Jak funguje mikropočítač** | Procesor, paměti, registry, sběrnice a základní architektura. | U04, U06; V014, V017, V018 |
+| 13 | D | **Hodiny, vstupy a výstupy** | Synchronizace, registry a vstupně-výstupní obvody mikrořadiče. | U06; V018, V019, V020 |
+| 14 | D | **Algoritmy a vývojová prostředí** | Od technického zadání k algoritmu, symbolické adresy a programovací prostředí. | U07; V021, V023, V024, V025 |
+| 15 | D | **Programujeme první zařízení** | Jednoduché programování mikrořadiče, například Arduino. | U07; V021, V023, V025, V026 |
+| 16 | D | **Časování programu** | Zpožďovací smyčky, časovače, generování impulsů a časové cykly. | U07, U10; V028, V032, V033, V034, V035, V036 |
+| 17 | D | **PLC a žebříčkové diagramy** | Základy programování PLC pomocí kontaktů a cívek. | U07; V024, V025, V026 |
+| 18 | D | **Programování funkčních bloků** | Grafické programování FBD a sestavování řídicí logiky. | U07; V024, V025, V026 |
+| 19 | D | **Řízení postupných činností** | Stavové automaty a programování jednoduchých technologických procesů. | U07; V023, V026, V029 |
+| 20 | D | **Komunikace a periferie** | Sériová komunikace, stykové a podpůrné obvody. | U06, U07, U08; V020, V021, V022, V030 |
+| 21 | D | **Přerušení a reakce na události** | Externí a interní přerušení, rozdíl oproti průběžnému dotazování. | U07, U09; V027, V031 |
+| 22 | D | **Obsluha přerušení** | Obslužné rutiny, řadiče přerušení a praktické programování. | U07, U09; V027, V031 |
+| 23 | D | **Vlastní řídicí projekt** | Návrh, programování, ladění, testování a bezpečnost zařízení. | U07, U08; V026, V028, V029, V030 |
+| 24 | E | **Proč potřebujeme zpětnou vazbu?** | Jak systém pozná rozdíl mezi požadovaným a skutečným stavem. | U11, U13; V037, V038, V040 |
+| 25 | E | **Regulační smyčka a její schéma** | Regulátor, snímač, akční člen, regulovaná soustava a regulační veličiny. | U13; V040, V041 |
+| 26 | E | **Přenosy a bloková algebra** | Co vyjadřuje přenos a jak se propojují funkční bloky. | U13; V041 |
+| 27 | E | **Jak se chová regulovaná soustava** | Vlastnosti soustav, statické a astatické chování. | U13; V040, V042 |
+| 28 | E | **Přechodové a frekvenční charakteristiky** | Jak systémy reagují na změny; grafy, příklady a základní řešení přechodných dějů. | U13; V042, V043 |
+| 29 | E | **Regulátory P, I, D a PID** | Jak regulátory pracují a jak ovlivňují chování systému. | U13; V040, V043 |
+| 30 | E | **Stabilita a kvalita regulace** | Překmit, rychlost odezvy, ustálení a stabilita. | U13; V042, V043 |
+| 31 | E | **Spojitá a číslicová regulace** | Rozdíly mezi analogovým a číslicovým řízením, spojitým a diskrétním časem. | U11, U14; V037, V038, V044, V045, V046, V047 |
+| 32 | E | **Vzorkování a číslicový regulátor** | Kvantování, vzorkování a jednoduchý programově řízený regulační systém. | U11, U14; V037, V038, V044, V045, V046, V047 |
 
-- **Jen několik podstatných myšlenek na tříhodinovku.** Srozumitelný výklad, názorný příklad a praktická práce, ne encyklopedie.
-- Každá lekce má 3 × 45 minut, ale scénář nemusí být rozdělen na tři izolované prezentace.
-- K jednotlivým tématům budeme postupně doplňovat vlastní výukové stránky, simulace a praktické úlohy podle [standardu výuky](README.md).
-- **Názvy na rozcestníku jsou pro studenty.** Původní 15okruhový plán zůstává jako interní kontrolní zdroj, nikoli jako studentský navigační systém.
-- **Pokrytí ŠVP není ještě ověřeno:** tabulka pouze předběžně přiřazuje všech 47 výstupů a 14 skupin učiva. U každého tématu je potřeba při tvorbě konkrétního materiálu doložit výklad → činnost studenta → ověření.
-- ŠVP požaduje také odborně náročné přechodové děje vyšších řádů a frekvenční charakteristiky; v tématu 28 je nutné přidat konkrétní řešený příklad, ne pouze pohled na graf.
-- Formulaci `MER3-V037` a `MER3-V038` o „rychlosti běhu programu“ **neinterpretovat svévolně jako regulaci otáček motoru**. K přesnému zadání lekcí 20/31 vyžádat odborné upřesnění.
-- V laboratoři mikroprocesorové a automatizační techniky platí limit počtu studentů na pedagoga dle ŠVP; fyzické pokusy musí být bezpečné.
+## Metodika zpracování jednotlivé tříhodinovky
 
-## 4. Pedagogické ověření
+Student má nejprve vidět **skutečný problém a fungující systém**, následně jeho princip a vlastní praktickou činnost. Každá tříhodinovka má 3 × 45 minut a měla by obsahovat přiměřený počet hlavních myšlenek, dobré vysvětlení, jednu či více užitečných názorných ukázek, samostatný úkol a jednoduché ověření porozumění. Nepřetěžovat výklad podrobnostmi z maturitní přípravy. Přehled a struktura lekce nejsou vydávány za hotový obsah.
 
-Plánové pokrytí ŠVP je 47 z 47 výstupů a 14 ze 14 skupin učiva. **Jde o kontrolu přítomnosti, nikoliv o výsledek odborné revize nebo ověření při výuce.** Stav všech 32 témat zatím `OSNOVA`.
+## Kontrola ŠVP a otevřené odborné body
 
-Následuje zpracování tématu 01 „Co je automatizace?“ nejprve jako jednoduché vizuální lekce, a potom další témata.
+- Předběžná matice přiděluje všech **47 jednotlivých výstupů** a všech **14 bloků učiva** alespoň jedné tříhodinovce. Samotné přiřazení **nezaručuje dostatečnou časovou dotaci, hloubku výkladu ani splnění ŠVP**.
+- **Robotika a reálné aplikace v úvodu** tvoří didaktickou motivaci inspirovanou KYME. V ŠVP 3. ročníku nejde o samostatně vyhrazený blok robotiky, nesmí vytlačit jiné povinné učivo.
+- **Přerušení (21–22)** a **časování (16)** mají nyní oddělené tříhodinovky a navazující praktické programování. Ověřit, že obsah obsluhy přerušení a časovačů skutečně odpovídá požadovaným výstupům.
+- **V028 a V036:** testování programů se zpožďovacími smyčkami jsou dvě položky ŠVP, které lze prokázat společným cvičením, pokud jde o skutečné testování.
+- **V037 a V038:** ŠVP doslova uvádí změnu a regulátor *rychlosti běhu programu*. Nezaměňovat bez odborného upřesnění s regulací otáček motoru. Před zpracováním témat 24/31/32 upřesnit požadovaný výklad.
+- **V042:** ŠVP vyžaduje řešit *přechodné děje vyšších řádů*. Téma 28 nemůže zůstat pouze u prohlížení grafů; připravit řešený příklad přiměřený cílové třídě.
+- **Obsluha HW, bezpečnost:** návrh nízkonapěťových cvičení a dohled podle školních pravidel. Pro laboratoř mikroprocesorové a automatizační techniky uvádí ŠVP nejvýše deset studentů na pedagoga.
+- **Hotovost obsahu:** každé téma teprve dostane svoji výukovou stránku a vlastní aktivity. `outline` = osnova, ne dokončená hodina. Učitel musí před odučením ověřit cíle a vybavení.
+
+## Historie rozhodnutí
+
+Dřívější pracovní plán podle 15 okruhů z roku 2025/26 a meziverze 5 oblastí s pořadím „automatizace → číslicová technika → programování → akční členy → regulace“ byly nahrazeny touto osnovou. Důvodem je pedagogická návaznost na *mechatronický systém a reálné aplikace*, nikoli pouhé rozřezání položek ŠVP na osamocené názvy.
+
+**Záznam o schválení samotné struktury v konverzaci neznamená potvrzení, že jsou výukové materiály dokončené, oficiálně platné nebo skutečně odučené.**
