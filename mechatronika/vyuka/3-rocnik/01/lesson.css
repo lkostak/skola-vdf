@@ -1,110 +1,136 @@
-/* Téma 01. Používá původní maturitní site.css a outline.css.
-   Lokální pravidla řeší pouze obsah a interaktivitu této lekce. */
-.lesson-one{max-width:1170px}
-.lesson-one .hero{padding:28px 0 22px}
-.lesson-one .hero .lead{max-width:880px;font-size:clamp(1.08rem,1.5vw,1.28rem);line-height:1.78;margin:20px 0 19px}
-.lesson-one .course-back{display:inline-block;color:var(--yellow);font-weight:700;margin:10px 0 10px}
-.lesson-tags{display:flex;flex-wrap:wrap;gap:4px}
-.learning-goal{border-left:4px solid var(--cyan);padding:23px 28px;background:rgba(0,27,34,.5);margin:15px 0 36px}
-.learning-goal h2{font-size:1.55rem;margin:12px 0}
-.learning-goal p{line-height:1.8;margin:0;color:#e6f7fb;font-size:1.04rem;max-width:890px}
-.learning-goal strong{color:#fff3c1}
-.lesson-route{margin:30px 0 34px}
-.route-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:18px}
-.route-grid a{display:flex;align-items:center;gap:14px;background:rgba(0,27,34,.50);color:#e5f6fa;padding:14px 18px;min-height:62px;font-weight:700;font-size:.92rem}
-.route-grid a:hover{background:rgba(0,27,34,.8)}
-.route-grid a:focus-visible,.choice:focus-visible,.chapter-next:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
-.route-grid span{color:var(--cyan);font-size:1.15rem;font-variant-numeric:tabular-nums}
-.route-note{font-size:.86rem;color:rgba(255,255,255,.7);margin:13px 0}
-.lesson-progress{display:flex;justify-content:space-between;gap:15px;border-top:1px solid #ffffff30;border-bottom:1px solid #ffffff30;padding:16px 5px;margin:25px 0;color:#e8f4f7;font-size:.88rem}
-.lesson-progress span:first-child{color:var(--yellow);font-weight:700}
-.lesson-one .oral-topics{margin:0}
-.lesson-one .oral-topics .topic-body{padding-bottom:32px}
-.lesson-one .oral-topics .topic-body p{font-size:1.02rem;line-height:1.79}
-.lesson-one .oral-topics .topic-body .example{border-top:1px solid #ffffff21;padding-top:18px;margin-top:20px}
-.lesson-one .oral-topics .topic-body p strong{color:#fff2bf}
-.key-idea{background:rgba(0,47,56,.65);border-left:4px solid var(--green);padding:18px 21px;line-height:1.78;color:#edf9fc;margin:24px 0;font-size:1rem}
-.key-idea strong{color:#dcf5be}
-.key-idea em{font-style:normal;font-weight:700;color:#fff}
-.comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:20px 0}
-.comparison.three{grid-template-columns:repeat(3,minmax(0,1fr))}
-.comparison-card{background:#001b2273;padding:20px;border-top:3px solid var(--cyan)}
-.comparison-card h3{font-size:1.12rem;line-height:1.4;margin:11px 0}
-.lesson-one .oral-topics .topic-body .comparison-card p{font-size:.93rem;line-height:1.65;margin:0}
-.interaction{margin:26px 0;padding:22px;background:rgba(0,22,30,.72);border:1px solid rgba(169,229,244,.28)}
-.interactive-heading h3{font-size:1.36rem;margin:12px 0 8px}
-.interactive-heading p{margin:0 0 18px!important;font-size:.95rem!important;color:#e3eef1}
-.choice-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
-.choice-row button,.chapter-next{font-family:Raleway,Arial,sans-serif;font-size:.86rem;text-transform:none;line-height:1.5}
-.choice-row .choice{color:#e5f8fb;background:#ffffff13;border:1px solid #ffffff4b;min-height:45px;text-align:left;padding:11px 14px}
-.choice-row .choice:hover:not(:disabled){background:#1c6577}
-.choice-row .choice.selected,.choice-row .choice[aria-pressed=true]{background:#006881;border-color:var(--cyan)}
-.choice-row .choice.correct{background:#315a38;border-color:var(--green)}
-.choice-row .choice.incorrect{background:#743535;border-color:#ffb0b0}
-.choice-row button:disabled{cursor:default;opacity:.8}
-.system-diagram{display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr) 22px minmax(0,1fr);gap:10px;align-items:stretch;margin:23px 0 13px}
-.system-node{border:1px solid #56d6ee6b;background:rgba(2,75,91,.64);padding:16px 13px;display:flex;flex-direction:column;gap:12px;min-width:0}
-.node-index{font-size:.7rem;letter-spacing:.10em;color:var(--yellow);font-weight:700}
-.system-node strong{font-size:1.05rem}
-.system-node span{color:#e2f6fb;font-size:.88rem;line-height:1.65}
-.system-arrow{align-self:center;justify-self:center;color:var(--yellow);font-size:1.6rem}
-.lesson-one .oral-topics .topic-body .system-energy{border-left:2px solid var(--yellow);padding:10px 13px;background:#ffffff0a;font-size:.89rem;line-height:1.7;margin:0}
-.sequence-steps{list-style:none;margin:18px 0;padding:0;display:grid;gap:8px}
-.sequence-steps li{display:flex;gap:14px;align-items:center;padding:12px 16px;background:#ffffff09;border:1px solid #ffffff2c;color:#bed4da}
-.sequence-steps li span{font-weight:700;color:#84c1ce}
-.sequence-steps li strong{font-size:.94rem;font-weight:600}
-.sequence-steps li.is-active{background:#00627b;border-color:var(--cyan);color:white}
-.sequence-steps li.is-done{background:#1e4a4f;color:#ecf9fb;border-color:#a6ce3973}
-.interaction-result{padding:11px 15px;background:#ffffff0e;color:#e3f5f9;line-height:1.6;min-height:46px;margin:15px 0 18px!important;font-size:.95rem!important}
-.interaction-result.is-good{border-left:3px solid var(--green)}
-.interaction-result.is-error{border-left:3px solid #ff9e94}
-.interaction-actions{display:flex;flex-wrap:wrap;gap:10px}
-.interaction-actions button:disabled{opacity:.48;cursor:not-allowed}
-.chapter-next{display:inline-flex;background:transparent;color:var(--yellow);padding:8px 0;margin:15px 0 0;text-align:left;font-weight:700}
-.chapter-next:hover{background:transparent;color:#fff}
-.lesson-one .oral-topics .topic-body .case-count{font-size:.78rem;color:var(--yellow);font-weight:700;letter-spacing:.09em;margin:15px 0 7px}
-.lesson-one .oral-topics .topic-body .scenario{font-size:1.13rem;font-weight:700;color:#fff;padding:16px;background:#ffffff10;line-height:1.55;margin:0}
-.think-question{margin:23px 0 10px;border:1px solid #ffffff3b;padding:0;background:#001b2280}
-.think-question summary{cursor:pointer;padding:17px 20px;color:var(--yellow);font-weight:700}
-.think-question p{padding:0 20px 18px;margin:0!important}
-.quiz-question{border-top:1px solid #ffffff3c;padding:17px 0 8px}
-.quiz-question fieldset{margin:0;padding:0;border:0}
-.quiz-question legend{font-weight:700;font-size:1.02rem;color:#fff;line-height:1.55;margin-bottom:12px}
-.quiz-question label{display:block;padding:10px 13px;margin:6px 0;cursor:pointer;background:#ffffff0b;border:1px solid transparent;line-height:1.6;font-size:.92rem}
-.quiz-question label:hover{background:#ffffff1b}
-.quiz-question label:has(input:checked){border-color:var(--cyan);background:#ffffff1e}
-.quiz-question input{margin-right:10px;accent-color:var(--yellow);width:16px;height:16px;vertical-align:middle}
-.lesson-one .oral-topics .topic-body .quiz-feedback{font-size:.9rem;line-height:1.65;margin:10px 0 0}
-.quiz-feedback.is-good{color:#d9fcb5}
-.quiz-feedback.is-error{color:#ffe2bb}
-.lesson-finish{margin:48px 0 20px;padding:32px 28px;background:rgba(0,27,34,.48);border-top:3px solid var(--yellow)}
-.lesson-finish h2{margin:14px 0;font-size:1.6rem}
-.lesson-finish p{max-width:900px;line-height:1.8;color:#e2f2f6}
-.lesson-finish .course-next{margin-top:24px}
-@media(max-width:800px){
- .lesson-one .hero{padding:22px 0 16px}
- .route-grid{grid-template-columns:1fr}
- .lesson-progress{flex-direction:column;gap:3px}
- .comparison.three{grid-template-columns:1fr}
- .system-diagram{grid-template-columns:1fr;gap:6px}
- .system-arrow{transform:rotate(90deg)}
- .lesson-one .oral-topics .topic-body{padding-right:22px}
- .lesson-one .oral-topics .topic-body p{font-size:1rem}
- .interaction{padding:17px}
+/* Téma 01: souvislý vizuální výklad podle prezentace; vizuální základ maturity v site.css */
+.mechatronika-01{max-width:1160px;--m-bg:rgba(0,27,34,.62);--m-line:rgba(157,221,235,.22);color:#f7fbfe}
+.mechatronika-01 .course-back{display:inline-block;color:var(--yellow);font-size:.88rem;font-weight:700;margin:0 0 22px}
+.mechatronika-01 h2{font-size:clamp(1.7rem,3vw,2.5rem);line-height:1.22;letter-spacing:-.02em;margin:13px 0 19px}
+.mechatronika-01 h3{font-size:1.19rem;line-height:1.36;margin:0 0 9px}
+.mechatronika-01 p{line-height:1.78;color:#d7ebef;font-size:1.04rem}
+.mechatronika-01 p strong,.mechatronika-01 b{color:#fff}
+.mechatronika-01 a:focus-visible,.mechatronika-01 button:focus-visible,.mechatronika-01 input:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.m-hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.8fr);gap:10px;align-items:center;padding:18px 0 34px;border-bottom:1px solid var(--m-line)}
+.m-hero h1{font-size:clamp(2.7rem,5.2vw,4.5rem);margin:20px 0 16px;line-height:1.1}
+.m-hero .m-lead{max-width:640px;font-size:1.22rem;font-weight:300;line-height:1.65;margin:0}
+.m-hero .m-lead strong{font-weight:700}
+.hero-drawing{display:block;width:100%;height:auto}
+.opening-question{margin:35px 0 34px;padding:27px 31px;background:var(--m-bg);border-left:4px solid var(--yellow)}
+.opening-question h2{font-size:clamp(1.55rem,2.5vw,2rem)}
+.opening-question p{margin:10px 0 12px}
+.three-questions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:22px 0}
+.three-questions p{background:#002d3c;padding:15px;margin:0;font-weight:600;line-height:1.5}
+.three-questions span{display:block;color:var(--cyan);font-size:.84rem;letter-spacing:.1em;margin-bottom:5px}
+.mechatronika-01 .quiet{font-size:.87rem;color:#b7d0d6;line-height:1.66}
+.m-contents{display:flex;align-items:center;gap:8px 18px;flex-wrap:wrap;border-bottom:1px solid var(--m-line);padding:10px 0 31px;margin:0 0 20px}
+.m-contents .kicker{flex-basis:100%;margin-bottom:7px}
+.m-contents a{font-size:.84rem;color:#c7edf6;font-weight:700;border-bottom:1px solid #79bbcb;text-decoration:none;line-height:1.55;padding-bottom:3px}
+.m-contents a:hover{color:var(--yellow);border-color:var(--yellow)}
+.m-chapter{padding:48px 0 50px;border-bottom:1px solid var(--m-line);scroll-margin-top:20px}
+.chapter-num,.mini-label{font-size:.72rem;color:var(--yellow);font-weight:700;letter-spacing:.11em;text-transform:uppercase}
+.m-chapter>.chapter-intro{font-size:1.12rem;max-width:900px}
+.four-disciplines{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin:26px 0}
+.four-disciplines article{padding:24px;background:var(--m-bg);border-left:3px solid var(--cyan)}
+.four-disciplines h3{margin:12px 0 7px}.four-disciplines p{font-size:.94rem;margin:0}
+.flow-figure{background:#003242bd;margin:27px 0 19px;padding:27px;border:1px solid var(--m-line)}
+.flow-figure figcaption{font-size:.83rem;font-weight:700;color:var(--yellow);letter-spacing:.07em;margin-bottom:17px;text-transform:uppercase}
+.flow-chain{display:grid;grid-template-columns:minmax(0,1fr) 24px minmax(0,1.2fr) 24px minmax(0,1fr);align-items:center;gap:7px}
+.flow-chain>div{background:#0a4c5e;padding:19px 12px;min-height:102px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:9px;border:1px solid #3cb6d0}
+.flow-chain b{font-size:.88rem}.flow-chain span:not(.flow-arrow){font-size:.87rem;color:#c1e2e9}
+.flow-arrow{font-size:1.7rem;text-align:center;color:var(--yellow)}
+.mechatronika-01 .figure-note{margin:19px 0 0;border-top:1px solid var(--m-line);padding-top:13px;text-align:center;font-size:.87rem}
+.takeaway{border-left:4px solid var(--green);background:rgba(0,40,51,.75);padding:17px 22px;margin:27px 0 0!important}
+.takeaway strong{color:#ddffa8!important}
+.compare-machines{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:26px 0}
+.compare-machines article{background:var(--m-bg);padding:22px 25px;border-top:3px solid #41d7ff}
+.compare-machines h3{margin:11px 0}
+.compare-machines p{font-size:.95rem;margin:6px 0}
+.machine-picture{height:150px;display:flex;align-items:center;background:#003f50;margin:-4px 0 22px}
+.machine-picture svg{width:100%;height:auto;max-height:145px}
+.five-parts{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:28px 0}
+.five-parts article{padding:19px 14px 14px;border-top:3px solid var(--cyan);background:var(--m-bg);min-height:153px}
+.five-parts article span{color:var(--yellow);font-weight:700;font-size:1.27rem}
+.five-parts h3{font-size:1.01rem;margin:12px 0 7px}
+.five-parts p{font-size:.82rem;margin:0;line-height:1.55}
+.detail-rows{display:grid;gap:13px;margin:29px 0 19px}
+.detail-rows article{background:var(--m-bg);padding:22px 26px}
+.detail-rows article p{font-size:.97rem;margin:10px 0 0}
+.detail-heading h3{margin:7px 0 0}
+.rule-block{display:grid;gap:7px;padding:19px 24px;background:#002934;border-left:4px solid var(--yellow);max-width:540px;margin:20px 0 0;font-size:.95rem;line-height:1.5}
+.rule-block strong{color:var(--cyan)!important}
+.actuator-examples{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:21px}
+.actuator-examples div{padding:16px;background:#003543}
+.actuator-examples b{display:block;font-size:.91rem;margin-bottom:8px}
+.actuator-examples span{font-size:.82rem;line-height:1.56;color:#cfe3e9}
+.conveyor-lab,.heating-lab{background:rgba(0,20,29,.72);border:1px solid #63b0c480;padding:24px 27px;margin:27px 0}
+.lab-header h3{font-size:1.5rem;margin:8px 0}
+.lab-header p{font-size:.95rem;margin:0 0 20px}
+.lab-controls{display:flex;gap:24px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;margin-bottom:10px}
+.control-caption{display:block;color:var(--yellow);letter-spacing:.1em;font-size:.72rem;font-weight:700;margin-bottom:9px}
+.choice-set{display:flex;flex-wrap:wrap;gap:9px}
+.mechatronika-01 .choice-set button{font-family:Raleway,Arial,sans-serif;font-size:.9rem;text-transform:none;background:#003e50;color:#e9f6f8;border:1px solid #5a91a1;border-radius:0;padding:12px 18px;min-height:43px}
+.mechatronika-01 .choice-set button[aria-pressed=true]{background:#00728d;border-color:var(--cyan);color:#fff}
+.mechatronika-01 .choice-set button:hover{background:#11687e}
+.sensor-check{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:.9rem;font-weight:600;padding-bottom:10px}
+.sensor-check input{accent-color:var(--green);width:19px;height:19px}
+.conveyor-svg{display:block;width:100%;height:auto;max-width:820px;margin:18px auto 24px}
+.lab-results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.lab-results div{background:#003444;padding:15px}
+.lab-results span,.heating-diagram span:not(.arrow){display:block;color:#a9d3de;font-size:.69rem;font-weight:700;letter-spacing:.07em;margin-bottom:8px}
+.lab-results strong{color:#fff;font-size:.96rem}
+.mechatronika-01 .lab-feedback{border-left:4px solid var(--green);background:#063e4d;padding:14px 19px;margin:16px 0 0;font-size:.94rem}
+.mechatronika-01 .lab-feedback.is-warning{border-left-color:#ffaf83}
+.subheading{font-size:1.5rem!important;margin:31px 0 15px!important}
+.event-steps{padding:0;margin:19px 0;list-style:none;counter-reset:events;display:grid;gap:8px}
+.event-steps li{counter-increment:events;position:relative;padding:14px 17px 14px 62px;background:var(--m-bg);font-size:.96rem;line-height:1.69}
+.event-steps li:before{content:counter(events);position:absolute;left:18px;top:15px;width:29px;height:29px;border:1.6px solid var(--cyan);border-radius:50%;display:grid;place-items:center;color:var(--cyan);font-weight:700;font-size:.88rem}
+.modes{margin:21px 0}
+.temperature-control{display:grid;grid-template-columns:1fr auto;gap:12px;padding:19px 20px;background:#003444;margin:12px 0 20px}
+.temperature-control label{font-size:.94rem;align-self:center}.temperature-control strong{color:var(--yellow);font-size:1.22rem}
+.temperature-control input{grid-column:1 / -1;width:100%;accent-color:var(--yellow)}
+.temperature-control .scale{grid-column:1 / -1;display:flex;justify-content:space-between;color:#c3d7dd;font-size:.8rem}
+.heating-diagram{display:grid;grid-template-columns:1fr 26px 1fr 26px 1fr;align-items:center;gap:6px}
+.heating-diagram>div{padding:15px;background:#095269;min-height:122px;display:flex;flex-direction:column;justify-content:center}
+.heating-diagram>div>strong{font-size:1rem;margin-bottom:6px}
+.heating-diagram small{font-size:.81rem;color:#c6e5ee;line-height:1.45}
+.heating-diagram>span{font-size:1.6rem;color:var(--yellow);text-align:center}
+.mechatronika-01 .feedback-line{text-align:center;color:#d3ecf3;border-bottom:2px solid var(--yellow);padding:10px 0;margin:0 0 12px;font-size:.89rem;font-weight:700}
+.benefit-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:22px 0}
+.benefit-grid>div{background:var(--m-bg);padding:23px 25px;border-left:3px solid var(--green)}
+.benefit-grid>div:nth-child(2){border-left-color:var(--yellow)}
+.benefit-grid h3{margin:10px 0 20px}
+.benefit-grid p{font-size:.94rem;border-top:1px solid var(--m-line);padding-top:12px;margin:10px 0}
+.decisions{margin:25px 0}
+.applications{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:23px}
+.applications>div{background:var(--m-bg);padding:17px 19px;border-left:3px solid var(--cyan)}
+.applications b{display:block;font-size:1.02rem;margin-bottom:8px}
+.applications span{display:block;font-size:.88rem;color:#c3dde5;line-height:1.6}
+.barrier-svg{display:block;width:100%;height:auto;max-width:860px;margin:19px auto 25px;background:rgba(0,34,45,.55)}
+.exercise{border-left:4px solid var(--yellow);background:var(--m-bg);padding:18px 23px}
+.mechatronika-01 .reveal-button{font-family:Raleway,Arial,sans-serif;text-transform:none;font-size:.95rem;font-weight:700;background:#006c86;color:white;border:1px solid var(--cyan);border-radius:0;margin:15px 0 20px;cursor:pointer}
+.solution-list{margin:12px 0 20px;display:grid;gap:7px}
+.solution-list div{display:grid;grid-template-columns:180px 1fr;gap:15px;background:var(--m-bg);padding:14px 18px}
+.solution-list dt{color:var(--yellow);font-weight:700}
+.solution-list dd{margin:0;color:#d9ebef;line-height:1.6}
+.m-summary{padding:45px 34px;margin:45px 0 0;background:rgba(0,27,34,.65);border-top:5px solid var(--yellow)}
+.m-summary ol{list-style:none;padding:0;margin:23px 0;counter-reset:sum}
+.m-summary li{counter-increment:sum;padding:11px 0 11px 42px;position:relative;border-bottom:1px solid var(--m-line);line-height:1.6}
+.m-summary li:before{content:counter(sum);position:absolute;left:2px;top:11px;color:var(--cyan);font-size:1.1rem;font-weight:700}
+.m-summary blockquote{font-size:clamp(1.45rem,2.5vw,2rem);font-weight:700;line-height:1.45;padding:27px 0;border-bottom:3px solid var(--yellow);margin:25px 0}
+.m-summary .course-next{margin-top:30px}
+[hidden]{display:none!important}
+@media(max-width:900px){
+  .five-parts{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .m-hero{grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr)}
 }
-@media(max-width:600px){
- .comparison{grid-template-columns:1fr}
- .learning-goal{padding:19px 17px}
- .lesson-finish{padding:24px 18px}
- .lesson-one .oral-topics .topic-body{padding-left:17px;padding-right:17px}
+@media(max-width:720px){
+  .m-hero{grid-template-columns:1fr}
+  .hero-drawing{max-width:400px;margin:0 auto}
+  .three-questions,.four-disciplines,.compare-machines,.benefit-grid,.applications{grid-template-columns:1fr}
+  .flow-chain,.heating-diagram{grid-template-columns:1fr}
+  .flow-arrow,.heating-diagram>span{transform:rotate(90deg)}
+  .five-parts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .actuator-examples,.lab-results{grid-template-columns:1fr}
+  .opening-question{padding:21px}
+  .conveyor-lab,.heating-lab{padding:18px 14px}
+  .solution-list div{grid-template-columns:1fr;gap:5px}
+  .m-summary{padding:25px 20px}
 }
-@media print{
- .lesson-one{color:#111}
- .lesson-one .topic-accordion{break-inside:avoid}
- .lesson-one .oral-topics .topic-body p,.lesson-finish p{color:#111}
- .interaction,.comparison-card,.key-idea{background:white;color:#111;border:1px solid #aaa}
- .system-node{background:white;color:#111}
- .system-node span,.system-node strong{color:#111}
- .route-grid a{color:#111}
- .chapter-next,.interaction-actions{display:none}
-}
+@media(max-width:430px){.five-parts{grid-template-columns:1fr}.five-parts article{min-height:auto}.m-hero h1{font-size:2.65rem}}
+@media(prefers-reduced-motion:reduce){.mechatronika-01 *{scroll-behavior:auto!important}}

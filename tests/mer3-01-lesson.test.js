@@ -1,49 +1,53 @@
 "use strict";
-const test=require("node:test"),assert=require("node:assert/strict"),fs=require("node:fs"),path=require("node:path"),vm=require("node:vm");
+const test=require("node:test");
+const assert=require("node:assert/strict");
+const fs=require("node:fs");
+const path=require("node:path");
+const vm=require("node:vm");
 const root=path.join(__dirname,"../mechatronika/vyuka/3-rocnik/01");
-const page=fs.readFileSync(path.join(root,"index.html"),"utf8");
-const script=fs.readFileSync(path.join(root,"lesson.js"),"utf8");
-function data(){
-  const win={location:{hash:""}};
-  const doc={querySelectorAll(){return [];}};
-  vm.runInNewContext(script,{window:win,document:doc},{timeout:1000});
-  return win.MER3Lesson01Data;
+const html=fs.readFileSync(path.join(root,"index.html"),"utf8");
+const js=fs.readFileSync(path.join(root,"lesson.js"),"utf8");
+function model(){
+  const w={};
+  const d={querySelectorAll(){return []},getElementById(){return null}};
+  vm.runInNewContext(js,{window:w,document:d},{timeout:1000});
+  return w.MER3Lesson01Model;
 }
-test("All seven approved chapters appear in their original order",()=>{
-  const labels=[
-    "Co je mechatronika?",
-    "Klasický stroj a mechatronický systém",
-    "Z čeho se mechatronický systém skládá?",
-    "Jak jednotlivé části spolupracují?",
-    "Ovládání a regulace",
-    "Proč zavádíme automatizaci?",
-    "Rozpoznání mechatronického systému v praxi"
-  ];
-  const summary=[...page.matchAll(/<summary><span class="tn">\d+<\/span><span class="topic-name">(.*?)<\/span>/g)].map(m=>m[1]);
-  assert.deepEqual(summary,labels);
-  assert.equal((page.match(/class="topic topic-accordion"/g)||[]).length,7);
+test("Site follows presentation narrative rather than old accordion",()=>{
+  const chapters=["zaklad","stroje","casti","dopravnik","regulace","automatizace","zavora"];
+  const ids=[...html.matchAll(/class="m-chapter" id="([^"]+)"/g)].map(m=>m[1]);
+  assert.deepEqual(ids,chapters);
+  for(const phrase of ["Mechatronika propojuje obory","Klasický stroj × mechatronický stroj","Pět stavebních částí","Celý systém: třídicí dopravník","Proveď povel, nebo sleduj výsledek?","Proč automatizujeme?","Rozebereš automatickou závoru?","Pět věcí, které už víš"])assert.ok(html.includes(phrase),phrase);
+  assert.doesNotMatch(html,/class="topic topic-accordion"|class="lesson-progress"/);
 });
-test("Uses shared maturita visual identity and keeps navigation to next topic",()=>{
-  assert.match(page,/\.\.\/\.\.\/\.\.\/\.\.\/assets\/css\/site\.css/);
-  assert.match(page,/\.\.\/\.\.\/\.\.\/maturita\/05-sekvencni-logika\/outline\.css/);
-  assert.match(page,/href="\.\.\/02\/"/);
-  assert.match(page,/href="\.\.\/"/);
+test("Original portal identity and stable lesson navigation",()=>{
+  assert.match(html,/\.\.\/\.\.\/\.\.\/\.\.\/assets\/css\/site\.css/);
+  assert.match(html,/href="\.\.\/02\/"/);
+  assert.match(html,/href="\.\.\/"/);
+  assert.match(html,/data-lesson="1"/);
 });
-test("Activity models are consistent, complete and keep control distinct from regulation",()=>{
-  const d=data();
-  assert.deepEqual(Array.from(Object.keys(d.devices)),["doors","heating","washer"]);
-  for(const device of Object.values(d.devices))for(const field of ["sensor","control","actuator","energy"])assert.ok(device[field].length>15);
-  assert.equal(d.sequence.length,5);
-  assert.deepEqual(Array.from(d.controlCases.map(x=>x.answer)),["manual","automatic","regulation"]);
-  assert.equal(d.quiz.length,4);
-  for(const item of d.quiz){assert.ok(Number.isInteger(item.correct)&&item.correct>=0&&item.correct<=2);assert.ok(item.explanation.length>20);}
+test("Conveyor model exposes consequences of failed sensor",()=>{
+  const m=model();
+  assert.equal(m.chooseSort("metal",true).destination,"KOV");
+  assert.equal(m.chooseSort("metal",true).correct,true);
+  assert.equal(m.chooseSort("metal",false).destination,"OSTATNÍ");
+  assert.equal(m.chooseSort("metal",false).correct,false);
+  assert.equal(m.chooseSort("other",false).correct,true);
+  assert.equal(m.chooseSort("other",true).detected,false);
 });
-test("Every interactive control exists exactly once and can receive feedback",()=>{
-  for(const id of ["device-sensor","device-control","device-actuator","device-energy","sequence-next","sequence-reset","sequence-explanation","control-next","control-feedback","control-scenario","quiz-check","quiz-reset","quiz-result"]){
-    assert.equal((page.match(new RegExp('id="'+id+'"',"g"))||[]).length,1,id);
-  }
-  assert.equal((page.match(/data-device="/g)||[]).length,3);
-  assert.equal((page.match(/data-sequence-step="/g)||[]).length,5);
-  assert.equal((page.match(/data-quiz="/g)||[]).length,4);
-  assert.ok(!/PI regulátor|integrální složka|dopravník/.test(page));
+test("Thermostat feedback differs from fixed timer",()=>{
+  const m=model();
+  assert.equal(m.chooseHeat("timer",26).heating,true);
+  assert.equal(m.chooseHeat("timer",26).usesFeedback,false);
+  assert.equal(m.chooseHeat("thermostat",18).heating,true);
+  assert.equal(m.chooseHeat("thermostat",26).heating,false);
+  assert.equal(m.chooseHeat("thermostat",22).heating,false);
+  assert.equal(m.chooseHeat("thermostat",26).usesFeedback,true);
+});
+test("Controls are unique and work without network libraries",()=>{
+  for(const id of ["sensor-working","room-temperature","conveyor-result","conveyor-feedback","heating-state","heating-feedback","barrier-reveal","barrier-solution"])
+    assert.equal((html.match(new RegExp('id="'+id+'"',"g"))||[]).length,1,id);
+  assert.equal((html.match(/data-material="/g)||[]).length,2);
+  assert.equal((html.match(/data-mode="/g)||[]).length,2);
+  assert.doesNotMatch(html,/<script[^>]+src="https?:/);
 });

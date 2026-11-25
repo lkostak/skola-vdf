@@ -3,233 +3,248 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Co je mechatronický systém? Sedm srozumitelných částí, interaktivní ukázky, ovládání a regulace.">
-  <title>Téma 01 | Co je mechatronický systém?</title>
+  <meta name="description" content="Co je mechatronický systém? Výklad podle prezentace: třídicí dopravník, pět částí stroje, ovládání a regulace, automatizace a samostatný příklad.">
+  <title>Téma 01 · Co je mechatronický systém? | Mechatronika a robotika</title>
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../../../assets/css/site.css">
-  <link rel="stylesheet" href="../../../maturita/05-sekvencni-logika/outline.css">
   <link rel="stylesheet" href="../course.css">
   <link rel="stylesheet" href="lesson.css">
 </head>
 <body data-lesson="1">
-  <nav class="topbar" aria-label="Drobečková navigace">
-    <a href="../../../../">Výukový portál</a><span class="crumb">/</span>
-    <a href="../../../">Mechatronika a robotika</a><span class="crumb">/</span>
-    <a href="../">3. ročník</a><span class="crumb">/ 01</span>
-  </nav>
-  <main class="content lesson-one">
-    <a class="course-back" href="../">← Všech 32 témat</a>
-    <header class="hero">
-      <div class="eyebrow">3. ROČNÍK · TÉMA 01 · MECHATRONIKA V PRAXI</div>
-      <h1>Co je mechatronický systém?</h1>
-      <p class="lead">Představ si automatické dveře v obchodě. Jak poznají, že přichází člověk, kdo rozhodne o jejich otevření a co je uvede do pohybu? Právě na takových otázkách začíná mechatronika.</p>
-      <div class="lesson-tags"><span class="pill">3 × 45 minut</span><span class="pill">7 částí</span><span class="pill">3 interaktivní ukázky + závěrečné ověření</span></div>
-    </header>
-
-    <section class="learning-goal" aria-labelledby="goal-title">
-      <div class="kicker">CO SI Z TÉTO LEKCE ODNESEŠ</div>
-      <h2 id="goal-title">Uvidíš celý stroj, ne jen součástky</h2>
-      <p>Na konci dokážeš vlastními slovy vysvětlit mechatroniku, poznat <strong>snímač, řídicí jednotku a akční člen</strong>, zakreslit jejich spolupráci a rozlišit <strong>ovládání od regulace</strong>.</p>
-    </section>
-
-    <nav class="lesson-route" aria-label="Obsah lekce">
-      <div class="kicker">PRŮVODCE LEKCÍ</div>
-      <div class="route-grid">
-        <a href="#cast-1" data-open-target="cast-1"><span>01</span>Co je mechatronika?</a>
-        <a href="#cast-2" data-open-target="cast-2"><span>02</span>Stroj × mechatronický systém</a>
-        <a href="#cast-3" data-open-target="cast-3"><span>03</span>Z čeho se systém skládá?</a>
-        <a href="#cast-4" data-open-target="cast-4"><span>04</span>Jak části spolupracují?</a>
-        <a href="#cast-5" data-open-target="cast-5"><span>05</span>Ovládání a regulace</a>
-        <a href="#cast-6" data-open-target="cast-6"><span>06</span>Proč automatizujeme?</a>
-        <a href="#cast-7" data-open-target="cast-7"><span>07</span>Poznáš systém v praxi?</a>
-      </div>
-      <p class="route-note">Postupuj shora dolů. Stačí otevřít jednu část, přečíst si příklad a případně vyzkoušet aktivitu.</p>
-    </nav>
-
-    <div class="lesson-progress" aria-live="polite"><span id="progress-label">Otevřená část 1 ze 7</span><span>Postupně od základu k praxi</span></div>
-
-    <div class="topic-list oral-topics lesson-chapters" id="chapters">
-      <details class="topic topic-accordion" id="cast-1" open>
-        <summary><span class="tn">01</span><span class="topic-name">Co je mechatronika?</span><span class="topic-chevron" aria-hidden="true"></span></summary>
-        <div class="topic-body">
-          <div class="topic-body-eyebrow">ZÁKLADNÍ MYŠLENKA</div>
-          <p><strong>Mechatronika propojuje mechaniku, elektrotechniku, elektroniku a řízení pomocí počítačů.</strong> Nejde jen o to namontovat k nějakému stroji elektroniku. Důležité je, že jednotlivé části spolupracují na společném úkolu.</p>
-          <p>Mechanika zajišťuje pohyb a konstrukci. Snímače poskytují informace o okolí nebo o samotném zařízení. Řídicí jednotka informace vyhodnocuje podle programu a akční členy vykonávají požadovanou činnost. Proto v mechatronice často najdeme i software.</p>
-          <div class="key-idea"><strong>Zapamatuj si:</strong> Mechatronický systém propojuje <em>informaci, rozhodnutí a fyzickou činnost</em>.</div>
-          <p class="example"><strong>Příklad:</strong> Automatické dveře nepotřebují jen motor. Potřebují také zjistit, že se někdo blíží, a rozhodnout, kdy mají otevřít.</p>
-          <button class="chapter-next" type="button" data-go="cast-2">Pokračovat: klasický stroj a mechatronika →</button>
-        </div>
-      </details>
-
-      <details class="topic topic-accordion" id="cast-2">
-        <summary><span class="tn">02</span><span class="topic-name">Klasický stroj a mechatronický systém</span><span class="topic-chevron" aria-hidden="true"></span></summary>
-        <div class="topic-body">
-          <div class="topic-body-eyebrow">CO JE MEZI NIMI JINÉHO?</div>
-          <p>U jednoduchého ručně ovládaného zařízení člověk nejen rozhodne, co se má stát, ale často také přímo dodává sílu. U mechatronického zařízení část vnímání, rozhodování a činnosti přebírají spolupracující technické prvky.</p>
-          <div class="comparison">
-            <div class="comparison-card"><span class="tag">RUČNÍ DVEŘE</span><h3>Člověk otevře</h3><p>Vidíš dveře, rozhodneš se a zatáhneš za kliku. Informace, rozhodnutí i síla přicházejí od člověka.</p></div>
-            <div class="comparison-card"><span class="tag">AUTOMATICKÉ DVEŘE</span><h3>Systém otevře</h3><p>Čidlo zjistí přítomnost člověka, jednotka vyhodnotí situaci a motor pohne dveřními křídly.</p></div>
-          </div>
-          <p><strong>Pozor:</strong> Samotný elektromotor ještě nedělá zařízení „chytrým“. Podstatné je, jak jsou mechanika, snímání a řízení propojeny. Ne každý mechatronický systém musí být robot.</p>
-          <div class="key-idea"><strong>Klíčová otázka:</strong> Kdo získá informaci, kdo rozhodne a kdo vykoná pohyb?</div>
-          <button class="chapter-next" type="button" data-go="cast-3">Pokračovat: části systému →</button>
-        </div>
-      </details>
-
-      <details class="topic topic-accordion" id="cast-3">
-        <summary><span class="tn">03</span><span class="topic-name">Z čeho se mechatronický systém skládá?</span><span class="topic-chevron" aria-hidden="true"></span></summary>
-        <div class="topic-body">
-          <div class="topic-body-eyebrow">TŘI HLAVNÍ ROLE</div>
-          <p>V jednoduchém schématu si vystačíme se třemi otázkami: <strong>Co se děje?</strong> (snímač), <strong>Co máme udělat?</strong> (řídicí jednotka) a <strong>Co se fyzicky stane?</strong> (akční člen). Skutečné zařízení samozřejmě potřebuje také mechanickou konstrukci a zdroj energie.</p>
-          <div class="interaction" id="device-lab">
-            <div class="interactive-heading"><span class="tag">VYZKOUŠEJ SI</span><h3>Podívej se dovnitř zařízení</h3><p>Vyber zařízení. Základní schéma zůstává stejné, mění se konkrétní součástky.</p></div>
-            <div class="choice-row" role="group" aria-label="Vyber mechatronické zařízení">
-              <button type="button" data-device="doors" aria-pressed="true" class="choice selected">Automatické dveře</button>
-              <button type="button" data-device="heating" aria-pressed="false" class="choice">Vytápění s termostatem</button>
-              <button type="button" data-device="washer" aria-pressed="false" class="choice">Pračka</button>
-            </div>
-            <div class="system-diagram" aria-live="polite" aria-atomic="true">
-              <div class="system-node"><div class="node-index">1 · INFORMACE</div><strong>Snímač</strong><span id="device-sensor">Pohybové čidlo</span></div>
-              <div class="system-arrow" aria-hidden="true">→</div>
-              <div class="system-node"><div class="node-index">2 · ROZHODNUTÍ</div><strong>Řídicí jednotka</strong><span id="device-control">Vyhodnotí signál a dá povel k otevření</span></div>
-              <div class="system-arrow" aria-hidden="true">→</div>
-              <div class="system-node"><div class="node-index">3 · ČINNOST</div><strong>Akční člen</strong><span id="device-actuator">Elektromotor pohybuje dveřmi</span></div>
-            </div>
-            <p class="system-energy" id="device-energy">Mechanická část: dveřní křídla. Energie: elektrické napájení pohonu a řídicí jednotky.</p>
-          </div>
-          <div class="key-idea"><strong>Pomůcka:</strong> Snímač <em>zjistí</em> → řídicí jednotka <em>rozhodne</em> → akční člen <em>vykoná</em>.</div>
-          <button class="chapter-next" type="button" data-go="cast-4">Pokračovat: jak systém pracuje krok za krokem →</button>
-        </div>
-      </details>
-
-      <details class="topic topic-accordion" id="cast-4">
-        <summary><span class="tn">04</span><span class="topic-name">Jak jednotlivé části spolupracují?</span><span class="topic-chevron" aria-hidden="true"></span></summary>
-        <div class="topic-body">
-          <div class="topic-body-eyebrow">OD INFORMACE K POHYBU</div>
-          <p>Samotný snímač dveřmi nepohne. Přenáší <strong>informaci</strong> do řídicí jednotky. Ta podle programu zvolí činnost a vyšle povel k pohonu. Pohon potom využije <strong>energii</strong> k mechanickému pohybu.</p>
-          <div class="interaction" id="sequence-lab">
-            <div class="interactive-heading"><span class="tag">KROKOVÁ UKÁZKA</span><h3>Co se stane, když přicházíš ke dveřím?</h3><p>Postupuj po jednom kroku. Ukázka nepředstírá skutečný elektronický obvod, jen vysvětluje pořadí dějů.</p></div>
-            <ol class="sequence-steps" id="sequence-steps">
-              <li data-sequence-step="0"><span>1</span><strong>Snímač zaznamená člověka</strong></li>
-              <li data-sequence-step="1"><span>2</span><strong>Do řídicí jednotky přijde signál</strong></li>
-              <li data-sequence-step="2"><span>3</span><strong>Jednotka rozhodne o otevření</strong></li>
-              <li data-sequence-step="3"><span>4</span><strong>Motor uvede dveře do pohybu</strong></li>
-              <li data-sequence-step="4"><span>5</span><strong>Dveře se otevřou</strong></li>
-            </ol>
-            <p id="sequence-explanation" class="interaction-result" role="status">Začni tlačítkem „První krok“.</p>
-            <div class="interaction-actions">
-              <button id="sequence-next" type="button">První krok →</button>
-              <button id="sequence-reset" type="button" class="secondary">Znovu</button>
-            </div>
-          </div>
-          <p>U reálných automatických dveří bývají navíc bezpečnostní snímače, které pomáhají zabránit zavření do překážky. Základní princip však zůstává stejný.</p>
-          <button class="chapter-next" type="button" data-go="cast-5">Pokračovat: ovládání a regulace →</button>
-        </div>
-      </details>
-
-      <details class="topic topic-accordion" id="cast-5">
-        <summary><span class="tn">05</span><span class="topic-name">Ovládání a regulace</span><span class="topic-chevron" aria-hidden="true"></span></summary>
-        <div class="topic-body">
-          <div class="topic-body-eyebrow">TŘI SROZUMITELNÉ SITUACE</div>
-          <p><strong>Ruční ovládání:</strong> člověk přímo zadá povel, například vypínačem zapne světlo. <strong>Automatické ovládání:</strong> zařízení provádí předem stanovený postup, například časovač po určité době světlo vypne. <strong>Regulace:</strong> systém měří skutečnou hodnotu, porovnává ji s požadovanou a podle rozdílu průběžně upravuje činnost.</p>
-          <div class="comparison three">
-            <div class="comparison-card"><span class="tag">RUČNÍ OVLÁDÁNÍ</span><h3>Vypínač</h3><p>Rozsvítí se, když ho stiskneš.</p></div>
-            <div class="comparison-card"><span class="tag">AUTOMATICKÉ OVLÁDÁNÍ</span><h3>Časovač</h3><p>Světlo vypne po nastavené době.</p></div>
-            <div class="comparison-card"><span class="tag">REGULACE</span><h3>Termostat</h3><p>Podle měřené teploty ovládá vytápění.</p></div>
-          </div>
-          <div class="interaction" id="control-lab">
-            <div class="interactive-heading"><span class="tag">RYCHLÉ ROZHODOVÁNÍ</span><h3>Ovládání, nebo regulace?</h3></div>
-            <p class="case-count" id="control-count">Situace 1 ze 3</p>
-            <p id="control-scenario" class="scenario">Člověk stiskne vypínač a rozsvítí světlo.</p>
-            <div class="choice-row" role="group" aria-label="Vyber druh řízení">
-              <button type="button" data-control-answer="manual" class="choice">Ruční ovládání</button>
-              <button type="button" data-control-answer="automatic" class="choice">Automatické ovládání</button>
-              <button type="button" data-control-answer="regulation" class="choice">Regulace</button>
-            </div>
-            <p class="interaction-result" id="control-feedback" role="status">Vyber jednu odpověď.</p>
-            <div class="interaction-actions"><button id="control-next" type="button" disabled>Další situace →</button></div>
-          </div>
-          <div class="key-idea"><strong>Nejdůležitější rozdíl:</strong> Regulace používá informaci o <em>skutečném výsledku</em>. Nestačí jen zapnout zařízení na určitou dobu.</div>
-          <button class="chapter-next" type="button" data-go="cast-6">Pokračovat: proč automatizujeme →</button>
-        </div>
-      </details>
-
-      <details class="topic topic-accordion" id="cast-6">
-        <summary><span class="tn">06</span><span class="topic-name">Proč zavádíme automatizaci?</span><span class="topic-chevron" aria-hidden="true"></span></summary>
-        <div class="topic-body">
-          <div class="topic-body-eyebrow">PŘÍNOSY I OMEZENÍ</div>
-          <p>Automatizace může vykonávat opakované činnosti přesně, rychle a dlouhodobě. U některých úkolů také snižuje riziko pro člověka. Díky měření a řízení lze sledovat kvalitu a předcházet zbytečným chybám.</p>
-          <p>Automatizace ale není automaticky nejlepší volbou. Potřebuje investici, energii, nastavení a údržbu. Špatně navržený systém může být nebezpečný. U jednorázové nebo často se měnící práce může být jednoduchý ruční postup vhodnější.</p>
-          <div class="comparison">
-            <div class="comparison-card"><span class="tag">KDY POMÁHÁ</span><h3>Stále stejná činnost</h3><p>Na lince se mají správně roztřídit stovky výrobků. Snímače a řízení mohou zajistit opakovatelnost a rychlost.</p></div>
-            <div class="comparison-card"><span class="tag">KDY ZVAŽOVAT</span><h3>Jednorázový úkol</h3><p>Potřebuješ jednou ručně upravit jediný díl. Složitá automatizace se nemusí vyplatit.</p></div>
-          </div>
-          <details class="think-question"><summary>Otázka k zamyšlení: proč nestačí koupit robota a postavit ho k lince?</summary><p>Robot potřebuje bezpečné pracovní prostředí, správné uchopení výrobků, vstupní informace, program, napájení a údržbu. Musíme také ověřit, že řešení přinese skutečný užitek.</p></details>
-          <button class="chapter-next" type="button" data-go="cast-7">Pokračovat: poznávání systému v praxi →</button>
-        </div>
-      </details>
-
-      <details class="topic topic-accordion" id="cast-7">
-        <summary><span class="tn">07</span><span class="topic-name">Rozpoznání mechatronického systému v praxi</span><span class="topic-chevron" aria-hidden="true"></span></summary>
-        <div class="topic-body">
-          <div class="topic-body-eyebrow">TEĎ UŽ TO ZVLÁDNEŠ SÁM</div>
-          <p>Podívej se na automatické dveře, pračku nebo vytápění s termostatem a zkus odpovědět: <strong>Co systém měří? Kdo rozhoduje? Co se pohybuje nebo mění? Odkud bere energii?</strong></p>
-          <div class="key-idea"><strong>Úkol do sešitu:</strong> Nakresli tři boxy <em>Snímač → Řídicí jednotka → Akční člen</em>. Vyber si jedno známé zařízení a napiš do každého boxu konkrétní součást. Pod schéma doplň, co je výsledkem činnosti.</div>
-          <div class="interaction" id="final-quiz">
-            <div class="interactive-heading"><span class="tag">KRÁTKÉ OVĚŘENÍ</span><h3>Čtyři otázky, které ověří základ</h3><p>Vyber vždy jednu odpověď a potom si nech zobrazit vysvětlení.</p></div>
-            <div class="quiz-question" data-quiz="0">
-              <fieldset><legend>1. Která část systému zjišťuje, že se něco změnilo?</legend>
-                <label><input type="radio" name="quiz-0" value="0"> Akční člen</label>
-                <label><input type="radio" name="quiz-0" value="1"> Snímač</label>
-                <label><input type="radio" name="quiz-0" value="2"> Mechanická konstrukce</label>
-              </fieldset>
-              <p class="quiz-feedback" aria-live="polite"></p>
-            </div>
-            <div class="quiz-question" data-quiz="1">
-              <fieldset><legend>2. Kdo zpracuje signál a vydá povel motoru?</legend>
-                <label><input type="radio" name="quiz-1" value="0"> Řídicí jednotka</label>
-                <label><input type="radio" name="quiz-1" value="1"> Zdroj elektrické energie</label>
-                <label><input type="radio" name="quiz-1" value="2"> Dveřní křídlo</label>
-              </fieldset>
-              <p class="quiz-feedback" aria-live="polite"></p>
-            </div>
-            <div class="quiz-question" data-quiz="2">
-              <fieldset><legend>3. Co je příkladem regulace se zpětnou vazbou?</legend>
-                <label><input type="radio" name="quiz-2" value="0"> Světlo vypnuté časovačem</label>
-                <label><input type="radio" name="quiz-2" value="1"> Motor spuštěný tlačítkem</label>
-                <label><input type="radio" name="quiz-2" value="2"> Termostat udržující požadovanou teplotu</label>
-              </fieldset>
-              <p class="quiz-feedback" aria-live="polite"></p>
-            </div>
-            <div class="quiz-question" data-quiz="3">
-              <fieldset><legend>4. Kdy má automatizace obvykle největší smysl?</legend>
-                <label><input type="radio" name="quiz-3" value="0"> Kdykoli, i bez znalosti nákladů a rizik</label>
-                <label><input type="radio" name="quiz-3" value="1"> U dobře definované opakované činnosti, kde přínosy převáží náklady a rizika</label>
-                <label><input type="radio" name="quiz-3" value="2"> Pouze když zařízení používá robota</label>
-              </fieldset>
-              <p class="quiz-feedback" aria-live="polite"></p>
-            </div>
-            <div class="interaction-actions">
-              <button id="quiz-check" type="button">Vyhodnotit odpovědi</button>
-              <button id="quiz-reset" type="button" class="secondary">Zkusit znovu</button>
-            </div>
-            <p id="quiz-result" class="interaction-result" role="status">Po vyplnění klikni na „Vyhodnotit odpovědi“.</p>
-          </div>
-          <div class="key-idea"><strong>Celá lekce v jedné větě:</strong> Mechatronický systém získává informace, vyhodnocuje je a pomocí akčních členů mění chování skutečného zařízení.</div>
-        </div>
-      </details>
+<nav class="topbar" aria-label="Drobečková navigace"><a href="../../../../">Výukový portál</a><span class="crumb">/</span><a href="../../../">Mechatronika a robotika</a><span class="crumb">/</span><a href="../">3. ročník</a><span class="crumb">/ Téma 01</span></nav>
+<main class="content mechatronika-01">
+  <a href="../" class="course-back">← Všechna témata 3. ročníku</a>
+  <header class="m-hero">
+    <div class="hero-copy">
+      <div class="eyebrow">MECHATRONIKA A ROBOTIKA · TÉMA 01</div>
+      <h1>Co je<br>mechatronický<br>systém?</h1>
+      <p class="m-lead">Mechanika, elektronika, informace a řízení. <strong>Jeden stroj, který dokáže reagovat.</strong></p>
     </div>
+    <svg class="hero-drawing" viewBox="0 0 500 340" role="img" aria-labelledby="hero-title hero-desc">
+      <title id="hero-title">Robotické rameno u dopravníku</title>
+      <desc id="hero-desc">Technický obrázek robota a dopravního pásu s kovovým dílem, barevně navazující na prezentaci.</desc>
+      <g stroke="#58d6ef" fill="none">
+        <rect x="23" y="260" width="450" height="28" stroke-width="2" fill="#176075"/>
+        <line x1="32" y1="301" x2="464" y2="301" stroke-width="3" opacity=".75"/>
+        <g fill="#063c4a" stroke-width="2"><circle cx="53" cy="296" r="10"/><circle cx="109" cy="296" r="10"/><circle cx="165" cy="296" r="10"/><circle cx="221" cy="296" r="10"/><circle cx="277" cy="296" r="10"/><circle cx="333" cy="296" r="10"/><circle cx="389" cy="296" r="10"/><circle cx="445" cy="296" r="10"/></g>
+      </g>
+      <rect x="145" y="228" width="38" height="31" fill="#97b7bf" stroke="#e8f5f8" stroke-width="2"/>
+      <text x="164" y="218" text-anchor="middle" fill="#ffd400" font-size="15" font-weight="700">KOV</text>
+      <path d="M330 257 L317 180 L394 103 L444 135" stroke="#ffb45f" stroke-width="19" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <g fill="#063c4a" stroke="#ffb45f" stroke-width="5"><circle cx="330" cy="257" r="24"/><circle cx="317" cy="180" r="22"/><circle cx="394" cy="103" r="21"/></g>
+      <g fill="#42d7ff"><circle cx="330" cy="257" r="6"/><circle cx="317" cy="180" r="6"/><circle cx="394" cy="103" r="6"/></g>
+      <path d="M445 135 L465 157 M445 135 L480 120" stroke="#dff3f9" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <rect x="294" y="278" width="84" height="17" fill="#00536b" stroke="#41d7ff" stroke-width="2"/>
+      <rect x="128" y="185" width="53" height="27" fill="#003b4b" stroke="#41d7ff" stroke-width="2"/>
+      <circle cx="140" cy="198" r="7" fill="#ffd400"/>
+      <path d="M153 210 L164 227" stroke="#ffd400" stroke-width="2" stroke-dasharray="4 4"/>
+    </svg>
+  </header>
+  <section class="opening-question" aria-labelledby="question-title">
+    <div class="kicker">ZÁHADA NA ZAČÁTEK</div>
+    <h2 id="question-title">Jak stroj pozná, co má udělat?</h2>
+    <p>Po dopravníku přijíždí kovový díl. Systém ho má sám rozpoznat a přesměrovat do správného zásobníku.</p>
+    <div class="three-questions">
+      <p><span>01</span> Jak pozná kov?</p>
+      <p><span>02</span> Kdo vydá rozhodnutí?</p>
+      <p><span>03</span> Co díl fyzicky odsune?</p>
+    </div>
+    <p class="quiet">Na tyto tři otázky se během výkladu vrátíme.</p>
+  </section>
 
-    <section class="lesson-finish" aria-label="Závěr">
-      <div class="kicker">HOTOVO · TÉMA 01</div>
-      <h2>Na co navážeme?</h2>
-      <p>Teď víš, co má mechatronický systém společného se skutečným strojem. V dalším tématu se podíváme, kde všude takové systémy pracují, zejména v robotice, průmyslu a každodenním životě.</p>
-      <nav class="course-next" aria-label="Další témata">
-        <a href="../">← Přehled všech témat</a>
-        <a href="../02/">Téma 02: Mechatronika a robotika kolem nás →</a>
-      </nav>
-    </section>
-  </main>
-  <script src="lesson.js"></script>
+  <nav class="m-contents" aria-label="Obsah tématu">
+    <span class="kicker">V TOMTO TÉMATU</span>
+    <a href="#zaklad">Co je mechatronika</a>
+    <a href="#stroje">Klasický a mechatronický stroj</a>
+    <a href="#casti">Pět částí systému</a>
+    <a href="#dopravnik">Třídicí dopravník</a>
+    <a href="#regulace">Ovládání a regulace</a>
+    <a href="#automatizace">Smysl automatizace</a>
+    <a href="#zavora">Samostatný příklad</a>
+  </nav>
+
+  <section class="m-chapter" id="zaklad">
+    <div class="chapter-num">01 / ZÁKLADNÍ POJEM</div>
+    <h2>Mechatronika propojuje obory</h2>
+    <p class="chapter-intro">Mechatronika vzniká <strong>promyšlenou spoluprací</strong> mechanických, elektrických, elektronických a informačně-řídicích částí. Nestačí jen přidat ke stroji počítač.</p>
+    <div class="four-disciplines">
+      <article><span class="mini-label">MECHANIKA</span><h3>Konstrukce a pohyb</h3><p>Jak se stroj pohybuje, přenáší síly a vykonává práci.</p></article>
+      <article><span class="mini-label">ELEKTROTECHNIKA</span><h3>Snímače a obvody</h3><p>Jak měříme, přenášíme signály a dodáváme energii.</p></article>
+      <article><span class="mini-label">INFORMATIKA</span><h3>Program a data</h3><p>Jak jsou popsána pravidla a zpracovávány informace.</p></article>
+      <article><span class="mini-label">ŘÍZENÍ</span><h3>Rozhodování</h3><p>Jak systém vybírá požadovanou činnost a reaguje na změny.</p></article>
+    </div>
+    <figure class="flow-figure" aria-label="Zjednodušený tok informací a činnosti">
+      <figcaption>Společný princip mnoha mechatronických systémů</figcaption>
+      <div class="flow-chain"><div><b>SNÍMAČ</b><span>získá informaci</span></div><span class="flow-arrow" aria-hidden="true">→</span><div><b>ŘÍDICÍ JEDNOTKA</b><span>rozhodne</span></div><span class="flow-arrow" aria-hidden="true">→</span><div><b>AKČNÍ ČLEN</b><span>vykoná činnost</span></div></div>
+      <p class="figure-note">Mechanika provádí pohyb. Energie umožňuje činnost. Zpětná vazba může informovat o výsledku.</p>
+    </figure>
+    <p class="takeaway"><strong>Podstatné:</strong> Mechatronický systém je jeden fungující celek, ne jen seznam součástek.</p>
+  </section>
+
+  <section class="m-chapter" id="stroje">
+    <div class="chapter-num">02 / SROVNÁNÍ</div>
+    <h2>Klasický stroj × mechatronický stroj</h2>
+    <p>Oba mohou vykonávat stejnou práci. Liší se především způsobem, jak se jejich pohyb řídí. Podívejme se například na obrábění materiálu.</p>
+    <div class="compare-machines">
+      <article>
+        <div class="machine-picture" aria-hidden="true"><svg viewBox="0 0 350 132"><rect x="22" y="90" width="305" height="18" fill="#136276" stroke="#49c8e3"/><rect x="55" y="54" width="55" height="35" fill="#003946" stroke="#49c8e3"/><circle cx="111" cy="71" r="14" fill="#003946" stroke="#ffd400" stroke-width="3"/><rect x="125" y="65" width="134" height="11" fill="#b8d9e3"/><rect x="237" y="39" width="26" height="49" fill="#115466" stroke="#41d7ff"/><line x1="250" y1="39" x2="269" y2="20" stroke="#ffd400" stroke-width="4"/><circle cx="269" cy="20" r="9" stroke="#ffd400" stroke-width="2" fill="none"/><path d="M305 70 L321 70 M313 62 L313 78" stroke="#41d7ff" stroke-width="3"/></svg></div>
+        <span class="mini-label">RUČNÍ SOUSTRUH</span><h3>Obsluha nastavuje pohyb</h3>
+        <p>Člověk přímo ovládá posuvy nástroje. Mechanika přenáší síly a zajišťuje obrábění.</p>
+      </article>
+      <article>
+        <div class="machine-picture" aria-hidden="true"><svg viewBox="0 0 350 132"><rect x="15" y="26" width="234" height="80" fill="#11485a" stroke="#41d7ff" stroke-width="2"/><rect x="31" y="43" width="191" height="46" fill="#063b4b" stroke="#7faebd"/><circle cx="72" cy="66" r="20" fill="#063b4b" stroke="#ffd400" stroke-width="3"/><rect x="96" y="60" width="80" height="12" fill="#aecfd7"/><path d="M185 33 L185 89" stroke="#41d7ff" stroke-width="3"/><rect x="265" y="33" width="64" height="67" fill="#002e3b" stroke="#41d7ff"/><text x="297" y="55" fill="#fff" font-size="16" text-anchor="middle">CNC</text><g fill="#a6ce39"><circle cx="279" cy="77" r="3"/><circle cx="293" cy="77" r="3"/><circle cx="307" cy="77" r="3"/></g></svg></div>
+        <span class="mini-label">CNC SOUSTRUH</span><h3>Program řídí pohyby</h3>
+        <p>Řídicí systém vykonává program a využívá informace o poloze a stavu zařízení.</p>
+      </article>
+    </div>
+    <p class="quiet">Nejde o dělení na „hloupý“ a „chytrý“ stroj. Oba mají mechaniku. Rozdíl je v propojení automatického řízení, snímání a pohonů.</p>
+  </section>
+
+  <section class="m-chapter" id="casti">
+    <div class="chapter-num">03 / ANATOMIE SYSTÉMU</div>
+    <h2>Pět stavebních částí</h2>
+    <p class="chapter-intro">U každého mechatronického zařízení hledej těchto pět funkcí. Jedna součást přitom někdy může zastávat více rolí.</p>
+    <div class="five-parts">
+      <article><span>01</span><h3>Snímač</h3><p>Co se právě děje?</p></article>
+      <article><span>02</span><h3>Řídicí jednotka</h3><p>Co má zařízení udělat?</p></article>
+      <article><span>03</span><h3>Akční člen</h3><p>Kdo provede pokyn?</p></article>
+      <article><span>04</span><h3>Mechanika</h3><p>Co se skutečně pohybuje?</p></article>
+      <article><span>05</span><h3>Energie</h3><p>Co umožní pohyb a řízení?</p></article>
+    </div>
+    <div class="detail-rows">
+      <article><div class="detail-heading"><span class="mini-label">SNÍMAČ</span><h3>Informace o okolí a stroji</h3></div><p>Snímač převádí fyzikální veličinu nebo událost na signál použitelný pro řízení. Může zjišťovat <strong>polohu, teplotu, vzdálenost nebo tlak</strong>. Například snímač u dopravníku rozpozná, zda se před ním nachází výrobek.</p></article>
+      <article><div class="detail-heading"><span class="mini-label">ŘÍDICÍ JEDNOTKA</span><h3>Rozhodnutí podle pravidla</h3></div><p>Jednotka, například <strong>PLC nebo mikrořadič</strong>, vyhodnocuje vstupy podle programu. Nejde o lidské myšlení. Jednotka vykonává předepsaný postup.</p>
+        <div class="rule-block"><span>POKUD snímač zjistí kov</span><strong>→ aktivuj vyřazovací pohon</strong><span>JINAK nech výrobek pokračovat rovně</span></div>
+      </article>
+      <article><div class="detail-heading"><span class="mini-label">AKČNÍ ČLEN</span><h3>Příkaz se mění v účinek</h3></div><p>Řídicí signál sám o sobě těžký stroj nepohne. Akční člen využije dostupnou energii, aby vznikl pohyb, sepnutí nebo změna průtoku.</p>
+        <div class="actuator-examples"><div><b>Elektromotor</b><span>Otáčí hřídelí a pohání dopravník.</span></div><div><b>Pneumatický válec</b><span>Stlačený vzduch posune píst.</span></div><div><b>Ventil nebo relé</b><span>Řídí tok média nebo elektrický obvod.</span></div></div>
+      </article>
+    </div>
+    <p class="takeaway"><strong>Rozlišuj:</strong> Signál nese informaci. Energie umožňuje vykonat práci.</p>
+  </section>
+
+  <section class="m-chapter" id="dopravnik">
+    <div class="chapter-num">04 / PŘÍPADOVÁ STUDIE</div>
+    <h2>Celý systém: třídicí dopravník</h2>
+    <p>Vraťme se k našemu kovovému dílu. Dopravník přiváží výrobky, snímač poskytuje informaci, řídicí jednotka vyhodnotí pravidlo a vyřazovací pohon díl přesměruje.</p>
+    <div class="conveyor-lab" id="conveyor-lab">
+      <div class="lab-header">
+        <div><span class="mini-label">INTERAKTIVNÍ PŘÍKLAD</span><h3>Co se stane, když snímač selže?</h3></div>
+        <p>Vyber materiál výrobku a zkus snímač vypnout. Sleduj signál, rozhodnutí a výsledek.</p>
+      </div>
+      <div class="lab-controls">
+        <div class="control-block"><span class="control-caption">VÝROBEK</span><div class="choice-set" role="group" aria-label="Materiál výrobku"><button type="button" data-material="metal" aria-pressed="true">Kovový díl</button><button type="button" data-material="other" aria-pressed="false">Nekovový díl</button></div></div>
+        <label class="sensor-check"><input id="sensor-working" type="checkbox" checked> Snímač kovu funguje</label>
+      </div>
+      <svg class="conveyor-svg" viewBox="0 0 820 280" role="img" aria-labelledby="conveyor-title conveyor-desc">
+        <title id="conveyor-title">Třídicí dopravník a dva výstupy</title>
+        <desc id="conveyor-desc">Schematická třídicí linka. Kovový díl se při správné detekci odklání do zásobníku KOV, ostatní pokračují rovně.</desc>
+        <rect x="30" y="85" width="480" height="35" fill="#175569" stroke="#5bc9e3" stroke-width="3"/>
+        <g fill="#063b4b" stroke="#5bc9e3"><circle cx="60" cy="123" r="11"/><circle cx="120" cy="123" r="11"/><circle cx="180" cy="123" r="11"/><circle cx="240" cy="123" r="11"/><circle cx="300" cy="123" r="11"/><circle cx="360" cy="123" r="11"/><circle cx="420" cy="123" r="11"/><circle cx="480" cy="123" r="11"/></g>
+        <rect x="186" y="45" width="52" height="30" fill="#003744" stroke="#41d7ff" stroke-width="2"/><circle id="sensor-led" cx="199" cy="60" r="7" fill="#a6ce39"/><text x="251" y="64" font-size="15" fill="#d7eef4">SNÍMAČ</text>
+        <rect id="part-body" x="340" y="54" width="42" height="30" fill="#c4d2d8" stroke="#fff" stroke-width="2"/><text id="part-text" x="361" y="46" text-anchor="middle" font-size="14" font-weight="700" fill="#ffd400">KOV</text>
+        <rect x="540" y="35" width="100" height="78" fill="#003744" stroke="#41d7ff" stroke-width="2"/><text x="590" y="65" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">PLC</text><g fill="#ffd400"><circle cx="565" cy="91" r="4"/><circle cx="581" cy="91" r="4"/><circle cx="597" cy="91" r="4"/></g>
+        <path d="M240 62 L539 62" stroke="#ffd400" stroke-width="2" stroke-dasharray="7 6" fill="none" opacity=".9"/>
+        <rect x="535" y="153" width="118" height="42" fill="#003744" stroke="#41d7ff" stroke-width="2"/><text x="594" y="169" text-anchor="middle" font-size="12" fill="#fff">VYŘAZOVACÍ</text><text x="594" y="184" text-anchor="middle" font-size="12" fill="#fff">POHON</text>
+        <path d="M589 115 V151" stroke="#ffd400" stroke-width="2" stroke-dasharray="6 5"/>
+        <path id="metal-route" d="M380 120 L380 206 L254 206" fill="none" stroke="#a6ce39" stroke-width="5" stroke-linecap="round"/>
+        <path id="other-route" d="M380 120 L548 120 L548 206" fill="none" stroke="#41d7ff" stroke-width="5" stroke-linecap="round" opacity=".2"/>
+        <rect id="metal-bin" x="114" y="208" width="238" height="48" fill="#143c35" stroke="#a6ce39" stroke-width="3"/><text x="233" y="237" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">KOV</text>
+        <rect id="other-bin" x="456" y="208" width="238" height="48" fill="#073b4b" stroke="#638ba0" stroke-width="2"/><text x="575" y="237" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">OSTATNÍ</text>
+      </svg>
+      <div class="lab-results" aria-live="polite" aria-atomic="true">
+        <div><span>SIGNÁL SNÍMAČE</span><strong id="sensor-state">Kov rozpoznán</strong></div>
+        <div><span>POVEL ŘÍDICÍ JEDNOTKY</span><strong id="controller-state">Přesměrovat</strong></div>
+        <div><span>VÝSLEDEK</span><strong id="conveyor-result">Správný zásobník KOV</strong></div>
+      </div>
+      <p id="conveyor-feedback" class="lab-feedback" role="status">Snímač rozpoznal kov, řídicí jednotka aktivovala pohon a výrobek skončil ve správném zásobníku.</p>
+    </div>
+    <h3 class="subheading">Co se stane s kovovým dílem?</h3>
+    <ol class="event-steps">
+      <li><b>Díl přijede.</b> Dopravník přiveze výrobek ke snímači.</li>
+      <li><b>Snímač rozpozná kov.</b> Na vstupu řídicí jednotky vznikne signál.</li>
+      <li><b>Jednotka vyhodnotí pravidlo.</b> Program rozhodne o přesměrování.</li>
+      <li><b>Akční člen zasáhne.</b> Mechanismus díl odkloní.</li>
+      <li><b>Díl skončí ve správném místě.</b> Stroj vykoná určenou činnost.</li>
+    </ol>
+    <p class="takeaway"><strong>Důležitý princip:</strong> Program může být správný, ale když snímač nedodá správnou informaci, může být výsledek chybný.</p>
+  </section>
+
+  <section class="m-chapter" id="regulace">
+    <div class="chapter-num">05 / OVLÁDÁNÍ A REGULACE</div>
+    <h2>Proveď povel, nebo sleduj výsledek?</h2>
+    <p><strong>Ovládání</strong> znamená provést určený povel. Například časovač zapne topení na deset minut, aniž by musel měřit teplotu v místnosti.</p>
+    <p><strong>Regulace</strong> používá zpětnou vazbu: termostat porovnává skutečnou teplotu s požadovanou a podle rozdílu zapíná nebo vypíná topení.</p>
+    <div class="heating-lab">
+      <div class="lab-header"><div><span class="mini-label">VYZKOUŠEJ SI ROZDÍL</span><h3>Časovač × termostat</h3></div><p>Změň teplotu místnosti a sleduj, zda způsob řízení reaguje na výsledek.</p></div>
+      <div class="choice-set modes" role="group" aria-label="Způsob řízení topení">
+        <button type="button" data-mode="timer" aria-pressed="true">Časovač · 10 minut</button>
+        <button type="button" data-mode="thermostat" aria-pressed="false">Termostat · 22 °C</button>
+      </div>
+      <div class="temperature-control"><label for="room-temperature">Skutečná teplota místnosti</label><strong id="room-temperature-value">18 °C</strong><input type="range" min="16" max="28" step="1" value="18" id="room-temperature"><div class="scale"><span>16 °C</span><span>28 °C</span></div></div>
+      <div class="heating-diagram">
+        <div><span>ROZHODOVÁNÍ</span><strong id="heating-controller">Časovač</strong><small id="heating-controller-detail">Povel na 10 minut</small></div>
+        <span aria-hidden="true">→</span>
+        <div><span>TOPENÍ</span><strong id="heating-state">Zapnuto</strong><small>Akční člen</small></div>
+        <span aria-hidden="true">→</span>
+        <div><span>MÍSTNOST</span><strong id="heating-temperature">18 °C</strong><small>Skutečný stav</small></div>
+      </div>
+      <p id="feedback-line" class="feedback-line" hidden>↶ ZPĚTNÁ VAZBA: termostat používá naměřenou teplotu</p>
+      <p id="heating-feedback" class="lab-feedback" role="status">Časovač zapíná topení na určenou dobu. Skutečnou teplotu při tom nevyhodnocuje.</p>
+      <p class="quiet">Jde o zjednodušený model rozhodnutí, nikoli o výpočet toho, jak rychle se místnost ohřeje.</p>
+    </div>
+    <p class="takeaway"><strong>Zapamatuj si:</strong> Regulace měří skutečný stav a využívá jej pro další rozhodování. Automatické ovládání se bez této zpětné vazby může obejít.</p>
+  </section>
+
+  <section class="m-chapter" id="automatizace">
+    <div class="chapter-num">06 / SMYSL AUTOMATIZACE</div>
+    <h2>Proč automatizujeme?</h2>
+    <p class="chapter-intro">Automatizace není cíl sama o sobě. Má smysl, když přináší konkrétní užitek.</p>
+    <div class="benefit-grid">
+      <div><span class="mini-label">PŘÍNOSY</span><h3>Co může zlepšit</h3><p><b>Opakovatelnost</b> · Stejnou práci lze provádět spolehlivě.</p><p><b>Rychlost a výkon</b> · Stroj může pracovat dlouho a pravidelně.</p><p><b>Bezpečnost</b> · Člověk nemusí do rizikového prostoru.</p></div>
+      <div><span class="mini-label">OMEZENÍ</span><h3>Co musíme zvážit</h3><p><b>Pořizovací náklady</b> · Snímače, řízení, pohony a integrace.</p><p><b>Údržba</b> · Seřízení, opravy a servis.</p><p><b>Odpovědnost</b> · Špatný návrh může vést k nebezpečí.</p></div>
+    </div>
+    <div class="compare-machines decisions">
+      <article><span class="mini-label">SÉRIOVÁ VÝROBA</span><h3>Tisíce podobných výrobků</h3><p>Opakované třídění může díky snímačům a dopravníku zrychlit a zpřesnit práci.</p></article>
+      <article><span class="mini-label">JEDNORÁZOVÁ OPRAVA</span><h3>Jeden neobvyklý díl</h3><p>Náklady na návrh a programování automatické linky mohou být vyšší než přínos.</p></article>
+    </div>
+    <p class="takeaway"><strong>Správná otázka:</strong> Nejen „Umíme to zautomatizovat?“, ale také „Vyplatí se to a bude to bezpečné?“</p>
+    <h3 class="subheading">Kde mechatroniku potkáme?</h3>
+    <div class="applications"><div><b>Automatické dveře</b><span>Přítomnost člověka → povel → pohyb</span></div><div><b>Pračka</b><span>Hladina a teplota → program → ventily a motor</span></div><div><b>Robotické rameno</b><span>Poloha kloubů → řízení → pohyb pohonů</span></div><div><b>ABS automobilu</b><span>Rychlost kol → vyhodnocení → úprava brzdného tlaku</span></div></div>
+  </section>
+
+  <section class="m-chapter" id="zavora">
+    <div class="chapter-num">07 / SAMOSTATNÉ POUŽITÍ</div>
+    <h2>Rozebereš automatickou závoru?</h2>
+    <p>Představ si závoru u parkoviště. Co potřebuje, aby reagovala na přijíždějící auto a pracovala bezpečně?</p>
+    <svg class="barrier-svg" viewBox="0 0 860 220" role="img" aria-labelledby="barrier-title barrier-description">
+      <title id="barrier-title">Schéma parkovací závory</title><desc id="barrier-description">Závora s řídicí skříní, ramenem a automobilem, které se k ní přibližuje.</desc>
+      <path d="M35 182 H825" stroke="#72b7c7" stroke-width="4"/>
+      <rect x="168" y="68" width="83" height="111" fill="#12566a" stroke="#41d7ff" stroke-width="3"/>
+      <circle cx="208" cy="89" r="11" fill="#003b4b" stroke="#41d7ff" stroke-width="3"/>
+      <line x1="210" y1="87" x2="585" y2="124" stroke="#ffd400" stroke-width="12" stroke-linecap="round"/>
+      <path d="M595 160 H766 L738 124 H634 Z" fill="#0a5468" stroke="#a7d6df" stroke-width="3"/>
+      <rect x="662" y="132" width="58" height="22" fill="#246e83" stroke="#a7d6df"/>
+      <circle cx="631" cy="170" r="15" fill="#003b4b" stroke="#9ccbd5" stroke-width="3"/>
+      <circle cx="740" cy="170" r="15" fill="#003b4b" stroke="#9ccbd5" stroke-width="3"/>
+      <path d="M170 117 H110 M110 117 V165" stroke="#41d7ff" stroke-dasharray="5 5" stroke-width="3" fill="none"/>
+    </svg>
+    <p class="exercise"><strong>Tvůj úkol:</strong> Urči snímač, řídicí jednotku, akční člen, mechanickou část a zdroj energie. Nakresli jejich jednoduché propojení. Zamysli se také nad tím, jak zabránit zavření závory do vozidla.</p>
+    <button id="barrier-reveal" type="button" class="reveal-button" aria-expanded="false" aria-controls="barrier-solution">Zobrazit možné řešení ↓</button>
+    <div id="barrier-solution" hidden>
+      <p class="quiet">Jde o jednu možnou konstrukci; skutečné závory mohou používat jiné snímače a bezpečnostní prvky.</p>
+      <dl class="solution-list"><div><dt>Snímač</dt><dd>Detektor vozidla nebo čtečka oprávnění.</dd></div><div><dt>Řídicí jednotka</dt><dd>Vyhodnotí povolení a bezpečnostní podmínky.</dd></div><div><dt>Akční člen</dt><dd>Elektromotor a jeho spínací obvod.</dd></div><div><dt>Mechanika</dt><dd>Rameno závory, převod a uložení.</dd></div><div><dt>Energie</dt><dd>Elektrické napájení, případně záložní zdroj.</dd></div></dl>
+    </div>
+  </section>
+
+  <section class="m-summary" aria-labelledby="summary-title">
+    <div class="kicker">SHRNUTÍ</div><h2 id="summary-title">Pět věcí, které už víš</h2>
+    <ol><li>Mechatronika propojuje několik technických oborů.</li><li>Snímač poskytuje informaci o okolí nebo stroji.</li><li>Řídicí jednotka rozhoduje podle pravidel.</li><li>Akční člen využívá energii k fyzické činnosti.</li><li>Regulace používá zpětnou vazbu o skutečném stavu.</li></ol>
+    <blockquote>Stroj získává informace, rozhoduje a mění skutečný svět.</blockquote>
+    <p>Dokážeš-li těchto pět bodů vysvětlit vlastními slovy a ukázat je na konkrétním zařízení, základ mechatroniky chápeš.</p>
+    <nav class="course-next" aria-label="Pokračování výuky"><a href="../">← Všechna témata</a><a href="../02/">Téma 02: Mechatronika a robotika kolem nás →</a></nav>
+  </section>
+</main>
+<script src="lesson.js"></script>
 </body>
 </html>
