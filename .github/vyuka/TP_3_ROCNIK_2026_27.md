@@ -75,19 +75,19 @@ Jeden řádek = jedna budoucí **ucelená interaktivní lekce**. Zahrnuje cíl, 
 
 Každá skupina učiva `U01–U14` má alespoň jednu plánovanou vazbu. Pro všechny **47 jednotlivých výstupů** je plánovaná alespoň jedna lekce. **To je kontrola přítomnosti v plánu, nikoliv důkaz splnění výstupů ani úplného pokrytí všech dílčích položek učiva**. Před každou publikací lekce vyžadujeme zpřesněné mapování podle skutečného textu a aktivní úlohy.
 
-| Skupina učiva ŠVP | Navržené lekce | Výstupy spojované s tímto učivem |
+| Skupina učiva ŠVP | Navržené lekce | Doslovné výstupy přiřazené ke skupině v originálu |
 |---|---|---|
 | `MER3-U01` | `VY-3-01` | `MER3-V001`, `MER3-V002`, `MER3-V003`, `MER3-V004` |
-| `MER3-U02` | `VY-3-02`, `VY-3-03`, `VY-3-22` | `MER3-V005`, `MER3-V006`, `MER3-V007`, `MER3-V020`, `MER3-V030` |
+| `MER3-U02` | `VY-3-02`, `VY-3-03`, `VY-3-22` | `MER3-V005`, `MER3-V006`, `MER3-V007` |
 | `MER3-U03` | `VY-3-08`, `VY-3-09` | `MER3-V008`, `MER3-V009`, `MER3-V010` |
-| `MER3-U04` | `VY-3-04`, `VY-3-05`, `VY-3-06`, `VY-3-07`, `VY-3-11`, `VY-3-16` | `MER3-V011`, `MER3-V012`, `MER3-V013`, `MER3-V014`, `MER3-V015`, `MER3-V017`, `MER3-V023`, `MER3-V026`, `MER3-V029` |
+| `MER3-U04` | `VY-3-04`, `VY-3-05`, `VY-3-06`, `VY-3-07`, `VY-3-09`, `VY-3-16` | `MER3-V011`, `MER3-V012`, `MER3-V013`, `MER3-V014`, `MER3-V015` |
 | `MER3-U05` | `VY-3-10` | `MER3-V016` |
-| `MER3-U06` | `VY-3-11`, `VY-3-12`, `VY-3-14`, `VY-3-21`, `VY-3-22`, `VY-3-23` | `MER3-V007`, `MER3-V014`, `MER3-V017`, `MER3-V018`, `MER3-V019`, `MER3-V020`, `MER3-V021`, `MER3-V022`, `MER3-V025`, `MER3-V026`, `MER3-V030` |
-| `MER3-U07` | `VY-3-13`, `VY-3-14`, `VY-3-15`, `VY-3-16`, `VY-3-17`, `VY-3-18`, `VY-3-19`, `VY-3-20`, `VY-3-23` | `MER3-V012`, `MER3-V020`, `MER3-V021`, `MER3-V022`, `MER3-V023`, `MER3-V024`, `MER3-V025`, `MER3-V026`, `MER3-V027`, `MER3-V028`, `MER3-V029`, `MER3-V030`, `MER3-V031`, `MER3-V032`, `MER3-V033`, `MER3-V034`, `MER3-V035`, `MER3-V036`, `MER3-V037`, `MER3-V038` |
-| `MER3-U08` | `VY-3-21`, `VY-3-22`, `VY-3-23` | `MER3-V007`, `MER3-V017`, `MER3-V020`, `MER3-V021`, `MER3-V022`, `MER3-V025`, `MER3-V026`, `MER3-V030` |
-| `MER3-U09` | `VY-3-20` | `MER3-V027`, `MER3-V031`, `MER3-V034`, `MER3-V037`, `MER3-V038` |
-| `MER3-U10` | `VY-3-19`, `VY-3-20` | `MER3-V027`, `MER3-V028`, `MER3-V031`, `MER3-V032`, `MER3-V033`, `MER3-V034`, `MER3-V035`, `MER3-V036`, `MER3-V037`, `MER3-V038` |
-| `MER3-U11` | `VY-3-20` | `MER3-V027`, `MER3-V031`, `MER3-V034`, `MER3-V037`, `MER3-V038` |
+| `MER3-U06` | `VY-3-11`, `VY-3-12`, `VY-3-14`, `VY-3-21`, `VY-3-22`, `VY-3-23` | `MER3-V017`, `MER3-V018`, `MER3-V019`, `MER3-V020` |
+| `MER3-U07` | `VY-3-13`, `VY-3-14`, `VY-3-15`, `VY-3-16`, `VY-3-17`, `VY-3-18`, `VY-3-19`, `VY-3-20`, `VY-3-23` | `MER3-V021`, `MER3-V022`, `MER3-V023`, `MER3-V024`, `MER3-V025`, `MER3-V026`, `MER3-V027`, `MER3-V028`, `MER3-V029` |
+| `MER3-U08` | `VY-3-21`, `VY-3-22`, `VY-3-23` | `MER3-V030` |
+| `MER3-U09` | `VY-3-20` | `MER3-V031` |
+| `MER3-U10` | `VY-3-19`, `VY-3-20` | `MER3-V032`, `MER3-V033`, `MER3-V034`, `MER3-V035`, `MER3-V036` |
+| `MER3-U11` | `VY-3-20` | `MER3-V037`, `MER3-V038` |
 | `MER3-U12` | `VY-3-24`, `VY-3-25` | `MER3-V039` |
 | `MER3-U13` | `VY-3-26`, `VY-3-27`, `VY-3-28`, `VY-3-29`, `VY-3-30` | `MER3-V040`, `MER3-V041`, `MER3-V042`, `MER3-V043` |
 | `MER3-U14` | `VY-3-31`, `VY-3-32` | `MER3-V044`, `MER3-V045`, `MER3-V046`, `MER3-V047` |
