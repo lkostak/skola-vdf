@@ -1,12 +1,12 @@
-/* Původní tematické okruhy + podtémata a explicitní učivo vyžadované ŠVP. */
-(function(){const d=window.MER3_COURSE,root=document.getElementById("catalog");if(!d||!root)return;
-const esc=v=>String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));const nn=n=>String(n).padStart(2,"0");
-const guides=document.getElementById("svp-foundations");
-if(guides)guides.innerHTML=d.foundations.map(f=>'<article class="svp-card"><h3>'+esc(f.title)+'</h3><p>'+esc(f.source)+'</p><div class="svp-card-links">'+f.links.map(n=>'<a href="'+nn(n)+'/">Tříhodinovka '+nn(n)+'</a>').join('')+'</div></article>').join('');
-for(const t of d.topics){const ll=d.lessons.filter(l=>l.primaryTopic===t.id);
-const sub=t.subtopics.map(s=>'<li><span>'+esc(s.id)+' · '+esc(s.title)+'</span><strong>'+s.hours+' h</strong></li>').join('');
-const cards=ll.map(l=>{const chunks=l.chunks.map(c=>c.ref+' · '+c.hours+' h').join(' + ');const f=(l.focus||[]).map(s=>'<li>'+esc(s)+'</li>').join('');
-return '<a class="card" data-lesson href="'+esc(l.slug)+'/"><div class="cardline"><span class="num">'+esc(l.id)+'</span><span class="status">Plánováno</span></div><h4>'+esc(l.title)+'</h4><p>'+esc(l.goal)+'</p>'+(f?'<ul class="card-focus">'+f+'</ul>':'')+'<div class="cardfooter"><span>'+esc(chunks)+'</span><span>3 × 45 minut →</span></div>'+(l.topics.length>1?'<span class="cross-topic">Pokračuje další tematický okruh</span>':'')+'</a>'}).join('');
-root.insertAdjacentHTML('beforeend','<section class="group" data-group id="tema-'+t.id+'"><header class="grouphead"><span class="letter">'+nn(t.id)+'</span><h2>'+esc(t.title)+'</h2><small>'+t.hours+' hodin dle původního plánu</small></header><ul class="source-subtopics">'+sub+'</ul><div class="cards">'+cards+'</div></section>');
-}
-document.getElementById("search").addEventListener("input",e=>{const q=e.target.value.toLocaleLowerCase("cs").trim();for(const g of document.querySelectorAll("[data-group]")){const gmatch=g.querySelector("h2").textContent.toLocaleLowerCase("cs").includes(q)||g.querySelector(".source-subtopics").textContent.toLocaleLowerCase("cs").includes(q);let visible=0;for(const l of g.querySelectorAll("[data-lesson]")){const good=!q||gmatch||l.textContent.toLocaleLowerCase("cs").includes(q);l.classList.toggle("hide",!good);if(good)visible++;}g.classList.toggle("hide",!visible)}});})();
+"use strict";
+(function(){
+ const root=document.getElementById("course-groups"),course=window.MER3_COURSE;
+ if(!root||!course)return;
+ const escapeText=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+ const num=n=>String(n).padStart(2,"0");
+ for(const group of course.groups){
+   const items=course.lessons.filter(l=>l.group===group.id);
+   const cards=items.map(l=>`<a class="topic-card" href="${escapeText(l.slug)}/" aria-label="Téma ${num(l.number)}: ${escapeText(l.title)}"><div class="topic-number">TÉMA ${num(l.number)}</div><h3>${escapeText(l.title)}</h3><p>${escapeText(l.description)}</p><div class="topic-footer"><span>3 vyučovací hodiny</span><span class="go">Otevřít téma →</span></div></a>`).join("");
+   root.insertAdjacentHTML("beforeend",`<section class="group" id="skupina-${group.id.toLowerCase()}" style="--group-accent:${({cyan:"#40cfe5",blue:"#7cafff",purple:"#bd8af5",amber:"#f1bd6b",green:"#8bd3a5"})[group.color]}"><header class="grouphead"><span class="group-letter">${group.id}</span><div><h2>${escapeText(group.title)}</h2><p>${escapeText(group.subtitle)}</p></div><small>${items.length} témat</small></header><div class="cards">${cards}</div></section>`);
+ }
+})();
