@@ -1,12 +1,34 @@
 "use strict";
+/* Stejný tvar řádku jako maturitní otázky: otázka, číslo, text, šipka. */
 (function(){
- const root=document.getElementById("course-groups"),course=window.MER3_COURSE;
- if(!root||!course)return;
- const escapeText=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
- const num=n=>String(n).padStart(2,"0");
- for(const group of course.groups){
-   const items=course.lessons.filter(l=>l.group===group.id);
-   const cards=items.map(l=>`<a class="topic-card" href="${escapeText(l.slug)}/" aria-label="Téma ${num(l.number)}: ${escapeText(l.title)}"><div class="topic-number">TÉMA ${num(l.number)}</div><h3>${escapeText(l.title)}</h3><p>${escapeText(l.description)}</p><div class="topic-footer"><span>3 vyučovací hodiny</span><span class="go">Otevřít téma →</span></div></a>`).join("");
-   root.insertAdjacentHTML("beforeend",`<section class="group" id="skupina-${group.id.toLowerCase()}" style="--group-accent:${({cyan:"#40cfe5",blue:"#7cafff",purple:"#bd8af5",amber:"#f1bd6b",green:"#8bd3a5"})[group.color]}"><header class="grouphead"><span class="group-letter">${group.id}</span><div><h2>${escapeText(group.title)}</h2><p>${escapeText(group.subtitle)}</p></div><small>${items.length} témat</small></header><div class="cards">${cards}</div></section>`);
- }
+  const root=document.getElementById("course-groups");
+  const course=window.MER3_COURSE;
+  if(!root||!course)return;
+  const escapeText=value=>String(value).replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
+  const two=n=>String(n).padStart(2,"0");
+  for(const group of course.groups){
+    const lessons=course.lessons.filter(lesson=>lesson.group===group.id);
+    const cards=lessons.map(lesson=>`<a class="question active" data-card href="${escapeText(lesson.slug)}/"><span class="n">${two(lesson.number)}</span><div><h3>${escapeText(lesson.title)}</h3><p>${escapeText(lesson.description)}</p></div><span class="arrow" aria-hidden="true">→</span></a>`).join("");
+    root.insertAdjacentHTML("beforeend",
+      `<section class="course-group" id="skupina-${group.id.toLowerCase()}" data-course-group><div class="course-group-heading"><div class="kicker">CELEK ${group.id} · ${lessons.length} TÉMAT</div><h2>${escapeText(group.title)}</h2><p>${escapeText(group.subtitle)}</p></div><div class="question-list">${cards}</div></section>`
+    );
+  }
+  const input=document.querySelector("[data-course-search]");
+  const empty=document.getElementById("no-course-results");
+  if(!input)return;
+  input.addEventListener("input",()=>{
+    const query=input.value.trim().toLocaleLowerCase("cs");
+    let count=0;
+    for(const group of root.querySelectorAll("[data-course-group]")){
+      const headingMatches=group.querySelector("h2").textContent.toLocaleLowerCase("cs").includes(query);
+      let visibleInGroup=0;
+      for(const card of group.querySelectorAll("[data-card]")){
+        const matches=!query||headingMatches||card.textContent.toLocaleLowerCase("cs").includes(query);
+        card.classList.toggle("hidden",!matches);
+        if(matches){visibleInGroup++;count++;}
+      }
+      group.hidden=!visibleInGroup;
+    }
+    if(empty)empty.hidden=count>0;
+  });
 })();

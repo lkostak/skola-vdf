@@ -1,9 +1,34 @@
 "use strict";
 (function(){
- const root=document.getElementById("detail"),c=window.MER3_COURSE,num=Number(document.body.dataset.lesson);
- const lesson=c?.lessons.find(l=>l.number===num);if(!root||!lesson)return;
- const esc=s=>String(s).replace(/[&<>"']/g,x=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[x]));
- const group=c.groups.find(g=>g.id===lesson.group),prev=c.lessons.find(l=>l.number===num-1),next=c.lessons.find(l=>l.number===num+1);
- document.title=lesson.title+" | Mechatronika 3. ročník";
- root.innerHTML=`<a class="back" href="../">← Všech 32 témat</a><header class="lesson-header"><div class="eyebrow">TÉMA ${String(lesson.number).padStart(2,"0")} · ${esc(group.title)}</div><h1>${esc(lesson.title)}</h1><p>${esc(lesson.description)}</p><div class="lesson-info"><span>3 × 45 minut</span><span>3. ročník · Mechatronika a robotika</span></div></header><section class="lesson-section"><h2>O čem to bude</h2><p>${esc(lesson.description)}</p></section><section class="lesson-section"><h2>Co si vyzkoušíme</h2><p>${esc(lesson.practice)}</p></section><p class="not-ready">Podrobný výklad a interaktivní úlohy připravujeme.</p><nav class="lesson-nav" aria-label="Další téma">${prev?'<a href="../'+prev.slug+'/">← Téma '+String(prev.number).padStart(2,"0")+'</a>':'<span></span>'}<a href="../">Přehled témat</a>${next?'<a href="../'+next.slug+'/">Téma '+String(next.number).padStart(2,"0")+' →</a>':'<span></span>'}</nav>`;
+  const root=document.getElementById("detail");
+  const course=window.MER3_COURSE;
+  const num=Number(document.body.dataset.lesson);
+  const lesson=course?.lessons.find(l=>l.number===num);
+  if(!root||!lesson)return;
+  const escapeText=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const two=n=>String(n).padStart(2,"0");
+  const group=course.groups.find(g=>g.id===lesson.group);
+  const prev=course.lessons.find(l=>l.number===num-1);
+  const next=course.lessons.find(l=>l.number===num+1);
+  document.title="Téma "+two(num)+" | "+lesson.title;
+  root.innerHTML=`<a class="course-back" href="../">← Zpět na výuková témata</a>
+  <header class="hero">
+    <div class="eyebrow">3. ROČNÍK · TÉMA ${two(lesson.number)} · CELEK ${group.id}</div>
+    <h1>${escapeText(lesson.title)}</h1>
+    <p class="lead">${escapeText(lesson.description)}</p>
+    <div><span class="pill">3 × 45 minut</span><span class="pill">${escapeText(group.title)}</span></div>
+  </header>
+  <section class="section">
+    <div class="kicker">PŘEHLED TÉMATU</div>
+    <div class="cards">
+      <article class="card"><span class="tag">01 · VÝKLAD</span><h2>Co se naučíme</h2><p>${escapeText(lesson.description)}</p></article>
+      <article class="card"><span class="tag">02 · PRAKTICKÁ ČÁST</span><h2>Co si vyzkoušíme</h2><p>${escapeText(lesson.practice)}</p></article>
+    </div>
+  </section>
+  <p class="course-note">Podrobný výklad a interaktivní úlohy postupně připravujeme.</p>
+  <nav class="course-next" aria-label="Navigace mezi tématy">
+    ${prev?'<a href="../'+prev.slug+'/">← Téma '+two(prev.number)+'</a>':'<span></span>'}
+    <a href="../">Přehled všech témat</a>
+    ${next?'<a href="../'+next.slug+'/">Téma '+two(next.number)+' →</a>':'<span></span>'}
+  </nav>`;
 })();
