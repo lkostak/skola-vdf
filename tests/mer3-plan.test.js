@@ -10,7 +10,8 @@ test("Five planned groups, 32 topics and 96 total hours",()=>{
  assert.equal(course.hours,96);
  assert.equal(course.lessons.reduce((s,l)=>s+l.hours,0),96);
  assert.deepEqual(Array.from(course.groups.map(g=>course.lessons.filter(l=>l.group===g.id).length)),[2,4,4,13,9]);
- assert.ok(course.lessons.every(l=>l.status==="outline"));
+ assert.equal(course.lessons[0].status,"draft");
+ assert.ok(course.lessons.slice(1).every(l=>l.status==="outline"));
 });
 test("Visible topic names match agreed practical mechatronics sequence",()=>{
  const titles=course.lessons.map(l=>l.title);

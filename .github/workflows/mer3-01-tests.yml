@@ -5,6 +5,7 @@ on:
       - 'mechatronika/vyuka/3-rocnik/**'
       - 'tests/mer3-01-model.test.js'
       - 'tests/mer3-plan.test.js'
+      - 'tests/mer3-01-lesson.test.js'
       - '.github/workflows/mer3-01-tests.yml'
   pull_request:
     paths:
@@ -28,6 +29,7 @@ jobs:
           node --check mechatronika/vyuka/3-rocnik/lessons.js
           node --check mechatronika/vyuka/3-rocnik/catalog.js
           node --check mechatronika/vyuka/3-rocnik/lesson-page.js
+          node --check mechatronika/vyuka/3-rocnik/01/lesson.js
           node --check mechatronika/vyuka/3-rocnik/01-proc-automatizujeme-ovladani-a-regulace/app.js
       - name: Check source hour allocation and legacy model
-        run: node --test tests/mer3-plan.test.js tests/mer3-01-model.test.js
+        run: node --test tests/mer3-plan.test.js tests/mer3-01-model.test.js tests/mer3-01-lesson.test.js

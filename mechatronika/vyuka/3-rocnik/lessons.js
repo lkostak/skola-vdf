@@ -1,4 +1,4 @@
-/* Studijní přehled 3. ročníku: 5 oblastí, 32 × 3 vyučovací hodiny. ŠVP vazby jsou interní, na studentském webu se nezobrazují. */
+/* 5 oblastí, 32 × 3 hodiny; lekce 01 má didaktický výklad a cvičení, zbývající jsou osnovy. */
 window.MER3_COURSE={
   "version": "2026-11-25-mechatronika-svp-practice",
   "hours": 96,
@@ -55,7 +55,7 @@ window.MER3_COURSE={
         4,
         15
       ],
-      "status": "outline"
+      "status": "draft"
     },
     {
       "number": 2,

@@ -1,0 +1,110 @@
+/* Téma 01. Používá původní maturitní site.css a outline.css.
+   Lokální pravidla řeší pouze obsah a interaktivitu této lekce. */
+.lesson-one{max-width:1170px}
+.lesson-one .hero{padding:28px 0 22px}
+.lesson-one .hero .lead{max-width:880px;font-size:clamp(1.08rem,1.5vw,1.28rem);line-height:1.78;margin:20px 0 19px}
+.lesson-one .course-back{display:inline-block;color:var(--yellow);font-weight:700;margin:10px 0 10px}
+.lesson-tags{display:flex;flex-wrap:wrap;gap:4px}
+.learning-goal{border-left:4px solid var(--cyan);padding:23px 28px;background:rgba(0,27,34,.5);margin:15px 0 36px}
+.learning-goal h2{font-size:1.55rem;margin:12px 0}
+.learning-goal p{line-height:1.8;margin:0;color:#e6f7fb;font-size:1.04rem;max-width:890px}
+.learning-goal strong{color:#fff3c1}
+.lesson-route{margin:30px 0 34px}
+.route-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:18px}
+.route-grid a{display:flex;align-items:center;gap:14px;background:rgba(0,27,34,.50);color:#e5f6fa;padding:14px 18px;min-height:62px;font-weight:700;font-size:.92rem}
+.route-grid a:hover{background:rgba(0,27,34,.8)}
+.route-grid a:focus-visible,.choice:focus-visible,.chapter-next:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.route-grid span{color:var(--cyan);font-size:1.15rem;font-variant-numeric:tabular-nums}
+.route-note{font-size:.86rem;color:rgba(255,255,255,.7);margin:13px 0}
+.lesson-progress{display:flex;justify-content:space-between;gap:15px;border-top:1px solid #ffffff30;border-bottom:1px solid #ffffff30;padding:16px 5px;margin:25px 0;color:#e8f4f7;font-size:.88rem}
+.lesson-progress span:first-child{color:var(--yellow);font-weight:700}
+.lesson-one .oral-topics{margin:0}
+.lesson-one .oral-topics .topic-body{padding-bottom:32px}
+.lesson-one .oral-topics .topic-body p{font-size:1.02rem;line-height:1.79}
+.lesson-one .oral-topics .topic-body .example{border-top:1px solid #ffffff21;padding-top:18px;margin-top:20px}
+.lesson-one .oral-topics .topic-body p strong{color:#fff2bf}
+.key-idea{background:rgba(0,47,56,.65);border-left:4px solid var(--green);padding:18px 21px;line-height:1.78;color:#edf9fc;margin:24px 0;font-size:1rem}
+.key-idea strong{color:#dcf5be}
+.key-idea em{font-style:normal;font-weight:700;color:#fff}
+.comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:20px 0}
+.comparison.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.comparison-card{background:#001b2273;padding:20px;border-top:3px solid var(--cyan)}
+.comparison-card h3{font-size:1.12rem;line-height:1.4;margin:11px 0}
+.lesson-one .oral-topics .topic-body .comparison-card p{font-size:.93rem;line-height:1.65;margin:0}
+.interaction{margin:26px 0;padding:22px;background:rgba(0,22,30,.72);border:1px solid rgba(169,229,244,.28)}
+.interactive-heading h3{font-size:1.36rem;margin:12px 0 8px}
+.interactive-heading p{margin:0 0 18px!important;font-size:.95rem!important;color:#e3eef1}
+.choice-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+.choice-row button,.chapter-next{font-family:Raleway,Arial,sans-serif;font-size:.86rem;text-transform:none;line-height:1.5}
+.choice-row .choice{color:#e5f8fb;background:#ffffff13;border:1px solid #ffffff4b;min-height:45px;text-align:left;padding:11px 14px}
+.choice-row .choice:hover:not(:disabled){background:#1c6577}
+.choice-row .choice.selected,.choice-row .choice[aria-pressed=true]{background:#006881;border-color:var(--cyan)}
+.choice-row .choice.correct{background:#315a38;border-color:var(--green)}
+.choice-row .choice.incorrect{background:#743535;border-color:#ffb0b0}
+.choice-row button:disabled{cursor:default;opacity:.8}
+.system-diagram{display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr) 22px minmax(0,1fr);gap:10px;align-items:stretch;margin:23px 0 13px}
+.system-node{border:1px solid #56d6ee6b;background:rgba(2,75,91,.64);padding:16px 13px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.node-index{font-size:.7rem;letter-spacing:.10em;color:var(--yellow);font-weight:700}
+.system-node strong{font-size:1.05rem}
+.system-node span{color:#e2f6fb;font-size:.88rem;line-height:1.65}
+.system-arrow{align-self:center;justify-self:center;color:var(--yellow);font-size:1.6rem}
+.lesson-one .oral-topics .topic-body .system-energy{border-left:2px solid var(--yellow);padding:10px 13px;background:#ffffff0a;font-size:.89rem;line-height:1.7;margin:0}
+.sequence-steps{list-style:none;margin:18px 0;padding:0;display:grid;gap:8px}
+.sequence-steps li{display:flex;gap:14px;align-items:center;padding:12px 16px;background:#ffffff09;border:1px solid #ffffff2c;color:#bed4da}
+.sequence-steps li span{font-weight:700;color:#84c1ce}
+.sequence-steps li strong{font-size:.94rem;font-weight:600}
+.sequence-steps li.is-active{background:#00627b;border-color:var(--cyan);color:white}
+.sequence-steps li.is-done{background:#1e4a4f;color:#ecf9fb;border-color:#a6ce3973}
+.interaction-result{padding:11px 15px;background:#ffffff0e;color:#e3f5f9;line-height:1.6;min-height:46px;margin:15px 0 18px!important;font-size:.95rem!important}
+.interaction-result.is-good{border-left:3px solid var(--green)}
+.interaction-result.is-error{border-left:3px solid #ff9e94}
+.interaction-actions{display:flex;flex-wrap:wrap;gap:10px}
+.interaction-actions button:disabled{opacity:.48;cursor:not-allowed}
+.chapter-next{display:inline-flex;background:transparent;color:var(--yellow);padding:8px 0;margin:15px 0 0;text-align:left;font-weight:700}
+.chapter-next:hover{background:transparent;color:#fff}
+.lesson-one .oral-topics .topic-body .case-count{font-size:.78rem;color:var(--yellow);font-weight:700;letter-spacing:.09em;margin:15px 0 7px}
+.lesson-one .oral-topics .topic-body .scenario{font-size:1.13rem;font-weight:700;color:#fff;padding:16px;background:#ffffff10;line-height:1.55;margin:0}
+.think-question{margin:23px 0 10px;border:1px solid #ffffff3b;padding:0;background:#001b2280}
+.think-question summary{cursor:pointer;padding:17px 20px;color:var(--yellow);font-weight:700}
+.think-question p{padding:0 20px 18px;margin:0!important}
+.quiz-question{border-top:1px solid #ffffff3c;padding:17px 0 8px}
+.quiz-question fieldset{margin:0;padding:0;border:0}
+.quiz-question legend{font-weight:700;font-size:1.02rem;color:#fff;line-height:1.55;margin-bottom:12px}
+.quiz-question label{display:block;padding:10px 13px;margin:6px 0;cursor:pointer;background:#ffffff0b;border:1px solid transparent;line-height:1.6;font-size:.92rem}
+.quiz-question label:hover{background:#ffffff1b}
+.quiz-question label:has(input:checked){border-color:var(--cyan);background:#ffffff1e}
+.quiz-question input{margin-right:10px;accent-color:var(--yellow);width:16px;height:16px;vertical-align:middle}
+.lesson-one .oral-topics .topic-body .quiz-feedback{font-size:.9rem;line-height:1.65;margin:10px 0 0}
+.quiz-feedback.is-good{color:#d9fcb5}
+.quiz-feedback.is-error{color:#ffe2bb}
+.lesson-finish{margin:48px 0 20px;padding:32px 28px;background:rgba(0,27,34,.48);border-top:3px solid var(--yellow)}
+.lesson-finish h2{margin:14px 0;font-size:1.6rem}
+.lesson-finish p{max-width:900px;line-height:1.8;color:#e2f2f6}
+.lesson-finish .course-next{margin-top:24px}
+@media(max-width:800px){
+ .lesson-one .hero{padding:22px 0 16px}
+ .route-grid{grid-template-columns:1fr}
+ .lesson-progress{flex-direction:column;gap:3px}
+ .comparison.three{grid-template-columns:1fr}
+ .system-diagram{grid-template-columns:1fr;gap:6px}
+ .system-arrow{transform:rotate(90deg)}
+ .lesson-one .oral-topics .topic-body{padding-right:22px}
+ .lesson-one .oral-topics .topic-body p{font-size:1rem}
+ .interaction{padding:17px}
+}
+@media(max-width:600px){
+ .comparison{grid-template-columns:1fr}
+ .learning-goal{padding:19px 17px}
+ .lesson-finish{padding:24px 18px}
+ .lesson-one .oral-topics .topic-body{padding-left:17px;padding-right:17px}
+}
+@media print{
+ .lesson-one{color:#111}
+ .lesson-one .topic-accordion{break-inside:avoid}
+ .lesson-one .oral-topics .topic-body p,.lesson-finish p{color:#111}
+ .interaction,.comparison-card,.key-idea{background:white;color:#111;border:1px solid #aaa}
+ .system-node{background:white;color:#111}
+ .system-node span,.system-node strong{color:#111}
+ .route-grid a{color:#111}
+ .chapter-next,.interaction-actions{display:none}
+}
