@@ -1,5 +1,5 @@
 "use strict";
-// Tests for the first three-hour lesson: model, initial UI wiring and file links.
+// Legacy conveyor model regression tests (model is no longer active in the first lesson).
 // Run: node --test tests/mer3-01-model.test.js
 const test = require("node:test");
 const assert = require("node:assert/strict");
@@ -42,10 +42,10 @@ function simulate(advance, load, seconds=15) {
   for (let i=0;i<seconds/0.02;i++) advance(state, 0.02);
   return state;
 }
-test("Page sources exist and reference the correct scripts", () => {
+test("Previous lesson URL redirects to revised numeric URL; old model remains in source history", () => {
   const html = fs.readFileSync(path.join(lessonDir, "index.html"), "utf8");
-  assert.match(html, /<script src="app\.js"><\/script>/);
-  assert.match(html, /<link rel="stylesheet" href="lesson\.css">/);
+  assert.match(html, /url=\.\.\/01\//);
+  assert.ok(fs.existsSync(path.join(lessonDir, "../01/index.html")));
   assert.ok(fs.existsSync(path.join(lessonDir, "app.js")));
   assert.ok(fs.existsSync(path.join(lessonDir, "lesson.css")));
 });

@@ -29,7 +29,9 @@
 | 15 | Spojité a nespojité struktury regulačních obvodů | **6** | 15.1 (2 h), 15.2 (2 h), 15.3 (2 h) |
 | | **Celkem** | **96** | |
 
-### Doslovné položky a dotace původního tematického plánu
+### Věcně převzaté položky a dotace původního tematického plánu
+
+*Redakční poznámka:* V původním PDF je překlep „Jazyk symbolických ades“ (7.1), pro čitelnost na webu uvádíme „Jazyk symbolických adres“. Dále upravujeme jen zjevnou diakritiku, například „Ovladání“ na „Ovládání“. Hodiny a věcný rozsah neměníme.
 
 | Č. | Učivo | Hodin |
 |---|---|---:|
