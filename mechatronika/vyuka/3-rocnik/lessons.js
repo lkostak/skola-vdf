@@ -73,6 +73,7 @@ window.MER3_COURSE={
   "lessons": [
     {
       "number": 1,
+      "status": "review",
       "id": "VY-3-01",
       "topic": 1,
       "title": "Proč automatizujeme? Ovládání a regulace",
