@@ -1,624 +1,1344 @@
-/* Vygenerováno ze schváleného pracovního plánu, viz .github/vyuka/TP_3_ROCNIK_2026_27.md */
+/* Přesný převod 96 hodin původního plánu 2025/26, 15 okruhů → 32 tříhodinovek. Viz .github/vyuka/TP_3_ROCNIK_2026_27.md */
 window.MER3_COURSE={
-  "groups": [
+  "status": "Pracovní osnova k revizi",
+  "source": "TP-MER4.pdf (uvnitř 3. ročník 2025/26)",
+  "hours": 96,
+  "topics": [
     {
-      "id": "A",
-      "name": "Automatizace a logické řízení",
-      "topics": [
+      "id": 1,
+      "title": "Motivace a podmínky zavedení automatizačních prostředků",
+      "subtopics": [
         {
-          "id": 1,
-          "name": "Základy automatizace"
+          "id": "1.1",
+          "title": "Důvody a podmínky pro zavedení automatizace",
+          "hours": 1
         },
         {
-          "id": 2,
-          "name": "Prostředky automatizace"
-        },
-        {
-          "id": 3,
-          "name": "Logické a číslicové obvody"
-        },
-        {
-          "id": 4,
-          "name": "Schémata řídicích obvodů"
+          "id": "1.2",
+          "title": "Ovládání a regulace",
+          "hours": 1
         }
-      ]
+      ],
+      "hours": 2
     },
     {
-      "id": "B",
-      "name": "Mikroprocesory a programování",
-      "topics": [
+      "id": 2,
+      "title": "Prostředky automatizace",
+      "subtopics": [
         {
-          "id": 5,
-          "name": "Mikroprocesorové systémy"
+          "id": "2.1",
+          "title": "Elektrické, pneumatické a hydraulické prostředky a jejich značky",
+          "hours": 2
         },
         {
-          "id": 6,
-          "name": "Programování řídicích systémů"
+          "id": "2.2",
+          "title": "Snímače neelektrických veličin",
+          "hours": 3
         },
         {
-          "id": 7,
-          "name": "Časování a řízení programu"
+          "id": "2.3",
+          "title": "Zesilovače pro automatizaci",
+          "hours": 1
         },
         {
-          "id": 8,
-          "name": "Podpůrné obvody a komunikace"
+          "id": "2.4",
+          "title": "Zdroje signálů, zdroje energie pro řídicí systém",
+          "hours": 1
         }
-      ]
+      ],
+      "hours": 7
     },
     {
-      "id": "C",
-      "name": "Akční členy",
-      "topics": [
+      "id": 3,
+      "title": "Schematické zobrazování řídicích struktur",
+      "subtopics": [
         {
-          "id": 9,
-          "name": "Akční členy"
-        }
-      ]
-    },
-    {
-      "id": "D",
-      "name": "Regulace",
-      "topics": [
-        {
-          "id": 10,
-          "name": "Základy regulace"
+          "id": "3.1",
+          "title": "Kontaktní schémata",
+          "hours": 2
         },
         {
-          "id": 11,
-          "name": "Spojitá a číslicová regulace"
+          "id": "3.2",
+          "title": "Schémata na bázi IO",
+          "hours": 2
+        },
+        {
+          "id": "3.3",
+          "title": "Obvody s vnějším ovládáním",
+          "hours": 1
         }
-      ]
+      ],
+      "hours": 5
+    },
+    {
+      "id": 4,
+      "title": "Aplikace základů číslicové techniky",
+      "subtopics": [
+        {
+          "id": "4.1",
+          "title": "Realizace základních číslicových bloků",
+          "hours": 2
+        },
+        {
+          "id": "4.2",
+          "title": "Paměti mikroprocesorů",
+          "hours": 2
+        },
+        {
+          "id": "4.3",
+          "title": "Řídicí systémy s vysokým stupněm integrace",
+          "hours": 1
+        },
+        {
+          "id": "4.4",
+          "title": "Struktura mikropočítače",
+          "hours": 2
+        }
+      ],
+      "hours": 7
+    },
+    {
+      "id": 5,
+      "title": "Typové řady mikropočítačů",
+      "subtopics": [
+        {
+          "id": "5.1",
+          "title": "Základní typové řady mikropočítačů",
+          "hours": 2
+        },
+        {
+          "id": "5.2",
+          "title": "Vlastnosti a vývoj pokročilejších řídicích systémů",
+          "hours": 5
+        }
+      ],
+      "hours": 7
+    },
+    {
+      "id": 6,
+      "title": "Architektura mikropočítače",
+      "subtopics": [
+        {
+          "id": "6.1",
+          "title": "Registry a paměti",
+          "hours": 2
+        },
+        {
+          "id": "6.2",
+          "title": "Synchronizace",
+          "hours": 2
+        },
+        {
+          "id": "6.3",
+          "title": "IN / OUT obvody",
+          "hours": 2
+        },
+        {
+          "id": "6.4",
+          "title": "Sériová komunikace",
+          "hours": 1
+        }
+      ],
+      "hours": 7
+    },
+    {
+      "id": 7,
+      "title": "Prostředky pro vývoj SW",
+      "subtopics": [
+        {
+          "id": "7.1",
+          "title": "Jazyk symbolických adres",
+          "hours": 4
+        },
+        {
+          "id": "7.2",
+          "title": "Žebříčkové diagramy",
+          "hours": 2
+        },
+        {
+          "id": "7.3",
+          "title": "Programování s grafickými bloky",
+          "hours": 2
+        },
+        {
+          "id": "7.4",
+          "title": "Programovací postupy",
+          "hours": 3
+        },
+        {
+          "id": "7.5",
+          "title": "Vývoj, optimalizace a testování programu",
+          "hours": 4
+        }
+      ],
+      "hours": 15
+    },
+    {
+      "id": 8,
+      "title": "Podpůrné obvody mikropočítačů",
+      "subtopics": [
+        {
+          "id": "8.1",
+          "title": "Typy podpůrných obvodů, paměti",
+          "hours": 2
+        },
+        {
+          "id": "8.2",
+          "title": "Stykové obvody a periferie",
+          "hours": 2
+        }
+      ],
+      "hours": 4
+    },
+    {
+      "id": 9,
+      "title": "Přerušení",
+      "subtopics": [
+        {
+          "id": "9.1",
+          "title": "Externí přerušení",
+          "hours": 2
+        },
+        {
+          "id": "9.2",
+          "title": "Interní přerušení",
+          "hours": 2
+        },
+        {
+          "id": "9.3",
+          "title": "Obsluha přerušení",
+          "hours": 2
+        },
+        {
+          "id": "9.4",
+          "title": "Řadič přerušení",
+          "hours": 1
+        }
+      ],
+      "hours": 7
+    },
+    {
+      "id": 10,
+      "title": "Řízení rychlosti programu",
+      "subtopics": [
+        {
+          "id": "10.1",
+          "title": "Zpožďovací smyčky",
+          "hours": 2
+        },
+        {
+          "id": "10.2",
+          "title": "Programování zpožďovacích smyček",
+          "hours": 2
+        }
+      ],
+      "hours": 4
+    },
+    {
+      "id": 11,
+      "title": "Regulační systémy analogové a číslicové",
+      "subtopics": [
+        {
+          "id": "11.1",
+          "title": "Realizace regulačního obvodu analogovými prostředky",
+          "hours": 1
+        },
+        {
+          "id": "11.2",
+          "title": "Realizace regulačního obvodu číslicovými prostředky",
+          "hours": 1
+        },
+        {
+          "id": "11.3",
+          "title": "Regulace rychlosti běhu programu mikroprocesorového systému",
+          "hours": 1
+        }
+      ],
+      "hours": 3
+    },
+    {
+      "id": 12,
+      "title": "Akční členy",
+      "subtopics": [
+        {
+          "id": "12.1",
+          "title": "Elektrické akční členy (spínací prvky, pohony) a jejich řízení",
+          "hours": 3
+        },
+        {
+          "id": "12.2",
+          "title": "Hydraulické a pneumatické akční členy (rozváděče, motory)",
+          "hours": 1
+        }
+      ],
+      "hours": 4
+    },
+    {
+      "id": 13,
+      "title": "Bloková algebra regulačních schémat",
+      "subtopics": [
+        {
+          "id": "13.1",
+          "title": "Přenos funkčního bloku",
+          "hours": 1
+        },
+        {
+          "id": "13.2",
+          "title": "Řazení funkčních bloků",
+          "hours": 3
+        },
+        {
+          "id": "13.3",
+          "title": "Blokové schéma regulačního procesu a veličiny pro popis regulačního děje",
+          "hours": 4
+        },
+        {
+          "id": "13.4",
+          "title": "Popis vlastností bloků pomocí frekvenčních charakteristik",
+          "hours": 2
+        },
+        {
+          "id": "13.5",
+          "title": "Popis vlastností bloků pomocí přechodových charakteristik",
+          "hours": 2
+        }
+      ],
+      "hours": 12
+    },
+    {
+      "id": 14,
+      "title": "Řízení regulačních procesů",
+      "subtopics": [
+        {
+          "id": "14.1",
+          "title": "Regulátory",
+          "hours": 2
+        },
+        {
+          "id": "14.2",
+          "title": "Regulované soustavy",
+          "hours": 2
+        },
+        {
+          "id": "14.3",
+          "title": "Kriteria stability regulačního procesu",
+          "hours": 2
+        }
+      ],
+      "hours": 6
+    },
+    {
+      "id": 15,
+      "title": "Spojité a nespojité struktury regulačních obvodů",
+      "subtopics": [
+        {
+          "id": "15.1",
+          "title": "Výhody a nevýhody analogového a číslicového provedení regulačního systému",
+          "hours": 2
+        },
+        {
+          "id": "15.2",
+          "title": "Digitalizace signálů (vzorkování, kvantování)",
+          "hours": 2
+        },
+        {
+          "id": "15.3",
+          "title": "Programování číslicových regulátorů",
+          "hours": 2
+        }
+      ],
+      "hours": 6
     }
   ],
   "lessons": [
     {
       "number": 1,
-      "status": "review",
       "id": "VY-3-01",
-      "topic": 1,
-      "title": "Proč automatizujeme? Ovládání a regulace",
-      "goal": "Vysvětlit přínosy, omezení, pojmy a podmínky automatizace",
-      "activity": "Dvě funkční schémata dopravníku a obhajoba automatizace",
-      "units": [
-        "MER3-U01"
+      "title": "Proč automatizujeme? A jakými prostředky?",
+      "goal": "Rozumím, proč automatizovat, poznám ovládání a regulaci a rozliším základní prostředky.",
+      "activity": "Srovnání tlačítka, časovače a termostatu; poznávání prvků v jednoduché automatizaci.",
+      "hours": 3,
+      "primaryTopic": 1,
+      "topics": [
+        1,
+        2
       ],
-      "outcomes": [
-        "MER3-V001",
-        "MER3-V002",
-        "MER3-V003",
-        "MER3-V004"
+      "chunks": [
+        {
+          "ref": "1.1",
+          "topic": 1,
+          "topicTitle": "Motivace a podmínky zavedení automatizačních prostředků",
+          "title": "Důvody a podmínky pro zavedení automatizace",
+          "hours": 1
+        },
+        {
+          "ref": "1.2",
+          "topic": 1,
+          "topicTitle": "Motivace a podmínky zavedení automatizačních prostředků",
+          "title": "Ovládání a regulace",
+          "hours": 1
+        },
+        {
+          "ref": "2.1",
+          "topic": 2,
+          "topicTitle": "Prostředky automatizace",
+          "title": "Elektrické, pneumatické a hydraulické prostředky a jejich značky",
+          "hours": 1
+        }
       ],
-      "slug": "01-proc-automatizujeme-ovladani-a-regulace"
+      "status": "planned",
+      "slug": "01"
     },
     {
       "number": 2,
       "id": "VY-3-02",
-      "topic": 2,
-      "title": "Elektrické, pneumatické a hydraulické prostředky",
-      "goal": "Rozlišit médium energie a informace, zdroje a značky",
-      "activity": "Roztřídění komponent a nákres funkčního řetězce",
-      "units": [
-        "MER3-U02"
+      "title": "Pohony a snímače kolem nás",
+      "goal": "Rozliším elektrické, pneumatické a hydraulické prvky a vyberu jednoduchý snímač.",
+      "activity": "Roztřídění dostupných komponent podle média; výběr snímače pro skutečný stroj.",
+      "hours": 3,
+      "primaryTopic": 2,
+      "topics": [
+        2
       ],
-      "outcomes": [
-        "MER3-V005"
+      "chunks": [
+        {
+          "ref": "2.1",
+          "topic": 2,
+          "topicTitle": "Prostředky automatizace",
+          "title": "Elektrické, pneumatické a hydraulické prostředky a jejich značky",
+          "hours": 1
+        },
+        {
+          "ref": "2.2",
+          "topic": 2,
+          "topicTitle": "Prostředky automatizace",
+          "title": "Snímače neelektrických veličin",
+          "hours": 2
+        }
       ],
-      "slug": "02-elektricke-pneumaticke-a-hydraulicke-prostredky"
+      "status": "planned",
+      "slug": "02"
     },
     {
       "number": 3,
       "id": "VY-3-03",
-      "topic": 2,
-      "title": "Snímače a zesílení signálu",
-      "goal": "Vybrat snímač teploty, tlaku, polohy, rychlosti či jiné neelektrické veličiny a vysvětlit zesílení",
-      "activity": "Výběr snímače ve třech situacích a měření dostupného vstupu",
-      "units": [
-        "MER3-U02"
+      "title": "Od snímače k použitelnému signálu",
+      "goal": "Ukážu cestu signálu od snímače přes zesílení k řídicí jednotce a zdroji energie.",
+      "activity": "Praktické schéma: snímač → zesílení → řadič; doplnění napájení.",
+      "hours": 3,
+      "primaryTopic": 2,
+      "topics": [
+        2
       ],
-      "outcomes": [
-        "MER3-V006",
-        "MER3-V007"
+      "chunks": [
+        {
+          "ref": "2.2",
+          "topic": 2,
+          "topicTitle": "Prostředky automatizace",
+          "title": "Snímače neelektrických veličin",
+          "hours": 1
+        },
+        {
+          "ref": "2.3",
+          "topic": 2,
+          "topicTitle": "Prostředky automatizace",
+          "title": "Zesilovače pro automatizaci",
+          "hours": 1
+        },
+        {
+          "ref": "2.4",
+          "topic": 2,
+          "topicTitle": "Prostředky automatizace",
+          "title": "Zdroje signálů, zdroje energie pro řídicí systém",
+          "hours": 1
+        }
       ],
-      "slug": "03-snimace-a-zesileni-signalu"
+      "status": "planned",
+      "slug": "03"
     },
     {
       "number": 4,
       "id": "VY-3-04",
-      "topic": 3,
-      "title": "Binární informace a Booleova algebra",
-      "goal": "Vysvětlit logické úrovně, soustavy, AND, OR, NOT a tabulky",
-      "activity": "Pravdivostní tabulka a dvouvstupová logika",
-      "units": [
-        "MER3-U04"
+      "title": "Kontaktní schémata a první logická zapojení",
+      "goal": "Přečtu základní kontaktní schéma a poznám jeho jednoduché logické vyjádření.",
+      "activity": "Doplňování kontaktů NO/NC a výstupu; první převod do logických značek.",
+      "hours": 3,
+      "primaryTopic": 3,
+      "topics": [
+        3
       ],
-      "outcomes": [
-        "MER3-V011",
-        "MER3-V012"
+      "chunks": [
+        {
+          "ref": "3.1",
+          "topic": 3,
+          "topicTitle": "Schematické zobrazování řídicích struktur",
+          "title": "Kontaktní schémata",
+          "hours": 2
+        },
+        {
+          "ref": "3.2",
+          "topic": 3,
+          "topicTitle": "Schematické zobrazování řídicích struktur",
+          "title": "Schémata na bázi IO",
+          "hours": 1
+        }
       ],
-      "slug": "04-binarni-informace-a-booleova-algebra"
+      "status": "planned",
+      "slug": "04"
     },
     {
       "number": 5,
       "id": "VY-3-05",
-      "topic": 3,
-      "title": "Kombinační obvody, sčítačka a dekodér",
-      "goal": "Převést slovní zadání na tabulku, funkci a blok",
-      "activity": "Vlastní řízení výstupu, ověřená sčítačka/dekodér",
-      "units": [
-        "MER3-U04"
+      "title": "Od schématu k číslicovému bloku",
+      "goal": "Dokážu převést jednoduché ovládání na logické schéma a základní číslicový blok.",
+      "activity": "Jednoduchý příklad START/STOP a jeho blokové či hradlové vyjádření.",
+      "hours": 3,
+      "primaryTopic": 3,
+      "topics": [
+        3,
+        4
       ],
-      "outcomes": [
-        "MER3-V012"
+      "chunks": [
+        {
+          "ref": "3.2",
+          "topic": 3,
+          "topicTitle": "Schematické zobrazování řídicích struktur",
+          "title": "Schémata na bázi IO",
+          "hours": 1
+        },
+        {
+          "ref": "3.3",
+          "topic": 3,
+          "topicTitle": "Schematické zobrazování řídicích struktur",
+          "title": "Obvody s vnějším ovládáním",
+          "hours": 1
+        },
+        {
+          "ref": "4.1",
+          "topic": 4,
+          "topicTitle": "Aplikace základů číslicové techniky",
+          "title": "Realizace základních číslicových bloků",
+          "hours": 1
+        }
       ],
-      "slug": "05-kombinacni-obvody-scitacka-a-dekoder"
+      "status": "planned",
+      "slug": "05"
     },
     {
       "number": 6,
       "id": "VY-3-06",
-      "topic": 3,
-      "title": "Sekvenční logika, paměť, registry a čítače",
-      "goal": "Vysvětlit uložený stav a účel základních sekvenčních bloků",
-      "activity": "Simulace RS a START/STOP; vysvětlení registru a čítače",
-      "units": [
-        "MER3-U04"
+      "title": "Číslicové bloky a paměti",
+      "goal": "Rozliším jednoduchý číslicový obvod a paměťový prvek v řídicím systému.",
+      "activity": "Základní číslicový blok a demonstrace uchování jednoho bitu.",
+      "hours": 3,
+      "primaryTopic": 4,
+      "topics": [
+        4
       ],
-      "outcomes": [
-        "MER3-V012",
-        "MER3-V013"
+      "chunks": [
+        {
+          "ref": "4.1",
+          "topic": 4,
+          "topicTitle": "Aplikace základů číslicové techniky",
+          "title": "Realizace základních číslicových bloků",
+          "hours": 1
+        },
+        {
+          "ref": "4.2",
+          "topic": 4,
+          "topicTitle": "Aplikace základů číslicové techniky",
+          "title": "Paměti mikroprocesorů",
+          "hours": 2
+        }
       ],
-      "slug": "06-sekvencni-logika-pamet-registry-a-citace"
+      "status": "planned",
+      "slug": "06"
     },
     {
       "number": 7,
       "id": "VY-3-07",
-      "topic": 3,
-      "title": "Paměti, procesory, PLD a VLSI",
-      "goal": "Roztřídit paměti, vysvětlit logické pole, VLSI a hlavní části MCU",
-      "activity": "Blokové schéma mikropočítače a volba paměti",
-      "units": [
-        "MER3-U04"
+      "title": "Integrované řídicí systémy a mikropočítač",
+      "goal": "Vysvětlím, proč se funkce integrují, a ukážu části mikropočítače.",
+      "activity": "Společné skládání blokového schématu řídicího mikropočítače.",
+      "hours": 3,
+      "primaryTopic": 4,
+      "topics": [
+        4
       ],
-      "outcomes": [
-        "MER3-V013",
-        "MER3-V014",
-        "MER3-V015"
+      "chunks": [
+        {
+          "ref": "4.3",
+          "topic": 4,
+          "topicTitle": "Aplikace základů číslicové techniky",
+          "title": "Řídicí systémy s vysokým stupněm integrace",
+          "hours": 1
+        },
+        {
+          "ref": "4.4",
+          "topic": 4,
+          "topicTitle": "Aplikace základů číslicové techniky",
+          "title": "Struktura mikropočítače",
+          "hours": 2
+        }
       ],
-      "slug": "07-pameti-procesory-pld-a-vlsi"
+      "status": "planned",
+      "slug": "07"
     },
     {
       "number": 8,
       "id": "VY-3-08",
-      "topic": 4,
-      "title": "Kontaktní liniová schémata",
-      "goal": "Číst NO/NC, cívky a samodržení; správně zakreslit ovládání",
-      "activity": "Nakreslené a ověřené START/STOP kontaktní schéma",
-      "units": [
-        "MER3-U03"
+      "title": "Jak se vyvíjely mikropočítače",
+      "goal": "Porovnám základní typové řady a vysvětlím, proč se mikropočítače vyvíjely.",
+      "activity": "Krátké srovnání dvou generací mikropočítačů na konkrétním zařízení.",
+      "hours": 3,
+      "primaryTopic": 5,
+      "topics": [
+        5
       ],
-      "outcomes": [
-        "MER3-V008"
+      "chunks": [
+        {
+          "ref": "5.1",
+          "topic": 5,
+          "topicTitle": "Typové řady mikropočítačů",
+          "title": "Základní typové řady mikropočítačů",
+          "hours": 2
+        },
+        {
+          "ref": "5.2",
+          "topic": 5,
+          "topicTitle": "Typové řady mikropočítačů",
+          "title": "Vlastnosti a vývoj pokročilejších řídicích systémů",
+          "hours": 1
+        }
       ],
-      "slug": "08-kontaktni-liniova-schemata"
+      "status": "planned",
+      "slug": "08"
     },
     {
       "number": 9,
       "id": "VY-3-09",
-      "topic": 4,
-      "title": "Integrovaná logika a obvody s vnějším ovládáním",
-      "goal": "Převést stejné zadání na hradla a řízení zvenku",
-      "activity": "Druhá varianta schématu včetně označení vstupů",
-      "units": [
-        "MER3-U03"
+      "title": "Jak vybrat vhodný řídicí systém",
+      "goal": "Zvolím vhodný pokročilejší řídicí systém pro konkrétní úkol.",
+      "activity": "Výběr řadiče pro několik aplikací a zdůvodnění parametrů.",
+      "hours": 3,
+      "primaryTopic": 5,
+      "topics": [
+        5
       ],
-      "outcomes": [
-        "MER3-V009",
-        "MER3-V010"
+      "chunks": [
+        {
+          "ref": "5.2",
+          "topic": 5,
+          "topicTitle": "Typové řady mikropočítačů",
+          "title": "Vlastnosti a vývoj pokročilejších řídicích systémů",
+          "hours": 3
+        }
       ],
-      "slug": "09-integrovana-logika-a-obvody-s-vnejsim-ovladanim"
+      "status": "planned",
+      "slug": "09"
     },
     {
       "number": 10,
       "id": "VY-3-10",
-      "topic": 5,
-      "title": "Vývoj a typové řady mikroprocesorů",
-      "goal": "Srovnat vlastnosti historických a moderních mikropočítačů",
-      "activity": "Odůvodněný výběr MCU pro reálnou úlohu",
-      "units": [
-        "MER3-U05"
+      "title": "Pokročilé systémy, registry a paměti",
+      "goal": "Vysvětlím vlastnosti současného systému a účel registrů a pamětí.",
+      "activity": "Čtení registru a výběr vhodné paměti; přenos hodnoty přes procesor.",
+      "hours": 3,
+      "primaryTopic": 5,
+      "topics": [
+        5,
+        6
       ],
-      "outcomes": [
-        "MER3-V016"
+      "chunks": [
+        {
+          "ref": "5.2",
+          "topic": 5,
+          "topicTitle": "Typové řady mikropočítačů",
+          "title": "Vlastnosti a vývoj pokročilejších řídicích systémů",
+          "hours": 1
+        },
+        {
+          "ref": "6.1",
+          "topic": 6,
+          "topicTitle": "Architektura mikropočítače",
+          "title": "Registry a paměti",
+          "hours": 2
+        }
       ],
-      "slug": "10-vyvoj-a-typove-rady-mikroprocesoru"
+      "status": "planned",
+      "slug": "10"
     },
     {
       "number": 11,
       "id": "VY-3-11",
-      "topic": 5,
-      "title": "Architektura mikroprocesoru a sběrnice",
-      "goal": "Popsat CPU, paměť, sběrnice a podpůrné bloky",
-      "activity": "Zakreslení cesty dat od snímače po výstup",
-      "units": [
-        "MER3-U04",
-        "MER3-U06"
+      "title": "Synchronizace a vstupy/výstupy",
+      "goal": "Vysvětlím, proč procesor potřebuje hodinový signál a jak používá vstupy a výstupy.",
+      "activity": "Model hodinového taktu a jednoduchého vstupního/výstupního signálu.",
+      "hours": 3,
+      "primaryTopic": 6,
+      "topics": [
+        6
       ],
-      "outcomes": [
-        "MER3-V014",
-        "MER3-V017"
+      "chunks": [
+        {
+          "ref": "6.2",
+          "topic": 6,
+          "topicTitle": "Architektura mikropočítače",
+          "title": "Synchronizace",
+          "hours": 2
+        },
+        {
+          "ref": "6.3",
+          "topic": 6,
+          "topicTitle": "Architektura mikropočítače",
+          "title": "IN / OUT obvody",
+          "hours": 1
+        }
       ],
-      "slug": "11-architektura-mikroprocesoru-a-sbernice"
+      "status": "planned",
+      "slug": "11"
     },
     {
       "number": 12,
       "id": "VY-3-12",
-      "topic": 5,
-      "title": "Registry, synchronizace a GPIO",
-      "goal": "Vysvětlit registry, takt a I/O mikropočítače",
-      "activity": "Jednoduchý GPIO program a komentované schéma",
-      "units": [
-        "MER3-U06"
+      "title": "Jak mikropočítač komunikuje a začíná programovat",
+      "goal": "Pochopím vstupy/výstupy, základ sériové komunikace a zápisu symbolických adres.",
+      "activity": "Zaslat údaj sériovou linkou a přečíst krátké symbolické označení.",
+      "hours": 3,
+      "primaryTopic": 6,
+      "topics": [
+        6,
+        7
       ],
-      "outcomes": [
-        "MER3-V018",
-        "MER3-V019",
-        "MER3-V020"
+      "chunks": [
+        {
+          "ref": "6.3",
+          "topic": 6,
+          "topicTitle": "Architektura mikropočítače",
+          "title": "IN / OUT obvody",
+          "hours": 1
+        },
+        {
+          "ref": "6.4",
+          "topic": 6,
+          "topicTitle": "Architektura mikropočítače",
+          "title": "Sériová komunikace",
+          "hours": 1
+        },
+        {
+          "ref": "7.1",
+          "topic": 7,
+          "topicTitle": "Prostředky pro vývoj SW",
+          "title": "Jazyk symbolických adres",
+          "hours": 1
+        }
       ],
-      "slug": "12-registry-synchronizace-a-gpio"
+      "status": "planned",
+      "slug": "12"
     },
     {
       "number": 13,
       "id": "VY-3-13",
-      "topic": 6,
-      "title": "Algoritmus a symbolické adresy",
-      "goal": "Zapsat postup řízení jako vývojový diagram a pseudokód",
-      "activity": "Algoritmus s pojmenovanými vstupy a výstupy",
-      "units": [
-        "MER3-U07"
+      "title": "Jazyk symbolických adres v praxi",
+      "goal": "Přečtu a upravím jednoduchou ukázku práce se symbolickými adresami.",
+      "activity": "Úprava adres a instrukcí v krátké, bezpečné demonstrační ukázce.",
+      "hours": 3,
+      "primaryTopic": 7,
+      "topics": [
+        7
       ],
-      "outcomes": [
-        "MER3-V023",
-        "MER3-V024",
-        "MER3-V025"
+      "chunks": [
+        {
+          "ref": "7.1",
+          "topic": 7,
+          "topicTitle": "Prostředky pro vývoj SW",
+          "title": "Jazyk symbolických adres",
+          "hours": 3
+        }
       ],
-      "slug": "13-algoritmus-a-symbolicke-adresy"
+      "status": "planned",
+      "slug": "13"
     },
     {
       "number": 14,
       "id": "VY-3-14",
-      "topic": 6,
-      "title": "První řídicí program Arduino",
-      "goal": "Programovat vstup, výstup a podmínku; otestovat funkčnost",
-      "activity": "Tlačítko/LED s testovacím protokolem",
-      "units": [
-        "MER3-U06",
-        "MER3-U07"
+      "title": "Žebříčkové diagramy a funkční bloky",
+      "goal": "Vysvětlím žebříčkový diagram a přenesu část logiky do grafických bloků.",
+      "activity": "Návrh logiky tlačítko–výstup v LAD a její překreslení do FBD.",
+      "hours": 3,
+      "primaryTopic": 7,
+      "topics": [
+        7
       ],
-      "outcomes": [
-        "MER3-V020",
-        "MER3-V021",
-        "MER3-V025",
-        "MER3-V026"
+      "chunks": [
+        {
+          "ref": "7.2",
+          "topic": 7,
+          "topicTitle": "Prostředky pro vývoj SW",
+          "title": "Žebříčkové diagramy",
+          "hours": 2
+        },
+        {
+          "ref": "7.3",
+          "topic": 7,
+          "topicTitle": "Prostředky pro vývoj SW",
+          "title": "Programování s grafickými bloky",
+          "hours": 1
+        }
       ],
-      "slug": "14-prvni-ridici-program-arduino"
+      "status": "planned",
+      "slug": "14"
     },
     {
       "number": 15,
       "id": "VY-3-15",
-      "topic": 6,
-      "title": "Ladder a grafické bloky PLC",
-      "goal": "Používat LAD/FBD v PLC Teco a navrhnout základní povel",
-      "activity": "Funkční START/STOP v grafickém programování",
-      "units": [
-        "MER3-U07"
+      "title": "Grafické bloky a programovací postupy",
+      "goal": "Postavím jednoduchý program z bloků a pojmenuji jeho kroky.",
+      "activity": "Sestavení blokového programu a popis algoritmu vlastními slovy.",
+      "hours": 3,
+      "primaryTopic": 7,
+      "topics": [
+        7
       ],
-      "outcomes": [
-        "MER3-V024",
-        "MER3-V025",
-        "MER3-V026"
+      "chunks": [
+        {
+          "ref": "7.3",
+          "topic": 7,
+          "topicTitle": "Prostředky pro vývoj SW",
+          "title": "Programování s grafickými bloky",
+          "hours": 1
+        },
+        {
+          "ref": "7.4",
+          "topic": 7,
+          "topicTitle": "Prostředky pro vývoj SW",
+          "title": "Programovací postupy",
+          "hours": 2
+        }
       ],
-      "slug": "15-ladder-a-graficke-bloky-plc"
+      "status": "planned",
+      "slug": "15"
     },
     {
       "number": 16,
       "id": "VY-3-16",
-      "topic": 6,
-      "title": "Stavový automat řídicího procesu",
-      "goal": "Sestavit řízení START → PRÁCE → STOP včetně stavů",
-      "activity": "Stavový diagram a vyzkoušené přechody",
-      "units": [
-        "MER3-U04",
-        "MER3-U07"
+      "title": "Od algoritmu k otestovanému programu",
+      "goal": "Dokážu program vyzkoušet, popsat chybu a opravit ji.",
+      "activity": "Hledání chyby v připraveném programu, krátký testovací protokol.",
+      "hours": 3,
+      "primaryTopic": 7,
+      "topics": [
+        7
       ],
-      "outcomes": [
-        "MER3-V012",
-        "MER3-V023",
-        "MER3-V026",
-        "MER3-V029"
+      "chunks": [
+        {
+          "ref": "7.4",
+          "topic": 7,
+          "topicTitle": "Prostředky pro vývoj SW",
+          "title": "Programovací postupy",
+          "hours": 1
+        },
+        {
+          "ref": "7.5",
+          "topic": 7,
+          "topicTitle": "Prostředky pro vývoj SW",
+          "title": "Vývoj, optimalizace a testování programu",
+          "hours": 2
+        }
       ],
-      "slug": "16-stavovy-automat-ridiciho-procesu"
+      "status": "planned",
+      "slug": "16"
     },
     {
       "number": 17,
       "id": "VY-3-17",
-      "topic": 6,
-      "title": "Ladění, optimalizace a spolehlivost",
-      "goal": "Otestovat systém, vyhledat chybu a zdůvodnit opravu",
-      "activity": "Protokol testů, opravený program a bezpečný postup",
-      "units": [
-        "MER3-U07"
+      "title": "Ladění programu a podpůrné obvody",
+      "goal": "Provedu opakované testy programu a vysvětlím účel podpůrných obvodů.",
+      "activity": "Opakované testy a návrh vhodného podpůrného obvodu.",
+      "hours": 3,
+      "primaryTopic": 7,
+      "topics": [
+        7,
+        8
       ],
-      "outcomes": [
-        "MER3-V026",
-        "MER3-V028",
-        "MER3-V029"
+      "chunks": [
+        {
+          "ref": "7.5",
+          "topic": 7,
+          "topicTitle": "Prostředky pro vývoj SW",
+          "title": "Vývoj, optimalizace a testování programu",
+          "hours": 2
+        },
+        {
+          "ref": "8.1",
+          "topic": 8,
+          "topicTitle": "Podpůrné obvody mikropočítačů",
+          "title": "Typy podpůrných obvodů, paměti",
+          "hours": 1
+        }
       ],
-      "slug": "17-ladeni-optimalizace-a-spolehlivost"
+      "status": "planned",
+      "slug": "17"
     },
     {
       "number": 18,
       "id": "VY-3-18",
-      "topic": 6,
-      "title": "Mini-projekt: samostatný řídicí systém",
-      "goal": "Propojit algoritmus, program, I/O a diagnostiku",
-      "activity": "Zprovozněný projekt a krátká obhajoba",
-      "units": [
-        "MER3-U07"
+      "title": "Paměti, periferie a rozhraní",
+      "goal": "Rozliším paměťové a stykové obvody a vysvětlím účel periferií.",
+      "activity": "Rozbor schématu řadiče: paměti, stykové obvody a periferie.",
+      "hours": 3,
+      "primaryTopic": 8,
+      "topics": [
+        8
       ],
-      "outcomes": [
-        "MER3-V022",
-        "MER3-V023",
-        "MER3-V025",
-        "MER3-V026",
-        "MER3-V029"
+      "chunks": [
+        {
+          "ref": "8.1",
+          "topic": 8,
+          "topicTitle": "Podpůrné obvody mikropočítačů",
+          "title": "Typy podpůrných obvodů, paměti",
+          "hours": 1
+        },
+        {
+          "ref": "8.2",
+          "topic": 8,
+          "topicTitle": "Podpůrné obvody mikropočítačů",
+          "title": "Stykové obvody a periferie",
+          "hours": 2
+        }
       ],
-      "slug": "18-mini-projekt-samostatny-ridici-system"
+      "status": "planned",
+      "slug": "18"
     },
     {
       "number": 19,
       "id": "VY-3-19",
-      "topic": 7,
-      "title": "Zpožďovací smyčky, časovače a strojní cyklus",
-      "goal": "Odlišit oscilátor, strojový/instrukční cyklus, zpoždění a interval",
-      "activity": "Měření blokujícího čekání versus časovač, vyhodnocení chyby",
-      "units": [
-        "MER3-U07",
-        "MER3-U10"
+      "title": "Externí a interní přerušení",
+      "goal": "Na příkladu vysvětlím rozdíl mezi externí a interní událostí přerušení.",
+      "activity": "Pozorování rozdílu mezi vyvoláním přerušení tlačítkem a časovačem.",
+      "hours": 3,
+      "primaryTopic": 9,
+      "topics": [
+        9
       ],
-      "outcomes": [
-        "MER3-V028",
-        "MER3-V032",
-        "MER3-V033",
-        "MER3-V034",
-        "MER3-V035",
-        "MER3-V036"
+      "chunks": [
+        {
+          "ref": "9.1",
+          "topic": 9,
+          "topicTitle": "Přerušení",
+          "title": "Externí přerušení",
+          "hours": 2
+        },
+        {
+          "ref": "9.2",
+          "topic": 9,
+          "topicTitle": "Přerušení",
+          "title": "Interní přerušení",
+          "hours": 1
+        }
       ],
-      "slug": "19-zpozdovaci-smycky-casovace-a-strojni-cyklus"
+      "status": "planned",
+      "slug": "19"
     },
     {
       "number": 20,
       "id": "VY-3-20",
-      "topic": 7,
-      "title": "Přerušení a změna tempa řízení",
-      "goal": "Porovnat polling, interní/externí přerušení, obsluhu, řízení časové periodičnosti",
-      "activity": "Krátký program s ISR a model analogového/číslicového nastavení tempa",
-      "units": [
-        "MER3-U07",
-        "MER3-U09",
-        "MER3-U10",
-        "MER3-U11"
+      "title": "Vnitřní přerušení a jejich obsluha",
+      "goal": "Popíšu obsluhu přerušení a předvedu jednoduchou reakci programu na událost.",
+      "activity": "Sledování jednoduché obslužné rutiny a změny stavu po přerušení.",
+      "hours": 3,
+      "primaryTopic": 9,
+      "topics": [
+        9
       ],
-      "outcomes": [
-        "MER3-V027",
-        "MER3-V031",
-        "MER3-V034",
-        "MER3-V037",
-        "MER3-V038"
+      "chunks": [
+        {
+          "ref": "9.2",
+          "topic": 9,
+          "topicTitle": "Přerušení",
+          "title": "Interní přerušení",
+          "hours": 1
+        },
+        {
+          "ref": "9.3",
+          "topic": 9,
+          "topicTitle": "Přerušení",
+          "title": "Obsluha přerušení",
+          "hours": 2
+        }
       ],
-      "slug": "20-preruseni-a-zmena-tempa-rizeni"
+      "status": "planned",
+      "slug": "20"
     },
     {
       "number": 21,
       "id": "VY-3-21",
-      "topic": 8,
-      "title": "Paměťové a podpůrné obvody",
-      "goal": "Vybrat stykový blok, paměť a periferii pro procesor",
-      "activity": "Funkční architektura jednoduchého mikropočítače",
-      "units": [
-        "MER3-U06",
-        "MER3-U08"
+      "title": "Řadič přerušení a časové smyčky",
+      "goal": "Vysvětlím účel řadiče přerušení a proč program někdy používá čekací smyčku.",
+      "activity": "Časovač versus blokující čekání; vysvětlení, co vykonává procesor.",
+      "hours": 3,
+      "primaryTopic": 9,
+      "topics": [
+        9,
+        10
       ],
-      "outcomes": [
-        "MER3-V017",
-        "MER3-V020",
-        "MER3-V030"
+      "chunks": [
+        {
+          "ref": "9.4",
+          "topic": 9,
+          "topicTitle": "Přerušení",
+          "title": "Řadič přerušení",
+          "hours": 1
+        },
+        {
+          "ref": "10.1",
+          "topic": 10,
+          "topicTitle": "Řízení rychlosti programu",
+          "title": "Zpožďovací smyčky",
+          "hours": 2
+        }
       ],
-      "slug": "21-pametove-a-podpurne-obvody"
+      "status": "planned",
+      "slug": "21"
     },
     {
       "number": 22,
       "id": "VY-3-22",
-      "topic": 8,
-      "title": "Signálové rozhraní a ochrana I/O",
-      "goal": "Oddělit signálovou a výkonovou část; vysvětlit přizpůsobení slabého signálu",
-      "activity": "Návrh bezpečného rozhraní senzoru a řadiče",
-      "units": [
-        "MER3-U02",
-        "MER3-U06",
-        "MER3-U08"
+      "title": "Programování zpoždění a první analogová regulace",
+      "goal": "Napíšu jednoduché zpoždění a porovnám je s analogovým regulačním principem.",
+      "activity": "Naplánovat měřitelné časové zpoždění a ukázat jednoduché analogové řízení.",
+      "hours": 3,
+      "primaryTopic": 10,
+      "topics": [
+        10,
+        11
       ],
-      "outcomes": [
-        "MER3-V007",
-        "MER3-V020",
-        "MER3-V030"
+      "chunks": [
+        {
+          "ref": "10.2",
+          "topic": 10,
+          "topicTitle": "Řízení rychlosti programu",
+          "title": "Programování zpožďovacích smyček",
+          "hours": 2
+        },
+        {
+          "ref": "11.1",
+          "topic": 11,
+          "topicTitle": "Regulační systémy analogové a číslicové",
+          "title": "Realizace regulačního obvodu analogovými prostředky",
+          "hours": 1
+        }
       ],
-      "slug": "22-signalove-rozhrani-a-ochrana-i-o"
+      "status": "planned",
+      "slug": "22"
     },
     {
       "number": 23,
       "id": "VY-3-23",
-      "topic": 8,
-      "title": "Sériová komunikace a diagnostika přenosu",
-      "goal": "Vysvětlit UART/I²C/SPI a používat vybrané sériové rozhraní",
-      "activity": "Skutečný přenos hodnoty a odhalení komunikační chyby",
-      "units": [
-        "MER3-U06",
-        "MER3-U07",
-        "MER3-U08"
+      "title": "Číslicová regulace a elektrické pohony",
+      "goal": "Porovnám analogovou a číslicovou regulaci a vyberu způsob řízení motoru.",
+      "activity": "Schéma číslicového regulačního zásahu a bezpečného ovládání elektrického motoru.",
+      "hours": 3,
+      "primaryTopic": 11,
+      "topics": [
+        11,
+        12
       ],
-      "outcomes": [
-        "MER3-V021",
-        "MER3-V022",
-        "MER3-V025",
-        "MER3-V026",
-        "MER3-V030"
+      "chunks": [
+        {
+          "ref": "11.2",
+          "topic": 11,
+          "topicTitle": "Regulační systémy analogové a číslicové",
+          "title": "Realizace regulačního obvodu číslicovými prostředky",
+          "hours": 1
+        },
+        {
+          "ref": "11.3",
+          "topic": 11,
+          "topicTitle": "Regulační systémy analogové a číslicové",
+          "title": "Regulace rychlosti běhu programu mikroprocesorového systému",
+          "hours": 1
+        },
+        {
+          "ref": "12.1",
+          "topic": 12,
+          "topicTitle": "Akční členy",
+          "title": "Elektrické akční členy (spínací prvky, pohony) a jejich řízení",
+          "hours": 1
+        }
       ],
-      "slug": "23-seriova-komunikace-a-diagnostika-prenosu"
+      "status": "planned",
+      "slug": "23"
     },
     {
       "number": 24,
       "id": "VY-3-24",
-      "topic": 9,
-      "title": "Elektrické akční členy a jejich řízení",
-      "goal": "Porovnat relé, DC motor, servo a oddělení výkonu",
-      "activity": "Výběr a schéma elektrického pohonu s ochranou",
-      "units": [
-        "MER3-U12"
+      "title": "Řízení elektrických, pneumatických a hydraulických pohonů",
+      "goal": "Vysvětlím bezpečný princip řízení elektrického, pneumatického či hydraulického pohonu.",
+      "activity": "Vybrat způsob pohonu pro malý mechanismus a nakreslit blokové zapojení.",
+      "hours": 3,
+      "primaryTopic": 12,
+      "topics": [
+        12
       ],
-      "outcomes": [
-        "MER3-V039"
+      "chunks": [
+        {
+          "ref": "12.1",
+          "topic": 12,
+          "topicTitle": "Akční členy",
+          "title": "Elektrické akční členy (spínací prvky, pohony) a jejich řízení",
+          "hours": 2
+        },
+        {
+          "ref": "12.2",
+          "topic": 12,
+          "topicTitle": "Akční členy",
+          "title": "Hydraulické a pneumatické akční členy (rozváděče, motory)",
+          "hours": 1
+        }
       ],
-      "slug": "24-elektricke-akcni-cleny-a-jejich-rizeni"
+      "status": "planned",
+      "slug": "24"
     },
     {
       "number": 25,
       "id": "VY-3-25",
-      "topic": 9,
-      "title": "Pneumatické a hydraulické pohony",
-      "goal": "Odlišit tlakové médium, rozváděče, válce a bezpečnost",
-      "activity": "Funkční schéma manipulátoru a zdůvodněná volba pohonu",
-      "units": [
-        "MER3-U12"
+      "title": "Přenosy a řazení bloků",
+      "goal": "Umím zakreslit základní blokový přenos a složit dva bloky dohromady.",
+      "activity": "Přenos zadaného bloku a dvě jednoduchá řazení se společnou kontrolou.",
+      "hours": 3,
+      "primaryTopic": 13,
+      "topics": [
+        13
       ],
-      "outcomes": [
-        "MER3-V039"
+      "chunks": [
+        {
+          "ref": "13.1",
+          "topic": 13,
+          "topicTitle": "Bloková algebra regulačních schémat",
+          "title": "Přenos funkčního bloku",
+          "hours": 1
+        },
+        {
+          "ref": "13.2",
+          "topic": 13,
+          "topicTitle": "Bloková algebra regulačních schémat",
+          "title": "Řazení funkčních bloků",
+          "hours": 2
+        }
       ],
-      "slug": "25-pneumaticke-a-hydraulicke-pohony"
+      "status": "planned",
+      "slug": "25"
     },
     {
       "number": 26,
       "id": "VY-3-26",
-      "topic": 10,
-      "title": "Zpětná vazba a regulační smyčka",
-      "goal": "Pojmenovat regulační odchylku, regulátor, soustavu, akční a poruchovou veličinu",
-      "activity": "Blokový obrázek otevřené a uzavřené smyčky",
-      "units": [
-        "MER3-U13"
+      "title": "Od bloků k regulačnímu schématu",
+      "goal": "Poskládám jednoduché bloky a přečtu schéma regulačního okruhu.",
+      "activity": "Řazení bloků a kreslení šipek regulační smyčky se snímačem.",
+      "hours": 3,
+      "primaryTopic": 13,
+      "topics": [
+        13
       ],
-      "outcomes": [
-        "MER3-V040",
-        "MER3-V041"
+      "chunks": [
+        {
+          "ref": "13.2",
+          "topic": 13,
+          "topicTitle": "Bloková algebra regulačních schémat",
+          "title": "Řazení funkčních bloků",
+          "hours": 1
+        },
+        {
+          "ref": "13.3",
+          "topic": 13,
+          "topicTitle": "Bloková algebra regulačních schémat",
+          "title": "Blokové schéma regulačního procesu a veličiny pro popis regulačního děje",
+          "hours": 2
+        }
       ],
-      "slug": "26-zpetna-vazba-a-regulacni-smycka"
+      "status": "planned",
+      "slug": "26"
     },
     {
       "number": 27,
       "id": "VY-3-27",
-      "topic": 10,
-      "title": "Bloková algebra regulačních systémů",
-      "goal": "Zjednodušit základní sériové/paralelní řazení a zpětnou vazbu",
-      "activity": "Vyřešené schéma s výpočtem celkového přenosu",
-      "units": [
-        "MER3-U13"
+      "title": "Regulační smyčka a frekvenční charakteristiky",
+      "goal": "Pojmenuji veličiny regulačního procesu a rozpoznám frekvenční charakteristiku.",
+      "activity": "Čtení schématu regulace a první interpretace frekvenční odezvy.",
+      "hours": 3,
+      "primaryTopic": 13,
+      "topics": [
+        13
       ],
-      "outcomes": [
-        "MER3-V041"
+      "chunks": [
+        {
+          "ref": "13.3",
+          "topic": 13,
+          "topicTitle": "Bloková algebra regulačních schémat",
+          "title": "Blokové schéma regulačního procesu a veličiny pro popis regulačního děje",
+          "hours": 2
+        },
+        {
+          "ref": "13.4",
+          "topic": 13,
+          "topicTitle": "Bloková algebra regulačních schémat",
+          "title": "Popis vlastností bloků pomocí frekvenčních charakteristik",
+          "hours": 1
+        }
       ],
-      "slug": "27-blokova-algebra-regulacnich-systemu"
+      "status": "planned",
+      "slug": "27"
     },
     {
       "number": 28,
       "id": "VY-3-28",
-      "topic": 10,
-      "title": "Přechodové děje a charakteristiky",
-      "goal": "Číst přechodovou a frekvenční odezvu; řešit úvodní případ soustavy vyššího řádu",
-      "activity": "Graf s časovými parametry a komentovaný výpočet",
-      "units": [
-        "MER3-U13"
+      "title": "Frekvenční a přechodové charakteristiky",
+      "goal": "Vysvětlím, co lze vyčíst z frekvenční a přechodové odezvy.",
+      "activity": "Interaktivní srovnání grafů frekvenční a časové odezvy.",
+      "hours": 3,
+      "primaryTopic": 13,
+      "topics": [
+        13
       ],
-      "outcomes": [
-        "MER3-V042"
+      "chunks": [
+        {
+          "ref": "13.4",
+          "topic": 13,
+          "topicTitle": "Bloková algebra regulačních schémat",
+          "title": "Popis vlastností bloků pomocí frekvenčních charakteristik",
+          "hours": 1
+        },
+        {
+          "ref": "13.5",
+          "topic": 13,
+          "topicTitle": "Bloková algebra regulačních schémat",
+          "title": "Popis vlastností bloků pomocí přechodových charakteristik",
+          "hours": 2
+        }
       ],
-      "slug": "28-prechodove-deje-a-charakteristiky"
+      "status": "planned",
+      "slug": "28"
     },
     {
       "number": 29,
       "id": "VY-3-29",
-      "topic": 10,
-      "title": "Regulátory P, I, D, PI a PID",
-      "goal": "Vysvětlit působení základních složek regulátoru",
-      "activity": "Simulace změny parametrů s měřitelným výsledkem",
-      "units": [
-        "MER3-U13"
+      "title": "Regulátory a řízené soustavy",
+      "goal": "Rozliším základní typy regulátorů a vysvětlím, na co působí.",
+      "activity": "Porovnání P/PI/PID na jednoduché simulaci s komentářem.",
+      "hours": 3,
+      "primaryTopic": 14,
+      "topics": [
+        14
       ],
-      "outcomes": [
-        "MER3-V040",
-        "MER3-V043"
+      "chunks": [
+        {
+          "ref": "14.1",
+          "topic": 14,
+          "topicTitle": "Řízení regulačních procesů",
+          "title": "Regulátory",
+          "hours": 2
+        },
+        {
+          "ref": "14.2",
+          "topic": 14,
+          "topicTitle": "Řízení regulačních procesů",
+          "title": "Regulované soustavy",
+          "hours": 1
+        }
       ],
-      "slug": "29-regulatory-p-i-d-pi-a-pid"
+      "status": "planned",
+      "slug": "29"
     },
     {
       "number": 30,
       "id": "VY-3-30",
-      "topic": 10,
-      "title": "Jakost a stabilita regulačního pochodu",
-      "goal": "Porovnat rychlost, překmit, ustálení a stabilitu",
-      "activity": "Výběr a obhajoba nastavení z průběhových grafů",
-      "units": [
-        "MER3-U13"
+      "title": "Vlastnosti soustav a stabilita",
+      "goal": "Popíšu vlastnosti soustavy a posoudím jednoduchý případ stability.",
+      "activity": "Pozorovat ustálení, překmit a stabilitu na zjednodušeném modelu.",
+      "hours": 3,
+      "primaryTopic": 14,
+      "topics": [
+        14
       ],
-      "outcomes": [
-        "MER3-V042",
-        "MER3-V043"
+      "chunks": [
+        {
+          "ref": "14.2",
+          "topic": 14,
+          "topicTitle": "Řízení regulačních procesů",
+          "title": "Regulované soustavy",
+          "hours": 1
+        },
+        {
+          "ref": "14.3",
+          "topic": 14,
+          "topicTitle": "Řízení regulačních procesů",
+          "title": "Kriteria stability regulačního procesu",
+          "hours": 2
+        }
       ],
-      "slug": "30-jakost-a-stabilita-regulacniho-pochodu"
+      "status": "planned",
+      "slug": "30"
     },
     {
       "number": 31,
       "id": "VY-3-31",
-      "topic": 11,
-      "title": "Spojitá, nespojitá a diskrétní regulace",
-      "goal": "Rozlišit spojitost času a spojitost oboru hodnot, analogové/číslicové struktury",
-      "activity": "Čtyři modely signálu a dvoupolohová regulace",
-      "units": [
-        "MER3-U14"
+      "title": "Analogové a číslicové řízení, první vzorkování",
+      "goal": "Porovnám analogový a číslicový přístup a vysvětlím myšlenku vzorkování.",
+      "activity": "Porovnání analogového a číslicového měření; odebrání jednotlivých vzorků.",
+      "hours": 3,
+      "primaryTopic": 15,
+      "topics": [
+        15
       ],
-      "outcomes": [
-        "MER3-V044",
-        "MER3-V045",
-        "MER3-V046",
-        "MER3-V047"
+      "chunks": [
+        {
+          "ref": "15.1",
+          "topic": 15,
+          "topicTitle": "Spojité a nespojité struktury regulačních obvodů",
+          "title": "Výhody a nevýhody analogového a číslicového provedení regulačního systému",
+          "hours": 2
+        },
+        {
+          "ref": "15.2",
+          "topic": 15,
+          "topicTitle": "Spojité a nespojité struktury regulačních obvodů",
+          "title": "Digitalizace signálů (vzorkování, kvantování)",
+          "hours": 1
+        }
       ],
-      "slug": "31-spojita-nespojita-a-diskretni-regulace"
+      "status": "planned",
+      "slug": "31"
     },
     {
       "number": 32,
       "id": "VY-3-32",
-      "topic": 11,
-      "title": "Vzorkování, kvantování a závěrečná úloha",
-      "goal": "Vysvětlit AD převod a dopady vzorkování pro číslicovou regulaci",
-      "activity": "Změny frekvence a rozlišení v simulátoru + malý regulační projekt",
-      "units": [
-        "MER3-U14"
+      "title": "Vzorkování, kvantování a číslicový regulátor",
+      "goal": "Vysvětlím vzorkování a kvantování a navrhnu základ jednoduchého číslicového regulátoru.",
+      "activity": "Vyzkoušet frekvenci vzorkování a kvantování, sestavit základní algoritmus regulátoru.",
+      "hours": 3,
+      "primaryTopic": 15,
+      "topics": [
+        15
       ],
-      "outcomes": [
-        "MER3-V044",
-        "MER3-V045",
-        "MER3-V046",
-        "MER3-V047"
+      "chunks": [
+        {
+          "ref": "15.2",
+          "topic": 15,
+          "topicTitle": "Spojité a nespojité struktury regulačních obvodů",
+          "title": "Digitalizace signálů (vzorkování, kvantování)",
+          "hours": 1
+        },
+        {
+          "ref": "15.3",
+          "topic": 15,
+          "topicTitle": "Spojité a nespojité struktury regulačních obvodů",
+          "title": "Programování číslicových regulátorů",
+          "hours": 2
+        }
       ],
-      "slug": "32-vzorkovani-kvantovani-a-zaverecna-uloha"
+      "status": "planned",
+      "slug": "32"
     }
-  ],
-  "hours": 96,
-  "status": "Pracovní návrh"
+  ]
 };
