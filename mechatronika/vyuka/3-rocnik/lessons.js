@@ -1,4 +1,4 @@
-/* Přesný převod 96 hodin původního plánu 2025/26, 15 okruhů → 32 tříhodinovek. Viz .github/vyuka/TP_3_ROCNIK_2026_27.md */
+/* Původní plán: 15 okruhů / 96 hodin. Didakticky zpřesněno podle ŠVP str. 476–477 bez nové časové dotace. */
 window.MER3_COURSE={
   "status": "Pracovní osnova k revizi",
   "source": "TP-MER4.pdf (uvnitř 3. ročník 2025/26)",
@@ -354,9 +354,9 @@ window.MER3_COURSE={
     {
       "number": 1,
       "id": "VY-3-01",
-      "title": "Proč automatizujeme? A jakými prostředky?",
-      "goal": "Rozumím, proč automatizovat, poznám ovládání a regulaci a rozliším základní prostředky.",
-      "activity": "Srovnání tlačítka, časovače a termostatu; poznávání prvků v jednoduché automatizaci.",
+      "title": "Proč automatizujeme? Elektrické, pneumatické a hydraulické prostředky",
+      "goal": "Rozpoznám ovládání a regulaci a základní elektrické, pneumatické a hydraulické prostředky včetně značek.",
+      "activity": "Tlačítko, časovač a termostat; třídění elektrických, pneumatických a hydraulických součástí podle média.",
       "hours": 3,
       "primaryTopic": 1,
       "topics": [
@@ -387,14 +387,19 @@ window.MER3_COURSE={
         }
       ],
       "status": "planned",
-      "slug": "01"
+      "slug": "01",
+      "focus": [
+        "1.1 Důvody a podmínky automatizace (1 h)",
+        "1.2 Ovládání a regulace (1 h)",
+        "2.1 Elektrické, pneumatické a hydraulické prostředky a značky: první hodina ze dvou (1 h)"
+      ]
     },
     {
       "number": 2,
       "id": "VY-3-02",
-      "title": "Pohony a snímače kolem nás",
-      "goal": "Rozliším elektrické, pneumatické a hydraulické prvky a vyberu jednoduchý snímač.",
-      "activity": "Roztřídění dostupných komponent podle média; výběr snímače pro skutečný stroj.",
+      "title": "Elektrické, pneumatické a hydraulické značky; snímače",
+      "goal": "Rozliším značky elektrických, pneumatických a hydraulických prvků a vysvětlím použití základních snímačů.",
+      "activity": "Čtení značek a jednoduchého schématu; výběr snímače teploty, tlaku nebo polohy.",
       "hours": 3,
       "primaryTopic": 2,
       "topics": [
@@ -417,7 +422,11 @@ window.MER3_COURSE={
         }
       ],
       "status": "planned",
-      "slug": "02"
+      "slug": "02",
+      "focus": [
+        "2.1 Elektrické, pneumatické a hydraulické prostředky: druhá hodina ze dvou (1 h)",
+        "2.2 Snímače neelektrických veličin: první dvě hodiny ze tří (2 h)"
+      ]
     },
     {
       "number": 3,
@@ -459,9 +468,9 @@ window.MER3_COURSE={
     {
       "number": 4,
       "id": "VY-3-04",
-      "title": "Kontaktní schémata a první logická zapojení",
-      "goal": "Přečtu základní kontaktní schéma a poznám jeho jednoduché logické vyjádření.",
-      "activity": "Doplňování kontaktů NO/NC a výstupu; první převod do logických značek.",
+      "title": "Kontaktní schémata a integrovaná logika",
+      "goal": "Nakreslím základní kontaktní schéma a rozpoznám jeho logické vyjádření pomocí hradel.",
+      "activity": "Zapojení START/STOP, značky kontaktů, první schéma logických hradel.",
       "hours": 3,
       "primaryTopic": 3,
       "topics": [
@@ -484,14 +493,19 @@ window.MER3_COURSE={
         }
       ],
       "status": "planned",
-      "slug": "04"
+      "slug": "04",
+      "focus": [
+        "3.1 Kontaktní liniová schémata (2 h)",
+        "3.2 Schémata na bázi integrované logiky: první hodina ze dvou (1 h)",
+        "Příprava: logické úrovně 0/1 a základní hradla, podrobněji v tříhodinovce 05"
+      ]
     },
     {
       "number": 5,
       "id": "VY-3-05",
-      "title": "Od schématu k číslicovému bloku",
-      "goal": "Dokážu převést jednoduché ovládání na logické schéma a základní číslicový blok.",
-      "activity": "Jednoduchý příklad START/STOP a jeho blokové či hradlové vyjádření.",
+      "title": "Logická schémata, dvojková soustava a logická hradla",
+      "goal": "Poznám logické úrovně 0 a 1, základ dvojkové soustavy a hradla AND, OR, NOT.",
+      "activity": "Malé převody mezi dvojkovou a desítkovou soustavou, tabulky hradel, kreslení jednoduchých logických schémat.",
       "hours": 3,
       "primaryTopic": 3,
       "topics": [
@@ -522,14 +536,18 @@ window.MER3_COURSE={
         }
       ],
       "status": "planned",
-      "slug": "05"
+      "slug": "05",
+      "focus": [
+        "3.2/3.3 Integrovaná logika a obvody s vnějším ovládáním (2 h)",
+        "4.1 Základní číslicové bloky: číselné soustavy, informace v počítači, Booleova algebra, logická hradla (1 h, pedagogický obsah podle ŠVP str. 477)"
+      ]
     },
     {
       "number": 6,
       "id": "VY-3-06",
-      "title": "Číslicové bloky a paměti",
-      "goal": "Rozliším jednoduchý číslicový obvod a paměťový prvek v řídicím systému.",
-      "activity": "Základní číslicový blok a demonstrace uchování jednoho bitu.",
+      "title": "Kombinační a sekvenční logika; paměti",
+      "goal": "Vysvětlím rozdíl mezi kombinační a sekvenční logikou a proč si paměťový prvek uchovává stav.",
+      "activity": "Jednoduchá kombinace vstupů, ukázka paměti jednoho bitu a porovnání RAM/ROM.",
       "hours": 3,
       "primaryTopic": 4,
       "topics": [
@@ -552,14 +570,19 @@ window.MER3_COURSE={
         }
       ],
       "status": "planned",
-      "slug": "06"
+      "slug": "06",
+      "focus": [
+        "4.1 Základní číslicové bloky: kombinační a sekvenční obvody, sčítačka, dekodér, registr a čítač v přehledu (1 h)",
+        "4.2 Paměti mikroprocesorů (2 h)",
+        "Registry a čítače znovu využijeme ve výuce architektury a programu; hlubší výklad vyžaduje samostatné rozhodnutí o časové dotaci"
+      ]
     },
     {
       "number": 7,
       "id": "VY-3-07",
-      "title": "Integrované řídicí systémy a mikropočítač",
-      "goal": "Vysvětlím, proč se funkce integrují, a ukážu části mikropočítače.",
-      "activity": "Společné skládání blokového schématu řídicího mikropočítače.",
+      "title": "Řídicí systémy s vysokou integrací a stavba mikropočítače",
+      "goal": "Popíšu strukturu mikropočítače a vysvětlím, kde má paměť, CPU, registry a vstupy/výstupy své místo.",
+      "activity": "Složení blokového schématu mikropočítače z částí.",
       "hours": 3,
       "primaryTopic": 4,
       "topics": [
@@ -582,7 +605,12 @@ window.MER3_COURSE={
         }
       ],
       "status": "planned",
-      "slug": "07"
+      "slug": "07",
+      "focus": [
+        "4.3 Integrované řídicí systémy (1 h)",
+        "4.4 Struktura mikropočítače (2 h)",
+        "Návaznost na hradla, paměti, registry a čítače podle ŠVP"
+      ]
     },
     {
       "number": 8,
@@ -666,7 +694,12 @@ window.MER3_COURSE={
         }
       ],
       "status": "planned",
-      "slug": "10"
+      "slug": "10",
+      "focus": [
+        "5.2 Pokročilé mikropočítače (1 h)",
+        "6.1 Registry a paměti (2 h)",
+        "Opakování sekvenční logiky na registru a čítači jako praktických příkladech"
+      ]
     },
     {
       "number": 11,
@@ -1339,6 +1372,41 @@ window.MER3_COURSE={
       ],
       "status": "planned",
       "slug": "32"
+    }
+  ],
+  "foundations": [
+    {
+      "title": "Elektrické, pneumatické a hydraulické prostředky a jejich značky",
+      "source": "Původní plán 2.1 · přesně 2 hodiny",
+      "links": [
+        1,
+        2
+      ]
+    },
+    {
+      "title": "Dvojková soustava a Booleova algebra",
+      "source": "ŠVP str. 477 · základní číslicové bloky 4.1",
+      "links": [
+        5
+      ]
+    },
+    {
+      "title": "Logická hradla a kombinační obvody",
+      "source": "ŠVP str. 477 · schémata 3.2 + číslicové bloky 4.1",
+      "links": [
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "title": "Sekvenční logika, registry a čítače",
+      "source": "ŠVP str. 477 · 4.1, paměti 4.2 a architektura 6.1",
+      "links": [
+        6,
+        7,
+        10
+      ]
     }
   ]
 };

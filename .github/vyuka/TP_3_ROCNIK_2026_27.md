@@ -148,6 +148,21 @@ Každá tříhodinovka obsahuje **přesně tři původní vyučovací hodiny**. 
 
 **Kontrola provedena programově:** 15/15 tematických okruhů, všech **48 podtémat s výslovnou dotací**, všech **96 hodin**, včetně hodin rozložených přes sousední tříhodinovky; každá podtématická dotace je zachována přesně. Neurčená 6.5 nemá nově vymyšlenou kvótu.
 
+## 3a. Důležité základy, které původní plán skrývá pod obecné názvy
+
+ŠVP pro 3. ročník na straně 476 výslovně uvádí **třídění elektrických, pneumatických a hydraulických prostředků podle média** a jejich **schematické značky**. Původní tematický plán jim věnuje **2 hodiny v části 2.1**; naše tříhodinovky **01 a 02** mají každá jednu z těchto hodin.
+
+Na straně 477 ŠVP dále uvádí **číselné soustavy, zobrazení informace v počítači, Booleovu algebru, logická hradla** a **návrh jednoduchých kombinačních i sekvenčních řídicích obvodů**, včetně konkrétních bloků **sčítačka, registr, dekodér adres, čítač**.
+
+| Konkrétní obsah ze ŠVP | Původní širší tematické okruhy | Navržené tříhodinovky |
+|---|---|---|
+| Elektrické, pneumatické, hydraulické prostředky a jejich značky | 2.1 (2 h) | 01 a 02 |
+| Dvojková soustava, zobrazení informace, Booleova algebra | 4.1 (součást celkových 2 h) | 05 |
+| Logická hradla, kombinační obvody | 3.2, 4.1 | 04 až 06 |
+| Sekvenční obvody, registr, čítač, paměti | 4.1, 4.2, 6.1 | 06, 07, 10 |
+
+**Pozor na odbornou poctivost:** jen **2 hodiny v části 4.1** pro všechny základní číslicové bloky pravděpodobně nestačí na plné zvládnutí detailního ŠVP. Toto je **viditelné pedagogické přiřazení**, nikoli důkaz, že lze všechno za dvě hodiny skutečně naučit. Rozšíření výkladu do dalších bloků (schémata integrované logiky, paměti a registry) je návrh opakování, ne uměle přidané hodiny. Přerozdělení vyučovacích hodin by vyžadovalo následnou samostatnou revizi oproti původnímu tematickému plánu.
+
 ## 4. Pedagogický standard při zpracování každé tříhodinovky
 
 Rámec z [README](README.md), [TEMPLATE](TEMPLATE.md) a [REVIEW](REVIEW.md) zůstává platný, ale u třetího ročníku důsledně upřednostňujeme **srozumitelnost, přehlednost a pochopení před šíří detailů**.

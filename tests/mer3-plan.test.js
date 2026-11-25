@@ -37,3 +37,5 @@ test("First and last lesson precisely follow source boundaries",()=>{
  assert.deepEqual(Array.from(p.lessons[31].chunks.map(x=>x.ref)),["15.2","15.3"]);
  assert.deepEqual(Array.from(p.lessons[31].chunks.map(x=>x.hours)),[1,2]);
 });
+
+test("Essential 3rd-year foundations are explicitly visible in revised lessons",()=>{const q=n=>[p.lessons[n-1].title,p.lessons[n-1].goal,...(p.lessons[n-1].focus||[])].join(" ").toLocaleLowerCase("cs");assert.match(q(1),/elektrické/);assert.match(q(2),/pneumatické/);assert.match(q(2),/hydraulické/);assert.match(q(5),/dvojková soustava/);assert.match(q(5),/logická hradla/);assert.match(q(6),/kombinační/);assert.match(q(6),/sekvenční/);assert.equal(p.topics[1].subtopics[0].hours,2);assert.equal(p.topics[3].subtopics[0].hours,2);assert.ok(p.foundations.length>=4);});
