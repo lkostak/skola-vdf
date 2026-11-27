@@ -177,25 +177,5 @@ on("ctuHold",()=>updateCTU(1,false));on("ctuRelease",()=>updateCTU(0,false));
 on("ctuReset",()=>{updateCTU(0,true);});
 el("ctuPreset").addEventListener("change",displayCTU);displayCTU();
 
-// Zaverecny kvíz.
-const quiz=[
- {name:"q1",correct:"b",yes:"Správně. ROL vrátí staré b3 do nové b0.",no:"ROL narozdíl od SHL recykluje bit, který odchází z nejvyšší pozice."},
- {name:"q2",correct:"b",yes:"Správně. 2²=4 nestačí, ale 2³=8 pokryje pět stavů.",no:"Počet bitů se určuje podle 2ⁿ ≥ M. Pro M=5 stačí tři bity."},
- {name:"q3",correct:"c",yes:"Správně. Ripple čítač má zpoždění řetězených stupňů.",no:"Ripple počítání využívá změnu předchozího stupně jako hodinovou událost dalšího."},
- {name:"q4",correct:"a",yes:"Správně. Q2 = 160/8 = 20 Hz.",no:"Q0 dělí dvěma, Q1 čtyřmi, Q2 osmi a Q3 šestnácti."},
- {name:"q5",correct:"b",yes:"Správně. CTU reaguje na náběžnou hranu, nikoli trvání jedničky.",no:"Bez nové změny CU z 0 na 1 nevzniká další započítávaný impuls."}
-];
-const form=el("finalQuiz");
-form.addEventListener("submit",event=>{
- event.preventDefault();let score=0,filled=0;
- quiz.forEach((item,i)=>{
-  const response=form.querySelector('input[name="'+item.name+'"]:checked'),destination=el("quiz"+(i+1));
-  if(!response){destination.textContent="Tuto otázku zatím nemáš vyplněnou.";destination.className="quiz-feedback";return;}
-  filled++;const correct=response.value===item.correct;if(correct)score++;
-  destination.textContent=correct?item.yes:item.no;
-  destination.className="quiz-feedback "+(correct?"is-correct":"is-wrong");
- });
- say("quizSummary","Správně "+score+"/"+quiz.length+"; vyplněno "+filled+". U maturity zdůvodni každý výsledek.");
-});
-form.addEventListener("reset",()=>{quiz.forEach((x,i)=>say("quiz"+(i+1),""));say("quizSummary","");});
+// Závěrečný test nyní spravuje guide.js. Původní simulace výše zůstávají beze změny.
 })();
