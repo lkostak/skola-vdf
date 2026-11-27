@@ -5,24 +5,24 @@
 <body class="lesson-page seq-page"><nav class="topbar"><a href="../../../">Portál</a><span class="crumb">/</span><a href="../">Maturita</a><span class="crumb">/ 06</span></nav>
 <main class="content lesson-shell"><header class="hero"><div class="eyebrow">MATURITNÍ OTÁZKA 06</div><h1>Registry a čítače</h1>
 <p class="lead">Jak si elektronika pamatuje bity, jak je posouvá a jak počítá impulsy? Pochopíme to společně, krok za krokem.</p>
-<div class="chapter-meta"><span>Výklad v přirozených krocích</span><span>Kontrolní otázky a pokusy</span><span>Podrobný výklad v rozšíření</span><span>ŠVP: MER3-U04, MER3-U06, MER4-U05, MER4-U11</span></div>
-<div class="scope-note"><strong>Nejdřív pochop základ:</strong> registry, posuvy, přenos dat, čítače a jejich praktické použití. V každém kroku jeden princip, příklad a kontrolní otázka. Podrobné kapitoly a složitější úlohy jsou níže v rozšíření.</div></header>
+<div class="chapter-meta"><span>Vysvětlení krok za krokem</span><span>Ukázky, které si vyzkoušíš</span><span>Test až na závěr</span></div>
+<div class="scope-note"><strong>Co se naučíš:</strong> jak registr uchovává a přesouvá bity, jak čítač počítá impulsy a kde se oba používají v praxi. V každém kroku si princip rovnou vyzkoušíš. Na konci si ověříš, co už umíš.</div></header>
 <section id="rychlokurz" class="lesson-guide" aria-labelledby="guideHeading">
  <div class="guide-kicker">NAUČ SE TO KROK ZA KROKEM</div>
- <h2 class="guide-heading" id="guideHeading">Od jednoho bitu až k počítání výrobků</h2>
- <p class="guide-lead">Nezáleží na kulatém počtu kapitol. Každý krok je tu kvůli jedné potřebné myšlence: krátké vysvětlení, pokus a kontrolní otázka. Můžeš zkoušet odpovědi nebo si nechat princip vysvětlit.</p>
- <div class="guide-progress-head"><strong>Tvůj postup</strong><span id="guideProgressText">Načítání výuky…</span></div>
- <div class="guide-progress-track" role="progressbar" aria-label="Zvládnuté kontrolní otázky"><span id="guideProgressBar"></span></div>
- <p class="guide-lead" style="font-size:.82rem;margin:14px 0 0">I · Registry a přenos dat　　II · Čítače a časování　　III · Použití v praxi</p>
+ <h2 class="guide-heading" id="guideHeading">Od jednoho bitu k čítači výrobků</h2>
+ <p class="guide-lead">Začni prvním krokem. Přečti si krátké vysvětlení a vyzkoušej si, co se stane po hodinovém impulsu. Pokud si nebudeš jistý, zobraz si vysvětlení. Na další krok můžeš přejít kdykoli.</p>
+ <div class="guide-progress-head"><strong>Průchod výkladem</strong><span id="guideProgressText">Načítání výuky…</span></div>
+ <div class="guide-progress-track" role="progressbar" aria-label="Průchod výukou"><span id="guideProgressBar"></span></div>
+ <p class="guide-lead" style="font-size:.82rem;margin:14px 0 0">Nejprve registry a přenos dat. Potom čítače a časování. Nakonec jejich použití v praxi.</p>
  <nav id="guideStepNav" class="guide-step-nav" aria-label="Jednotlivé kroky výuky"></nav>
  <div id="guidedStage" class="guide-card" aria-label="Aktuální výukový krok"><h3>Začni jedním bitem</h3><p>Interaktivní průvodce se zobrazí po načtení stránky.</p></div>
  <noscript><p>Průvodce potřebuje JavaScript. Podrobný výklad zůstává dostupný i bez něj.</p></noscript>
- <div class="guide-footer"><span>Pokrok se ukládá jen v tomto prohlížeči. Nejde o známkovaný test.</span>
+ <div class="guide-footer"><span>Poslední otevřený krok se pamatuje v tomto prohlížeči.</span>
   <button type="button" class="guide-restart" id="guideReset">Začít celý kurz znovu</button></div>
 </section>
 <details id="podrobne" class="guide-deep">
- <summary>Podrobný maturitní výklad a pokročilé simulace
-  <small>Rozbalovací ústní osnova, časové diagramy, synchronní/asynchronní čítače, RESET, LOAD, ENABLE, dělení frekvence a úlohy s PLC.</small>
+ <summary>Chceš vědět víc? Podrobný výklad a další simulace
+  <small>Další příklady, stavové tabulky, časové diagramy a podklady pro ústní maturitu.</small>
  </summary>
  <div class="guide-deep-body">
 <nav class="chapter-nav" aria-label="Obsah výukové otázky"><a href="#osnova">Ústní osnova</a><a href="#uvod">01 Od</a><a href="#registry">02 Paměťový</a><a href="#posuvy">03 Posuny</a><a href="#casovani">04 Sériové/paralelní</a><a href="#citace">05 Čítač,</a><a href="#synchronni">06 Synchronní</a><a href="#frekvence">07 Dělení</a><a href="#rizeni">08 RESET,</a><a href="#praxe">09 Konkrétní</a><a href="#overeni">10 Souvislá</a></nav>
@@ -110,16 +110,23 @@
 <div class="study-text"><h3>Osnova souvislé odpovědi</h3><p>Nejprve vysvětlím, proč čtyři D klopné obvody tvoří čtyřbitovou paměť. Rozdělím registry na paměťové a posuvné a uvedu SISO, SIPO, PISO, PIPO. Nakreslím SHL/SHR a rotace ROL/ROR na konkrétním bitovém vzoru a ukážu jedno čtení časového diagramu.</p>
 <p>Pak přejdu k čítačům: definice, modulo, binární a dekadický cyklus, UP/DOWN, reset, load, enable a výpočet 2ⁿ stavů. Vysvětlím rozdíl synchronního a ripple čítače a odvodím f/2 až f/16. Na závěr uvedu zkrácený čítač modulo 5, historické čipy 7490/7493 a ukázku PLC CTU na dopravníku.</p>
 <p>Při ústní zkoušce je důležité <strong>předvést výpočty a kreslení</strong>, ne jen opakovat definice. Zvlášť se hlídá, že posuv není rotace, že 2ⁿ je počet stavů a že trvalá jednička na CU nemá být zaměněna za nekonečně mnoho impulzů.</p></div>
-<form id="finalQuiz" class="quiz-form">
-<fieldset><legend>1. Jaký výsledek má ROL pro čtyřbitové 1011?</legend><label><input type="radio" name="q1" value="a"> 0110</label><label><input type="radio" name="q1" value="b"> 0111</label><label><input type="radio" name="q1" value="c"> 1101</label><p id="quiz1" class="quiz-feedback"></p></fieldset>
-<fieldset><legend>2. Kolik bitů nejméně potřebuje čítač modulo 5?</legend><label><input type="radio" name="q2" value="a"> 2</label><label><input type="radio" name="q2" value="b"> 3</label><label><input type="radio" name="q2" value="c"> 5</label><p id="quiz2" class="quiz-feedback"></p></fieldset>
-<fieldset><legend>3. Co charakterizuje asynchronní (ripple) čítač?</legend><label><input type="radio" name="q3" value="a"> Každý stupeň má vždy úplně totožnou aktivní hodinovou hranu.</label><label><input type="radio" name="q3" value="b"> Nemá paměť a jen dekóduje vstupy.</label><label><input type="radio" name="q3" value="c"> Přepnutí se může postupně šířit mezi stupni.</label><p id="quiz3" class="quiz-feedback"></p></fieldset>
-<fieldset><legend>4. Jaká je ideální frekvence Q2 u běžného binárního čítače při CLK=160 Hz?</legend><label><input type="radio" name="q4" value="a"> 20 Hz</label><label><input type="radio" name="q4" value="b"> 40 Hz</label><label><input type="radio" name="q4" value="c"> 80 Hz</label><p id="quiz4" class="quiz-feedback"></p></fieldset>
-<fieldset><legend>5. Co udělá výukový PLC CTU, když držíme CU stále na 1 bez dalšího přechodu 0→1?</legend><label><input type="radio" name="q5" value="a"> Při každém vykreslení stránky přičte další jedničku.</label><label><input type="radio" name="q5" value="b"> Nepočítá další událost, dokud nevznikne nová náběžná hrana.</label><label><input type="radio" name="q5" value="c"> Automaticky nuluje PV.</label><p id="quiz5" class="quiz-feedback"></p></fieldset>
-<div class="controls"><button type="submit">Vyhodnotit</button><button class="secondary" type="reset">Nový pokus</button></div><p id="quizSummary" class="feedback" aria-live="polite"></p></form>
+<p class="guide-study-link">Až si projdeš výklad, vyzkoušej <a href="#zaverecny-test">závěrečný test</a>. Všechny potřebné principy jsou vysvětlené výše.</p>
+
 <aside class="worked-example"><h3>Modelová ústní odpověď</h3><p>„Registr je skupina klopných obvodů, které společně uchovávají několik bitů. Posuvný registr přesouvá bity mezi buňkami při hodinové hraně. Čítač oproti tomu při impulsech přechází mezi číselnými stavy. Čtyřbitový binární čítač má 16 stavů, dekadický pouze deset. U synchronního čítače se stav mění na společném taktu, u ripple se změny šíří stupni. Na binárním čítači můžeme dělit frekvenci a v PLC používáme čítače událostí například k počítání výrobků.“</p></aside>
-<nav class="lesson-bottom-nav"><a href="../05-sekvencni-logika/">← Opakovat klopné obvody 05</a><a href="../">Přehled maturitních otázek →</a></nav>
+
 </section>
 </div></details>
-<footer class="footer">VOŠ, SPŠ a SOŠ Varnsdorf · Mechatronika a robotika · Maturitní otázka 06 · Pracovní podoba k pedagogické revizi</footer></main>
+<section id="zaverecny-test" class="lesson-guide guide-final-test" aria-labelledby="finalTestTitle">
+ <div class="guide-kicker">NA ZÁVĚR</div>
+ <h2 class="guide-heading" id="finalTestTitle">Ověř si, co už umíš</h2>
+ <p class="guide-lead">Teď si vyzkoušíš otázky z celého výkladu. Vyber odpověď u každé otázky a klikni na <strong>Vyhodnotit test</strong>. Po vyhodnocení uvidíš vysvětlení a poznáš, co se vyplatí zopakovat.</p>
+ <form id="finalQuiz" class="quiz-form" novalidate>
+  <div id="finalQuizQuestions"><p>Načítání otázek…</p></div>
+  <div class="controls"><button type="submit">Vyhodnotit test</button><button type="reset" class="secondary">Zkusit znovu</button></div>
+  <p id="quizSummary" class="feedback" aria-live="polite"></p>
+ </form>
+ <p class="guide-lead" style="font-size:.88rem;margin-top:18px">U ústní maturity nestačí odpověď poznat. Zkus také bez nápovědy vysvětlit, proč se bit posunul nebo proč čítač přešel na další stav.</p>
+</section>
+<nav class="lesson-bottom-nav"><a href="../05-sekvencni-logika/">← Opakovat klopné obvody 05</a><a href="../">Přehled maturitních otázek →</a></nav>
+<footer class="footer">VOŠ, SPŠ a SOŠ Varnsdorf · Mechatronika a robotika · Maturitní otázka 06</footer></main>
 <script src="../../../assets/js/sequential-blocks-core.js"></script><script src="app.js"></script><script src="guide.js"></script></body></html>
