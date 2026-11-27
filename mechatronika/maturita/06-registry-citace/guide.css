@@ -91,3 +91,21 @@
  .seq-page .guide-card p,.seq-page .guide-card h3,.seq-page .guide-bit strong,.seq-page .guide-bit small,.seq-page .guide-example h4{color:#111!important}
  .seq-page .guide-step-nav,.seq-page .guide-actions,.seq-page .guide-demo,.seq-page .guide-restart{display:none!important}
 }
+/* Závěrečný test: jediný vyhodnocovaný blok na konci výuky. */
+.seq-page .guide-final-test{margin-top:42px}
+.seq-page .guide-final-test .quiz-form{margin:24px 0 0}
+.seq-page .guide-final-test .guide-quiz-question{border:1px solid rgba(160,220,234,.27);background:rgba(2,27,40,.72);padding:clamp(15px,2.4vw,25px);border-radius:9px;margin:0 0 16px}
+.seq-page .guide-final-test .guide-quiz-question legend{font-weight:700;color:#fff;line-height:1.55;padding:0 6px;font-size:1.01rem;max-width:100%}
+.seq-page .guide-final-test .guide-quiz-question label{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;margin:8px 0;background:#0d3444;border:1px solid rgba(153,215,230,.32);border-radius:8px;color:#e5f3f8;line-height:1.5;cursor:pointer}
+.seq-page .guide-final-test .guide-quiz-question label:has(input:checked){background:#205b68;border-color:#e8c879;color:#fff}
+.seq-page .guide-final-test .guide-quiz-question input[type="radio"]{accent-color:#e5c777;flex:0 0 auto;margin:5px 0 0;width:17px;height:17px}
+.seq-page .guide-final-test .quiz-feedback{font-size:.89rem;line-height:1.6;margin:11px 0 0}
+.seq-page .guide-final-test .quiz-feedback:not(:empty){padding:12px 14px;border:1px solid #6f9bad;border-radius:7px;background:#163b49;color:#fff}
+.seq-page .guide-final-test .quiz-feedback.is-correct{border-color:#72c6aa;background:#0d463c}
+.seq-page .guide-final-test .quiz-feedback.is-wrong{border-color:#e3ba69;background:#50401d}
+.seq-page .guide-final-test .controls{display:flex;flex-wrap:wrap;gap:12px;margin:23px 0 14px}
+.seq-page .guide-final-test .controls button{padding:12px 22px;cursor:pointer;border-radius:7px}
+.seq-page .guide-final-test #quizSummary:not(:empty){padding:15px 20px;margin-top:18px;border:1px solid #e6ca82;border-radius:8px;background:#15404e;color:#fff;font-weight:700;line-height:1.65}
+.seq-page .guide-check h4{margin:12px 0 4px;font-size:1rem}
+.seq-page .guide-check p{margin:8px 0}
+@media print{.seq-page .guide-final-test .guide-quiz-question{background:#fff!important;border-color:#aaa!important}.seq-page .guide-final-test .guide-quiz-question legend,.seq-page .guide-final-test .guide-quiz-question label{color:#111!important}}
