@@ -61,12 +61,15 @@ test("Přísné kontroly rozsahů odmítnou neplatné stavy",()=>{
  assert.throws(()=>m.counterStep(0,{modulus:5,load:5}));
  assert.throws(()=>m.ctuStep({cv:-1,prevCU:0},{cu:0,preset:5}));
 });
-test("Lekce obsahuje 10 kapitol, 10 ústních bodů a dostupná ovládání",()=>{
+test("Odborné modely zůstávají úplné a maturitní osnova je oddělená",()=>{
  const root=path.join(__dirname,"../mechatronika/maturita/06-registry-citace");
  const html=fs.readFileSync(path.join(root,"index.html"),"utf8");
  const script=fs.readFileSync(path.join(root,"app.js"),"utf8");
  assert.equal((html.match(/class="section chapter"/g)||[]).length,10);
- assert.equal((html.match(/class="topic topic-accordion"/g)||[]).length,10);
+ assert.equal((html.match(/class="oral-outline-card"/g)||[]).length,6);
+ assert.equal((html.match(/class="topic topic-accordion"/g)||[]).length,0);
+ assert.match(html,/id="ustni-priprava"/);
+ assert.match(html,/id="podrobne-zdroj"/);
  for(const anchor of ["uvod","registry","posuvy","casovani","citace","synchronni","frekvence","rizeni","praxe","overeni"])assert.match(html,new RegExp('id="'+anchor+'"'));
  for(const id of ["registerBits","regSHL","regROR","sipoWave","counterNumber","counterMod","rippleRows","frequencyOutput","ctuValue","ctuPulse","finalQuiz"])assert.match(html,new RegExp('id="'+id+'"'));
  assert.match(html,/assets\/js\/sequential-blocks-core\.js/);
