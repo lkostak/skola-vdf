@@ -78,13 +78,23 @@ Výklad je základní a vstřícný, ale netvrdí, že 14 odpovědí s výběrem
 - První simulace byla opravena: před výkladem hodinového signálu ukazuje pouze čtyři uložené bity, nikoli neznámou funkci CLK.
 - Zůstaly zachovány odborné rozbalovací kapitoly, SIPO tabulky, sekvenční modely i PLC simulace. Konkrétní průchod musí ještě pedagogicky posoudit učitel.
 
+### Jednotná struktura učiva a maturitní přípravy (27. 11. 2026)
+
+- **Výklad:** jedna posloupnost 14 jednoduchých výukových kroků v `guide.js`; každému předchází vysvětlení a následuje ukázka, neznámkovaná otázka, zpětná vazba.
+- **Podrobnosti přímo u kroku:** výklad má tlačítko „Chci vědět víc“. Při otevření se zobrazí původní odborná kapitola s podrobnou látkou a se svými již existujícími schématy a simulačními ovládacími prvky. Nikde se jako druhá navigace nezobrazuje samostatný seznam 10 technických kapitol. Kvůli zachování již navázaných JS událostí se původní DOM sekce přesouvá, nekopíruje.
+- **Ústní maturita:** samostatná přehledná sekce „Jak o registrech a čítačích mluvit u maturity“ s 6 nečíslovanými tematickými oblastmi. U každé je „Co vysvětlit“, „Co ukázat“ a odkaz „Zopakovat ve výkladu“. Původní návrh souvislé ústní odpovědi je pod volitelným rozbalením, nikoli další rovnocenná osnova.
+- **Závěrečný test:** až za vším ostatním. Nadále se skládá ze 14 aplikačních otázek s vysvětlením.
+- **Zachování materiálů:** všech 10 původních odborných `<section class="section chapter">` zůstává na stránce pod stejným `id`; devět je bezpečně zaparkováno v `#podrobne-zdroj` pro kontextové zobrazení, desáté `#overeni` je ve vzorové ústní odpovědi. `app.js` a výpočtové jádro nejsou přepisovány.
+- **Zpětná kompatibilita:** existující kotvy `#uvod`, `#registry`, `#posuvy`, `#casovani`, `#citace`, `#synchronni`, `#frekvence`, `#rizeni`, `#praxe` se přesměrovávají na výukový krok a otevřené podrobnosti. `#osnova` přejde na ústní přípravu.
+- Automatické testy sledují nejen matematické modely, ale i jedinečnost původních `id`, viditelnost osnovy a funkčnost kontextového otevírání zdrojových kapitol.
+
 ## 3. Obsah výukového webu
 
 | Součást | Umístění v repozitáři | Účel | Stav |
 |---|---|---|---|
-| Souvislý výklad | `mechatronika/maturita/06-registry-citace/index.html` | Tři úvodní odstavce, 10 rozbalovacích ústních odpovědí a 10 odborných kapitol | IMPLEMENTOVÁNO |
+| Souvislý výklad | `mechatronika/maturita/06-registry-citace/index.html` | Jednotný postup: výuka krok za krokem, ústní osnova a závěrečný test | IMPLEMENTOVÁNO |
 | Interaktivní aplikace | `mechatronika/maturita/06-registry-citace/app.js` | 4bitový registr s LOAD/HOLD/SHL/SHR/ROL/ROR, SIPO krokování, modulo čítač, ripple mezistavy, frekvenční dělení a PLC CTU | IMPLEMENTOVÁNO |
-| Výukový průvodce | `mechatronika/maturita/06-registry-citace/guide.js` | 14 kroků, dobrovolné otázky s okamžitou zpětnou vazbou, oddělený závěrečný test s novými otázkami | IMPLEMENTOVÁNO |
+| Výukový průvodce | `mechatronika/maturita/06-registry-citace/guide.js` | 14 kroků, dobrovolné otázky, kontextové otevření jedinečných původních odborných kapitol, odkazy ze souhrnné ústní osnovy, závěrečný test | IMPLEMENTOVÁNO |
 | Sdílené výpočtové jádro | `assets/js/sequential-blocks-core.js` | Čisté modely se vstupy/rozsahy, registr, čítače, časové stavy, výstupní bity, CTU s detekcí náběžných hran | IMPLEMENTOVÁNO |
 | Vzhled | `mechatronika/maturita/06-registry-citace/lesson.css`, `guide.css` | Raleway, školní paleta, responzivní tabulky, registr, bitový displej a oddělené části pro výklad a závěrečný test | IMPLEMENTOVÁNO |
 | Navigace | `mechatronika/maturita/index.html` | Aktivní karta otázky 06 | IMPLEMENTOVÁNO |
