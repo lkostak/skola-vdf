@@ -69,25 +69,26 @@ Výklad je základní a vstřícný, ale netvrdí, že 14 odpovědí s výběrem
 
 **K revizi:** pro konečné maturitní minimum ještě porovnat přesné schválené znění otázky a ověřit, že student umí samostatně nakreslit jednoduché schéma, číst diagram a vysvětlit příčinu změny bitů, nikoli jen vybrat správnou odpověď.
 
-### Studentská revize obsahu a přesunutí testu (27. 11. 2026)
+### Druhý pedagogický průchod z pohledu studenta (27. 11. 2026)
 
-- Odstraněny autoreferenční formulace („Nezáleží na kulatém počtu kapitol“) i technické/metodické poznámky z úvodu a patičky pro studenta.
-- **Prvním cílem je pochopení, nikoli test.** Výuka se prochází volně. Každý krok obsahuje vysvětlení, interaktivní ukázku, shrnutí a krátkou výzvu popsat princip vlastními slovy; nejsou v něm nucené multiple-choice odpovědi a blokování přístupu k další látce.
-- **Jediný vyhodnocovaný test** je až úplně na konci stránky, za rozbalitelným odborným výkladem. Pokrývá všechna témata z 14 kroků; po odeslání zveřejní správnost, vysvětlení a doporučení k opakování. Před vyhodnocením student odpovědi nevidí.
-- Odborné modely v `app.js` zůstaly zachované; staré pětiootázkové vyhodnocování bylo nahrazeno sjednoceným závěrečným testem v `guide.js`.
-- Postup výuky si prohlížeč pamatuje pod novým klíčem `v3` jen jako poslední navštívený krok, nikoliv jako známku nebo hodnocení znalostí.
-- Automatické testy ověřují volnou navigaci, zachování technických simulací, umístění a úplnost závěrečného testu i správné vyhodnocení.
+- Výklad byl rozšířen u všech **14 přirozeně navazujících kroků**. Každý má čtyři srozumitelné odstavce: od známé situace a jednoduchého příkladu k pojmu, vysvětlení co se mění a smyslu v praxi.
+- Nový způsob každého kroku: **vysvětlení → konkrétní interaktivní ukázka → jedna dobrovolná otázka s okamžitou zpětnou vazbou → krátké shrnutí a výzva říct princip vlastními slovy**.
+- Dobrovolná otázka v průběhu výkladu není známkovaná, nebrání přechodu dále a obsahuje tlačítko **Ukázat vysvětlení**. Chybnou odpověď je možné opravit. Pokrok eviduje pouze poslední otevřený krok prohlížeče.
+- **Souhrnný vyhodnocovaný test zůstává jedině na konci celé stránky.** Obsahuje 14 **jiných** otázek s novými příklady, takže neopakuje doslova minikontrolu při výkladu.
+- První simulace byla opravena: před výkladem hodinového signálu ukazuje pouze čtyři uložené bity, nikoli neznámou funkci CLK.
+- Zůstaly zachovány odborné rozbalovací kapitoly, SIPO tabulky, sekvenční modely i PLC simulace. Konkrétní průchod musí ještě pedagogicky posoudit učitel.
 
 ## 3. Obsah výukového webu
 
 | Součást | Umístění v repozitáři | Účel | Stav |
 |---|---|---|---|
 | Souvislý výklad | `mechatronika/maturita/06-registry-citace/index.html` | Tři úvodní odstavce, 10 rozbalovacích ústních odpovědí a 10 odborných kapitol | IMPLEMENTOVÁNO |
-| Interaktivní aplikace | `mechatronika/maturita/06-registry-citace/app.js` | 4bitový registr s LOAD/HOLD/SHL/SHR/ROL/ROR, SIPO krokování, modulo čítač, ripple mezistavy, frekvenční dělení, PLC CTU, pětiotázkový kvíz | IMPLEMENTOVÁNO |
+| Interaktivní aplikace | `mechatronika/maturita/06-registry-citace/app.js` | 4bitový registr s LOAD/HOLD/SHL/SHR/ROL/ROR, SIPO krokování, modulo čítač, ripple mezistavy, frekvenční dělení a PLC CTU | IMPLEMENTOVÁNO |
+| Výukový průvodce | `mechatronika/maturita/06-registry-citace/guide.js` | 14 kroků, dobrovolné otázky s okamžitou zpětnou vazbou, oddělený závěrečný test s novými otázkami | IMPLEMENTOVÁNO |
 | Sdílené výpočtové jádro | `assets/js/sequential-blocks-core.js` | Čisté modely se vstupy/rozsahy, registr, čítače, časové stavy, výstupní bity, CTU s detekcí náběžných hran | IMPLEMENTOVÁNO |
-| Vzhled | `mechatronika/maturita/06-registry-citace/lesson.css` | Raleway, školní paleta, responzivní tabulky, registr, bitový a čítací displej | IMPLEMENTOVÁNO |
+| Vzhled | `mechatronika/maturita/06-registry-citace/lesson.css`, `guide.css` | Raleway, školní paleta, responzivní tabulky, registr, bitový displej a oddělené části pro výklad a závěrečný test | IMPLEMENTOVÁNO |
 | Navigace | `mechatronika/maturita/index.html` | Aktivní karta otázky 06 | IMPLEMENTOVÁNO |
-| Automatické testy | `tests/sequential-blocks-core.test.js`, `.github/workflows/mer06-tests.yml` | 4bitové posuvy/rotace, SIPO 1,0,1,1, modulo 5/10/16, ripple přechod 0111→1000, PLC CTU, syntaxe a obsah stránky | [PASS](https://github.com/lkostak/skola-vdf/actions/runs/45070173132) |
+| Automatické testy | `tests/sequential-blocks-core.test.js`, `tests/mer06-guided-course.test.js`, `.github/workflows/mer06-tests.yml` | Modely registrů, čítačů, časování, PLC CTU a pedagogický průchod se zpětnou vazbou a odděleným závěrečným testem | IMPLEMENTOVÁNO |
 | Nasazení | GitHub Pages | Publikovaná studentská HTML stránka | [Úspěšné nasazení](https://github.com/lkostak/skola-vdf/actions/runs/45070189788) |
 
 ### Přehled kapitol
