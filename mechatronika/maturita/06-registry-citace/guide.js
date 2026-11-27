@@ -545,10 +545,166 @@ byId("guideReset").addEventListener("click",()=>{
  state=initial();render();root.scrollIntoView({behavior:"smooth"});
 });
 // Jediný vyhodnocovaný test je až za výkladem a pokročilými příklady.
+const finalQuestions=[
+ {
+  "question": "Kolik paměťových buněk potřebuje šestibitový registr?",
+  "choices": [
+   "Jednu",
+   "Šest",
+   "Dvanáct"
+  ],
+  "correct": 1,
+  "right": "Správně. Jeden klopný obvod uchovává jeden bit, takže šestibitový registr potřebuje šest buněk.",
+  "wrong": "Počet paměťových buněk odpovídá počtu uchovávaných bitů. Každá buňka si pamatuje jeden bit."
+ },
+ {
+  "question": "Na vstupu D je 0010, registr drží 1100 a režim je HOLD. Přijde aktivní hrana CLK. Co zůstane na výstupu Q?",
+  "choices": [
+   "0010",
+   "1100",
+   "0000"
+  ],
+  "correct": 1,
+  "right": "Ano. HOLD ponechává starou hodnotu Q, i když hodiny přišly a D už obsahuje něco jiného.",
+  "wrong": "HOLD znamená uchovat předchozí stav. Nové D by se převzalo při vhodné hraně, pokud by byl povolen LOAD."
+ },
+ {
+  "question": "V registru je 1101. Provedeme jeden logický posuv DOLEVA, zprava přidáme nulu. Jaký je výsledek?",
+  "choices": [
+   "1010",
+   "0110",
+   "1110"
+  ],
+  "correct": 0,
+  "right": "Správně. Levý bit vypadne, ostatní se posunou doleva a zprava se doplní nula: 1101 → 1010.",
+  "wrong": "Při SHL je správné posunout všechny čtyři bity doleva, odcházející levý bit zahodit a zprava doplnit nulu."
+ },
+ {
+  "question": "V registru je 1101. Jaký bude výsledek jedné rotace DOPRAVA (ROR)?",
+  "choices": [
+   "1011",
+   "1110",
+   "1010"
+  ],
+  "correct": 1,
+  "right": "Přesně. Pravá jednička se vrátí úplně vlevo: 1101 → 1110.",
+  "wrong": "Při ROR se pravý bit přesune na levý konec. Na rozdíl od obyčejného posuvu se neztratí."
+ },
+ {
+  "question": "Do prázdného SIPO registru 0000 přijdou postupně bity 1, 1, 0. Jaký bude stav po třetí hraně?",
+  "choices": [
+   "0110",
+   "0011",
+   "1100"
+  ],
+  "correct": 0,
+  "right": "Správně. 0000 → 0001 → 0011 → 0110. Každý nový bit přichází zprava.",
+  "wrong": "Po každé hraně se dříve přijaté bity posunou o jedno místo doleva a nový bit se vloží zprava."
+ },
+ {
+  "question": "Kolik aktivních hodinových hran je potřeba, aby čtyřbitový SIPO převzal čtyři sériově posílané bity, jeden při každé hraně?",
+  "choices": [
+   "Jedna",
+   "Dvě",
+   "Čtyři"
+  ],
+  "correct": 2,
+  "right": "Ano. Při každé hraně přijde jeden nový bit. Pro čtyři bity proto potřebujeme čtyři hrany CLK.",
+  "wrong": "SIPO přijímá sériově, tedy jeden bit při jedné aktivní hraně hodin. Čtyři bity vyžadují čtyři hrany."
+ },
+ {
+  "question": "Binární čítač ukazuje 0111, tedy číslo 7. Jaký stav bude po jednom impulsu nahoru?",
+  "choices": [
+   "1000",
+   "1110",
+   "0110"
+  ],
+  "correct": 0,
+  "right": "Správně. Po sedmičce následuje osmička. Binárně je 8 zapsáno 1000.",
+  "wrong": "Čítač nepřesouvá původní bity, ale vytváří binární zápis následujícího čísla. Po 7 následuje 8 = 1000."
+ },
+ {
+  "question": "Tříbitový binární čítač ukazuje 111 (7). Co bude po dalším impulsu nahoru?",
+  "choices": [
+   "1000",
+   "000",
+   "110"
+  ],
+  "correct": 1,
+  "right": "Správně. Tři bity vystačí na čísla 0 až 7. Po nejvyšším stavu 111 se vrátí 000.",
+  "wrong": "Pro tři bity existuje 2³ = 8 stavů. Číslo 8 by už vyžadovalo čtvrtý bit, proto čítač přeteče."
+ },
+ {
+  "question": "Dekadický čítač ukazuje 8. Přijdou dva impulsy nahoru. Na jakém čísle skončí?",
+  "choices": [
+   "10",
+   "0",
+   "1"
+  ],
+  "correct": 1,
+  "right": "Správně: 8 → 9 → 0. Dekadický čítač se po devítce vrací na nulu.",
+  "wrong": "Počítej jen deset stavů 0 až 9. Dva impulsy od osmi znamenají devítku a potom nulu."
+ },
+ {
+  "question": "Čítač modulo 5 má běžný cyklus 0, 1, 2, 3, 4, 0. Kolik má různých stavů a kolik nejméně potřebuje bitů?",
+  "choices": [
+   "5 stavů a 3 bity",
+   "5 stavů a 5 bitů",
+   "4 stavy a 2 bity"
+  ],
+  "correct": 0,
+  "right": "Ano. Pět různých stavů potřebuje nejméně tři paměťové bity, protože dva umožňují jen čtyři kombinace.",
+  "wrong": "Nepleť počet stavů cyklu s počtem bitů. Modulo 5 má pět stavů; k jejich uložení stačí tři bity."
+ },
+ {
+  "question": "Čítač ukazuje 6 a má ENABLE = 0. Co udělá běžný impuls UP?",
+  "choices": [
+   "Hodnota zůstane 6",
+   "Hodnota bude 7",
+   "Hodnota bude 0"
+  ],
+  "correct": 0,
+  "right": "Správně. ENABLE = 0 znamená, že počítání není povolené, takže impulsem UP zůstane 6.",
+  "wrong": "Vypnutý ENABLE zakazuje běžnou změnu čítače na čítací impulsy. RESET a LOAD mají jiný účel."
+ },
+ {
+  "question": "U kterého typu čítače se změna může postupně šířit z jednoho klopného obvodu na další?",
+  "choices": [
+   "U synchronního",
+   "U asynchronního (ripple)",
+   "U žádného"
+  ],
+  "correct": 1,
+  "right": "Správně. Asynchronní ripple čítač přenáší spouštění mezi jednotlivými stupni.",
+  "wrong": "Ripple znamená postupné přepínání. Synchronní čítač má společný hodinový signál."
+ },
+ {
+  "question": "Vstupní frekvence plného binárního čítače je 120 Hz. Jakou frekvenci má výstup Q2?",
+  "choices": [
+   "60 Hz",
+   "30 Hz",
+   "15 Hz"
+  ],
+  "correct": 2,
+  "right": "Ano. Q2 dělí vstupní frekvenci osmi: 120 ÷ 8 = 15 Hz.",
+  "wrong": "Q0 = f/2, Q1 = f/4, Q2 = f/8. Pro Q2 tedy 120 ÷ 8 = 15 Hz."
+ },
+ {
+  "question": "Snímač dá signál 0 → 1 a pak zůstane trvale na 1. Kolik nových náběžných hran CTU zaznamenal?",
+  "choices": [
+   "Jednu",
+   "Dvě",
+   "Jednu při každém cyklu PLC"
+  ],
+  "correct": 0,
+  "right": "Správně. Jediný přechod 0 → 1 znamená jednu náběžnou hranu. Držení jedničky další nevyrobí.",
+  "wrong": "Pro další započítání musí signál nejprve klesnout na 0 a potom znovu vystoupat na 1."
+ }
+];
 const quizForm=byId("finalQuiz");
 const quizItems=byId("finalQuizQuestions");
 if(quizForm&&quizItems){
- quizItems.innerHTML=steps.map((s,i)=>{
+ quizItems.innerHTML=finalQuestions.map((s,i)=>{
   const choices=s.choices.map((answer,j)=>
    '<label><input type="radio" name="q'+i+'" value="'+j+'"> '+answer+'</label>'
   ).join("");
@@ -558,7 +714,7 @@ if(quizForm&&quizItems){
  quizForm.addEventListener("submit",event=>{
   event.preventDefault();
   let filled=0,score=0;
-  steps.forEach((s,i)=>{
+  finalQuestions.forEach((s,i)=>{
    const answer=quizForm.querySelector('input[name="q'+i+'"]:checked');
    const feedback=byId("quiz"+(i+1));
    if(!answer){
@@ -572,12 +728,12 @@ if(quizForm&&quizItems){
    feedback.className="quiz-feedback "+(correct?"is-correct":"is-wrong");
   });
   const result=byId("quizSummary");
-  result.textContent="Správně "+score+" z "+total+". Vyplněno "+filled+" z "+total+
+  result.textContent="Správně "+score+" z "+finalQuestions.length+". Vyplněno "+filled+" z "+finalQuestions.length+
    ". Vrať se k otázkám, které se nepovedly, a zkus vysvětlit princip vlastními slovy.";
   result.scrollIntoView({behavior:"smooth",block:"nearest"});
  });
  quizForm.addEventListener("reset",()=>{
-  steps.forEach((s,i)=>{const f=byId("quiz"+(i+1));f.textContent="";f.className="quiz-feedback";});
+  finalQuestions.forEach((s,i)=>{const f=byId("quiz"+(i+1));f.textContent="";f.className="quiz-feedback";});
   byId("quizSummary").textContent="";
  });
 }
