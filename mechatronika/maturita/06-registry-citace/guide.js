@@ -5,104 +5,300 @@ const root=document.getElementById("rychlokurz");
 if(!root)return;
 const byId=id=>document.getElementById(id);
 const steps=[
- {name:"Klopný obvod a registr",minutes:"2 min",title:"Čtyři bity si pamatují číslo",
-  text:["Jeden <strong>klopný obvod</strong> si uchová jeden bit: 0 nebo 1. Když vedle sebe zapojíme čtyři klopné obvody D, dostaneme <strong>čtyřbitový registr</strong>. Může uchovat například číslo <code>1011</code>.","Registr nemusí hned převzít každou změnu na vstupu. U běžného hranově řízeného registru se nové vstupy převezmou až při příslušné hodinové hraně <strong>CLK</strong>."],
-  question:"Na vstupech se změnilo 1011 na 0100, ale další aktivní hrana CLK ještě nepřišla. Co ukazuje výstup registru?",
-  choices:["Stále 1011","Už 0100","Automaticky 0000"],correct:0,
-  wrong:"Registr drží starý stav, dokud nepřijde rozhodná hodinová hrana. Změna samotných vstupů ještě uložená data nemění.",
-  right:"Správně! Výstup zůstává 1011. Nová hodnota 0100 se převezme až při další aktivní hraně CLK.",
-  lesson:"Registr je několik paměťových buněk. Změna vstupu ještě nemusí znamenat změnu uloženého stavu."},
- {name:"Hodiny a načítání",minutes:"2 min",title:"Kdy se nová hodnota opravdu uloží?",
- text:["Vstupy registru mohou být připravené dopředu, ale paměť se mění až při <strong>aktivní hraně hodin CLK</strong>. U běžného D klopného obvodu se tehdy převezme D na Q.","Registr může mít navíc řízení: při <strong>LOAD</strong> si na hraně převezme vstupní číslo; při <strong>HOLD</strong> si původní číslo ponechá i při příchodu dalšího taktu. To je užitečné, když potřebujeme data chvíli udržet."],
- question:"Registr ukazuje 1011, na vstupech je 0100. Co bude na Q po hodinové hraně, pokud je aktivní LOAD?",
- choices:["Stále 1011","0100","0000"],correct:1,
- wrong:"LOAD znamená načíst nové vstupy. Při aktivní hraně CLK se 0100 uloží do registru. Při HOLD by zůstalo 1011.",
- right:"Ano. LOAD při aktivní hodinové hraně převezme vstupy 0100. Při HOLD by zůstalo 1011.",
- lesson:"Hodiny určují okamžik změny; LOAD povoluje načtení, HOLD uchová starý stav."},
- {name:"Posuv bitů",minutes:"2 min",title:"Jak bity putují registrem",
-  text:["<strong>Posuvný registr</strong> kromě uchovávání dat dokáže bity přesouvat mezi sousedními pozicemi. Při každém hodinovém impulsu se posunou o jedno místo.","Při posuvu doleva <strong>SHL</strong> odchází levý bit a zprava přichází nový bit (v našem příkladu nula). Při posuvu doprava <strong>SHR</strong> je to obráceně."],
-  question:"Co vznikne z 1011 po jednom posuvu doprava (SHR), když zleva doplníme nulu?",
-  choices:["0110","0101","1101"],correct:1,
-  wrong:"Při SHR jde každý bit o jednu pozici doprava: 1 0 1 1 → 0 1 0 1. Zleva vstupuje nula.",
-  right:"Přesně. 1011 → 0101. Pravá jednička vypadla a zleva přišla nula.",
-  lesson:"SHL a SHR jsou posuvy. Bit opouštějící kraj se v jednoduchém logickém posuvu nevrací zpět."},
- {name:"Posuv versus rotace",minutes:"2 min",title:"Při rotaci se bit neztratí",
-  text:["Při obyčejném posuvu krajní bit vypadne. <strong>Rotace</strong> funguje jinak: bit, který opouští jeden konec registru, se vrátí na konec opačný.","Zkus čtyři operace na stejném čísle <code>1011</code>. Pro tento příklad mají SHL a SHR nulový vstup. Všimni si rozdílu mezi <strong>ROL</strong> a <strong>ROR</strong>."],
-  question:"Jaký bude výsledek jedné rotace DOLEVA (ROL) hodnoty 1011?",
-  choices:["0111","1101","0110"],correct:0,
-  wrong:"Při ROL se levý bit (1) přesune na pravý konec. Zbylé bity se posunou doleva: 1011 → 0111.",
-  right:"Ano! 1011 → 0111. Pro srovnání: rotace doprava (ROR) by dala 1101.",
-  lesson:"SHL/SHR bit mohou zahodit, ROL/ROR jej vracejí na druhý konec."},
- {name:"Sériově a paralelně",minutes:"3 min",title:"Data po jednom bitu nebo všechna naráz",
-  text:["<strong>Paralelně</strong> znamená, že více bitů přichází nebo odchází současně. <strong>Sériově</strong> znamená jeden bit po druhém. Posuvný registr dokáže tyto způsoby propojit.","Typ <strong>SIPO</strong> (serial in, parallel out) bere bity postupně a po několika hodinových hranách je nabídne společně na výstupech. Vyzkoušej vstupní posloupnost 1, 0, 1, 1. V naší ukázce nový bit vstupuje na pravý kraj."],
-  question:"Do čtyřbitového SIPO registru přijdou postupně bity 1 a 0. Jaký je stav po dvou hranách, jestliže začínal na 0000?",
-  choices:["0001","0010","1010"],correct:1,
-  wrong:"Po prvním bitu 1 je v registru 0001. Při další hraně se 1 posune doleva a zprava přijde 0, takže stav je 0010.",
-  right:"Ano, po dvou hranách máme 0010. Po všech čtyřech bitech 1,0,1,1 vznikne 1011.",
-  lesson:"SISO: sériově dovnitř i ven. SIPO: sériově dovnitř, paralelně ven. PISO znamená paralelní načtení a sériový výstup, PIPO paralelní vstup i výstup."},
- {name:"Časový diagram",minutes:"3 min",title:"Jak čteme změny bitů v čase?",
- text:["Časový diagram ukazuje, co bylo na vstupu <strong>SI</strong> a co bylo uloženo na výstupech <strong>Q</strong> po jednotlivých hodinových hranách. Mezi hranami se u hranově řízeného registru stav nemění.","Zkus znovu SIPO se vstupními bity <code>1, 0, 1, 1</code>. Vždy stiskni jednu hranu CLK a sleduj řádek tabulky. Při jediné hraně se všechny klopné obvody aktualizují ze <strong>starých</strong> hodnot, takže bit neproběhne celým registrem najednou."],
- question:"Do SIPO přijdou postupně bity 1, 0, 1. Jaký je uložený stav PO TŘETÍ aktivní hraně?",
- choices:["0101","1010","0010"],correct:0,
- wrong:"Vývoj je 0000 → 0001 → 0010 → 0101. Pokaždé se staré bity posunou doleva a nový bit přijde zprava.",
- right:"Správně, po třetí hraně je 0101. Teprve čtvrtá hrana s poslední jedničkou dá 1011.",
- lesson:"V časovém diagramu rozhoduje okamžik hodinové hrany a stav až po ní."},
- {name:"Z registru čítač",minutes:"2 min",title:"Čítač při impulsu změní číslo",
-  text:["U registru jsme uchovávali nebo posouvali bity. <strong>Čítač</strong> také používá paměťové buňky, ale má navíc logiku, která určuje následující číslo.","Při každé aktivní hraně hodin se například zvýší o jedničku. Číslo <code>0011</code> znamená 3 a následující <code>0100</code> znamená 4. Bity se při tom neposouvají, vytvářejí nový binární zápis."],
-  question:"Co ukazuje binární čítač po jednom impulsu, když před ním ukazoval 0011?",
-  choices:["0100","0110","0010"],correct:0,
-  wrong:"0011 je desítkově 3. Další číslo je 4, binárně 0100.",
-  right:"Správně: 0011 (3) → 0100 (4). To je srdce binárního čítače.",
-  lesson:"Registr drží nebo přesouvá data; čítač prochází číselné stavy."},
- {name:"Přetečení",minutes:"2 min",title:"Co se stane po posledním čísle?",
-  text:["Čtyřbitový čítač může vyjádřit <strong>16 stavů</strong>: od <code>0000</code> (0) do <code>1111</code> (15). Proč právě 16? Každý ze čtyř bitů má dvě možnosti: 2 × 2 × 2 × 2 = 16.","Když přijde další impuls po čísle 15, běžný čtyřbitový binární čítač začne od nuly. Tomu říkáme <strong>přetečení</strong>."],
-  question:"Čtyřbitový binární čítač ukazuje 1111. Co bude po dalším impulsu?",
-  choices:["1110","0000","10000"],correct:1,
-  wrong:"1111 je nejvyšší čtyřbitové číslo. Do čtyř bitů se 16 nevejde, proto se čítač vrátí na 0000.",
-  right:"Přesně. 1111 → 0000. Čítač přetekl a začíná nový cyklus.",
-  lesson:"Plný čtyřbitový binární čítač má 2⁴ = 16 stavů, tedy 0 až 15."},
- {name:"Binární a dekadický",minutes:"2 min",title:"Někdy počítáme do 15, jindy do 9",
-  text:["<strong>Binární čtyřbitový čítač</strong> prochází 16 stavy: 0, 1, …, 15, 0. <strong>Dekadický čítač</strong> prochází jen deseti stavy: 0, 1, …, 9, 0.","Tomuto počtu opakujících se stavů říkáme <strong>modulo</strong>. Modulo 16 má 16 stavů, modulo 10 deset, modulo 5 pět. Neříká nám to samo o sobě počet použitých klopných obvodů."],
-  question:"Dekadický čítač právě ukazuje 1001 (9). Co zobrazí po dalším impulsu?",
-  choices:["1010","1111","0000"],correct:2,
-  wrong:"Dekadický čítač má jen hodnoty 0 až 9. Po devítce se vrací na nulu, ačkoli čtyři bity by zvládly i další čísla.",
-  right:"Správně. 1001 → 0000. To je rozdíl proti čtyřbitovému čítači modulo 16.",
-  lesson:"Modulo říká, kolika stavy čítač prochází, než začne znovu."},
- {name:"Zkrácený cyklus",minutes:"2 min",title:"Počítat můžeme i jen do čtyř",
- text:["Čítač <strong>modulo 5</strong> prochází pěti hodnotami: 0 → 1 → 2 → 3 → 4 → 0. Takový cyklus se hodí například pro počítání skupin po pěti kusech.","Kolik bitů potřebuje? Dva bity by zvládly jen čtyři kombinace (00 až 11). Proto potřebujeme <strong>nejméně tři bity</strong>. Část jejich možných kombinací ale nepoužijeme."],
- question:"Kolik klopných obvodů (bitů) nejméně potřebuje čítač modulo 5?",
- choices:["2","3","5"],correct:1,
- wrong:"Dva bity dají 2² = 4 stavy, to nestačí. Tři bity dají 2³ = 8 kombinací, tedy pět požadovaných stavů už pokryjí.",
- right:"Přesně. Modulo 5 znamená pět stavů, ale stačí tři klopné obvody, nikoli pět.",
- lesson:"Počet stavů modulo M a počet potřebných bitů jsou dvě různé věci."},
- {name:"Směr a povely",minutes:"3 min",title:"Čítač můžeme řídit",
- text:["Čítač nemusí jen počítat nahoru. Režim <strong>UP</strong> přičítá a režim <strong>DOWN</strong> odečítá. Na tlačítkách si to vyzkoušej.","<strong>ENABLE</strong> povoluje počítání, <strong>RESET</strong> obvykle vynuluje uložený stav a <strong>LOAD</strong> načte zadanou hodnotu. U skutečných obvodů záleží na typu, zda tyto povely působí ihned nebo až při hodinové hraně; zde jsou to didaktické povely."],
- question:"Čítač ukazuje 0101 (5), ale ENABLE = 0. Co udělá s hodnotou další běžný čítací impuls?",
- choices:["Zvýší ji na 6","Sníží ji na 4","Zůstane na 5"],correct:2,
- wrong:"ENABLE = 0 znamená, že počítání není povolené. Čítač uložené číslo drží; RESET nebo LOAD jsou odlišné povely.",
- right:"Ano. Když ENABLE = 0, běžný čítací impuls stav nezmění.",
- lesson:"UP/DOWN určuje směr, ENABLE povolení, RESET nulování a LOAD přednastavení."},
- {name:"Synchronní a asynchronní",minutes:"2 min",title:"Kdy se jednotlivé bity přepínají?",
-  text:["U <strong>synchronního čítače</strong> mají všechny klopné obvody společný hodinový signál. Na téže aktivní hraně se podle řídicí logiky určí jejich nové hodnoty.","U <strong>asynchronního (ripple) čítače</strong> se změna šíří postupně: jeden stupeň přepne další. Proto se během přechodu mohou krátce objevit přechodné kombinace. Není nutné se zatím učit detailní nanosekundové průběhy."],
-  question:"Který čítač používá jednu společnou aktivní hodinovou hranu pro všechny stupně?",
-  choices:["Asynchronní (ripple)","Synchronní","Žádný z nich"],correct:1,
-  wrong:"Slovo synchronní znamená společné časování. Ripple čítač naopak přenáší spouštění z jednoho stupně do dalšího.",
-  right:"Správně. Synchronní čítač řídí všechny stupně společnou hodinovou hranou.",
-  lesson:"Synchronní = společný CLK. Asynchronní ripple = přepínání se šíří postupně."},
- {name:"Dělení frekvence",minutes:"2 min",title:"Čítač může zpomalit pravidelný signál",
-  text:["Nejnižší bit běžného binárního čítače střídá 0 a 1 při každém impulsu. Celý cyklus 0 → 1 → 0 proto trvá dva vstupní impulsy: jeho frekvence je <strong>poloviční</strong>.","U plného binárního čítače pak platí: Q0 = f/2, Q1 = f/4, Q2 = f/8, Q3 = f/16. Pozor, pro zkrácené čítače modulo 5 nebo 10 nemusí platit takto jednoduchá interpretace všech výstupů."],
-  question:"Čtyřbitový binární čítač má vstupní takt 160 Hz. Jakou frekvenci má jeho výstup Q1?",
-  choices:["80 Hz","40 Hz","20 Hz"],correct:1,
-  wrong:"Q0 dělí frekvenci dvěma, Q1 čtyřmi. 160 ÷ 4 = 40 Hz.",
-  right:"Správně: Q1 = 160 / 4 = 40 Hz. Q2 by měl 20 Hz.",
-  lesson:"U plného binárního čítače dělí každá další pozice frekvenci znovu dvěma."},
- {name:"Čítač v praxi",minutes:"3 min",title:"Počítání výrobků na dopravníku",
-  text:["Představ si <strong>snímač u dopravníku</strong>. Pokaždé, když kolem projede výrobek, vyšle impuls. Čítač v PLC, například <strong>CTU</strong>, uloží počet zachycených událostí do hodnoty CV.","Čítač událostí reaguje na <strong>novou náběžnou hranu</strong> signálu (0 → 1). Když snímač zůstane trvale v jedničce, neznamená to další a další výrobky. Povely RESET, LOAD a ENABLE pak mohou podle typu obvodu stav nulovat, načíst nebo povolit počítání."],
-  question:"Snímač drží vstup CTU trvale na 1. Kolik dalších výrobků čítač přičte bez dalšího přechodu 0 → 1?",
-  choices:["Žádný","Jeden při každém cyklu PLC","Neomezený počet"],correct:0,
-  wrong:"CTU v našem výukovém modelu počítá nové náběžné hrany, ne délku trvání jedničky.",
-  right:"Správně, žádný. Další výrobek musí vytvořit nový impuls 0 → 1.",
-  lesson:"V praxi čítač měří události. Je důležité vědět, co přesně představuje jeden impuls."}
+ {
+  "name": "Klopný obvod a registr",
+  "title": "Jak si obvod zapamatuje čtyři bity?",
+  "minutes": "3 min",
+  "text": [
+   "Začneme tím nejmenším. <strong>Bit</strong> může mít jen dvě hodnoty: <code>0</code> nebo <code>1</code>. Klopný obvod si jednu z těchto hodnot dokáže uchovat. Představ si ho jako malé paměťové políčko.",
+   "Když potřebujeme uchovat <strong>čtyři bity</strong>, postavíme vedle sebe čtyři taková políčka. Každé si pamatuje právě jeden bit. Této skupině říkáme <strong>čtyřbitový registr</strong>.",
+   "Například uložené <code>1011</code> znamená, že první políčko drží 1, druhé 0, třetí 1 a čtvrté 1. Všechna čtyři dohromady uchovávají celé číslo. V ukázce si můžeš prohlédnout dvě různé uložené hodnoty.",
+   "<strong>K čemu je to dobré?</strong> Řídicí obvod nebo procesor si tak může na chvíli zapamatovat číslo, se kterým právě pracuje. Zatím nemusíme řešit, kdy ho změní. To je další krok."
+  ],
+  "question": "Kolik klopných obvodů potřebujeme, abychom si najednou pamatovali čtyři bity?",
+  "choices": [
+   "Jeden",
+   "Čtyři",
+   "Šestnáct"
+  ],
+  "correct": 1,
+  "wrong": "Každý klopný obvod si pamatuje jeden bit. Pro čtyři bity tedy potřebujeme čtyři buňky.",
+  "right": "Správně! Čtyři buňky uchovají čtyři bity. Právě to je jednoduchý čtyřbitový registr.",
+  "lesson": "Registr je několik paměťových buněk spojených do jednoho celku."
+ },
+ {
+  "name": "Hodiny a načítání",
+  "title": "Kdy si registr zapamatuje nové číslo?",
+  "minutes": "3 min",
+  "text": [
+   "Registr už má uložené <code>1011</code>. Na jeho vstupu se mezitím objevilo jiné číslo, <code>0100</code>. <strong>Změní se tím hned uložená hodnota?</strong> Ne. U běžného hranově řízeného registru zatím na výstupu zůstává <code>1011</code>.",
+   "Pomáhá nám <strong>hodinový signál CLK</strong>. Představ si ho jako společný pokyn „teď“. Teprve při jeho aktivní hraně mohou všechny čtyři paměťové buňky převzít nové vstupy. Proto se bity načítají společně, ne jeden po druhém.",
+   "V obrázku znamená <strong>D</strong> vstupní data a <strong>Q</strong> uložený výstup. Povel <strong>LOAD</strong> říká „načti nové D při hodinové hraně“. <strong>HOLD</strong> znamená „ponech staré Q“, i když hodinová hrana přijde.",
+   "Vyzkoušej obě tlačítka. Sleduj hlavně to, zda na výstupu zůstane <code>1011</code>, nebo se změní na <code>0100</code>."
+  ],
+  "question": "Na vstupu D je 0100, ale další aktivní hrana CLK ještě nepřišla. Co si registr stále pamatuje?",
+  "choices": [
+   "1011",
+   "0100",
+   "0000"
+  ],
+  "correct": 0,
+  "wrong": "Dokud nedošlo k aktivní hraně CLK, uložený výstup Q drží staré číslo 1011.",
+  "right": "Ano. Na D už může být 0100, ale Q stále ukazuje 1011. Nová hodnota se převezme až při vhodné hodinové hraně a povoleném LOAD.",
+  "lesson": "Nový vstup ještě neznamená nové uložené číslo. Hodinová hrana určuje okamžik převzetí."
+ },
+ {
+  "name": "Posuv bitů",
+  "title": "Co znamená posunout bity?",
+  "minutes": "3 min",
+  "text": [
+   "Registr nemusí data jen držet. Někdy potřebujeme, aby se každý uložený bit <strong>přesunul o jedno políčko vedle</strong>. Takovému registru říkáme <strong>posuvný</strong>.",
+   "Zkus začít hodnotou <code>1011</code>. Při <strong>posuvu doleva (SHL)</strong> se všechny bity přesunou o jedno místo doleva. Levý bit vypadne a zprava přidáme nulu. Dostaneme <code>0110</code>.",
+   "Po dalším impulsu vznikne <code>1100</code>. Stiskni několikrát tlačítko a sleduj jednotlivé bity. <strong>Každý impuls znamená pouze jeden posun</strong>, nikoli posunutí až na konec.",
+   "Podobně funguje <strong>posuv doprava (SHR)</strong>. Když posuneme <code>1011</code> doprava a zleva doplníme nulu, vznikne <code>0101</code>. Tohle budeme používat při přenosu dat bit po bitu."
+  ],
+  "question": "Co vznikne z 1011 po jednom posuvu doprava, když zleva přidáme nulu?",
+  "choices": [
+   "0110",
+   "0101",
+   "1101"
+  ],
+  "correct": 1,
+  "wrong": "Při posuvu doprava jde každý bit o jedno místo doprava: 1011 → 0101. Poslední pravý bit vypadne.",
+  "right": "Přesně. 1011 → 0101. Všimni si, že se všechny bity přesunuly pouze o jedno místo.",
+  "lesson": "Posuv mění pozice bitů. Krajní bit vypadne a z druhé strany přijde nový."
+ },
+ {
+  "name": "Posuv versus rotace",
+  "title": "Jak posouvat bity, aniž bychom některý ztratili?",
+  "minutes": "3 min",
+  "text": [
+   "U obyčejného posuvu jsme jeden krajní bit ztratili. Co když ale chceme bity jen přeskládat a <strong>zachovat všechny čtyři</strong>? Použijeme <strong>rotaci</strong>.",
+   "Při <strong>rotaci doleva (ROL)</strong> se levá jednička vrátí na pravý konec. Z <code>1011</code> tedy nevznikne <code>0110</code> jako u posuvu, ale <code>0111</code>.",
+   "Při <strong>rotaci doprava (ROR)</strong> se naopak pravá jednička přesune úplně vlevo: <code>1011 → 1101</code>. Tady se snadno splete směr, proto si ho vyzkoušej.",
+   "Přepínej mezi čtyřmi operacemi v ukázce. Sleduj, <strong>kam se poděl bit, který odešel z kraje</strong>. To je celé kouzlo rozdílu mezi posuvem a rotací."
+  ],
+  "question": "Jak dopadne jedna rotace doleva (ROL) hodnoty 1011?",
+  "choices": [
+   "0111",
+   "1101",
+   "0110"
+  ],
+  "correct": 0,
+  "wrong": "Při rotaci doleva se první bit 1 přenese na poslední místo: 1011 → 0111. Hodnota 1101 je rotace doprava.",
+  "right": "Správně! Výsledek ROL je 0111. Právě takto se odcházející bit vrací na opačný konec.",
+  "lesson": "Posuv bit může ztratit. Rotace jej vrátí na opačný konec."
+ },
+ {
+  "name": "Sériově a paralelně",
+  "title": "Proč někdy posíláme data po jednom bitu?",
+  "minutes": "4 min",
+  "text": [
+   "Představ si, že chceme odeslat čtyři bity <code>1011</code> do jiného zařízení. Jedna možnost je použít čtyři datové vodiče a předat všechny čtyři bity současně. Tomu říkáme <strong>paralelní přenos</strong>.",
+   "Jiná možnost je poslat <strong>jeden bit za druhým po jediném datovém vodiči</strong>. To je <strong>sériový přenos</strong>. Právě tady je posuvný registr velmi užitečný.",
+   "V naší ukázce posíláme postupně <code>1</code>, potom <code>0</code>, pak <code>1</code> a nakonec <code>1</code>. Po každém hodinovém impulsu přijde nový bit zprava a starší bity se posunou doleva.",
+   "Takový registr se označuje <strong>SIPO</strong>: sériový vstup, paralelní výstup. Nakonec máme všechny čtyři bity zároveň připravené na čtyřech výstupech. Existují i další kombinace: SISO, PISO a PIPO."
+  ],
+  "question": "Začínáme na 0000. Pošleme sériově bit 1 a potom 0. Jaký bude stav po dvou hodinových hranách?",
+  "choices": [
+   "0001",
+   "0010",
+   "1010"
+  ],
+  "correct": 1,
+  "wrong": "První impuls vloží zprava 1: 0001. Druhý bit je 0, původní 1 se posune doleva: 0010.",
+  "right": "Ano. Po dvou krocích je v registru 0010. Po všech čtyřech dorazí výsledek 1011.",
+  "lesson": "Sériově znamená postupně po jednom bitu. Paralelně znamená více bitů současně."
+ },
+ {
+  "name": "Časový diagram",
+  "title": "Jak poznáme, co se stalo při každém impulsu?",
+  "minutes": "4 min",
+  "text": [
+   "Zatím jsme v ukázkách mačkali tlačítko hodinového impulsu. V elektronice takové okamžiky zaznamenáváme do <strong>časového diagramu</strong>: vodorovně běží čas a my sledujeme signál <strong>CLK</strong>, vstupní data a uložené výstupy.",
+   "Začneme jednoduchým přehledem. Registr SIPO je na začátku <code>0000</code>. Při první aktivní hraně přijde bit 1 a stav je <code>0001</code>. Při druhé přijde 0 a stav je <code>0010</code>. Při třetí přijde 1 a stav je <code>0101</code>.",
+   "Důležité je, že <strong>při jedné hraně se všechny klopné obvody aktualizují současně</strong> podle toho, co bylo uloženo těsně před ní. Jednička tedy neproběhne celým registrem jediným impulsem.",
+   "Procházej tabulku po jednom kroku. Čti vždy trojici: číslo hodinové hrany → přijatý bit → nový stav. Stejnou informaci pak umíme vyznačit i do časového diagramu čarami."
+  ],
+  "question": "Jaký je stav po třetí hraně, když do prázdného SIPO přišly bity 1, 0, 1?",
+  "choices": [
+   "0101",
+   "1010",
+   "0010"
+  ],
+  "correct": 0,
+  "wrong": "Stavy jdou po hranách 0000 → 0001 → 0010 → 0101. Po třetí hraně je tedy 0101.",
+  "right": "Správně, 0101. Vždy čti stav až po dané aktivní hraně hodin.",
+  "lesson": "Časový diagram ukazuje, kdy se mění vstupy a co se při hodinové hraně uloží na výstupech."
+ },
+ {
+  "name": "Z registru čítač",
+  "title": "Jak z paměti vznikne počítadlo?",
+  "minutes": "3 min",
+  "text": [
+   "Registr už umí uchovat čtyři bity. Co kdybychom chtěli při každém hodinovém impulsu <strong>zvýšit uložené číslo o jedna</strong>? Přidáme logiku, která vypočítá následující hodnotu. Tak vzniká <strong>čítač</strong>.",
+   "Například <code>0011</code> je binárně číslo <strong>3</strong>. Při dalším impulsu čítač přejde na číslo <strong>4</strong>, které se zapisuje <code>0100</code>.",
+   "Všimni si: <code>0011 → 0100</code> <strong>není posuv bitů</strong>. Změnilo se celé číslo. Čítač musí určit nový binární zápis a uložit jej.",
+   "Takový obvod může počítat impulsy ze snímače, kroky motoru nebo výrobky na pásu. Zkus několikrát tlačítko dalšího impulsu a porovnávej binární a desítkový zápis."
+  ],
+  "question": "Čítač ukazuje 0011 (3). Co ukáže po jednom impulsu při počítání nahoru?",
+  "choices": [
+   "0100",
+   "0110",
+   "0010"
+  ],
+  "correct": 0,
+  "wrong": "Po trojce následuje čtyřka. V binární soustavě píšeme čtyřku jako 0100.",
+  "right": "Správně! 0011 znamená 3 a 0100 znamená 4. Čítač se posunul na další číselný stav.",
+  "lesson": "Registr ukládá data. Čítač při impulzech prochází posloupností čísel."
+ },
+ {
+  "name": "Přetečení",
+  "title": "Co se stane, když už další číslo nemáme kam uložit?",
+  "minutes": "3 min",
+  "text": [
+   "Čtyři bity mohou tvořit pouze konečný počet různých kombinací. Každý bit má dvě možnosti, takže čtyři bity vytvoří <strong>2 × 2 × 2 × 2 = 16 stavů</strong>.",
+   "Při počítání nahoru jsou to čísla <strong>0 až 15</strong>. Největší je <code>1111</code>, což je patnáctka. Další číslo 16 by potřebovalo pátý bit: <code>10000</code>.",
+   "Jenže náš čítač má pořád jen čtyři bity. Proto po stavu <code>1111</code> následuje zase <code>0000</code>. Tomuto návratu po poslední hodnotě říkáme <strong>přetečení</strong>.",
+   "V ukázce zkus tři impulsy od čísla 14. Uvidíš přechod <code>1110 → 1111 → 0000 → 0001</code>."
+  ],
+  "question": "Čtyřbitový binární čítač je na 1111. Co se stane po dalším impulsu?",
+  "choices": [
+   "Přejde na 1110",
+   "Vrátí se na 0000",
+   "Zobrazí pětibitové 10000"
+  ],
+  "correct": 1,
+  "wrong": "Čtyři bity číslo 16 neuchovají. Proto se po nejvyšším stavu 1111 čítač vrátí na 0000.",
+  "right": "Správně, 0000. Po přetečení začíná čítač svůj cyklus znovu.",
+  "lesson": "Se čtyřmi bity dostaneme 16 stavů: od 0000 do 1111."
+ },
+ {
+  "name": "Binární a dekadický",
+  "title": "Proč jeden čítač končí na 15 a druhý na 9?",
+  "minutes": "3 min",
+  "text": [
+   "Náš čtyřbitový binární čítač využije všech <strong>16 stavů</strong>. Po patnáctce se vrátí na nulu. Někdy ale potřebujeme počítat jen <strong>od 0 do 9</strong>, třeba jednu číslici na displeji.",
+   "K tomu slouží <strong>dekadický čítač</strong>. Číslo 9 zapisuje jako <code>1001</code>, ale další impuls ho vrátí na <code>0000</code>. Nepokračuje na <code>1010</code>, i když by takovou čtyřbitovou kombinaci mohl uložit.",
+   "Počet stavů v opakovaném cyklu označujeme slovem <strong>modulo</strong>. Binární čtyřbitový čítač je modulo 16. Dekadický čítač je modulo 10.",
+   "V ukázce přepínej mezi modulo 10 a modulo 16. Začni od osmi a zkus, co se stane po devítce. Je to vidět mnohem rychleji než z definice."
+  ],
+  "question": "Dekadický čítač ukazuje 1001 (9). Jaká hodnota následuje?",
+  "choices": [
+   "1010",
+   "1111",
+   "0000"
+  ],
+  "correct": 2,
+  "wrong": "Dekadický čítač má jen deset stavů od 0 do 9. Po devítce se tedy vrací na nulu.",
+  "right": "Ano, 0000. A právě tím se liší od běžného čtyřbitového čítače modulo 16.",
+  "lesson": "Modulo nám říká, kolika stavy čítač prochází, než začne znovu."
+ },
+ {
+  "name": "Zkrácený cyklus",
+  "title": "Jak udělat čítač, který počítá jen pět stavů?",
+  "minutes": "3 min",
+  "text": [
+   "Nemusíme se zastavit jen u cyklů do devíti nebo patnácti. Představ si, že chceme seskupovat výrobky vždy po pěti. Čítač může počítat <strong>0 → 1 → 2 → 3 → 4 → 0</strong>.",
+   "To je <strong>čítač modulo 5</strong>: má přesně pět opakujících se stavů. Číslo 5 už v jeho běžném cyklu nenastane, protože se čítač vrátí na nulu.",
+   "Kolik paměťových bitů potřebujeme? Dva bity by zvládly jen <code>00, 01, 10, 11</code>, tedy čtyři stavy. <strong>Tři bity</strong> zvládnou osm kombinací, což už na pět požadovaných stavů stačí.",
+   "Použijeme tedy tři klopné obvody, ale běžně využijeme jen pět jejich kombinací. Vyzkoušej přechod z čísla 4 na 0."
+  ],
+  "question": "Kolik bitů nejméně potřebujeme pro čítač modulo 5?",
+  "choices": [
+   "Dva",
+   "Tři",
+   "Pět"
+  ],
+  "correct": 1,
+  "wrong": "Dva bity by stačily jen na čtyři stavy. Tři bity umí až osm různých kombinací, takže na pět stavů stačí.",
+  "right": "Správně. Pět stavů vyžaduje nejméně tři paměťové bity, ne pět.",
+  "lesson": "Modulo je počet stavů cyklu, nikoli počet klopných obvodů."
+ },
+ {
+  "name": "Směr a povely",
+  "title": "Jak počítání spustíme, zastavíme nebo vynulujeme?",
+  "minutes": "4 min",
+  "text": [
+   "Zatím čítač s každým impulsem přičítal. Ve skutečnosti ho ale potřebujeme také <strong>zastavit, vynulovat nebo změnit směr</strong>. Proto mají čítače řídicí vstupy.",
+   "<strong>UP</strong> znamená počítat nahoru, například 3 → 4. <strong>DOWN</strong> znamená počítat dolů, například 3 → 2. Samotné slovo určuje směr, ve kterém se mění uložené číslo.",
+   "<strong>ENABLE</strong> je povolení počítání. Když je vypnuté, běžné čítací impulsy nic nepřičtou. <strong>RESET</strong> nastaví nulu a <strong>LOAD</strong> načte předem zadané číslo. Ve skutečných obvodech se přesné časování těchto povelů liší podle typu.",
+   "Vyzkoušej začít od trojky, jednou přičíst, potom vypnout ENABLE a přičíst znovu. Druhý impuls se do hodnoty nezapočítá. Pak zkus RESET a LOAD."
+  ],
+  "question": "ENABLE je vypnutý a čítač ukazuje 5. Co udělá obyčejný čítací impuls?",
+  "choices": [
+   "Přejde na 6",
+   "Přejde na 4",
+   "Zůstane na 5"
+  ],
+  "correct": 2,
+  "wrong": "Když je počítání zakázané (ENABLE = 0), obyčejný impuls uloženou hodnotu nemění.",
+  "right": "Ano, zůstane na pěti. ENABLE rozhoduje, zda čítač na čítací impulsy reaguje.",
+  "lesson": "UP/DOWN určuje směr, ENABLE povolení, RESET nulování a LOAD přednastavení."
+ },
+ {
+  "name": "Synchronní a asynchronní",
+  "title": "Proč některé čítače přepínají společně a jiné postupně?",
+  "minutes": "3 min",
+  "text": [
+   "Čítač se skládá z více klopných obvodů. Každý drží jeden bit. Když se má číslo změnit, potřebujeme rozhodnout, <strong>kdy se jednotlivé bity přepnou</strong>.",
+   "U <strong>synchronního čítače</strong> dostávají všechny klopné obvody stejný hodinový signál CLK. Na jeho aktivní hraně se rozhodne o jejich nových hodnotách. Pro výklad si to můžeme představit jako společný povel pro všechny.",
+   "U <strong>asynchronního neboli ripple čítače</strong> se přepnutí šíří postupně z jednoho stupně do dalšího. Takže mezi původní a konečnou kombinací mohou krátce vzniknout přechodné hodnoty.",
+   "V ukázce přepni obě zapojení. U maturity je nejdůležitější umět říct: <strong>společné hodiny</strong> versus <strong>postupné šíření změny</strong>."
+  ],
+  "question": "Který čítač používá jednu společnou aktivní hodinovou hranu pro všechny stupně?",
+  "choices": [
+   "Asynchronní (ripple)",
+   "Synchronní",
+   "Žádný"
+  ],
+  "correct": 1,
+  "wrong": "Synchronní znamená společné časování. U ripple čítače se změna přenáší mezi stupni postupně.",
+  "right": "Správně. Synchronní čítač používá společnou hodinovou hranu.",
+  "lesson": "Synchronní = společný CLK. Asynchronní ripple = změna se šíří postupně."
+ },
+ {
+  "name": "Dělení frekvence",
+  "title": "Jak čítač vyrobí pomalejší signál?",
+  "minutes": "4 min",
+  "text": [
+   "Představ si pravidelný hodinový signál, který přichází <strong>160krát za sekundu</strong>. Říkáme, že má frekvenci <strong>160 Hz</strong>. Co se přitom děje s nejnižším bitem binárního čítače?",
+   "Tento bit <strong>Q0</strong> střídá 0 a 1 při každém impulsu. Aby se vrátil z nuly přes jedničku zpět na nulu, potřebuje dva vstupní impulsy. Proto se Q0 opakuje jen <strong>80krát za sekundu</strong>, tedy má frekvenci 80 Hz.",
+   "Další bit <strong>Q1</strong> se mění pomaleji a má frekvenci 40 Hz, Q2 má 20 Hz a Q3 10 Hz. U běžného plného čtyřbitového binárního čítače tedy dostáváme postupně <strong>f/2, f/4, f/8 a f/16</strong>.",
+   "Procházej tabulku po jednotlivých impulsech. Všimni si, že Q0 se mění nejčastěji, Q1 méně často a Q2 ještě méně. Toto jednoduché dělení už automaticky neplatí pro každou kombinaci zkráceného čítače."
+  ],
+  "question": "CLK má 160 Hz. Jakou frekvenci má bit Q1 běžného plného binárního čítače?",
+  "choices": [
+   "80 Hz",
+   "40 Hz",
+   "20 Hz"
+  ],
+  "correct": 1,
+  "wrong": "Q0 dělí frekvenci dvěma, Q1 čtyřmi. Pro Q1 tedy počítáme 160 ÷ 4 = 40 Hz.",
+  "right": "Správně, 40 Hz. Na Q0 bychom dostali 80 Hz a na Q2 20 Hz.",
+  "lesson": "Na výstupech plného binárního čítače získáme pravidelné signály s nižší frekvencí."
+ },
+ {
+  "name": "Čítač v praxi",
+  "title": "Jak čítač pozná, že kolem projel další výrobek?",
+  "minutes": "4 min",
+  "text": [
+   "Teď všechno spojíme s reálným příkladem. Na dopravníku jedou výrobky a u pásu je <strong>snímač</strong>. Když kolem projede výrobek, snímač změní svůj elektrický signál z 0 na 1.",
+   "Programovatelný automat <strong>PLC</strong> může použít čítač <strong>CTU</strong>, který takové události počítá. Uložený počet se jmenuje <strong>CV</strong>. Cílový počet může být například <strong>PV = 3</strong>. Jakmile CV dosáhne PV, výstup <strong>Q</strong> oznámí splnění cíle.",
+   "Důležité je, že CTU počítá <strong>nový přechod z 0 na 1</strong>, tedy náběžnou hranu. Pokud snímač zůstane stále na jedničce, neznamená to další a další výrobky.",
+   "V ukázce každý stisk tlačítka představuje jeden celý impuls snímače. Po třetím výrobku se výstup Q zapne. Zkus také RESET, který počet vynuluje."
+  ],
+  "question": "Snímač drží trvale hodnotu 1. Kolik dalších výrobků CTU započítá bez nového přechodu 0 → 1?",
+  "choices": [
+   "Žádný",
+   "Jeden v každém cyklu PLC",
+   "Neomezený počet"
+  ],
+  "correct": 0,
+  "wrong": "Počítá se nová náběžná hrana, ne to, jak dlouho snímač ukazuje jedničku.",
+  "right": "Správně. Bez nové náběžné hrany CTU žádný další výrobek nezapočítá.",
+  "lesson": "Čítač v praxi nepočítá délku signálu, ale jednotlivé zaznamenané události."
+ }
 ];
 const total=steps.length;
 const key="skola-vdf-mer06-pruvodce-v3";
