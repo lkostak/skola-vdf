@@ -266,6 +266,7 @@ function render(){
  if(passed) feedback='<div class="guide-feedback is-correct" role="status">✓ '+s.right+'</div>';
  else if(revealed) feedback='<div class="guide-feedback is-reveal" role="status">Vysvětlení: '+s.right+' Tento krok není započítán jako samostatně zvládnutý.</div>';
  else if(sel>=0) feedback='<div class="guide-feedback is-wrong" role="status">Ještě ne. '+s.wrong+' Zkus zvolit jinou odpověď.</div>';
+ const takeaway=answered?'<div class="guide-feedback is-reveal"><strong>Zapamatuj si:</strong> '+s.lesson+'<p><strong>Zkus to teď vysvětlit vlastními slovy, bez čtení odpovědi.</strong></p></div>':"";
  let actions='<div class="guide-actions">'+
   demoButton("previous","← Předchozí",i===0,' class="guide-secondary"')+
   (i<total-1?demoButton("next","Další krok →",!answered,' class="guide-next"'):answered?demoButton("deep","Přejít k rozšíření →",false,' class="guide-next"'):"")+
@@ -284,7 +285,7 @@ function render(){
   '<div class="guide-example">'+demo(i)+'</div>'+
   '<div class="guide-check"><div class="guide-check-tag">Kontrolní otázka</div>'+
   '<h4>'+s.question+'</h4><div class="guide-options" role="group" aria-label="Možnosti odpovědi">'+choiceHtml+'</div>'+
-  feedback+'</div>'+actions+finished;
+  feedback+takeaway+'</div>'+actions+finished;
  save();
 }
 function show(index){
