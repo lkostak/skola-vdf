@@ -9,7 +9,11 @@ function setup(){
  const elements=new Map(),storage=new Map(),selections=new Map();
  function el(id){
   if(!elements.has(id))elements.set(id,{
-   id,innerHTML:"",textContent:"",style:{},handlers:{},open:false,scrollCount:0,
+   id,innerHTML:"",textContent:"",style:{},handlers:{},open:false,scrollCount:0,children:[],
+   appendChild(node){
+    if(node._parent)node._parent.children=node._parent.children.filter(x=>x!==node);
+    this.children.push(node);node._parent=this;return node;
+   },
    addEventListener(type,fn){this.handlers[type]=fn;},
    querySelector(selector){
     if(id==="finalQuiz"){
@@ -124,12 +128,55 @@ test("Závěrečný test je po výkladu a odborné části; původní simulace z
  assert.doesNotMatch(html,/Nezáleží na kulatém počtu kapitol/);
  assert.doesNotMatch(html,/pracovní podob[ay] k pedagogické revizi/i);
  assert.match(html,/id="counterMod"/);
+ assert.match(html,/id="ustni-priprava"/);
+ assert.match(html,/id="podrobne-zdroj"/);
+ assert.equal((html.match(/class="oral-outline-card"/g)||[]).length,6);
+ assert.equal((html.match(/class="topic topic-accordion"/g)||[]).length,0);
+ assert.equal((html.match(/class="section chapter"/g)||[]).length,10);
+ assert.doesNotMatch(html,/id="podrobne"/);
+ assert.doesNotMatch(html,/KOSTRA OTÁZKY/);
  assert.match(html,/id="sipoWave"/);
  assert.match(html,/id="ctuValue"/);
  assert.match(html,/src="guide.js"/);
  assert.match(html,/href="guide.css"/);
- assert.match(html,/KOSTRA OTÁZKY/);
  assert.match(css,/\.guide-options/);
  assert.match(css,/\.guide-practice/);
  assert.match(app,/SkolaSequentialModel/);
+});
+
+
+test("Každý krok má své podrobnosti; odborná kapitola se přesouvá, ale neztrácí",()=>{
+ const a=setup();
+ assert.match(a.el("guidedStage").innerHTML,/Chci vědět víc/);
+ a.click("toggle-advanced");
+ assert.match(a.el("guidedStage").innerHTML,/Skrýt podrobnosti/);
+ assert.equal(a.el("guideDeepSlot").children.length,1);
+ assert.equal(a.el("guideDeepSlot").children[0].id,"uvod");
+ const chapter=a.el("uvod");
+ a.practice(1);
+ assert.equal(a.el("guideDeepSlot").children[0],chapter,"Po otázce se stejný odborný obsah znovu připojí");
+ a.click("next");
+ assert.equal(a.el("podrobne-zdroj").children.includes(chapter),true,"Po přechodu na další krok se kapitola vrátí do banky");
+ assert.match(a.el("guidedStage").innerHTML,/Chci vědět víc/);
+ a.click("toggle-advanced");
+ assert.equal(a.el("guideDeepSlot").children[0].id,"registry");
+});
+test("Osnova ústní maturity naviguje na tematicky odpovídající krok",()=>{
+ const a=setup(),oral=a.el("ustni-priprava");
+ let prevented=false;
+ oral.handlers.click({target:{closest(){return {dataset:{guideJump:"11"}};}},preventDefault(){prevented=true;}});
+ assert.equal(prevented,true);
+ assert.match(a.el("guidedStage").innerHTML,/Proč některé čítače přepínají společně/);
+ assert.equal(a.el("guideProgressText").textContent,"Krok 12 z 14");
+});
+test("Podrobný výklad zůstává jedinou sadou původních schémat a simulací",()=>{
+ const html=fs.readFileSync(path.join(dir,"index.html"),"utf8");
+ for(const id of ["uvod","registry","posuvy","casovani","citace","synchronni","frekvence","rizeni","praxe","overeni"]){
+  const found=html.match(new RegExp('id="'+id+'"',"g"))||[];
+  assert.equal(found.length,1,"Id "+id+" musí být na stránce právě jednou");
+ }
+ assert.ok(html.indexOf('id="ustni-priprava"')>html.indexOf('id="rychlokurz"'));
+ assert.ok(html.indexOf('id="zaverecny-test"')>html.indexOf('id="ustni-priprava"'));
+ assert.match(html,/Jak o registrech a čítačích mluvit u maturity/);
+ assert.match(html,/Vzor souvislé odpovědi|vzor souvislé odpovědi/);
 });
