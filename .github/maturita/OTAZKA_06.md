@@ -54,19 +54,20 @@ Odkazy jsou odborné referenční podklady, nikoli zdroj školního schválení 
 
 **Hranice témat:** samostatné RS/D/JK a bistabilita patří k otázce 05. Obecné paměti RAM/ROM/Flash a detailní časovače patří do příslušné širší maturity (8 nebo další otázky), nikoli primárně sem.
 
-## Nová hlavní vrstva: výukový průvodce krok za krokem (27. 11. 2026)
+## Pedagogická revize výukového průvodce (27. 11. 2026)
 
-**Pedagogická změna:** před odbornou osnovu a kapitoly je zařazen jednoduchý interaktivní kurz, který staví na dialogu učitel–student: jedna myšlenka → ukázka → kontrolní otázka → zpětná vazba → další krok. Nejde o nové přidávání obsahu; jde o **jiné pořadí a náročnost výkladu**.
+**Počet kroků nevzniká z číselné šablony.** Závisí na tom, kolik samostatných předpokladů je nutné vysvětlit, než student bez hádání odpoví na další otázku. První verze měla mechanických 10 kroků a nepřirozené pořadí: SIPO až za čítači, chybějící samostatné ověření CLK/LOAD/HOLD, časového diagramu, modulo 5 a řídicích povelů.
 
-- 10 kroků: paměť a čtyřbitový registr; posuv SHL/SHR; rotace ROL/ROR; binární čítač; přetečení; modulo 10/16; SIPO a serial/parallel; synchronní/asynchronní čítač; dělení frekvence; PLC CTU v praxi.
-- 10 kontrolních otázek s jedinou ověřitelnou odpovědí a pedagogickou zpětnou vazbou. Správná odpověď odemyká pokračování. Tlačítko „Nevím, ukaž vysvětlení“ také umožňuje pokračovat, ale bez přidělení bodu za samostatnou znalost.
-- Demonstrace mají tlačítka pro další CLK, změnu směru/typu a reset. Vyznačeny jsou bity b3…b0, u SIPO je potvrzen směr nového bitu do Q0.
-- Pokrok se ukládá lokálně do prohlížeče, bez přenosu dat a bez přihlašování; není to školní známka ani zaručená maturitní připravenost.
-- Souvislý odborný výklad včetně všech původních simulací, laboratorních úloh a osnovy **zůstal zachován** v elementu `<details id="podrobne">`.
-- Nové soubory: `guide.js`, `guide.css`. Automatické scénáře `tests/mer06-guided-course.test.js` ověřují navigaci, správné a chybné odpovědi a zachování starých částí stránky. CI se spouští z `.github/workflows/mer06-tests.yml`.
-- **Pedagogický záměr pro další otázky:** začínat tím, co student musí jednoduše vysvětlit, nikoli výčtem rozsahu odborného PDF; pokročilá látka je navazující rozšíření.
+**Nová pedagogická struktura:**
+- **I. Registry a přenos dat (6 kroků)**: (1) čtyřbitová paměť z klopných obvodů, (2) okamžik načtení CLK a režimy LOAD/HOLD, (3) SHL/SHR, (4) ROL/ROR, (5) sériový/paralelní přenos a SIPO, (6) čtení časového diagramu s jedním krokem po hraně.
+- **II. Čítače a časování (7 kroků)**: (7) čítač versus registr; (8) přetečení a 2ⁿ stavů; (9) binární a dekadické modulo 16 a 10; (10) modulo 5 a minimální počet bitů; (11) UP/DOWN, ENABLE, RESET, LOAD; (12) synchronní a ripple čítače; (13) dělení frekvence na plném binárním cyklu.
+- **III. Použití v praxi (1 krok)**: (14) PLC CTU, počet výrobků a význam náběžné hrany.
 
-**Důležité:** interaktivní průvodce je úvodní pochopení látky. Kompletní zkouška navíc vyžaduje samostatný souvislý ústní výklad, kreslení schémat a výpočty. Rozsah odpovídající oficiálnímu schválenému zadání školy je stále předmětem pedagogické revize.
+Výklad je základní a vstřícný, ale netvrdí, že 14 odpovědí s výběrem možností nahrazuje ústní maturitu. Každý krok má krátký didaktický text, interaktivní ukázku, otázku s kontrolovanou odpovědí a vysvětlení. Po průchodu má student ještě samostatně umět slovně popsat obvod, časový diagram a schéma. Studijní materiály a původní odborná osnova včetně simulací zůstávají v rozbalené/rozbalitelné části.
+
+**Technický zásah při revizi:** opravena chybně vložená struktura HTML z předchozího průchodu rekonstruováním původního `index.html` a vložením průvodce až před původní navigaci; zachováno přesné znění deseti odborných kapitol a původní JS simulace. `guide.js` odvozuje celkový počet kroků ze zdrojového pole a neobsahuje pevně zakódovanou hodnotu deset. Starý lokální pokrok používá odlišný klíč `v1`, nově `v2`, aby nepomíchal správné odpovědi v odlišném pořadí. `tests/mer06-guided-course.test.js` ověřuje novou návaznost, všech 14 kontrolních otázek a strukturu stránky.
+
+**K revizi:** pro konečné maturitní minimum ještě porovnat přesné schválené znění otázky a ověřit, že student umí samostatně nakreslit jednoduché schéma, číst diagram a vysvětlit příčinu změny bitů, nikoli jen vybrat správnou odpověď.
 
 ## 3. Obsah výukového webu
 
