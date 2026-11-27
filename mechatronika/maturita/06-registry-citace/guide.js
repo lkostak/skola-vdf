@@ -302,7 +302,7 @@ const steps=[
 ];
 const total=steps.length;
 const key="skola-vdf-mer06-pruvodce-v3";
-const initial=()=>({index:0,view:Array(total).fill(0),mode:"SHL",counterMod:10,syncMode:"sync",controlValue:3,controlEnable:1});
+const initial=()=>({index:0,view:Array(total).fill(0),mode:"SHL",counterMod:10,syncMode:"sync",controlValue:3,controlEnable:1,quickSelected:Array(total).fill(-1),quickReveal:Array(total).fill(false)});
 let state=initial();
 try{
  const saved=JSON.parse(localStorage.getItem(key)||"null");
@@ -327,9 +327,9 @@ function demo(index){
  const kind=[0,10,1,2,6,11,3,4,5,12,13,7,8,9][index];
  if(kind===0){
   const saved=v%2===0?"1011":"0100";
-  return '<h4>Pokus: změň vstup, potom pošli CLK</h4><p>Nový vstup D: <code>0100</code></p><p>Uložené výstupy Q:</p>'+
-   bitRow(saved)+'<div class="guide-demo">'+demoButton("pulse",v%2===0?"Poslat hodinovou hranu CLK":"Začít znovu")+'</div>'+
-   '<div class="guide-demo-label">'+(v%2===0?"Vstup se změnil, ale uložený stav je stále 1011.":"Po aktivní hraně registr převezme nové bity 0100.")+'</div>';
+  return '<h4>Podívej se na čtyři paměťová políčka</h4><p>Příklad uložených čtyř bitů:</p>'+
+   bitRow(saved)+'<div class="guide-demo">'+demoButton("pulse",v%2===0?"Zobraz jinou hodnotu":"Zobraz předchozí hodnotu")+'</div>'+
+   '<div class="guide-demo-label">Každé políčko uchovává jen jednu 0 nebo 1. Dohromady tvoří čtyřbitové číslo. Tady porovnáváme dvě možné uložené hodnoty; jak se v obvodu načítají, si ukážeme v dalším kroku.</div>';
  }
  if(kind===1){
   const n=(11<<Math.min(v,4))&15;
@@ -470,6 +470,20 @@ function render(){
  nav.innerHTML=steps.map((step,j)=>'<button type="button" data-nav="'+j+
   '" aria-label="Krok '+(j+1)+': '+step.name+'"'+(j===i?' aria-current="step"':'')+'>'+(j+1)+'</button>').join("");
  const topicGroup=i<6?"REGISTRY A PŘENOS DAT":i<13?"ČÍTAČE A ČASOVÁNÍ":"POUŽITÍ V PRAXI";
+ const selected=state.quickSelected[i],showHint=state.quickReveal[i];
+ const practiceChoices=s.choices.map((choice,j)=>
+  '<label><input type="radio" name="guide-practice" value="'+j+'"'+(selected===j?' checked':'')+
+  '><span>'+choice+'</span></label>').join("");
+ const practiceFeedback=selected>=0?
+  '<div class="guide-feedback '+(selected===s.correct?'is-correct':'is-wrong')+'" role="status">'+
+  (selected===s.correct?s.right:'Zkus ještě jednou. '+s.wrong)+'</div>':
+  showHint?'<div class="guide-feedback is-reveal" role="status">'+s.right+'</div>':'';
+ const practice='<div class="guide-check guide-practice">'+
+  '<div class="guide-check-tag">Zkus si to sám</div>'+
+  '<h4>'+s.question+'</h4><div class="guide-options" role="group" aria-label="Odpovědi k procvičení">'+
+  practiceChoices+'</div>'+practiceFeedback+
+  '<button class="guide-explain" type="button" data-action="show-explanation">Ukázat vysvětlení</button>'+
+  '<p class="guide-ungraded">Tahle otázka je jen na procvičení. Můžeš odpověď změnit nebo rovnou pokračovat.</p></div>';
  const explanation='<div class="guide-check"><div class="guide-check-tag">Co si zapamatovat</div>'+
   '<p><strong>'+s.lesson+'</strong></p><h4>Dokážeš to vysvětlit vlastními slovy?</h4>'+
   '<p>'+reflect[i]+'</p></div>';
@@ -479,11 +493,11 @@ function render(){
    demoButton("final-test","Přejít k závěrečnému testu →",false,' class="guide-next"'))+
   '<span class="guide-actions-note">'+(i===total-1?
    "Hotovo. Teď si ověříš celé učivo v závěrečném testu.":
-   "Přejdi dál, až budeš rozumět příkladu. Nemusíš nic hádat.")+'</span></div>';
+   "Pokračuj, až budeš rozumět příkladu. Otázka je dobrovolná.")+'</span></div>';
  card.innerHTML='<div class="guide-card-header"><span class="guide-step-number">'+topicGroup+
   ' · KROK '+(i+1)+' Z '+total+'</span><span class="guide-time">Přibližně '+s.minutes+'</span></div>'+
   '<h3>'+s.title+'</h3>'+s.text.map(p=>'<p>'+p+'</p>').join("")+
-  '<div class="guide-example">'+demo(i)+'</div>'+explanation+actions;
+  '<div class="guide-example">'+demo(i)+'</div>'+practice+explanation+actions;
  save();
 }
 function show(index){
@@ -493,11 +507,18 @@ function show(index){
  if(heading){heading.setAttribute("tabindex","-1");heading.focus({preventScroll:true});}
  root.scrollIntoView({behavior:"smooth",block:"start"});
 }
+root.addEventListener("change",event=>{
+ const input=event.target;
+ if(!input.matches('input[name="guide-practice"]'))return;
+ state.quickSelected[state.index]=Number(input.value);
+ render();
+});
 root.addEventListener("click",event=>{
  const node=event.target.closest("[data-nav],[data-action]");
  if(!node||node.disabled)return;
  if(node.dataset.nav!==undefined){show(Number(node.dataset.nav));return;}
  const action=node.dataset.action,i=state.index;
+ if(action==="show-explanation"){state.quickReveal[i]=true;render();return;}
  if(action==="previous"){show(i-1);return;}
  if(action==="next"){show(i+1);return;}
  if(action==="final-test"){
