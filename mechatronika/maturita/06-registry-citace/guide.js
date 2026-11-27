@@ -304,6 +304,17 @@ const total=steps.length;
 const key="skola-vdf-mer06-pruvodce-v3";
 const initial=()=>({index:0,view:Array(total).fill(0),mode:"SHL",counterMod:10,syncMode:"sync",controlValue:3,controlEnable:1,quickSelected:Array(total).fill(-1),quickReveal:Array(total).fill(false)});
 let state=initial();
+// Každý krok může otevřít odpovídající původní odbornou kapitolu.
+const chapterByStep=["uvod","registry","posuvy","posuvy","registry","casovani","citace","citace","citace","rizeni","rizeni","synchronni","frekvence","praxe"];
+let chapterOnStage=null;
+state.advancedOpen=false;
+function restoreAdvanced(){
+ if(!chapterOnStage)return;
+ const source=byId("podrobne-zdroj");
+ if(source)source.appendChild(chapterOnStage);
+ chapterOnStage=null;
+}
+
 try{
  const saved=JSON.parse(localStorage.getItem(key)||"null");
  if(saved&&Number.isInteger(saved.index))state.index=Math.max(0,Math.min(total-1,saved.index));
@@ -464,6 +475,7 @@ const reflect=[
  "Kdy čítač na dopravníku zaznamená nový výrobek?"
 ];
 function render(){
+ restoreAdvanced();
  const i=state.index,s=steps[i];
  progress.style.width=(100*(i+1)/total)+"%";
  progressText.textContent="Krok "+(i+1)+" z "+total;
@@ -487,6 +499,12 @@ function render(){
  const explanation='<div class="guide-check"><div class="guide-check-tag">Co si zapamatovat</div>'+
   '<p><strong>'+s.lesson+'</strong></p><h4>Dokážeš to vysvětlit vlastními slovy?</h4>'+
   '<p>'+reflect[i]+'</p></div>';
+ const more='<div class="guide-more">'+
+  '<button class="guide-more-trigger" type="button" data-action="toggle-advanced" aria-expanded="'+
+  (state.advancedOpen?"true":"false")+'">'+
+  (state.advancedOpen?"Skrýt podrobnosti":"Chci vědět víc: vysvětlení, schémata a další pokusy")+'</button>'+
+  (state.advancedOpen?'<div id="guideDeepSlot" class="guide-deep-slot" role="region" aria-label="Podrobněji k tomuto tématu"></div>':'')+
+  '</div>';
  const actions='<div class="guide-actions">'+
   demoButton("previous","← Předchozí krok",i===0,' class="guide-secondary"')+
   (i<total-1?demoButton("next","Další krok →",false,' class="guide-next"'):
@@ -497,12 +515,16 @@ function render(){
  card.innerHTML='<div class="guide-card-header"><span class="guide-step-number">'+topicGroup+
   ' · KROK '+(i+1)+' Z '+total+'</span><span class="guide-time">Přibližně '+s.minutes+'</span></div>'+
   '<h3>'+s.title+'</h3>'+s.text.map(p=>'<p>'+p+'</p>').join("")+
-  '<div class="guide-example">'+demo(i)+'</div>'+practice+explanation+actions;
+  '<div class="guide-example">'+demo(i)+'</div>'+practice+explanation+more+actions;
+ if(state.advancedOpen){
+  const slot=byId("guideDeepSlot"),chapter=byId(chapterByStep[i]);
+  if(slot&&chapter){slot.appendChild(chapter);chapterOnStage=chapter;}
+ }
  save();
 }
 function show(index){
  if(index<0||index>=total)return;
- state.index=index;render();
+ state.index=index;state.advancedOpen=false;render();
  const heading=card.querySelector("h3");
  if(heading){heading.setAttribute("tabindex","-1");heading.focus({preventScroll:true});}
  root.scrollIntoView({behavior:"smooth",block:"start"});
@@ -519,6 +541,7 @@ root.addEventListener("click",event=>{
  if(node.dataset.nav!==undefined){show(Number(node.dataset.nav));return;}
  const action=node.dataset.action,i=state.index;
  if(action==="show-explanation"){state.quickReveal[i]=true;render();return;}
+ if(action==="toggle-advanced"){state.advancedOpen=!state.advancedOpen;render();return;}
  if(action==="previous"){show(i-1);return;}
  if(action==="next"){show(i+1);return;}
  if(action==="final-test"){
@@ -737,13 +760,32 @@ if(quizForm&&quizItems){
   byId("quizSummary").textContent="";
  });
 }
+const oral=byId("ustni-priprava");
+if(oral)oral.addEventListener("click",event=>{
+ const link=event.target.closest("[data-guide-jump]");
+ if(!link)return;
+ event.preventDefault();
+ show(Number(link.dataset.guideJump));
+});
+// Odkazy na původní kotvy odborných kapitol otevřou související krok.
 function openDeepIfHash(){
- if(!location.hash)return;
- const target=document.getElementById(decodeURIComponent(location.hash.slice(1)));
- const deep=byId("podrobne");
- if(deep&&target&&deep.contains(target))deep.open=true;
+ const name=decodeURIComponent((location.hash||"").replace(/^#/,""));
+ if(!name)return false;
+ const stepById={uvod:0,registry:1,posuvy:2,casovani:5,citace:6,rizeni:10,synchronni:11,frekvence:12,praxe:13};
+ if(Object.prototype.hasOwnProperty.call(stepById,name)){
+  state.index=stepById[name];
+  state.advancedOpen=true;
+  render();
+  root.scrollIntoView({behavior:"smooth",block:"start"});
+  return true;
+ }
+ if(name==="osnova"||name==="overeni"||name.startsWith("ustni-")){
+  const outline=byId("ustni-priprava");
+  if(outline)outline.scrollIntoView({behavior:"smooth",block:"start"});
+  return true;
+ }
+ return false;
 }
 window.addEventListener("hashchange",openDeepIfHash);
-openDeepIfHash();
-render();
+if(!openDeepIfHash())render();
 })();
