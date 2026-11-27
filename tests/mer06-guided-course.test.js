@@ -32,27 +32,40 @@ function setup(){
   el,root,storage,selections,
   click(action,extras={}){root.handlers.click({target:{closest(){return {disabled:false,dataset:{action,...extras}};}}});},
   navigate(index){root.handlers.click({target:{closest(){return {disabled:false,dataset:{nav:String(index)}};}}});},
+  practice(choice){root.handlers.change({target:{matches(s){return s==='input[name="guide-practice"]';},value:String(choice)}});},
   submit(){el("finalQuiz").handlers.submit({preventDefault(){}});}
  };
 }
-test("Výuka začíná vysvětlením a nic se nezkouší na začátku",()=>{
+test("Výuka začíná vysvětlením, ukázkou a dobrovolnou otázkou",()=>{
  const a=setup();
  const content=a.el("guidedStage").innerHTML;
- assert.match(content,/Čtyři bity si pamatují číslo/);
- assert.match(content,/Pokus: změň vstup/);
+ assert.match(content,/Jak si obvod zapamatuje čtyři bity/);
+ assert.match(content,/Podívej se na čtyři paměťová políčka/);
  assert.match(content,/Dokážeš to vysvětlit vlastními slovy/);
- assert.doesNotMatch(content,/guide-options|input type="radio"|Odpověz na otázku, aby/);
+ assert.match(content,/guide-options/);
+ assert.match(content,/Kolik klopných obvodů potřebujeme/);
+ a.practice(0);
+ assert.match(a.el("guidedStage").innerHTML,/Zkus ještě jednou/);
+ a.practice(1);
+ assert.match(a.el("guidedStage").innerHTML,/Správně! Čtyři buňky/);
  assert.equal(a.el("guideProgressText").textContent,"Krok 1 z 14");
  a.click("next");
- assert.match(a.el("guidedStage").innerHTML,/Kdy se nová hodnota opravdu uloží/);
+ assert.match(a.el("guidedStage").innerHTML,/Kdy si registr zapamatuje nové číslo/);
+});
+test("Nápověda u malé otázky nezamyká další krok",()=>{
+ const a=setup();
+ a.click("show-explanation");
+ assert.match(a.el("guidedStage").innerHTML,/Čtyři buňky uchovají čtyři bity/);
+ a.click("next");
+ assert.match(a.el("guidedStage").innerHTML,/Kdy si registr zapamatuje nové číslo/);
 });
 test("Student může bez bodování projít celou výuku a přejít na závěrečný test",()=>{
  const a=setup();
  a.navigate(6);
- assert.match(a.el("guidedStage").innerHTML,/Čítač při impulsu změní číslo/);
+ assert.match(a.el("guidedStage").innerHTML,/Jak z paměti vznikne počítadlo/);
  assert.equal(a.el("guideProgressText").textContent,"Krok 7 z 14");
  a.navigate(13);
- assert.match(a.el("guidedStage").innerHTML,/Počítání výrobků na dopravníku/);
+ assert.match(a.el("guidedStage").innerHTML,/Jak čítač pozná, že kolem projel další výrobek/);
  a.click("final-test");
  assert.equal(a.el("zaverecny-test").scrollCount,1);
 });
@@ -76,11 +89,12 @@ test("Interaktivní příklady: HOLD, LOAD, časování a řízení čítače",(
  assert.match(a.el("guidedStage").innerHTML,/Stav: <strong>5<\/strong> · ENABLE = 0/);
 });
 test("Závěrečný test obsahuje otázky z celého výkladu a správně je vyhodnotí",()=>{
- const a=setup(),answers=[0,1,1,0,1,0,0,1,2,1,2,1,1,0];
+ const a=setup(),answers=[1,1,0,1,0,2,0,1,1,0,0,1,2,0];
  const markup=a.el("finalQuizQuestions").innerHTML;
  assert.equal((markup.match(/class="guide-quiz-question"/g)||[]).length,14);
- assert.match(markup,/Dekadický čítač právě ukazuje/);
- assert.match(markup,/Snímač drží vstup CTU/);
+ assert.match(markup,/šestibitový registr/);
+ assert.match(markup,/Vstupní frekvence plného binárního čítače je 120 Hz/);
+ assert.doesNotMatch(markup,/Kolik klopných obvodů potřebujeme, abychom si najednou pamatovali čtyři bity/);
  answers.forEach((value,i)=>a.selections.set(i,value));
  a.submit();
  assert.match(a.el("quizSummary").textContent,/Správně 14 z 14/);
@@ -94,7 +108,7 @@ test("Chyby a nezodpovězené otázky se vyhodnotí na konci, ne při výkladu",
  a.selections.set(0,2);
  a.submit();
  assert.match(a.el("quizSummary").textContent,/Správně 0 z 14. Vyplněno 1 z 14/);
- assert.match(a.el("quiz1").textContent,/Registr drží starý stav/);
+ assert.match(a.el("quiz1").textContent,/Počet paměťových buněk/);
  assert.match(a.el("quiz2").textContent,/bez odpovědi/);
 });
 test("Závěrečný test je po výkladu a odborné části; původní simulace zůstaly",()=>{
@@ -116,5 +130,6 @@ test("Závěrečný test je po výkladu a odborné části; původní simulace z
  assert.match(html,/href="guide.css"/);
  assert.match(html,/KOSTRA OTÁZKY/);
  assert.match(css,/\.guide-options/);
+ assert.match(css,/\.guide-practice/);
  assert.match(app,/SkolaSequentialModel/);
 });
