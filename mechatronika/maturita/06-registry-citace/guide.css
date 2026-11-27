@@ -1,0 +1,93 @@
+/* Otázka 06: průvodce krok za krokem; nemění původní odborné simulace. */
+.seq-page .lesson-guide{margin:36px 0 42px;padding:clamp(16px,3vw,34px);border:1px solid rgba(148,225,242,.35);background:linear-gradient(140deg,rgba(8,51,65,.93),rgba(4,27,40,.96));border-radius:13px;box-shadow:0 12px 45px rgba(0,0,0,.14)}
+.seq-page .guide-kicker{color:#f3df9c;font-size:.73rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.seq-page .guide-heading{font-size:clamp(1.7rem,3vw,2.4rem);line-height:1.2;margin:8px 0 10px;color:#fff}
+.seq-page .guide-lead{max-width:780px;color:#d4edf3;line-height:1.7;font-size:1rem;margin:0 0 22px}
+.seq-page .guide-progress-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0;color:#d4e8ef;font-size:.84rem}
+.seq-page .guide-progress-track{height:8px;background:#1a4958;border-radius:20px;overflow:hidden}
+.seq-page #guideProgressBar{display:block;height:100%;width:0;background:#d7bf71;border-radius:20px;transition:width .25s ease}
+.seq-page .guide-step-nav{display:flex;gap:8px;overflow:auto;padding:17px 0 22px;scrollbar-width:thin}
+.seq-page .guide-step-nav button{flex:0 0 46px;min-width:46px;height:44px;padding:0;border:1px solid #5b8290;background:#0b3140;border-radius:8px;color:#eff8fc;font:700 1rem Raleway,Arial,sans-serif;cursor:pointer}
+.seq-page .guide-step-nav button[aria-current="step"]{background:#e8c873;color:#092b35;border-color:#e8c873}
+.seq-page .guide-step-nav button.is-done:not([aria-current="step"]){background:#1b6459;border-color:#88d5b9}
+.seq-page .guide-step-nav button:disabled{opacity:.42;cursor:not-allowed}
+.seq-page .guide-step-nav button:focus-visible,.seq-page .guide-actions button:focus-visible,.seq-page .guide-demo button:focus-visible,.seq-page .guide-options input:focus-visible+span{outline:3px solid #f3df9c;outline-offset:3px}
+.seq-page .guide-card{background:rgba(0,18,29,.72);border:1px solid rgba(156,221,238,.3);border-radius:12px;padding:clamp(17px,3vw,33px)}
+.seq-page .guide-card-header{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.seq-page .guide-step-number{font-size:.77rem;letter-spacing:.1em;color:#d1bf83;font-weight:800}
+.seq-page .guide-time{font-size:.76rem;color:#c0d8e1}
+.seq-page .guide-card h3{margin:12px 0 15px;font-size:clamp(1.45rem,2.5vw,2rem);line-height:1.25;color:#fff}
+.seq-page .guide-card p{color:#e1f1f5;line-height:1.73;font-size:clamp(.95rem,1.3vw,1.04rem);max-width:880px}
+.seq-page .guide-card p strong{color:#fff}
+.seq-page .guide-card code{padding:1px 5px;background:#174956;border-radius:4px;color:#c0f1ff}
+.seq-page .guide-example{margin:22px 0;padding:clamp(14px,2.5vw,25px);background:#103949;border:1px solid rgba(147,213,231,.3);border-radius:10px}
+.seq-page .guide-example h4{font-size:.94rem;color:#f5e1a3;margin:0 0 14px}
+.seq-page .guide-bit-row{display:flex;flex-wrap:nowrap;gap:8px;align-items:stretch;max-width:550px;margin:10px 0 14px}
+.seq-page .guide-bit{flex:1;min-width:0;padding:11px 5px;text-align:center;border-radius:7px;border:1px solid #6a9ca9;background:#082a39}
+.seq-page .guide-bit small{display:block;color:#a8cbd5;font-size:.68rem;margin-bottom:4px}
+.seq-page .guide-bit strong{display:block;color:#fff;font:700 clamp(1.35rem,3.8vw,2.1rem) Consolas,"DejaVu Sans Mono",monospace}
+.seq-page .guide-bit.is-one{background:#176071;border-color:#88dce4}
+.seq-page .guide-demo{display:flex;flex-wrap:wrap;gap:9px;margin:13px 0}
+.seq-page .guide-demo button,.seq-page .guide-actions button,.seq-page .guide-restart{padding:11px 17px;border-radius:7px;border:1px solid #9accd8;background:#115168;color:#fff;font:700 .88rem Raleway,Arial,sans-serif;cursor:pointer}
+.seq-page .guide-demo button:hover,.seq-page .guide-actions button:hover:not(:disabled){background:#1d6e83}
+.seq-page .guide-demo button.is-active{background:#e7c976;color:#082c3a;border-color:#e7c976}
+.seq-page .guide-demo button:disabled,.seq-page .guide-actions button:disabled{opacity:.4;cursor:not-allowed}
+.seq-page .guide-demo-label{font-size:.87rem;color:#dbedf2;line-height:1.6}
+.seq-page .guide-comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}
+.seq-page .guide-comparison div{padding:14px;background:#0c303e;border:1px solid #466f7e;border-radius:7px}
+.seq-page .guide-comparison b{display:block;color:#fff;margin-bottom:7px}
+.seq-page .guide-comparison span{display:block;color:#d9eaf0;font-size:.85rem;line-height:1.6}
+.seq-page .guide-sequence{display:flex;flex-wrap:wrap;gap:7px;margin:9px 0}
+.seq-page .guide-sequence span{display:inline-block;padding:8px 10px;background:#082b37;border:1px solid #5b8b9b;border-radius:5px;color:#fff;font:700 .92rem Consolas,monospace}
+.seq-page .guide-sequence .is-current{border-color:#eacc7d;background:#755c25}
+.seq-page .guide-value{font-size:1.02rem;color:#e5f7fb}
+.seq-page .guide-value strong{color:#fff;font-size:1.4rem}
+.seq-page .guide-mini-table{border-collapse:collapse;max-width:100%;margin:12px 0;font-size:.87rem}
+.seq-page .guide-mini-table th,.seq-page .guide-mini-table td{border:1px solid #6a8b97;padding:8px 12px;text-align:center;color:#fff}
+.seq-page .guide-mini-table th{background:#0d4759}
+.seq-page .guide-mini-table tr.is-current td{background:#245d65}
+.seq-page .guide-check{border-top:1px solid rgba(162,226,240,.29);margin-top:24px;padding-top:22px}
+.seq-page .guide-check-tag{font-size:.74rem;letter-spacing:.13em;font-weight:800;color:#f2d785;text-transform:uppercase;margin-bottom:9px}
+.seq-page .guide-check h4{color:#fff;font-size:1.05rem;margin:4px 0 16px;line-height:1.5}
+.seq-page .guide-options{display:grid;gap:10px}
+.seq-page .guide-options label{display:block;cursor:pointer}
+.seq-page .guide-options input{position:absolute;width:1px;height:1px;opacity:0}
+.seq-page .guide-options span{display:block;padding:13px 15px;border:1px solid #648793;border-radius:7px;background:#082e3d;color:#eef8fc;transition:background .15s}
+.seq-page .guide-options input:checked+span{background:#20586b;border-color:#eacc7d;color:#fff}
+.seq-page .guide-feedback{margin-top:12px;padding:13px 15px;border-radius:8px;line-height:1.7;font-size:.92rem}
+.seq-page .guide-feedback.is-correct{background:#0a4b41;border:1px solid #75cba9;color:#fff}
+.seq-page .guide-feedback.is-wrong{background:#573f1e;border:1px solid #f0c16d;color:#fff}
+.seq-page .guide-feedback.is-reveal{background:#184d5c;border:1px solid #86d6e6;color:#fff}
+.seq-page .guide-actions{margin-top:24px;display:flex;align-items:center;flex-wrap:wrap;gap:9px}
+.seq-page .guide-actions .guide-next{background:#e5c777;color:#112932;border-color:#e5c777}
+.seq-page .guide-actions .guide-next:hover:not(:disabled){background:#f5dda0;color:#112932}
+.seq-page .guide-actions .guide-secondary{background:transparent}
+.seq-page .guide-actions .guide-help{background:transparent;border-style:dashed;font-weight:600}
+.seq-page .guide-actions-note{font-size:.81rem;color:#c6dde5;line-height:1.5;flex:1;min-width:160px}
+.seq-page .guide-footer{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-top:18px;color:#bad7e0;font-size:.78rem}
+.seq-page .guide-restart{background:transparent;padding:8px 12px;font-weight:600}
+.seq-page .guide-complete{margin-top:17px;border:1px solid #a8d1a7;padding:15px 19px;border-radius:9px;background:#14463e;color:#fff;line-height:1.7}
+.seq-page .guide-complete a{color:#fff;text-decoration:underline}
+.seq-page .guide-deep{margin:28px 0 48px;padding:0;border:1px solid rgba(137,214,231,.33);border-radius:11px;background:rgba(3,28,40,.62)}
+.seq-page .guide-deep>summary{list-style:none;padding:22px 26px;cursor:pointer;color:#fff;font-size:1.18rem;font-weight:700}
+.seq-page .guide-deep>summary::-webkit-details-marker{display:none}
+.seq-page .guide-deep>summary::before{content:"＋";display:inline-block;margin-right:13px;color:#f0d788}
+.seq-page .guide-deep[open]>summary::before{content:"−"}
+.seq-page .guide-deep>summary small{display:block;font-size:.81rem;color:#bbd5de;font-weight:400;margin:8px 0 0 33px;line-height:1.5}
+.seq-page .guide-deep-body{padding:0 20px 20px}
+.seq-page .guide-deep .chapter-nav{margin-top:16px}
+@media(max-width:620px){
+ .seq-page .guide-comparison{grid-template-columns:1fr}
+ .seq-page .guide-step-nav{gap:6px}
+ .seq-page .guide-step-nav button{flex-basis:40px;min-width:40px;height:40px}
+ .seq-page .guide-actions button{flex:1}
+ .seq-page .guide-actions-note{width:100%;flex:auto}
+ .seq-page .guide-mini-table th,.seq-page .guide-mini-table td{padding:7px}
+ .seq-page .guide-deep-body{padding:0 12px 12px}
+}
+@media(prefers-reduced-motion:reduce){.seq-page #guideProgressBar,.seq-page .guide-options span{transition:none}}
+@media print{
+ .seq-page .guide-card,.seq-page .guide-example,.seq-page .guide-bit,.seq-page .guide-comparison div{color:#111!important;background:white!important}
+ .seq-page .guide-card p,.seq-page .guide-card h3,.seq-page .guide-bit strong,.seq-page .guide-bit small,.seq-page .guide-example h4{color:#111!important}
+ .seq-page .guide-step-nav,.seq-page .guide-actions,.seq-page .guide-demo,.seq-page .guide-restart{display:none!important}
+}
