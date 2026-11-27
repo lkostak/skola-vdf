@@ -69,6 +69,15 @@ Výklad je základní a vstřícný, ale netvrdí, že 14 odpovědí s výběrem
 
 **K revizi:** pro konečné maturitní minimum ještě porovnat přesné schválené znění otázky a ověřit, že student umí samostatně nakreslit jednoduché schéma, číst diagram a vysvětlit příčinu změny bitů, nikoli jen vybrat správnou odpověď.
 
+### Studentská revize obsahu a přesunutí testu (27. 11. 2026)
+
+- Odstraněny autoreferenční formulace („Nezáleží na kulatém počtu kapitol“) i technické/metodické poznámky z úvodu a patičky pro studenta.
+- **Prvním cílem je pochopení, nikoli test.** Výuka se prochází volně. Každý krok obsahuje vysvětlení, interaktivní ukázku, shrnutí a krátkou výzvu popsat princip vlastními slovy; nejsou v něm nucené multiple-choice odpovědi a blokování přístupu k další látce.
+- **Jediný vyhodnocovaný test** je až úplně na konci stránky, za rozbalitelným odborným výkladem. Pokrývá všechna témata z 14 kroků; po odeslání zveřejní správnost, vysvětlení a doporučení k opakování. Před vyhodnocením student odpovědi nevidí.
+- Odborné modely v `app.js` zůstaly zachované; staré pětiootázkové vyhodnocování bylo nahrazeno sjednoceným závěrečným testem v `guide.js`.
+- Postup výuky si prohlížeč pamatuje pod novým klíčem `v3` jen jako poslední navštívený krok, nikoliv jako známku nebo hodnocení znalostí.
+- Automatické testy ověřují volnou navigaci, zachování technických simulací, umístění a úplnost závěrečného testu i správné vyhodnocení.
+
 ## 3. Obsah výukového webu
 
 | Součást | Umístění v repozitáři | Účel | Stav |
