@@ -54,6 +54,20 @@ Odkazy jsou odborné referenční podklady, nikoli zdroj školního schválení 
 
 **Hranice témat:** samostatné RS/D/JK a bistabilita patří k otázce 05. Obecné paměti RAM/ROM/Flash a detailní časovače patří do příslušné širší maturity (8 nebo další otázky), nikoli primárně sem.
 
+## Nová hlavní vrstva: výukový průvodce krok za krokem (27. 11. 2026)
+
+**Pedagogická změna:** před odbornou osnovu a kapitoly je zařazen jednoduchý interaktivní kurz, který staví na dialogu učitel–student: jedna myšlenka → ukázka → kontrolní otázka → zpětná vazba → další krok. Nejde o nové přidávání obsahu; jde o **jiné pořadí a náročnost výkladu**.
+
+- 10 kroků: paměť a čtyřbitový registr; posuv SHL/SHR; rotace ROL/ROR; binární čítač; přetečení; modulo 10/16; SIPO a serial/parallel; synchronní/asynchronní čítač; dělení frekvence; PLC CTU v praxi.
+- 10 kontrolních otázek s jedinou ověřitelnou odpovědí a pedagogickou zpětnou vazbou. Správná odpověď odemyká pokračování. Tlačítko „Nevím, ukaž vysvětlení“ také umožňuje pokračovat, ale bez přidělení bodu za samostatnou znalost.
+- Demonstrace mají tlačítka pro další CLK, změnu směru/typu a reset. Vyznačeny jsou bity b3…b0, u SIPO je potvrzen směr nového bitu do Q0.
+- Pokrok se ukládá lokálně do prohlížeče, bez přenosu dat a bez přihlašování; není to školní známka ani zaručená maturitní připravenost.
+- Souvislý odborný výklad včetně všech původních simulací, laboratorních úloh a osnovy **zůstal zachován** v elementu `<details id="podrobne">`.
+- Nové soubory: `guide.js`, `guide.css`. Automatické scénáře `tests/mer06-guided-course.test.js` ověřují navigaci, správné a chybné odpovědi a zachování starých částí stránky. CI se spouští z `.github/workflows/mer06-tests.yml`.
+- **Pedagogický záměr pro další otázky:** začínat tím, co student musí jednoduše vysvětlit, nikoli výčtem rozsahu odborného PDF; pokročilá látka je navazující rozšíření.
+
+**Důležité:** interaktivní průvodce je úvodní pochopení látky. Kompletní zkouška navíc vyžaduje samostatný souvislý ústní výklad, kreslení schémat a výpočty. Rozsah odpovídající oficiálnímu schválenému zadání školy je stále předmětem pedagogické revize.
+
 ## 3. Obsah výukového webu
 
 | Součást | Umístění v repozitáři | Účel | Stav |
