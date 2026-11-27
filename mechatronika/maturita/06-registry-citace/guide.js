@@ -105,19 +105,15 @@ const steps=[
   lesson:"V praxi čítač měří události. Je důležité vědět, co přesně představuje jeden impuls."}
 ];
 const total=steps.length;
-const key="skola-vdf-mer06-pruvodce-v2";
-const initial=()=>({index:0,reached:0,passed:Array(total).fill(false),revealed:Array(total).fill(false),selected:Array(total).fill(-1),view:Array(total).fill(0),mode:"SHL",counterMod:10, syncMode:"sync",controlValue:3,controlEnable:1});
+const key="skola-vdf-mer06-pruvodce-v3";
+const initial=()=>({index:0,view:Array(total).fill(0),mode:"SHL",counterMod:10,syncMode:"sync",controlValue:3,controlEnable:1});
 let state=initial();
 try{
  const saved=JSON.parse(localStorage.getItem(key)||"null");
- if(saved&&Array.isArray(saved.passed)&&saved.passed.length===total&&Number.isInteger(saved.reached)){
-  state.passed=saved.passed.map(Boolean);
-  state.reached=Math.max(0,Math.min(total-1,saved.reached));
-  state.index=Math.max(0,Math.min(state.reached,Number(saved.index)||0));
- }
+ if(saved&&Number.isInteger(saved.index))state.index=Math.max(0,Math.min(total-1,saved.index));
 }catch(err){}
 const save=()=>{
- try{localStorage.setItem(key,JSON.stringify({passed:state.passed,reached:state.reached,index:state.index}));}catch(err){}
+ try{localStorage.setItem(key,JSON.stringify({index:state.index}));}catch(err){}
 };
 const bits=(number,width=4)=>number.toString(2).padStart(width,"0");
 const bitRow=(word)=>{
@@ -251,64 +247,56 @@ function demo(index){
  }
  return "";
 }
-const card=byId("guidedStage"),nav=byId("guideStepNav"),progress=byId("guideProgressBar"),progressText=byId("guideProgressText");
+const card=byId("guidedStage");
+const nav=byId("guideStepNav");
+const progress=byId("guideProgressBar");
+const progressText=byId("guideProgressText");
+const reflect=[
+ "Vysvětli vlastními slovy, co znamená uchovat jeden bit.",
+ "K čemu používáme společný hodinový signál a proč je důležitý režim HOLD?",
+ "Předveď na papíře posuv doleva a doprava.",
+ "Vysvětli spolužákovi, čím se rotace liší od posuvu.",
+ "Kdy je vhodné poslat bity postupně a kdy všechny najednou?",
+ "Co říká jeden řádek časového diagramu po hodinové hraně?",
+ "Jaký je rozdíl mezi uložením čísla a počítáním událostí?",
+ "Proč se čtyřbitové počítání po nejvyšším čísle opakuje?",
+ "Kde by se hodil čítač, který počítá pouze od nuly do devíti?",
+ "Kolik bitů stačí k vyjádření pěti různých stavů a proč?",
+ "Na příkladu řekni, k čemu jsou ENABLE, RESET a LOAD.",
+ "Vysvětli rozdíl mezi společným taktem a postupným přepínáním.",
+ "Jak se může z pravidelných impulsů získat pomalejší signál?",
+ "Kdy čítač na dopravníku zaznamená nový výrobek?"
+];
 function render(){
- const i=state.index,s=steps[i],passed=state.passed[i],revealed=state.revealed[i],answered=passed||revealed,sel=state.selected[i],done=state.passed.filter(Boolean).length;
- progress.style.width=(100*done/total)+"%";
- progressText.textContent=done+" / "+total+" ověřených odpovědí";
- nav.innerHTML=steps.map((step,j)=>'<button type="button" data-nav="'+j+'" aria-label="Krok '+(j+1)+': '+step.name+'"'+
-  (j===i?' aria-current="step"':'')+(state.passed[j]?' class="is-done"':'')+(j>state.reached?' disabled':'')+'>'+ (state.passed[j]?"✓":j+1) +'</button>').join("");
- let choiceHtml="";
- s.choices.forEach((value,j)=>{
-  choiceHtml+='<label><input type="radio" name="guide-answer" value="'+j+'"'+(sel===j?' checked':'')+(answered?' disabled':'')+'><span>'+value+'</span></label>';
- });
- let feedback="";
- if(passed) feedback='<div class="guide-feedback is-correct" role="status">✓ '+s.right+'</div>';
- else if(revealed) feedback='<div class="guide-feedback is-reveal" role="status">Vysvětlení: '+s.right+' Tento krok není započítán jako samostatně zvládnutý.</div>';
- else if(sel>=0) feedback='<div class="guide-feedback is-wrong" role="status">Ještě ne. '+s.wrong+' Zkus zvolit jinou odpověď.</div>';
- const takeaway=answered?'<div class="guide-feedback is-reveal"><strong>Zapamatuj si:</strong> '+s.lesson+'<p><strong>Zkus to teď vysvětlit vlastními slovy, bez čtení odpovědi.</strong></p></div>':"";
- let actions='<div class="guide-actions">'+
-  demoButton("previous","← Předchozí",i===0,' class="guide-secondary"')+
-  (i<total-1?demoButton("next","Další krok →",!answered,' class="guide-next"'):answered?demoButton("deep","Přejít k rozšíření →",false,' class="guide-next"'):"")+
-  (!answered?demoButton("reveal","Nevím, ukaž vysvětlení",false,' class="guide-help"'):"")+
-  '<span class="guide-actions-note">'+(answered?"Můžeš pokračovat.": "Odpověz na otázku, aby se odemkl další krok.")+'</span></div>';
- let finished="";
- if(i===total-1&&answered){
-  finished='<div class="guide-complete"><strong>Hotovo, prošel jsi celý základní výklad.</strong><p>'+
-   'Zvládnuté otázky samostatně: '+done+' z '+total+'. Nejasné kroky si vrať v navigaci a zkus je vysvětlit vlastními slovy. U každé odpovědi se také pokus samostatně říct proč. '+
-   'Toto je úvodní porozumění, nikoli náhrada kompletní ústní odpovědi a schémat.</p></div>';
- }
+ const i=state.index,s=steps[i];
+ progress.style.width=(100*(i+1)/total)+"%";
+ progressText.textContent="Krok "+(i+1)+" z "+total;
+ nav.innerHTML=steps.map((step,j)=>'<button type="button" data-nav="'+j+
+  '" aria-label="Krok '+(j+1)+': '+step.name+'"'+(j===i?' aria-current="step"':'')+'>'+(j+1)+'</button>').join("");
  const topicGroup=i<6?"REGISTRY A PŘENOS DAT":i<13?"ČÍTAČE A ČASOVÁNÍ":"POUŽITÍ V PRAXI";
- card.innerHTML='<div class="guide-card-header"><span class="guide-step-number">'+topicGroup+' · KROK '+(i+1)+' Z '+total+'</span>'+
-  '<span class="guide-time">Přibližně '+s.minutes+'</span></div>'+
+ const explanation='<div class="guide-check"><div class="guide-check-tag">Co si zapamatovat</div>'+
+  '<p><strong>'+s.lesson+'</strong></p><h4>Dokážeš to vysvětlit vlastními slovy?</h4>'+
+  '<p>'+reflect[i]+'</p></div>';
+ const actions='<div class="guide-actions">'+
+  demoButton("previous","← Předchozí krok",i===0,' class="guide-secondary"')+
+  (i<total-1?demoButton("next","Další krok →",false,' class="guide-next"'):
+   demoButton("final-test","Přejít k závěrečnému testu →",false,' class="guide-next"'))+
+  '<span class="guide-actions-note">'+(i===total-1?
+   "Hotovo. Teď si ověříš celé učivo v závěrečném testu.":
+   "Přejdi dál, až budeš rozumět příkladu. Nemusíš nic hádat.")+'</span></div>';
+ card.innerHTML='<div class="guide-card-header"><span class="guide-step-number">'+topicGroup+
+  ' · KROK '+(i+1)+' Z '+total+'</span><span class="guide-time">Přibližně '+s.minutes+'</span></div>'+
   '<h3>'+s.title+'</h3>'+s.text.map(p=>'<p>'+p+'</p>').join("")+
-  '<div class="guide-example">'+demo(i)+'</div>'+
-  '<div class="guide-check"><div class="guide-check-tag">Kontrolní otázka</div>'+
-  '<h4>'+s.question+'</h4><div class="guide-options" role="group" aria-label="Možnosti odpovědi">'+choiceHtml+'</div>'+
-  feedback+takeaway+'</div>'+actions+finished;
+  '<div class="guide-example">'+demo(i)+'</div>'+explanation+actions;
  save();
 }
 function show(index){
- if(index<0||index>=total||index>state.reached)return;
- state.index=index;
- render();
+ if(index<0||index>=total)return;
+ state.index=index;render();
  const heading=card.querySelector("h3");
  if(heading){heading.setAttribute("tabindex","-1");heading.focus({preventScroll:true});}
  root.scrollIntoView({behavior:"smooth",block:"start"});
 }
-root.addEventListener("change",event=>{
- const choice=event.target;
- if(!choice.matches('input[name="guide-answer"]'))return;
- const i=state.index;
- if(state.passed[i]||state.revealed[i])return;
- const answer=Number(choice.value);
- state.selected[i]=answer;
- if(answer===steps[i].correct){
-  state.passed[i]=true;
-  state.reached=Math.max(state.reached,Math.min(total-1,i+1));
- }
- render();
-});
 root.addEventListener("click",event=>{
  const node=event.target.closest("[data-nav],[data-action]");
  if(!node||node.disabled)return;
@@ -316,10 +304,9 @@ root.addEventListener("click",event=>{
  const action=node.dataset.action,i=state.index;
  if(action==="previous"){show(i-1);return;}
  if(action==="next"){show(i+1);return;}
- if(action==="reveal"){
-  state.revealed[i]=true;
-  state.reached=Math.max(state.reached,Math.min(total-1,i+1));
-  render();return;
+ if(action==="final-test"){
+  const target=byId("zaverecny-test");if(target)target.scrollIntoView({behavior:"smooth",block:"start"});
+  return;
  }
  if(action==="pulse"){state.view[i]=i===0?1-state.view[i]:Math.min(99,state.view[i]+1);render();return;}
  if(action==="clock-hold"){state.view[i]=1;render();return;}
@@ -335,14 +322,48 @@ root.addEventListener("click",event=>{
  if(action==="mode"){state.mode=node.dataset.value;render();return;}
  if(action==="modulo"){state.counterMod=Number(node.dataset.value);state.view[i]=0;render();return;}
  if(action==="sync"){state.syncMode=node.dataset.value;render();return;}
- if(action==="deep"){
-  const details=byId("podrobne");if(details){details.open=true;details.scrollIntoView({behavior:"smooth"});}
- }
 });
 byId("guideReset").addEventListener("click",()=>{
- if(!window.confirm("Opravdu začít kurz od začátku? Vymaže se dosavadní pokrok v tomto prohlížeči."))return;
+ if(!window.confirm("Začít výklad znovu od prvního kroku?"))return;
  state=initial();render();root.scrollIntoView({behavior:"smooth"});
 });
+// Jediný vyhodnocovaný test je až za výkladem a pokročilými příklady.
+const quizForm=byId("finalQuiz");
+const quizItems=byId("finalQuizQuestions");
+if(quizForm&&quizItems){
+ quizItems.innerHTML=steps.map((s,i)=>{
+  const choices=s.choices.map((answer,j)=>
+   '<label><input type="radio" name="q'+i+'" value="'+j+'"> '+answer+'</label>'
+  ).join("");
+  return '<fieldset class="guide-quiz-question"><legend>'+(i+1)+'. '+s.question+
+   '</legend>'+choices+'<p class="quiz-feedback" id="quiz'+(i+1)+'" aria-live="polite"></p></fieldset>';
+ }).join("");
+ quizForm.addEventListener("submit",event=>{
+  event.preventDefault();
+  let filled=0,score=0;
+  steps.forEach((s,i)=>{
+   const answer=quizForm.querySelector('input[name="q'+i+'"]:checked');
+   const feedback=byId("quiz"+(i+1));
+   if(!answer){
+    feedback.textContent="Zatím bez odpovědi.";
+    feedback.className="quiz-feedback";return;
+   }
+   filled++;
+   const correct=Number(answer.value)===s.correct;
+   if(correct)score++;
+   feedback.textContent=correct?s.right:s.wrong;
+   feedback.className="quiz-feedback "+(correct?"is-correct":"is-wrong");
+  });
+  const result=byId("quizSummary");
+  result.textContent="Správně "+score+" z "+total+". Vyplněno "+filled+" z "+total+
+   ". Vrať se k otázkám, které se nepovedly, a zkus vysvětlit princip vlastními slovy.";
+  result.scrollIntoView({behavior:"smooth",block:"nearest"});
+ });
+ quizForm.addEventListener("reset",()=>{
+  steps.forEach((s,i)=>{const f=byId("quiz"+(i+1));f.textContent="";f.className="quiz-feedback";});
+  byId("quizSummary").textContent="";
+ });
+}
 function openDeepIfHash(){
  if(!location.hash)return;
  const target=document.getElementById(decodeURIComponent(location.hash.slice(1)));
