@@ -130,3 +130,41 @@
  .seq-page .guide-card>p{line-height:1.78}
 }
 @media print{.seq-page .guide-practice{background:#fff!important;border-color:#aaa!important}.seq-page .guide-practice h4,.seq-page .guide-practice .guide-ungraded{color:#111!important}}
+
+/* Jedna výuková struktura: každý krok má svou volitelnou odbornou vrstvu. */
+.seq-page #podrobne-zdroj[hidden]{display:none!important}
+.seq-page .guide-more{margin-top:22px;border-top:1px solid rgba(155,215,226,.28);padding-top:18px}
+.seq-page .guide-more-trigger{width:100%;text-align:left;padding:15px 19px;border:1px solid rgba(149,211,224,.45);border-radius:8px;background:#104355;color:#eafaff;cursor:pointer;font:700 1rem Raleway,Arial,sans-serif}
+.seq-page .guide-more-trigger::before{content:"＋";color:#f3d37e;margin-right:10px;font-weight:700}
+.seq-page .guide-more-trigger[aria-expanded="true"]::before{content:"−"}
+.seq-page .guide-more-trigger:hover{background:#1b5767}
+.seq-page .guide-more-trigger:focus-visible{outline:3px solid #f3d37e;outline-offset:3px}
+.seq-page .guide-deep-slot{border:1px solid rgba(149,211,224,.34);border-top:0;border-radius:0 0 8px 8px;padding:12px clamp(8px,2vw,24px) 25px;background:rgba(4,27,40,.72)}
+.seq-page .guide-deep-slot>.chapter{margin:0;padding:16px 0 0;border:0;box-shadow:none;background:transparent}
+.seq-page .guide-deep-slot .chapter h2{font-size:clamp(1.35rem,2.4vw,1.8rem);line-height:1.35}
+.seq-page .guide-deep-slot .chapter .lab{margin:16px 0}
+.seq-page .guide-deep-slot .block-diagram{max-width:100%;overflow-x:auto}
+.seq-page .guide-deep-slot .chapter .kicker{color:#f3dc94}
+.seq-page .guide-oral{scroll-margin-top:28px}
+.seq-page .guide-oral .oral-outline{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-top:22px}
+.seq-page .guide-oral .oral-outline-card{border:1px solid rgba(153,221,233,.3);border-radius:9px;padding:20px;background:rgba(4,28,40,.65)}
+.seq-page .guide-oral .oral-outline-card h3{margin:0 0 12px;color:#fff;font-size:1.1rem;line-height:1.4}
+.seq-page .guide-oral .oral-outline-card p{color:#e0f0f3;font-size:.92rem;line-height:1.75;margin:10px 0}
+.seq-page .guide-oral .oral-outline-card p strong{color:#f4df9d}
+.seq-page .guide-oral .oral-outline-card a{display:inline-block;margin-top:10px;font-weight:700;color:#b8f1ff;text-decoration:underline;text-underline-offset:3px}
+.seq-page .guide-oral-conclusion{margin:22px 0;padding:18px;border-left:3px solid #e6ca82;background:rgba(5,46,57,.7);color:#eaf7fa;line-height:1.7}
+.seq-page .guide-oral-model{margin-top:25px;border:1px solid rgba(155,225,236,.36);border-radius:9px;padding:0 18px;background:rgba(0,25,38,.68)}
+.seq-page .guide-oral-model>summary{cursor:pointer;padding:18px 4px;color:#fff;font-weight:700;font-size:1rem}
+.seq-page .guide-oral-model .chapter{margin:0;background:transparent;border:0;padding:14px 0 25px}
+.seq-page .guide-oral-model .chapter h2{font-size:1.45rem}
+.seq-page .guide-oral-model .chapter .kicker{font-size:.77rem}
+.seq-page .guide-final-test{scroll-margin-top:30px}
+@media(max-width:750px){
+ .seq-page .guide-oral .oral-outline{grid-template-columns:1fr}
+ .seq-page .guide-deep-slot{padding:10px 9px 18px}
+ .seq-page .guide-deep-slot .chapter{overflow-x:auto}
+}
+@media print{
+ .seq-page .guide-oral .oral-outline-card,.seq-page .guide-deep-slot{background:#fff!important;border-color:#aaa!important}
+ .seq-page .guide-oral .oral-outline-card h3,.seq-page .guide-oral .oral-outline-card p,.seq-page .guide-oral .oral-outline-card a{color:#111!important}
+}
