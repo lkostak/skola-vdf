@@ -120,7 +120,7 @@ test("Závěrečný test je po výkladu a odborné části; původní simulace z
  const css=fs.readFileSync(path.join(dir,"guide.css"),"utf8");
  const app=fs.readFileSync(path.join(dir,"app.js"),"utf8");
  const quick=html.indexOf('id="rychlokurz"');
- const advanced=html.indexOf('id="podrobne"');
+ const advanced=html.indexOf('id="ustni-priprava"');
  const quiz=html.indexOf('id="zaverecny-test"');
  const footer=html.indexOf('<footer class="footer"');
  assert.ok(0<quick&&quick<advanced&&advanced<quiz&&quiz<footer);
