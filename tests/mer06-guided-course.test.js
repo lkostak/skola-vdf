@@ -62,7 +62,7 @@ test("Chybná odpověď nepřidá bod; vysvětlení odemkne další krok bez bod
  assert.equal(a.el("guideProgressText").textContent,"0 / 10 ověřených odpovědí");
  assert.match(a.el("guidedStage").innerHTML,/není započítán/);
  a.click("next");
- assert.match(a.el("guidedStage").innerHTML,/Posuv bitů/);
+ assert.match(a.el("guidedStage").innerHTML,/Jak bity putují registrem/);
 });
 test("Deset kontrolních otázek tvoří průchozí kurz včetně finálního hodnocení",()=>{
  const a=setup(),answers=[0,1,0,0,1,2,1,1,1,0];
